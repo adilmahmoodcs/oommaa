@@ -21,6 +21,7 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 # gem 'capistrano-rails', group: :development
 
 gem 'devise', '~> 4.2.0'
+gem 'devise-bootstrap-views', github: 'hisea/devise-bootstrap-views', branch: 'bootstrap4'
 
 group :development, :test do
   gem 'byebug', platform: :mri
