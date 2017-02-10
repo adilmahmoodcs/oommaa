@@ -19,6 +19,8 @@ gem 'turbolinks', '~> 5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'devise', '~> 4.2.0'
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end
