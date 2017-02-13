@@ -10,7 +10,7 @@
 
 FactoryGirl.define do
   factory :brand do
-    name "MyString"
+    name "Dallas Cowboys"
   end
 
 end
