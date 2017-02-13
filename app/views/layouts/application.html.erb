@@ -16,7 +16,12 @@
     <%= render "navbar" %>
     <div class="container">
       <%= render "application/flashes" %>
-      <%= yield %>
+      <div class="row">
+        <%= render "sidebar" %>
+        <div class="col-md-8 col-lg-9 main-content">
+          <%= yield %>
+        </div>
+      </div>
     </div>
   </body>
 </html>

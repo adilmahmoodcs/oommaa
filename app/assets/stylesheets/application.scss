@@ -1,4 +1,13 @@
 /*= require_self */
 
+$brand-primary: #0D254C;
+$brand-inverse: #011935;
+
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+@import "sidebar";
+
+.container {
+  margin-top: 50px;
+
+}
