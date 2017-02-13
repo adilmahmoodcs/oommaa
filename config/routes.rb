@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root to: "devise/sessions#new"
+  resources :keywords
+
+  root to: "keywords#index"
 end
