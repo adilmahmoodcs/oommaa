@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://graph.facebook.com/v2.8/search?access_token=EAAIUKbXn8xsBAPsYb2xKl4fcrpDnJKQZCrZB2EuLjHyg4GrXrlqnd1xHROqV3DFFbPRuzILTEwtoXLr5fo8PTxvvyN68uPUpbvCwnoIPrdJLmmKkuJXd2dMGekT8THoc2eZBuftIVXaLTN656NYzpxOu9FtG10ZD&fields=id,name,link,picture.width(200)&limit=500&q=Dallas%20Cowboys&type=page
+    uri: https://graph.facebook.com/v2.8/search?access_token=EAAIUKbXn8xsBAPsYb2xKl4fcrpDnJKQZCrZB2EuLjHyg4GrXrlqnd1xHROqV3DFFbPRuzILTEwtoXLr5fo8PTxvvyN68uPUpbvCwnoIPrdJLmmKkuJXd2dMGekT8THoc2eZBuftIVXaLTN656NYzpxOu9FtG10ZD&fields=id,name&limit=500&q=Dallas%20Cowboys&type=page
     body:
       encoding: US-ASCII
       string: ''
@@ -546,7 +546,7 @@ http_interactions:
         Dallas Cowboys Smackdown Hotel","link":"https:\/\/www.facebook.com\/pages\/The-Dallas-Cowboys-Smackdown-Hotel\/116834668423445","picture":{"data":{"height":126,"is_silhouette":true,"url":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-1\/s200x200\/427073_10149999285991272_1915924674_n.png?oh=49729b5fff49e98ec668cea1aa0b8eee&oe=59095433","width":200}}},{"id":"152145648182275","name":"Dallas
         Cowboys Stadium- Jack Daniels Bar","link":"https:\/\/www.facebook.com\/pages\/Dallas-Cowboys-Stadium-Jack-Daniels-Bar\/152145648182275","picture":{"data":{"height":126,"is_silhouette":true,"url":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-1\/s200x200\/418333_10149999285994467_1920585607_n.png?oh=7eadf777883afba3e4fcf2b174ee6a16&oe=59318BCE","width":200}}},{"id":"150246705046877","name":"Dallas
         Cowboys Stadium","link":"https:\/\/www.facebook.com\/pages\/Dallas-Cowboys-Stadium\/150246705046877","picture":{"data":{"height":126,"is_silhouette":true,"url":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-1\/s200x200\/427073_10149999285991272_1915924674_n.png?oh=49729b5fff49e98ec668cea1aa0b8eee&oe=59095433","width":200}}}],"paging":{"cursors":{"before":"MAZDZD","after":"NDk5"},"next":"https:\/\/graph.facebook.com\/v2.8\/search?access_token=EAAIUKbXn8xsBAPsYb2xKl4fcrpDnJKQZCrZB2EuLjHyg4GrXrlqnd1xHROqV3DFFbPRuzILTEwtoXLr5fo8PTxvvyN68uPUpbvCwnoIPrdJLmmKkuJXd2dMGekT8THoc2eZBuftIVXaLTN656NYzpxOu9FtG10ZD&fields=id\u00252Cname\u00252Clink\u00252Cpicture.width\u002528200\u002529&q=Dallas+Cowboys&type=page&limit=500&after=NDk5"}}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 13 Feb 2017 13:12:09 GMT
 - request:
     method: get
@@ -632,6 +632,6 @@ http_interactions:
         Cowboys Stadium","link":"https:\/\/www.facebook.com\/pages\/Dallas-Cowboys-Stadium\/123217077781728","picture":{"data":{"height":126,"is_silhouette":true,"url":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-1\/s200x200\/417197_10149999285992991_711134825_n.png?oh=d303a77b43654652226d84b6adbb32c4&oe=593A9880","width":200}}},{"id":"1527356237515388","name":"Dallas
         Cowboys 4 life","link":"https:\/\/www.facebook.com\/Dallas-Cowboys-4-life-1527356237515388\/","picture":{"data":{"height":200,"is_silhouette":false,"url":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-1\/p200x200\/10898169_1527367674180911_6397127516713926231_n.jpg?oh=2b3838ebc9bc3a7b4c20bfcf84f8bc85&oe=593E3AA5","width":200}}},{"id":"1661372177476690","name":"Dallas
         Cowboys Training Camp","link":"https:\/\/www.facebook.com\/pages\/Dallas-Cowboys-Training-Camp\/1661372177476690","picture":{"data":{"height":200,"is_silhouette":false,"url":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-1\/p200x200\/16425758_412328772443247_7969593609228630699_n.jpg?oh=fb5e2e3c842f985985516a8346696482&oe=58FE9C0C","width":200}}}],"paging":{"cursors":{"before":"NTAw","after":"NTM2"},"previous":"https:\/\/graph.facebook.com\/v2.8\/search?access_token=EAAIUKbXn8xsBAPsYb2xKl4fcrpDnJKQZCrZB2EuLjHyg4GrXrlqnd1xHROqV3DFFbPRuzILTEwtoXLr5fo8PTxvvyN68uPUpbvCwnoIPrdJLmmKkuJXd2dMGekT8THoc2eZBuftIVXaLTN656NYzpxOu9FtG10ZD&fields=id\u00252Cname\u00252Clink\u00252Cpicture.width\u002528200\u002529&q=Dallas+Cowboys&type=page&limit=500&before=NTAw"}}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 13 Feb 2017 13:12:10 GMT
 recorded_with: VCR 3.0.3

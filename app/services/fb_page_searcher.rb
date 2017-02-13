@@ -31,6 +31,6 @@ class FBPageSearcher
   end
 
   def fields
-    ["id", "name", "link", "picture.width(200)"]
+    ["id", "name"]
   end
 end
