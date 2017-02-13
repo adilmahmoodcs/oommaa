@@ -24,5 +24,7 @@ module Counterfind
     config.counterfind = config_for(:counterfind)
 
     config.generators.javascript_engine = :js
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end
