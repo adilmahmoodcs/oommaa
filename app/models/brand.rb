@@ -11,4 +11,12 @@
 class Brand < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: true
+
+  after_commit :start_pages_importer, on: :create
+
+  private
+
+  def start_pages_importer
+    BrandPagesImporterJob.perform_later(self)
+  end
 end
