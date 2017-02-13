@@ -10,7 +10,7 @@
 
 FactoryGirl.define do
   factory :keyword do
-    name "MyString"
+    name { Faker::Hipster.sentence(2) }
   end
 
 end
