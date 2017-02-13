@@ -24,11 +24,15 @@ RSpec.describe BrandsController, type: :controller do
   # Brand. As you add validations to Brand, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: Faker::Team.name
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: ""
+    }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -83,7 +87,7 @@ RSpec.describe BrandsController, type: :controller do
 
       it "redirects to the created brand" do
         post :create, params: {brand: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Brand.last)
+        expect(response).to redirect_to(brands_path)
       end
     end
 
@@ -122,7 +126,7 @@ RSpec.describe BrandsController, type: :controller do
       it "redirects to the brand" do
         brand = Brand.create! valid_attributes
         put :update, params: {id: brand.to_param, brand: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(brand)
+        expect(response).to redirect_to(brands_path)
       end
     end
 

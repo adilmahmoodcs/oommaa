@@ -33,6 +33,8 @@ group :development, :test do
   gem 'vcr'
   gem 'webmock'
   gem 'database_cleaner'
+  gem 'faker'
+  gem 'rails-controller-testing'
 end
 
 group :development do

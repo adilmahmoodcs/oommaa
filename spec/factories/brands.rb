@@ -10,7 +10,6 @@
 
 FactoryGirl.define do
   factory :brand do
-    name "Dallas Cowboys"
+    name { Faker::Team.name }
   end
-
 end

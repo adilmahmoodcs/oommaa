@@ -24,11 +24,15 @@ RSpec.describe KeywordsController, type: :controller do
   # Keyword. As you add validations to Keyword, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: Faker::Lorem.word
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: ""
+    }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -81,9 +85,9 @@ RSpec.describe KeywordsController, type: :controller do
         expect(assigns(:keyword)).to be_persisted
       end
 
-      it "redirects to the created keyword" do
+      it "redirects to index" do
         post :create, params: {keyword: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Keyword.last)
+        expect(response).to redirect_to(keywords_path)
       end
     end
 
@@ -122,7 +126,7 @@ RSpec.describe KeywordsController, type: :controller do
       it "redirects to the keyword" do
         keyword = Keyword.create! valid_attributes
         put :update, params: {id: keyword.to_param, keyword: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(keyword)
+        expect(response).to redirect_to(keywords_path)
       end
     end
 
