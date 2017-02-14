@@ -15,6 +15,7 @@ class PostsController < ApplicationController
       @post = FacebookPost.find(params[:post_id])
       @post.status = params[:status]
       @post.save!
+      @post.create_activity(params[:status], owner: current_user, parameters: { name: @post.permalink })
     end
 
     head :no_content

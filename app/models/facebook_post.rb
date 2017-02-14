@@ -14,6 +14,8 @@
 #
 
 class FacebookPost < ApplicationRecord
+  include PublicActivity::Common
+
   enum status: [:not_suspect, :suspect, :whitelisted, :blacklisted]
 
   validates :facebook_id, :message, presence: true

@@ -24,6 +24,7 @@ class KeywordsController < ApplicationController
     @keyword = Keyword.new(keyword_params)
 
     if @keyword.save
+      @keyword.create_activity(:create, owner: current_user, parameters: { name: @keyword.name })
       redirect_to keywords_path, notice: 'Keyword was successfully created.'
     else
       render :new
@@ -33,6 +34,7 @@ class KeywordsController < ApplicationController
   # PATCH/PUT /keywords/1
   def update
     if @keyword.update(keyword_params)
+      @keyword.create_activity(:update, owner: current_user, parameters: { name: @keyword.name })
       redirect_to keywords_path, notice: 'Keyword was successfully updated.'
     else
       render :edit
@@ -41,6 +43,7 @@ class KeywordsController < ApplicationController
 
   # DELETE /keywords/1
   def destroy
+    @keyword.create_activity(:destroy, owner: current_user, parameters: { name: @keyword.name })
     @keyword.destroy
     redirect_to keywords_path, notice: 'Keyword was successfully destroyed.'
   end

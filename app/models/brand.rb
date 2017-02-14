@@ -9,6 +9,8 @@
 #
 
 class Brand < ApplicationRecord
+  include PublicActivity::Common
+
   validates :name, presence: true
   validates :name, uniqueness: true
 
