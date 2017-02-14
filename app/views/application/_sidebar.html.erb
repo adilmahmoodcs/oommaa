@@ -1,4 +1,4 @@
-<div class="col-md-4 col-lg-3">
+<div class="col-md-3 col-lg-2">
   <div class="bootstrap-vertical-nav">
     <button class="btn btn-primary hidden-md-up" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
       <span class="">Menu</span>
@@ -15,6 +15,33 @@
           <%= link_to t(:brands),
                       brands_path,
                       class: "nav-link #{'active' if controller.controller_name == 'brands'}" %>
+        </li>
+        <hr>
+
+        <li class="nav-item">
+          <%= link_to t(:all_posts),
+                      posts_path,
+                      class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status].nil?}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t(:suspect_posts),
+                      posts_path(status: :suspect),
+                      class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'suspect'}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t(:not_suspect_posts),
+                      posts_path(status: :not_suspect),
+                      class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'not_suspect'}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t(:whitelisted_posts),
+                      posts_path(status: :whitelisted),
+                      class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'whitelisted'}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t(:blacklisted_posts),
+                      posts_path(status: :blacklisted),
+                      class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'blacklisted'}" %>
         </li>
       </ul>
     </div>

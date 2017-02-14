@@ -1,0 +1,42 @@
+<h1>
+  <%= t(@status || :all) %>
+  Posts
+  (<%= @posts.total_count %>)
+</h1>
+
+<%= paginate @posts %>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Message</th>
+      <th>Post Creation</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td>
+          <%= link_to image_tag(post.image_url, width: "150px"),
+                      post.permalink,
+                      target: "_blank" %>
+        </td>
+        <td>
+          <%= link_to post.permalink, post.permalink, target: "_blank"  %>
+          <br><br>
+          <%= post.message %>
+        </td>
+        <td>
+          <%= l(post.posted_at, format: :long) %>
+        </td>
+        <td class="text-right">
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @posts %>

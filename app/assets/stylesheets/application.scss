@@ -2,12 +2,12 @@
 
 $brand-primary: #0D254C;
 $brand-inverse: #011935;
+$link-color: #3055A4;
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 @import "sidebar";
 
-.container {
-  margin-top: 50px;
-
+.container-fluid {
+  margin-top: 30px;
 }
