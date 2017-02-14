@@ -13,10 +13,10 @@
 
 FactoryGirl.define do
   factory :facebook_page do
-    name "MyString"
-    url "MyString"
-    image_url "MyString"
-    facebook_id "MyString"
+    name { "#{Faker::Team.name} fans" }
+    url { Faker::Internet.url }
+    image_url { Faker::LoremPixel.image("150x150") }
+    facebook_id { Faker::Number.number(10) }
   end
 
 end
