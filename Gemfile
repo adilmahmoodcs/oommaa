@@ -16,6 +16,7 @@ gem "coffee-rails", "~> 4.2"
 gem "jquery-rails", "~> 4.2.2"
 gem "turbolinks", "~> 5"
 gem "bootstrap", "~> 4.0.0.alpha6"
+gem "font-awesome-sass", "~> 4.7.0"
 source "https://rails-assets.org" do
   gem "rails-assets-tether", ">= 1.3.3"
 end
