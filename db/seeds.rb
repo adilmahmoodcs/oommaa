@@ -1,3 +1,10 @@
+# cleanup sidekiq queues
+Sidekiq::Queue.new("pages").clear
+Sidekiq::Queue.new("posts").clear
+Sidekiq::ScheduledSet.new.select do |j|
+  j.display_class.in?(["PagesImporterJob", "PostsImporterJob"])
+end.each(&:delete)
+
 User.create!(email: "admin@example.com", password: "password")
 
 ["Dallas Cowboys", "Cowboys Fan Pages"].each do |brand|
