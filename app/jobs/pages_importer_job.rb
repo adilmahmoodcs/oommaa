@@ -10,7 +10,12 @@ class PagesImporterJob < ApplicationJob
 
     pages_data.each do |data|
       unless FacebookPage.exists?(facebook_id: data["id"])
-        FacebookPage.create!(facebook_id: data["id"], name: data["name"])
+        FacebookPage.create!(
+          facebook_id: data["id"],
+          name: data["name"],
+          url: data["link"],
+          image_url: data.dig("picture", "data", "url")
+        )
       end
     end
   end

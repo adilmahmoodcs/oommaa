@@ -18,6 +18,8 @@ RSpec.describe FBPageSearcher do
 
       expect(result.first["id"]).to be_present
       expect(result.first["name"]).to be_present
+      expect(result.first["link"]).to be_present
+      expect(result.first["picture"]).to be_present
     end
   end
 end
