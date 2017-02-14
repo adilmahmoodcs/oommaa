@@ -35,7 +35,7 @@ group :development, :test do
   gem "vcr"
   gem "webmock"
   gem "database_cleaner"
-  gem "faker"
+  gem "faker", "~> 1.7.3"
   gem "rails-controller-testing"
   gem "shoulda-matchers", "~> 3.1"
 end
