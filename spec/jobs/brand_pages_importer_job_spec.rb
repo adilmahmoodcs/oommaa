@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe BrandPagesImporterJob, type: :job do
-  let(:brand) { create(:brand, name: "Dallas Cowboys") }
+  let(:brand) { create(:brand, name: @facebook_page_term) }
+
+  before(:each) do
+    allow_any_instance_of(FBPageSearcher).to receive(:token) { @facebook_token }
+  end
 
   it "creates or updates FacebookPage objects" do
     VCR.use_cassette("fb_page_searcher", allow_playback_repeats: true) do

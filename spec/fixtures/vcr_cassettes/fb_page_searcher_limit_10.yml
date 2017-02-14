@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://graph.facebook.com/v2.8/search?access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&fields=id,name&limit=10&q=Dallas%20Cowboys%20Fans&type=page
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-App-Usage:
+      - '{"call_count":2,"total_cputime":2,"total_time":2}'
+      X-Fb-Rev:
+      - '2832002'
+      X-Fb-Trace-Id:
+      - GnyQS6fOl1L
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Facebook-Api-Version:
+      - v2.8
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Etag:
+      - '"887ddba3e1792b79f3f641add9f9db04ef221e8a"'
+      Access-Control-Allow-Origin:
+      - "*"
+      Vary:
+      - Accept-Encoding
+      X-Fb-Debug:
+      - G9IaT6HyzEe5Ljuy/e78O9QNj0L7rDTIoyeDJiIUMPd1IClK0r3f6EsYrXWP4k19i4E2/ELiYpG+S9BchaQxtQ==
+      Date:
+      - Tue, 14 Feb 2017 07:34:59 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '555'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":[{"id":"546449858737680","name":"Dallas Cowboys Fans"},{"id":"154938897874034","name":"Dallas
+        Cowboys NFL Fans"},{"id":"384317418346157","name":"Dallas Cowboys fans"},{"id":"731651883579257","name":"Dallas
+        Cowboys fans of New England"},{"id":"251079624908852","name":"Dallas Cowboys
+        Fans Chicago"},{"id":"420810438099395","name":"Dallas Cowboy''s Fans House"},{"id":"113002415733846","name":"Dallas
+        Cowboys Fan Pages"},{"id":"135642253441353","name":"Dallas Cowboys Fans"},{"id":"691091040951424","name":"Dallas
+        Cowboys Fans"},{"id":"268890973262246","name":"Dallas Cowboys Fan Club"}],"paging":{"cursors":{"before":"MAZDZD","after":"OQZDZD"},"next":"https:\/\/graph.facebook.com\/v2.8\/search?access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&fields=id\u00252Cname&q=Dallas+Cowboys+Fans&type=page&limit=10&after=OQZDZD"}}'
+    http_version: 
+  recorded_at: Tue, 14 Feb 2017 07:34:59 GMT
+recorded_with: VCR 3.0.3

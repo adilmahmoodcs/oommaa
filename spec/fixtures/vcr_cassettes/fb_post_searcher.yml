@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://graph.facebook.com/v2.8/99559607813/feed?access_token=EAACEdEose0cBAAPkAqV2UjFwGKvgP93SOQYOKQOGMLFq7TC77Tbb7pbQJWsR8BjzEbOGJZAhTolTzSBDh86bq9RZCjVwnZB2VsfWh5oXMDhYLUX5hpyH3VQ5wl5svB9TZCUruX74RQorHRlZAPHzRyZC5QSPunV6NQSDtfrfXqdY9ZCZCEd04SJm&fields=id,message,created_time,permalink_url,full_picture&limit=100
+    uri: https://graph.facebook.com/v2.8/961278360606211/feed?access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&fields=id,message,created_time,permalink_url,full_picture&limit=100
     body:
       encoding: US-ASCII
       string: ''
@@ -19,11 +19,11 @@ http_interactions:
       message: OK
     headers:
       X-App-Usage:
-      - '{"call_count":3,"total_cputime":2,"total_time":2}'
+      - '{"call_count":2,"total_cputime":2,"total_time":2}'
       X-Fb-Rev:
-      - '2828561'
+      - '2832002'
       X-Fb-Trace-Id:
-      - BnXtPT8NWOh
+      - BmCaqggr0Vw
       Expires:
       - Sat, 01 Jan 2000 00:00:00 GMT
       Content-Type:
@@ -35,212 +35,181 @@ http_interactions:
       Pragma:
       - no-cache
       Etag:
-      - '"60c97067c78593b0d70001788783ff7ce7744636"'
+      - '"014120801c78ea0d6c5b67a8ca1f5f27ddfe37c4"'
       Access-Control-Allow-Origin:
       - "*"
       Vary:
       - Accept-Encoding
       X-Fb-Debug:
-      - mkGX2IutVOdyqofSHKqrr0JTqmRgCTzfIYDZXbME1xpQWzWiU8zcsvyTs9RJxwqIHvLyNgtbl8CJQn0NDGRC9Q==
+      - UDp/Ll8KX/NO88NRVoRNjs1uBMDeJvka89g4W18MifA50Mfq8VhwecPU6qczEWhPO6kb1NR3dIa89yYXyYo7dw==
       Date:
-      - Mon, 13 Feb 2017 17:08:56 GMT
+      - Tue, 14 Feb 2017 07:30:21 GMT
       Connection:
       - keep-alive
       Content-Length:
-      - '14349'
+      - '1097'
     body:
       encoding: ASCII-8BIT
-      string: '{"data":[{"id":"99559607813_10155761820157814","message":"Mailbag:
-        Our dallascowboys.com staff answer your questions on what the Cowboys would
-        have to give up for the first pick in the draft and Byron Jones'' future.\n\nAnswers:
-        \ud83d\udc47","created_time":"2017-02-13T16:41:57+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155761820157814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQAiTEkWL2LP24Gv&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252F86da8e2fce5446149e725235cc1d48f4.jpg\u00253Fitok\u00253DstrQqev1\u002526timestamp\u00253D1487003434&_nc_hash=AQClYTJ8i913AUju"},{"id":"99559607813_10155756676682814","message":"Join
-        DCU for $20 and take 20\u0025 off everything in stores and online at Dallas
-        Cowboys Pro Shops this weekend!","created_time":"2017-02-11T16:00:15+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155756676682814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDhCAoh7KcgmkfA&url=http\u00253A\u00252F\u00252Fs3.amazonaws.com\u00252Fphotos.socialagency.com\u00252F321\u00252F1486413657900_RGlzY291bnQtRGF5cy0yMDE3LUZCLTEyMDB4NjI3WzFdLmpwZw\u00253D\u00253D.original.jpeg&_nc_hash=AQDYOIBl9ivBGdsn"},{"id":"99559607813_10155755301847814","message":"This
-        week\u2019s Top 10 list focuses on the players who improved the most from
-        the previous year.","created_time":"2017-02-11T00:10:06+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155755301847814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQBE-mlBcl_qWG1P&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_article_thumbnails\u00252Fcp_split_4.jpg\u00253Fitok\u00253DWe3fG_aD\u002526timestamp\u00253D1486762328&_nc_hash=AQA6NQx02UTXfchm"},{"id":"99559607813_10155755231237814","message":"Watch
-        the Hall of Fame welcome Jerry Jones received when he returned to The Star
-        in Frisco.","created_time":"2017-02-10T23:35:11+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155755231237814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQCkrGsGNI4bpIZR&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_article_thumbnails\u00252Fscreen_shot_2017-02-10_at_3.14.16_pm.png\u00253Fitok\u00253DICii89NJ\u002526timestamp\u00253D1486761484&_nc_hash=AQDgwJKRYF8_UQ1a"},{"id":"99559607813_10155755121357814","message":"Be
-        a STAR\u2026 save a LIFE! Join the Dallas Cowboys in helping the thousands
-        of people diagnosed annually with blood cancer or blood disease by registering
-        for the national marrow donor database on Saturday, February 18 from 10 AM
-        \u2013 2 PM at The Star in Frisco. All it takes to score a win and be the
-        cure is a simple cheek swab, a few forms and the commitment to step up when
-        your name is called to get into the game! Visit www.dallascowboys.com\/marrowdrive
-        for more information. #CowboysGiveBack","created_time":"2017-02-10T23:05:33+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/videos\/10155755121357814\/","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t15.0-10\/s720x720\/16709977_10155755158557814_1712427401062907904_n.jpg?oh=21bd18ab63b3c2b08473e4b81844c8d8&oe=59052E14"},{"id":"99559607813_10155755051072814","message":"Bryan
-        Broaddus nos dice qu\u00e9 esquinero agente libre deber\u00eda quedarse con
-        los Cowboys. Sigue a Somos Cowboys para m\u00e1s contenido como este.","created_time":"2017-02-10T22:10:08+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155755051072814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQAlP5lG2Fi2dAZR&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_video_thumbnails\u00252Fscreen_shot_2017-02-10_at_2.04.43_pm.png\u00253Fitok\u00253DI8meKYm7\u002526timestamp\u00253D1486758167&_nc_hash=AQDy-Ruc9m8sbYAA"},{"id":"99559607813_10155754935032814","message":"Be
-        a STAR, save a LIFE! Join the national marrow donor list Sat, 2\/18 and score
-        a win with just a simple cheek swab. bit.ly\/dcmarrow","created_time":"2017-02-10T21:23:52+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/videos\/10155754935032814\/","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t15.0-10\/s720x720\/16681334_10155754937797814_9115424922997358592_n.jpg?oh=7ae5c96217c66c372ef73db0c0e5fbf1&oe=59069AAE"},{"id":"99559607813_10155754920237814","message":"Does
-        Jonathan Cooper have a promising future as a late season addition and former
-        no. seven draft pick?","created_time":"2017-02-10T21:13:40+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155754920237814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQBXvFpnUNESfZbS&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252Fb5dfe1ad6a8d4abda43b8f7e8897ceb4.jpg\u00253Fitok\u00253D0F9L7A6a\u002526timestamp\u00253D1486756033&_nc_hash=AQAJY-Hb08PoGbkY"},{"id":"99559607813_10155754422837814","message":"Ronald
-        Leary showed he could still be a vital component on the line, but can the
-        Cowboys afford to keep him?","created_time":"2017-02-10T17:37:09+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155754422837814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQCdPfU5gmWDgFa_&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252Fe051ae2d7e014f588eba755d6b9f82eb.jpg\u00253Fitok\u00253D2w8W17t5\u002526timestamp\u00253D1486745540&_nc_hash=AQDLc5qvKPBiHbPx"},{"id":"99559607813_10155754249872814","message":"Mailbag:
-        Our dallascowboys.com staff answer your questions on draft prospects and the
-        2015 draft.\n\nAnswers: \ud83d\udc47","created_time":"2017-02-10T16:15:08+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155754249872814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDW68n9J6kfavCJ&url=fbstaging\u00253A\u00252F\u00252Fgraph.facebook.com\u00252Fstaging_resources\u00252FMDExMDE1NTc1NDI0MjIzMjgxNDo5MTU1MDIzMzU\u00253D&_nc_hash=AQDXOb7askvLXhkV"},{"id":"99559607813_10155752964912814","message":"Take
-        an exclusive look inside the room when Jerry Jones and the Jones family found
-        out the good news about the Hall of Fame.","created_time":"2017-02-10T02:01:11+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155752964912814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQC9N5MlYzJUzk0r&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_video_thumbnails\u00252Fscreen_shot_2017-02-09_at_4.08.14_pm.png\u00253Fitok\u00253DwZGU_mfd\u002526timestamp\u00253D1486678381&_nc_hash=AQAiDv0iqhrKHNca"},{"id":"99559607813_10155752876637814","message":"Can
-        Morris Claiborne''s talent outweigh his injury history?","created_time":"2017-02-10T01:06:40+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155752876637814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDD3JMz6JH33TOi&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252F82d034202b4542248d891b5c52e1dbb9.jpg\u00253Fitok\u00253D90FY2Msk\u002526timestamp\u00253D1486678099&_nc_hash=AQBgekA5JSDb4xRc"},{"id":"99559607813_10155752685962814","message":"David
-        Helman answers this week''s Twitter questions in #AskTheBoys.","created_time":"2017-02-09T23:41:17+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155752685962814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDKpEnGhMICmuR1&url=fbstaging\u00253A\u00252F\u00252Fgraph.facebook.com\u00252Fstaging_resources\u00252FMDExMDE1NTc1MjY4NDY2NzgxNDo3NDY4MTk5ODM\u00253D&_nc_hash=AQCnXRoyKCw-yhUW"},{"id":"99559607813_10155752579997814","message":"Estos
-        novatos actuaron como veteranos, pero \u00bfser\u00e1 que ya vimos lo mejor
-        de ellos? Sigue a Somos Cowboys para m\u00e1s contenido en espa\u00f1ol.","created_time":"2017-02-09T22:56:40+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155752579997814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQCcJvJWf6sp2UgZ&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_article_thumbnails\u00252Fap_16354036382095.jpg\u00253Fitok\u00253DNb1Ap99B\u002526timestamp\u00253D1486679778&_nc_hash=AQAWTKVs9kpbY8OJ"},{"id":"99559607813_10155752225167814","message":"Considered
-        by many to have some of the best hands on the team, will the front office
-        move on or keep Gavin Escobar?","created_time":"2017-02-09T20:15:07+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155752225167814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQBsL5b6z7LboddG&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_article_thumbnails\u00252F20161106_dal_vs_cle_gavin_escobar_jj1041.jpg\u00253Fitok\u00253D4NmELwX_\u002526timestamp\u00253D1486663831&_nc_hash=AQCNZpu_365U6nin"},{"id":"99559607813_10155752091672814","message":"\u201cI
-        don\u2019t know how ultimately we will resolve this and nobody should be alarmed
-        because you don\u2019t have all the answers.\"","created_time":"2017-02-09T19:11:08+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155752091672814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDMgUxEYvJqajuO&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252Fbaa6d1ecb5ca4ae38aba68ba3c154cbf.jpg\u00253Fitok\u00253DKuyUvuff\u002526timestamp\u00253D1486656274&_nc_hash=AQDcwJn6GcmRyNqo"},{"id":"99559607813_10155751980927814","message":"Whether
-        the Cowboys bring back their own guys or sign some affordable outside help,
-        they\u2019re going to make some moves in the coming weeks.","created_time":"2017-02-09T18:07:07+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155751980927814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDUvd-OrBiDT20s&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252Fa0e80e20773446669bc84318cc4f1e97.jpg\u00253Fitok\u00253D9R-f6FW7\u002526timestamp\u00253D1486658935&_nc_hash=AQA_R2XEUZ_-icvQ"},{"id":"99559607813_10155751945392814","message":"El
-        analista de f\u00fatbol americano, Bryan Broaddus, nos dice qu\u00e9 profundo
-        agente libre deber\u00eda quedarse con los Cowboys. Sigue a Somos Cowboys
-        para m\u00e1s.","created_time":"2017-02-09T17:49:38+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155751945392814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQBP6KaMvnjV6QaN&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_video_thumbnails\u00252Fsafeties.jpg\u00253Fitok\u00253DCAIBLnwJ\u002526timestamp\u00253D1486505090&_nc_hash=AQB6T05VPgVuQRxP"},{"id":"99559607813_10155751924247814","message":"Mailbag:
-        Our dallascowboys.com staff answer your questions on the future of the offensive
-        tackle position and if any Cowboys free agent is worth the franchise tag.\n\nAnswers:
-        \ud83d\udc47","created_time":"2017-02-09T17:37:35+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155751924247814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDCe54WmS_7lQlA&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252F63b3699a1f0c4d039358d6e979d61fd8.jpg\u00253Fitok\u00253DpHQkwH2u\u002526timestamp\u00253D1486656787&_nc_hash=AQCSaAyGeSjGqCT4"},{"id":"99559607813_10155751693772814","message":"Get
-        20\u0025 off everything at Pro Shops this weekend! Join DCU for $20 and shop
-        online and in stores with your discount February 9-12th!","created_time":"2017-02-09T16:00:18+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155751693772814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQCaN1KVI3VYxGA3&url=http\u00253A\u00252F\u00252Fs3.amazonaws.com\u00252Fphotos.socialagency.com\u00252F321\u00252F1486413103789_RGlzY291bnQtRGF5cy0yMDE3LUZCLTEyMDB4NjI3WzFdLmpwZw\u00253D\u00253D.original.jpeg&_nc_hash=AQDiHiNpNapXsPrZ"},{"id":"99559607813_10155750502507814","message":"Are
-        there linebackers on the roster that should allow the front office to move
-        on from Andrew Gachkar?","created_time":"2017-02-09T02:49:13+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155750502507814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQASpcp0fpGXdYJM&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252Ffc56a8d58471461d9bc854a88dfd2fe2.jpg\u00253Fitok\u00253Dq3tPieUB\u002526timestamp\u00253D1486595342&_nc_hash=AQB4abVERUCu0IbJ"},{"id":"99559607813_10155749889517814","message":"\u00bfPor
-        qu\u00e9 no promover a Heath como titular? \u00bfSer\u00eda factible seleccionar
-        al mejor DE en el draft o buscar contratar a Jason Pierre-Paul? Somos Cowboys
-        te da la respuesta.","created_time":"2017-02-08T22:11:47+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155749889517814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQC8ZyJ1VcDHYrbS&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_article_thumbnails\u00252Fap_318319458559.jpg\u00253Fitok\u00253DqSfb9IXM\u002526timestamp\u00253D1486412938&_nc_hash=AQA-fu8ZrGwagueg"},{"id":"99559607813_10155749812612814","message":"Jerry
-        Jones'' induction into the Hall of Fame can also shine an even brighter light
-        on one of the league\u2019s great dynasties.","created_time":"2017-02-08T21:35:59+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155749812612814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDSXdT8kkNXUkaj&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252F49b795967235498099d5f78b8e965643.jpg\u00253Fitok\u00253DNGaiYzc_\u002526timestamp\u00253D1486587306&_nc_hash=AQDrh5Fn_EjH6GK_"},{"id":"99559607813_10155749525302814","message":"Will
-        Terrance Williams receive offers from teams that the Cowboys can''t match?","created_time":"2017-02-08T19:24:53+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155749525302814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDZyHZR1j4mf-fk&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_article_thumbnails\u00252F1226_twill_thumb.jpg\u00253Fitok\u00253DZB3FrnPy\u002526timestamp\u00253D1482823188&_nc_hash=AQDWyNL-z2jfKAWn"},{"id":"99559607813_10155749466192814","message":"2017
-        camp registration is now open! Sign up today and learn from the best all summer
-        long at our new world headquarters and AT&T Stadium. Registration includes
-        2 tickets to a preseason game and more! \n\nVisit www.dallascowboys.com\/academy
-        to learn more.","created_time":"2017-02-08T19:00:27+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155749466192814:0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-0\/p180x540\/16473905_10155749466192814_6402946786616984168_n.jpg?oh=c320b6773e14d4d55bc5f7a93c9b6e17&oe=5933BF47"},{"id":"99559607813_10155749202217814","message":"From
-        the NFL Honors to the Pro Football Hall of Fame, social media erupted in congratulations
-        for the Dallas Cowboys.","created_time":"2017-02-08T16:51:43+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155749202217814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQAQq74XoNqVT-TR&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252F0dbe53a7088a45b1bfb9d9ec6556669b.jpg\u00253Fitok\u00253DisjgTeeJ\u002526timestamp\u00253D1486571129&_nc_hash=AQAyGnob9tM4BMhH"},{"id":"99559607813_10155749096192814","message":"Mailbag:
-        Our dallascowboys.com staff answer your questions on drafting for need in
-        the first round and regrets from the 2016 offseason.\n\nAnswers: \ud83d\udc47","created_time":"2017-02-08T16:03:19+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155749096192814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQBvFh6elDcxDnNo&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252Fd373c5ed95394ef180e38eedf27d5e73.jpg\u00253Fitok\u00253DNIhGUg_o\u002526timestamp\u00253D1486568570&_nc_hash=AQAyX76UNV1dlwNy"},{"id":"99559607813_10155748884707814","message":"Dak
-        Prescott and Ezekiel Elliott had spectacular rookie seasons, and there\u2019s
-        still room for improvement in 2017. Here are three Cowboys veterans who made
-        big strides in their second year.","created_time":"2017-02-08T14:53:37+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155748884707814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQA9sJsm7qQHYEfD&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252F51cba7c820d6417b8afae55a07516ce4.jpg\u00253Fitok\u00253DnO0YciyK\u002526timestamp\u00253D1486504576&_nc_hash=AQDqzOB1EqRqm0wJ"},{"id":"99559607813_10155746787167814","message":"Watch
-        Sean Lee team up with Ford Italia to surprise a local firefighter and his
-        family with an all-new Expedition.","created_time":"2017-02-07T21:07:49+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/videos\/10155746787167814\/","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/l\/t15.0-10\/s720x720\/16605264_10155746793562814_6709481361578655744_n.jpg?oh=63aa4b45afc4114994e4a883ee4f73d9&oe=59010C06"},{"id":"99559607813_10155746235822814","message":"For
-        the last seven years, Barry Church has quietly become a consistent leader
-        for the defense. But he\u2019s one of many unrestricted free agents for the
-        Cowboys this spring.","created_time":"2017-02-07T16:56:56+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155746235822814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQCK0ctvFqV9iC67&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_article_thumbnails\u00252F0207-church-thumb.jpg\u00253Fitok\u00253DZxxjAjwz\u002526timestamp\u00253D1486486217&_nc_hash=AQD9SqCci1s15Q5j"},{"id":"99559607813_10155746215002814","message":"Mailbag:
-        Our dallascowboys.com staff answer your questions on compensatory picks and
-        trading in the draft.\n\nAnswers: \ud83d\udc47","created_time":"2017-02-07T16:49:43+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155746215002814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQAF48LvmglhuuX4&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252Faeb4d160098840f4b1967f19d4bf2b8f.jpg\u00253Fitok\u00253DTQtYJzzW\u002526timestamp\u00253D1486485277&_nc_hash=AQAu0qg1GTKZb7po"},{"id":"99559607813_10155746198837814","message":"Giant
-        birthday shoutout to Morris Claiborne!  #DallasCowboys","created_time":"2017-02-07T16:42:27+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/videos\/10155746198837814\/","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t15.0-10\/16681321_10155746200047814_3059620777662873600_n.jpg?oh=40a91199f53dbcbb0c4e86148734b59b&oe=594202FD"},{"id":"99559607813_10155745900797814","message":"Tour
-        the Dallas Cowboys World Corporate Headquarters at The Star in Frisco. See
-        the War Room, Grand Atrium, Super Bowl Memorabilia and more with a VIP Guided
-        Tour. Tickets are on sale now! Visit http:\/\/bit.ly\/2knluII for more info.","created_time":"2017-02-07T15:00:37+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155745900797814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQA7HMd5C5EOm7k2&url=http\u00253A\u00252F\u00252Fs3.amazonaws.com\u00252Fphotos.socialagency.com\u00252F321\u00252F1486416050380_U3RhclRvdXJzXzEyMDB4NjI3LmpwZw\u00253D\u00253D.original.jpeg&_nc_hash=AQCGIwgVghoaqRgJ"},{"id":"99559607813_10155745876507814","message":"With
-        the 2016 NFL season in the books, Dak Prescott offered a few final words about
-        the Cowboys'' memorable, rookie-fueled run to a 13-3 record.","created_time":"2017-02-07T14:51:19+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155745876507814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQCZXbfbECO_eApf&url=http\u00253A\u00252F\u00252Fs3.amazonaws.com\u00252Fphotos.socialagency.com\u00252F321\u00252F1486479070980_QVBfMjU2NzYxODM3NTU4IDIuanBn.original.jpeg&_nc_hash=AQBeb686Isc14VTl"},{"id":"99559607813_10155743865742814","message":"Defensive
-        end Jack Crawford had a career high 10 starts in 2016 and we look ahead at
-        what his future will be in free agency.","created_time":"2017-02-06T21:40:28+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155743865742814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQCLGreoBgWKG44X&url=http\u00253A\u00252F\u00252Fs3.amazonaws.com\u00252Fphotos.socialagency.com\u00252F321\u00252F1486417211247_U2NyZWVuIFNob3QgMjAxNy0wMi0wNiBhdCAzLjMwLjE0IFBNLnBuZw\u00253D\u00253D.original.png&_nc_hash=AQCWMhlnRbJMjRoa"},{"id":"99559607813_10155743644837814","message":"213
-        days...","created_time":"2017-02-06T21:04:51+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/videos\/10155743644837814\/","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t15.0-10\/s720x720\/16543181_10155743647182814_4064048452345004032_n.jpg?oh=9c6b11a0315c8e57a527ca10e4aa3f77&oe=5908709C"},{"id":"99559607813_10155743381592814","message":"The
-        Cowboys aren''t far away from being a Super Bowl team, and David Helman writes
-        why Super Bowl LI was proof of why.","created_time":"2017-02-06T19:35:01+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155743381592814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQAwr_Hb0xxyzFrg&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_article_thumbnails\u00252Fap_17037636748789.jpg\u00253Fitok\u00253D4wvgSFd6\u002526timestamp\u00253D1486405101&_nc_hash=AQCn07e8CY3-qc2k"},{"id":"99559607813_10155743362052814","message":"Over
-        the next two weeks, the staff writers will break down each free agent, analyzing
-        their strengths and weaknesses and the possibilities of a return in 2017.
-        Today they start with running back Lance Dunbar.","created_time":"2017-02-06T19:27:09+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155743362052814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQCkNndPgfzlcLcm&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_article_thumbnails\u00252F25_lance_dunbar_02.jpg\u00253Fitok\u00253DRLVy7Bdb\u002526timestamp\u00253D1486402333&_nc_hash=AQD4ZwZFTZgHkv_U"},{"id":"99559607813_10155743014707814","message":"Mailbag:
-        Where Can Dak, Zeke Improve? Best Chance Of Improving Pass Rush? \n\nAnswers\ud83d\udc47","created_time":"2017-02-06T16:56:26+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155743014707814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQBbXrbkbz_uiNPi&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252Fca6edeb9c62c40ebb4d29fa4be2e3227.jpg\u00253Fitok\u00253DYsnD_mGR\u002526timestamp\u00253D1486397428&_nc_hash=AQCs1vpqKZx6liJx"},{"id":"99559607813_10155743007437814","message":"Such
-        a wonderful evening for Jerry Jones and his family to celebrate his selection
-        for the Pro Football Hall of Fame Class of 2017.","created_time":"2017-02-06T16:53:12+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155743007437814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQCxT_DROmLbs7LD&url=http\u00253A\u00252F\u00252Fmedia.vanityfair.com\u00252Fphotos\u00252F58974cbd1eeeaa1f3b7f5fdb\u00252F16\u00253A9\u00252Fw_1200\u00252Ch_630\u00252Cc_limit\u00252F2N8A3334.jpg&_nc_hash=AQDr8_LSNDEsCks2"},{"id":"99559607813_10155740138872814","message":"From
-        the moment heard the knock to being presented with the Pro Football Hall of
-        Fame 2017 Class, it was an incredible night for Jerry Jones and his family.
-        Congratulations for making it to Canton!","created_time":"2017-02-05T19:10:16+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155740138872814","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/16425892_10155740138762814_6793589593461722544_n.jpg?oh=26c1702687f156b5b48cd3b0bbdef16d&oe=59075E59"},{"id":"99559607813_10155739743672814","message":"Friendship
-        goals.","created_time":"2017-02-05T17:01:49+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155739743672814:0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-0\/p180x540\/16602774_10155739743672814_8150867881776444124_n.jpg?oh=c6178193b0672db72ac666484445bc0c&oe=5942A0EC"},{"id":"99559607813_10155738219342814","message":"The
-        NFL\u2019s 2016 rushing leader Ezekiel Elliott was named the FedEx Ground
-        NFL Player of the Year!","created_time":"2017-02-05T03:45:47+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155738219342814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQBV5v8sNZDC8zDf&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_gallery_photos\u00252Fbbl16096.jpg\u00253Fitok\u00253DCrUuEOwL\u002526timestamp\u00253D1486265532&_nc_hash=AQDuKMbylkROhMf4"},{"id":"99559607813_10155738157607814","message":"Coach
-        Garrett recognizes the success of the team in his speech after winning NFL
-        Coach of the Year.","created_time":"2017-02-05T03:15:22+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155738157607814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQB4g4E-8faz6GH4&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_gallery_photos\u00252Fc21i4875.jpg\u00253Fitok\u00253DjtOfMzYm\u002526timestamp\u00253D1486263326&_nc_hash=AQCs8SF5TfB1x3b_"},{"id":"99559607813_10155738138637814","message":"WATCH:
-        Jason Garrett wins the 2016 AP Coach of the Year Award.","created_time":"2017-02-05T03:04:46+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155738138637814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQA2or1myp-c7e_B&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_video_thumbnails\u00252Fscreen_shot_2017-02-04_at_8.43.12_pm.png\u00253Fitok\u00253Dr69aYgom\u002526timestamp\u00253D1486262752&_nc_hash=AQClV93l6yFQv2Bo"},{"id":"99559607813_10155738129212814","message":"Surrounded
-        by family and friends, Jerry Jones gets the news that he officially has been
-        inducted into the Pro Football Hall of Fame.","created_time":"2017-02-05T02:58:53+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155738129212814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQCMQrR1NrWvKKJW&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252F72717fd773e64f70bad6e09c9c7e646c.jpg\u00253Fitok\u00253DFTgEr589\u002526timestamp\u00253D1486262854&_nc_hash=AQCcB2AN6ph00fg-"},{"id":"99559607813_10155738106497814","message":"Dallas
-        Cowboys Offensive Line wins the inaugural Built Ford Tough Offensive Line
-        of the Year award.","created_time":"2017-02-05T02:46:46+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155738106497814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQADLYm01PQLzsaG&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F0ap3000000782999_video_player_cp.jpg\u00253Fitok\u00253DMNL4BOCx\u002526timestamp\u00253D1486261170&_nc_hash=AQDFHcZ5FXPF434z"},{"id":"99559607813_10155737981452814","message":"WATCH:
-        Dak Prescott wins NFL Offensive Rookie of the Year and running back Ezekiel
-        Elliott joins him on stage, Dak offers to cut the award in half to share with
-        Zeke.","created_time":"2017-02-05T01:56:58+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155737981452814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDy9zwtPiQCF-_y&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F0ap3000000782966_video_player_cp.jpg\u00253Fitok\u00253D8eFNR7yi\u002526timestamp\u00253D1486258835&_nc_hash=AQAn6o9zRcpJgCEl"},{"id":"99559607813_10155737959227814","message":"Headed
-        to Canton: Take a look back at the career that led Jerry Jones into the Hall
-        of Fame.","created_time":"2017-02-05T01:45:20+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155737959227814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQBl-4jr-K6j7SRr&url=fbstaging\u00253A\u00252F\u00252Fgraph.facebook.com\u00252Fstaging_resources\u00252FMDExMDE1NTczNzkzOTI4NzgxNDo5NTAxNDA5MDQ\u00253D&_nc_hash=AQCGhdclMuzZuq39"},{"id":"99559607813_10155737934542814","message":"Congrats
-        Coach! #NFLHonors","created_time":"2017-02-05T01:43:10+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/videos\/10155737934542814\/","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t15.0-10\/16509406_10155737954332814_714864845056376832_n.jpg?oh=ef52c52d653ba69d74623f5547267d09&oe=58FFDC65"},{"id":"99559607813_10155737928447814","message":"\u202aCongratulations
-        to Jason Garrett, Coach of the Year! #NFLHonors \u202c","created_time":"2017-02-05T01:33:37+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155737928447814:0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-0\/p180x540\/16509002_10155737928447814_7572129019291354914_n.jpg?oh=a7f67e296004d18b82edcbb95437c017&oe=59456D76"},{"id":"99559607813_10155737922857814","message":"In
-        the span of less than one year, Dak Prescott has gone from the 135th pick
-        to Offensive Rookie of the Year.","created_time":"2017-02-05T01:30:29+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155737922857814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQB2lvLLRBF-MijQ&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252F3d1e8510274b4dd684a81acecaec0fbf.jpg\u00253Fitok\u00253DwUkd6k5p\u002526timestamp\u00253D1486256569&_nc_hash=AQAmjPLYYXoDYyoq"},{"id":"99559607813_10155737885392814","message":"Congratulations
-        Jerry Jones, a tremendous honor! #DallasCowboys \u202c","created_time":"2017-02-05T01:18:57+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/videos\/10155737885392814\/","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t15.0-10\/16509050_10155737899372814_7678558251369103360_n.jpg?oh=1399ffaef680538681eaa1e3591695a3&oe=5936169D"},{"id":"99559607813_10155737874577814","message":"\u202aCongratulations
-        Jerry Jones! Pro Football Hall of Fame Class of 2017 inductee. #NFLHonors
-        \u202c","created_time":"2017-02-05T01:08:05+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155737874577814:0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-0\/p180x540\/16427624_10155737874577814_811174254097837064_n.jpg?oh=9c06f492a89a534d6ad97cada3c6ddb7&oe=59093271"},{"id":"99559607813_10155737849977814","message":"\u202aThe
-        big men taking home the Offensive Line of the Year honors! #NFLHonors \u202c","created_time":"2017-02-05T00:54:58+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155737849977814:0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-0\/p180x540\/16507927_10155737849977814_7257987673238698451_n.jpg?oh=6fdf0b06a8e0fbc346ad076e88e1b8ea&oe=593AEB60"},{"id":"99559607813_10155737792012814","message":"A
-        well deserved honor for Dak Prescott! #NFLHonors","created_time":"2017-02-05T00:26:47+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/videos\/10155737792012814\/","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t15.0-10\/16509131_10155737793647814_7075132654999306240_n.jpg?oh=6b94e9e106a6b81d0032d6f27bb26e5b&oe=593B7C5A"},{"id":"99559607813_10155737785637814","message":"\u202aCongratulations
-        to Dak Prescott, AP Offensive Rookie of the Year! #NFLHonors \u202c","created_time":"2017-02-05T00:22:59+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155737785637814:0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-0\/p180x540\/16426243_10155737785637814_2859015509703426991_n.jpg?oh=0ebc6910db57dd794b1cb3d044227b73&oe=593E6B5F"},{"id":"99559607813_10155735156832814","message":"With
-        Super Bowl LI around the corner here''s a look back at some of the best Dallas
-        Cowboys Super Bowl moments. \n\n\ud83d\udcf8: http:\/\/bit.ly\/2l5Q6wB","created_time":"2017-02-04T01:04:08+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155735156832814:0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t31.0-8\/q85\/s720x720\/16487266_10155735156832814_8117500423749421156_o.jpg?oh=3fb86f77b06aa621271118cc9ca9f3ac&oe=593FB155"},{"id":"99559607813_10155734902172814","message":"With
-        a long resume of success, Jerry Jones has a chance to make it in the Hall
-        of Fame on Saturday.","created_time":"2017-02-03T23:16:05+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155734902172814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQCE8ybPzTAzqz1q&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252F740980f4e5544575b1e0d2cadada34e5.jpg\u00253Fitok\u00253DU99cLNPo\u002526timestamp\u00253D1486151059&_nc_hash=AQAKtIPHd32Eg1ho"},{"id":"99559607813_10155734389772814","message":"Dak
-        Prescott gana premio de \"Pepsi NFL Rookie of the Year\" y da su opini\u00f3n
-        sobre el futuro de Tony Romo. Sigue a Somos Cowboys para m\u00e1s noticias
-        en espa\u00f1ol.","created_time":"2017-02-03T19:53:37+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155734389772814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDk4Req-sN96D1o&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_article_thumbnails\u00252Fap_636203244931.jpg\u00253Fitok\u00253DTAzHeDhf\u002526timestamp\u00253D1486151027&_nc_hash=AQB5sQbLbAL06g34"},{"id":"99559607813_10155734059882814","message":"Congratulations
-        to Dak Prescott for being named Pepsi NFL Rookie of the Year following a Cowboys\u2019
-        franchise-record tying 13-win season!","created_time":"2017-02-03T17:17:06+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155734059882814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQAn7KJS_kjlkYqV&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252F1bd5947b9bb44f24b6cc662f34fc827f.jpg\u00253Fitok\u00253DH_OvM1ta\u002526timestamp\u00253D1486136904&_nc_hash=AQAkiYf5Qr5o5Ekw"},{"id":"99559607813_10155734027887814","message":"Our
-        dallascowboys.com staff answers your questions on re-setting rookie expectations
-        and questioning the play calling in the divisional round. \n\nAnswers  \ud83d\udc47\nhttp:\/\/bit.ly\/2k4dSbe","created_time":"2017-02-03T17:01:08+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155734027887814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQCXbJdKBlrF3o_-&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252F6d0c36156ef24195bf82bbff5e967aa9.jpg\u00253Fitok\u00253Durl2woNw\u002526timestamp\u00253D1486137754&_nc_hash=AQCFY2L2KESTi7sF"},{"id":"99559607813_10155732672962814","message":"The
-        staff writers decided to weigh in on seven of the top awards that will be
-        doled out Saturday night. It\u2019s not a prediction of what will happen,
-        but more of an opinion if they had say in the process.","created_time":"2017-02-03T04:17:52+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155732672962814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQBsGgfrSwVKEd20&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_gallery_photos\u00252F20161106_dal_vs_cle_ezekiel_elliott_jj1136.jpg\u00253Fitok\u00253D2LOPZHkS\u002526timestamp\u00253D1486073450&_nc_hash=AQDVsbAtezQSFIxf"},{"id":"99559607813_10155732646807814","message":"The
-        success of the Cowboys\u2019 2016 season can, in part, be traced back to last
-        year\u2019s draft and the work that went into it.","created_time":"2017-02-03T04:05:48+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155732646807814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQA_7DDRF7B7WZEV&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F0119-bestof-thumb.jpg\u00253Fitok\u00253DValbUj2q\u002526timestamp\u00253D1484930360&_nc_hash=AQBZ58wnWMqxKU2h"},{"id":"99559607813_10155731906337814","message":"Bryan
-        Broaddus dice cu\u00e1l receptor agente libre deber\u00eda quedarse con los
-        Cowboys. Recuerda seguir a Somos Cowboys para m\u00e1s videos en espa\u00f1ol.","created_time":"2017-02-02T22:06:04+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155731906337814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDTOfgh_sHOimSz&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_video_thumbnails\u00252Fscreen_shot_2017-02-02_at_3.43.09_pm.png\u00253Fitok\u00253DkDLI9pUr\u002526timestamp\u00253D1486072472&_nc_hash=AQAuMahTmWryMz9Z"},{"id":"99559607813_10155731823112814","created_time":"2017-02-02T21:30:19+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155731823112814","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-0\/p180x540\/16425757_1198619256853023_3328621584967432504_n.jpg?oh=85c5fc87dba5b58e0c2710048564f63d&oe=5906EC6D"},{"id":"99559607813_10155731803782814","message":"With
-        one last weekend left in the season, David Helman has some final thoughts
-        and some awards to hand out.","created_time":"2017-02-02T21:21:45+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155731803782814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252F153dff1a944e4cb78f0e8d5d99e7bf84.jpg\u00253Fitok\u00253DU2YUJ9Rt\u002526timestamp\u00253D1486066892&_nc_hash=AQBRfC8ktAduoKD3"},{"id":"99559607813_10155731008567814","message":"Our
-        dallascowboys.com staff answers your questions on injury concern over Malik
-        Hooker and finding free agent veterans.\n\nAnswers \ud83d\udc47","created_time":"2017-02-02T16:02:10+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155731008567814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQC5nkGOd_7QmiJX&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252F0c62f44e3ba2424e826f3812cccbae43.jpg\u00253Fitok\u00253DLHCpP4oN\u002526timestamp\u00253D1486049875&_nc_hash=AQBAUPC4DDq3K_rT"},{"id":"99559607813_10155730890527814","message":"#DallasCowboys
-        claim 5 spots on the Top 15 sales list for all officially licensed products.","created_time":"2017-02-02T15:27:33+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155730890527814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQC_EhuHPJsxTUeT&url=http\u00253A\u00252F\u00252Fs3.amazonaws.com\u00252Fphotos.socialagency.com\u00252F321\u00252F1486049237747_QVBfNTQyNzIyMjA5NTc0IGNvcHkuanBn.original.jpeg&_nc_hash=AQAi2FHfOodBMDh5"},{"id":"99559607813_10155728997847814","message":"What
-        do the Cowboys\u2019 draft needs look like at this point in the offseason?
-        Rob Phillips breaks them down into four tiers.","created_time":"2017-02-01T21:20:27+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155728997847814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDOvsYsd8HNaoTn&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252F1c50c4dcca2446f99f0129befb18259e.jpg\u00253Fitok\u00253DsH7N42YS\u002526timestamp\u00253D1485983216&_nc_hash=AQAzr6R0VvOdlH9x"},{"id":"99559607813_10155728848007814","message":"With
-        the 2016 season concluding on Sunday, Jerry Jones reflected on some of the
-        successes and disappointments of the Cowboys'' campaign.","created_time":"2017-02-01T20:16:04+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155728848007814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDCfyD5KmGKxv8L&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252F6f557f02a968447c9a78227ea2da4c5f.jpg\u00253Fitok\u00253DZtgZFXrp\u002526timestamp\u00253D1485973548&_nc_hash=AQCnN4J7Jo_dex1p"},{"id":"99559607813_10155728548472814","message":"In
-        honor of National Signing Day, take a look back at some of the Cowboys players
-        and where they signed following high school.","created_time":"2017-02-01T18:12:40+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155728548472814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDD4Ym_rebbI7Mz&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fcole_beasley_smu.jpeg\u00253Fitok\u00253DadBb6FzL\u002526timestamp\u00253D1429151250&_nc_hash=AQCfjj38WO3Hb9pU"},{"id":"99559607813_10155728543942814","message":"#NationalSigningDay","created_time":"2017-02-01T18:11:50+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/videos\/10155728543942814\/","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t15.0-10\/s720x720\/16467590_10155728546252814_8990542963545210880_n.jpg?oh=e192260b89aa10a22730cac9a535d490&oe=5935CD6A"},{"id":"99559607813_10155728103832814","message":"Mailbag:
-        Our dallascowboys.com staff answer your questions on waiving Darius Jackson
-        and quarterback competition.\n\nAnswers: \ud83d\udc47","created_time":"2017-02-01T15:34:17+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155728103832814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQAhuMrwqnRhYx_v&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252Fbd517504474540a6b21eb30d0624d9c2.jpg\u00253Fitok\u00253DikUp7Lgw\u002526timestamp\u00253D1485961658&_nc_hash=AQB9rVuwTQxgSU01"},{"id":"99559607813_10155726863972814","message":"Jerry
-        Jones was on the air with \"The Midday 180\" on 104.5 The Zone\/ Nashville
-        and reflected on Tony Romo''s statement, as well as talk about some of his
-        biggest regrets.","created_time":"2017-02-01T03:07:30+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155726863972814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDM7BdbIm9y3qFM&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_video_thumbnails\u00252F0130_jerry_romo.jpg\u00253Fitok\u00253DbpjZTZhf\u002526timestamp\u00253D1485903571&_nc_hash=AQCjOKC-M9a_cPs0"},{"id":"99559607813_10155726849512814","message":"Bryan
-        Broaddus had a chance to sit down with the game tape of the Senior Bowl, and
-        there was plenty to like about the show the prospects put on.","created_time":"2017-02-01T02:58:45+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155726849512814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQBLJF573JnGl-cF&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_article_thumbnails\u00252Fzay_jones_.png\u00253Fitok\u00253DntnElS3n\u002526timestamp\u00253D1485904281&_nc_hash=AQDXYJTUVz1kON_B"},{"id":"99559607813_10155725870857814","message":"\u00bfSer\u00eda
-        buena opci\u00f3n darle de baja o reducirle el salario a Tyrone Crawford?
-        \u00bfQu\u00e9 opinan de la posibilidad de contratar a DeMarcus Ware? Somos
-        Cowboys te da la respuesta.","created_time":"2017-01-31T20:15:43+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155725870857814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQBRpdakYfXxiSsP&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_article_thumbnails\u00252Fap_236436764528.jpg\u00253Fitok\u00253Df_OTlzWZ\u002526timestamp\u00253D1485893211&_nc_hash=AQDCIuSyknHFeizP"},{"id":"99559607813_10155725852452814","message":"When
-        Dez Bryant took his pads off Sunday after the Pro Bowl, it signaled the start
-        of the offseason for him, something he says can\u2019t begin fast enough.","created_time":"2017-01-31T20:07:17+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155725852452814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQBWEPszYK3IZ8ly&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252F_gallery_photos\u00252Fdsc_5074.jpg\u00253Fitok\u00253DC70ZNxus\u002526timestamp\u00253D1485887930&_nc_hash=AQCBiow9mCBp7GLU"},{"id":"99559607813_10155725801687814","created_time":"2017-01-31T19:47:08+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155725801687814","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-0\/p180x540\/16406884_1196493043732311_5674001288474755607_n.jpg?oh=b471a996f814071263de5a59ac0ba30b&oe=59346E83"},{"id":"99559607813_10155725359377814","message":"Pro
-        Bowl Stars! #DallasCowboys","created_time":"2017-01-31T17:09:46+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155725359377814:0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/16425805_10155725359377814_8102355061989034491_n.jpg?oh=f1c6448923c9134bc0053bd25137bf77&oe=5936FFC3"},{"id":"99559607813_10155725155952814","message":"Mailbag:
-        Our dallascowboys.com staff answer your questions on if the Patriots could
-        continue their dominance if they were in the NFC and the possibilities for
-        Romo''s future. \n\nAnswers: \ud83d\udc47","created_time":"2017-01-31T16:01:56+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155725155952814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDJi7jZfWQUrsjf&url=fbstaging\u00253A\u00252F\u00252Fgraph.facebook.com\u00252Fstaging_resources\u00252FMDExMDE1NTcyNTEzNjk5MjgxNDo1OTE0MDY0MDU\u00253D&_nc_hash=AQClmwudqm6LQsli"},{"id":"99559607813_10155722028532814","message":"This
-        year, draft priorities have shifted since the 2016 Senior Bowl MVP and subsequent
-        fourth-round pick, Dak Prescott, is now on the roster as the quarterback of
-        the present and future.","created_time":"2017-01-30T21:28:07+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155722028532814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQDzxYjBTRbceVgh&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252Fcaf294d4af074ea6b2cdba44d3a79f45.jpg\u00253Fitok\u00253DGG6cwmKB\u002526timestamp\u00253D1485806526&_nc_hash=AQDsUk4ptYEY84Ye"},{"id":"99559607813_10155721120157814","message":"The
-        dallascowboys.com staff answers your questions on the safety position and
-        the most likely first round pick.\n\nAnswers \ud83d\udc47","created_time":"2017-01-30T16:27:07+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155721120157814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQC9WYle2VGxq0MQ&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252F99cdc87d70a84d838b30231324016cf8.jpg\u00253Fitok\u00253DpwIKROR0\u002526timestamp\u00253D1485792309&_nc_hash=AQAKVJ-EoDzMr1uG"},{"id":"99559607813_10155720761517814","message":"\u201cIt
-        was a humbling experience to get to play in the game,\u201d Prescott said.
-        \u201cOf course I was excited to play in the Pro Bowl, it was everything I
-        thought it would be. I was playing with the best of the best.\u201d","created_time":"2017-01-30T14:16:29+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155720761517814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQBkH5-1fl8jwzRN&url=http\u00253A\u00252F\u00252Fwww.dallascowboys.com\u00252Fsites\u00252Fdallascowboys.com\u00252Ffiles\u00252Fstyles\u00252Fopen_graph__large\u00252Fpublic\u00252Fmedia-ap\u00252Fa5fbeb46d946443c905d25eebc4d97ce.jpg\u00253Fitok\u00253DlP8Bjn_4\u002526timestamp\u00253D1485781333&_nc_hash=AQA8t8kbnF2OwfDJ"},{"id":"99559607813_10155720583712814","message":"Looking
-        at the new week like...","created_time":"2017-01-30T12:43:58+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155720583712814:0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/16387136_10155720583712814_4732352658851671176_n.jpg?oh=27df954eea0cbc633b2ffc76ab3e05a1&oe=5934B7B3"},{"id":"99559607813_10155719718542814","message":"Check
-        out some of the best pictures from the Pro Bowl in Orlando, FL.","created_time":"2017-01-30T03:30:32+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155719718542814","full_picture":"https:\/\/external.xx.fbcdn.net\/safe_image.php?d=AQBrSOQkfVrz2Wot&url=fbstaging\u00253A\u00252F\u00252Fgraph.facebook.com\u00252Fstaging_resources\u00252FMDExMDE1NTcxOTcxNzk2NzgxNDoxNTIxMzcxMTg4&_nc_hash=AQDgBZLrCUWMiz_p"},{"id":"99559607813_10155719630017814","message":"Great
-        first half in Orlando! #ProBowl","created_time":"2017-01-30T02:57:47+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155719630017814","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-0\/p480x480\/16265464_10155719629842814_865767385570732157_n.jpg?oh=a8aff12ecb51f179f5be68c623b14267&oe=59438807"},{"id":"99559607813_10155719066892814","message":"Pregame
-        warmup tradition for Zack Martin & Travis Frederick! #ProBowl","created_time":"2017-01-30T02:56:10+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/videos\/10155719066892814\/","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t15.0-10\/16403534_10155719627372814_5035440720350019584_n.jpg?oh=bb988647a2eee59f84ac1bbdccd5059f&oe=58FD885E"},{"id":"99559607813_10155719596477814","message":"Hey
-        from the sidelines! #ProBowl","created_time":"2017-01-30T02:41:05+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/videos\/10155719596477814\/","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t15.0-10\/16327206_10155719597552814_413230464384368640_n.jpg?oh=f7b1ca4e48358090c02d81d3ab325458&oe=59474499"},{"id":"99559607813_10155719423407814","message":"Watching
-        the defense! #ProBowl","created_time":"2017-01-30T01:22:33+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155719423407814:0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/16427352_10155719423407814_6181365667389752941_n.jpg?oh=3fc79baba3725f88d4880f26fe4805dc&oe=5938CD3C"},{"id":"99559607813_10155719187622814","message":"Dez
-        Jr. is strong! Taking down Ezekiel Elliott! #ProBowl","created_time":"2017-01-29T23:38:10+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/videos\/10155719187622814\/","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t15.0-10\/16327655_10155719189222814_6712969124131110912_n.jpg?oh=495a48e0ee7e1579e6669f20c1324f48&oe=59047AB1"},{"id":"99559607813_10155719010217814","message":"Jerry
-        Jones saying hi to Tyron Smith out here warming up!#ProBowl","created_time":"2017-01-29T22:27:23+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/videos\/10155719010217814\/","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t15.0-10\/16327261_10155719013057814_7138290234986332160_n.jpg?oh=eedb85f1a0262167690de37ab71b4828&oe=5949A61E"},{"id":"99559607813_10155718331832814","message":"Star
-        backfield. Star power. \n\nGet Dak & Zeke #ProBowl jerseys from the Dallas
-        Cowboys Pro Shop: http:\/\/bit.ly\/2jKKGGg","created_time":"2017-01-29T18:00:36+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155718331832814:0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-0\/p180x540\/16298496_10155718331832814_9057507922599236055_n.jpg?oh=884e75c12058a4643b188515b9324193&oe=5905AB8A"},{"id":"99559607813_10155718263562814","message":"Dak
-        making it look easy out there...","created_time":"2017-01-29T17:33:26+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155718263562814","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t15.0-10\/p720x720\/16327225_10154770934121263_7193593157307596800_n.jpg?oh=694c10a60eed1e6f65d5753c4b742525&oe=59483D51"},{"id":"99559607813_10155718012327814","message":"Today\u2019s
-        your last chance to get 50\u0025 off at Papa John\u2019s as a thank you for
-        supporting us all season! Use promo code COWBOYSFAN at participating locations
-        only. #DallasCowboys http:\/\/bit.ly\/2kgHWE5 Papa John''s DFW Papa John''s
-        Austin Papa John''s Waco","created_time":"2017-01-29T16:00:16+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155718012327814:0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/p720x720\/16298522_10155718012327814_4101501075629381790_n.jpg?oh=c6e3b36ab8d90de901a96b1b66b82407&oe=594BD2BB"},{"id":"99559607813_10155717974107814","message":"Tonight.
-        \nWatch your #DallasCowboys in the 2017 #ProBowl! \n7pm CT on ESPN!","created_time":"2017-01-29T15:47:48+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155717974107814:0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-0\/p180x540\/16298533_10155717974107814_5910136021305838730_n.jpg?oh=67bce72b26f7ee69056f80e638f805af&oe=5933FAFF"},{"id":"99559607813_10155715628507814","message":"\u202aWatch
-        out Dak - Ezekiel Elliott slinging it to Dez Bryant #ProBowl \u202c","created_time":"2017-01-28T18:39:27+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/videos\/10155715628507814\/","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t15.0-10\/16327203_10155715631772814_7053477777785225216_n.jpg?oh=4eb5622dc09a767dc0b44aa57a2a32f2&oe=593E1815"},{"id":"99559607813_10155715591997814","message":"Priceless
-        smile! #ProBowl","created_time":"2017-01-28T18:21:50+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155715591997814:0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/16299514_10155715591997814_6320265819748931140_n.jpg?oh=71054d0e2992262cb6e059be7378fce5&oe=59381BDC"},{"id":"99559607813_10155715145027814","message":"Sean
-        Lee signing for the little fans today! #ProBowl","created_time":"2017-01-28T15:35:17+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/posts\/10155715145027814:0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-0\/p180x540\/16195204_10155715145027814_1125165783037030842_n.jpg?oh=bec385e1264142ed76392cbef57ba250&oe=59364D94"},{"id":"99559607813_10155715103572814","message":"Throw
-        up the X! #ProBowl","created_time":"2017-01-28T15:22:03+0000","permalink_url":"https:\/\/www.facebook.com\/DallasCowboys\/videos\/10155715103572814\/","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t15.0-10\/16403485_10155715105077814_1610532355687055360_n.jpg?oh=6603c2a814dcb4785ebd7de50ffcc256&oe=58FDF0CD"}],"paging":{"previous":"https:\/\/graph.facebook.com\/v2.8\/99559607813\/feed?fields=id,message,created_time,permalink_url,full_picture&limit=100&since=1487004117&access_token=EAACEdEose0cBAAPkAqV2UjFwGKvgP93SOQYOKQOGMLFq7TC77Tbb7pbQJWsR8BjzEbOGJZAhTolTzSBDh86bq9RZCjVwnZB2VsfWh5oXMDhYLUX5hpyH3VQ5wl5svB9TZCUruX74RQorHRlZAPHzRyZC5QSPunV6NQSDtfrfXqdY9ZCZCEd04SJm&__paging_token=enc_AdDvIQtXGhHIhYpQ16B06ZBCvZAFT3G4MWsDWmZAixP0hQzipBq7CgTihA91AmcYZCOZAofpd0AbRcaEu5es428i77Nyf&__previous=1","next":"https:\/\/graph.facebook.com\/v2.8\/99559607813\/feed?fields=id,message,created_time,permalink_url,full_picture&limit=100&access_token=EAACEdEose0cBAAPkAqV2UjFwGKvgP93SOQYOKQOGMLFq7TC77Tbb7pbQJWsR8BjzEbOGJZAhTolTzSBDh86bq9RZCjVwnZB2VsfWh5oXMDhYLUX5hpyH3VQ5wl5svB9TZCUruX74RQorHRlZAPHzRyZC5QSPunV6NQSDtfrfXqdY9ZCZCEd04SJm&until=1485616923&__paging_token=enc_AdCqygElciEsaT1ZBCzwqWsqnOV5NZBGpEkbZBpLMKtFo4AhOVz5Wp4npv7aiGrOjYOgiMWgHazDlGZB8nJhuRZAEa5Dl"}}'
+      string: '{"data":[{"id":"961278360606211_1201216443279067","message":"Would
+        You Wear These?\n\nGrab Yours Here: http:\/\/luxxart.com\/products\/cowboys2","created_time":"2016-10-19T04:20:45+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=1201216443279067&id=961278360606211&substory_index=0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/p720x720\/14720479_1201216443279067_2430641247280132142_n.png?oh=9397d0be879bb5dadd381f5c8210d3b5&oe=59418F73"},{"id":"961278360606211_1201213196612725","message":"Would
+        You Wear These?\n\nGrab Yours Here: http:\/\/luxxart.com\/products\/cowboys","created_time":"2016-10-19T04:15:32+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=1201213196612725&id=961278360606211&substory_index=0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/p720x720\/14570217_1201213196612725_7806096861346499481_n.png?oh=d0293a270a7eb69047656df6e28428db&oe=590775B1"},{"id":"961278360606211_961279250606122","created_time":"2015-10-09T00:43:33+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=961279277272786&id=961278360606211","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/11181798_961279250606122_251622038742728234_n.png?oh=a58131be52d29031a46aad8051b1d78f&oe=5901FC07"},{"id":"961278360606211_961278727272841","created_time":"2015-10-09T00:41:18+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=961278750606172&id=961278360606211&substory_index=0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/12115876_961278727272841_231302473342977595_n.jpg?oh=29b4737e88196ff2f09fc66b23586092&oe=58FFE6A3"}],"paging":{"previous":"https:\/\/graph.facebook.com\/v2.8\/961278360606211\/feed?fields=id,message,created_time,permalink_url,full_picture&limit=100&since=1476850845&access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&__paging_token=enc_AdDkZAzfGIHz4eFOZBoq4R72zjTuuZCc5uQru8zSTmZAYoKh5wqm8Jog2qKzxNXZBzcbaMgZBWPR7bd0JjFF9Pz1jM8pwZCyLN3KtjKnSCOvuvnrZC0sfAZDZD&__previous=1","next":"https:\/\/graph.facebook.com\/v2.8\/961278360606211\/feed?fields=id,message,created_time,permalink_url,full_picture&limit=100&access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&until=1444351278&__paging_token=enc_AdA3ZAFm55XjfD0SQksAMZBZB0l1zwWlrFZAvIBAeXZBKinNSau4PAiZAsx33W4wR7z9Uvrdliw6b6cGDBOFKQoBEk89SZAsFuspayJKMol4yJNa6RZBEwZDZD"}}'
     http_version: 
-  recorded_at: Mon, 13 Feb 2017 17:08:56 GMT
+  recorded_at: Tue, 14 Feb 2017 07:30:21 GMT
+- request:
+    method: get
+    uri: https://graph.facebook.com/v2.8/961278360606211/feed?__paging_token=enc_AdA3ZAFm55XjfD0SQksAMZBZB0l1zwWlrFZAvIBAeXZBKinNSau4PAiZAsx33W4wR7z9Uvrdliw6b6cGDBOFKQoBEk89SZAsFuspayJKMol4yJNa6RZBEwZDZD&access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&fields=id,message,created_time,permalink_url,full_picture&limit=100&until=1444351278
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-App-Usage:
+      - '{"call_count":2,"total_cputime":2,"total_time":2}'
+      X-Fb-Rev:
+      - '2832002'
+      X-Fb-Trace-Id:
+      - Gm1YDKSJaS3
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Facebook-Api-Version:
+      - v2.8
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Etag:
+      - '"1050253aec7b29caff644806927dabfa81406eee"'
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Fb-Debug:
+      - 7+jFSBxD4qyzc8mrtoL8m/TQBFRrmlI4vDrDiFmhpJE3vcmMScjim7rgUFUhZQ1cX7pCP0JqdSf4HYWAhXiHdw==
+      Date:
+      - Tue, 14 Feb 2017 07:30:21 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '11'
+    body:
+      encoding: UTF-8
+      string: '{"data":[]}'
+    http_version: 
+  recorded_at: Tue, 14 Feb 2017 07:30:21 GMT
+- request:
+    method: get
+    uri: https://graph.facebook.com/v2.8/961278360606211/feed?access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&fields=id,message,created_time,permalink_url,full_picture&limit=100
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-App-Usage:
+      - '{"call_count":2,"total_cputime":2,"total_time":2}'
+      X-Fb-Rev:
+      - '2832002'
+      X-Fb-Trace-Id:
+      - DMbo/IFZOWl
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Facebook-Api-Version:
+      - v2.8
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Etag:
+      - '"014120801c78ea0d6c5b67a8ca1f5f27ddfe37c4"'
+      Access-Control-Allow-Origin:
+      - "*"
+      Vary:
+      - Accept-Encoding
+      X-Fb-Debug:
+      - URyB2/rzL/p2kstRkm5LjyKw7WbBibLE5MiLBn4AcXdR2Vnf/UvHb9EYFIlrh+UW0b4DLRk3bwcCNX4CGWv5BQ==
+      Date:
+      - Tue, 14 Feb 2017 07:30:22 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1097'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":[{"id":"961278360606211_1201216443279067","message":"Would
+        You Wear These?\n\nGrab Yours Here: http:\/\/luxxart.com\/products\/cowboys2","created_time":"2016-10-19T04:20:45+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=1201216443279067&id=961278360606211&substory_index=0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/p720x720\/14720479_1201216443279067_2430641247280132142_n.png?oh=9397d0be879bb5dadd381f5c8210d3b5&oe=59418F73"},{"id":"961278360606211_1201213196612725","message":"Would
+        You Wear These?\n\nGrab Yours Here: http:\/\/luxxart.com\/products\/cowboys","created_time":"2016-10-19T04:15:32+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=1201213196612725&id=961278360606211&substory_index=0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/p720x720\/14570217_1201213196612725_7806096861346499481_n.png?oh=d0293a270a7eb69047656df6e28428db&oe=590775B1"},{"id":"961278360606211_961279250606122","created_time":"2015-10-09T00:43:33+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=961279277272786&id=961278360606211","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/11181798_961279250606122_251622038742728234_n.png?oh=a58131be52d29031a46aad8051b1d78f&oe=5901FC07"},{"id":"961278360606211_961278727272841","created_time":"2015-10-09T00:41:18+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=961278750606172&id=961278360606211&substory_index=0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/12115876_961278727272841_231302473342977595_n.jpg?oh=29b4737e88196ff2f09fc66b23586092&oe=58FFE6A3"}],"paging":{"previous":"https:\/\/graph.facebook.com\/v2.8\/961278360606211\/feed?fields=id,message,created_time,permalink_url,full_picture&limit=100&since=1476850845&access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&__paging_token=enc_AdDkZAzfGIHz4eFOZBoq4R72zjTuuZCc5uQru8zSTmZAYoKh5wqm8Jog2qKzxNXZBzcbaMgZBWPR7bd0JjFF9Pz1jM8pwZCyLN3KtjKnSCOvuvnrZC0sfAZDZD&__previous=1","next":"https:\/\/graph.facebook.com\/v2.8\/961278360606211\/feed?fields=id,message,created_time,permalink_url,full_picture&limit=100&access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&until=1444351278&__paging_token=enc_AdA3ZAFm55XjfD0SQksAMZBZB0l1zwWlrFZAvIBAeXZBKinNSau4PAiZAsx33W4wR7z9Uvrdliw6b6cGDBOFKQoBEk89SZAsFuspayJKMol4yJNa6RZBEwZDZD"}}'
+    http_version: 
+  recorded_at: Tue, 14 Feb 2017 07:30:22 GMT
+- request:
+    method: get
+    uri: https://graph.facebook.com/v2.8/961278360606211/feed?__paging_token=enc_AdA3ZAFm55XjfD0SQksAMZBZB0l1zwWlrFZAvIBAeXZBKinNSau4PAiZAsx33W4wR7z9Uvrdliw6b6cGDBOFKQoBEk89SZAsFuspayJKMol4yJNa6RZBEwZDZD&access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&fields=id,message,created_time,permalink_url,full_picture&limit=100&until=1444351278
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-App-Usage:
+      - '{"call_count":2,"total_cputime":2,"total_time":2}'
+      X-Fb-Rev:
+      - '2832002'
+      X-Fb-Trace-Id:
+      - AiABvDmVHLq
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Facebook-Api-Version:
+      - v2.8
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Etag:
+      - '"1050253aec7b29caff644806927dabfa81406eee"'
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Fb-Debug:
+      - Uf+625YAxbRbC7Dtnp7yv5gpgs9UMrDPD6KDyHrfATrh45cdYfm/CTNx1/+A7LztVa5kXGm4ioOGfLSdVUWN+w==
+      Date:
+      - Tue, 14 Feb 2017 07:30:22 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '11'
+    body:
+      encoding: UTF-8
+      string: '{"data":[]}'
+    http_version: 
+  recorded_at: Tue, 14 Feb 2017 07:30:22 GMT
 recorded_with: VCR 3.0.3

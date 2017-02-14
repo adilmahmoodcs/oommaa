@@ -71,6 +71,15 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  config.before(:all) do
+    # NOTE FIXME
+    # each time VCR cassettes need some change you must remove all of them, take
+    # a new token at https://developers.facebook.com/tools/explorer/ and replace this
+    @facebook_token = "EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm"
+    @facebook_page_id = "961278360606211" # a page with few posts
+    @facebook_page_term = "Dallas Cowboys Fans"
+  end
+
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
