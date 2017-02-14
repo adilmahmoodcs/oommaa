@@ -5,8 +5,8 @@ class PagesImporterJob < ApplicationJob
     self.class.set(wait: 60.minutes).perform_later(job.arguments)
   end
 
-  def perform(term)
-    pages_data = FBPageSearcher.new(term: term, token: token).call
+  def perform(brand)
+    pages_data = FBPageSearcher.new(term: brand.name, token: token).call
 
     pages_data.each do |data|
       unless FacebookPage.exists?(facebook_id: data["id"])

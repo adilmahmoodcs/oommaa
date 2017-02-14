@@ -19,6 +19,6 @@ class Brand < ApplicationRecord
   private
 
   def start_pages_importer
-    PagesImporterJob.perform_later(name)
+    PagesImporterJob.perform_later(self)
   end
 end

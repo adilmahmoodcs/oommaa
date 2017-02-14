@@ -12,6 +12,8 @@
 #
 
 class FacebookPage < ApplicationRecord
+  has_many :facebook_posts, dependent: :destroy
+
   validates :name, :url, :facebook_id, presence: true
   validates :facebook_id, uniqueness: true
 
@@ -20,6 +22,6 @@ class FacebookPage < ApplicationRecord
   private
 
   def start_posts_importer
-    PostsImporterJob.perform_later(facebook_id)
+    PostsImporterJob.perform_later(self)
   end
 end
