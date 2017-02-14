@@ -33,6 +33,16 @@
           <%= l(post.posted_at, format: :long) %>
         </td>
         <td class="text-right">
+          <%= link_to 'Whitelist!',
+                      post_change_status_path(post, :whitelisted),
+                      method: :post,
+                      remote: true,
+                      class: "btn btn-success btn-sm" %>
+          <%= link_to 'Blacklist!',
+                      post_change_status_path(post, :blacklisted),
+                      method: :post,
+                      remote: true,
+                      class: "btn btn-danger btn-sm" %>
         </td>
       </tr>
     <% end %>

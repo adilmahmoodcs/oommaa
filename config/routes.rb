@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :brands
   resources :posts, only: [:index]
 
+  post "/posts/:post_id/change_status/:status" => "posts#change_status", as: :post_change_status
+
   devise_for :users
 
   mount Sidekiq::Web => "/sidekiq"
