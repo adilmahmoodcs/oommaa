@@ -25,6 +25,7 @@ gem 'devise', '~> 4.2.0'
 gem 'devise-bootstrap-views', github: 'hisea/devise-bootstrap-views', branch: 'bootstrap4'
 gem 'koala', '~> 2.4.0'
 gem 'sidekiq', '~> 5.0.0.beta1'
+gem 'kaminari', '~> 1.0.1'
 
 group :development, :test do
   gem 'byebug', platform: :mri
