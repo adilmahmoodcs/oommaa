@@ -24,5 +24,9 @@ RSpec.describe KeywordMatcher do
       expect(subject.new.match?("keyword first")).to be false
       expect(subject.new.match?("trying random text")).to be false
     end
+
+    it "works with nil term" do
+      expect(subject.new.match?(nil)).to be false
+    end
   end
 end

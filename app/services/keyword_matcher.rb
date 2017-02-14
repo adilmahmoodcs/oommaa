@@ -1,6 +1,6 @@
 class KeywordMatcher
   def match?(term)
-    term.match?(regexp)
+    term.to_s.match?(regexp)
   end
 
   private
