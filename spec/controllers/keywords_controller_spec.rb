@@ -35,15 +35,14 @@ RSpec.describe KeywordsController, type: :controller do
     }
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # KeywordsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  before(:each) do
+    login_user
+  end
 
   describe "GET #index" do
     it "assigns all keywords as @keywords" do
       keyword = Keyword.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index, params: {}
       expect(assigns(:keywords)).to eq([keyword])
     end
   end
@@ -51,14 +50,14 @@ RSpec.describe KeywordsController, type: :controller do
   describe "GET #show" do
     it "assigns the requested keyword as @keyword" do
       keyword = Keyword.create! valid_attributes
-      get :show, params: {id: keyword.to_param}, session: valid_session
+      get :show, params: {id: keyword.to_param}
       expect(assigns(:keyword)).to eq(keyword)
     end
   end
 
   describe "GET #new" do
     it "assigns a new keyword as @keyword" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {}
       expect(assigns(:keyword)).to be_a_new(Keyword)
     end
   end
@@ -66,7 +65,7 @@ RSpec.describe KeywordsController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested keyword as @keyword" do
       keyword = Keyword.create! valid_attributes
-      get :edit, params: {id: keyword.to_param}, session: valid_session
+      get :edit, params: {id: keyword.to_param}
       expect(assigns(:keyword)).to eq(keyword)
     end
   end
@@ -75,30 +74,30 @@ RSpec.describe KeywordsController, type: :controller do
     context "with valid params" do
       it "creates a new Keyword" do
         expect {
-          post :create, params: {keyword: valid_attributes}, session: valid_session
+          post :create, params: {keyword: valid_attributes}
         }.to change(Keyword, :count).by(1)
       end
 
       it "assigns a newly created keyword as @keyword" do
-        post :create, params: {keyword: valid_attributes}, session: valid_session
+        post :create, params: {keyword: valid_attributes}
         expect(assigns(:keyword)).to be_a(Keyword)
         expect(assigns(:keyword)).to be_persisted
       end
 
       it "redirects to index" do
-        post :create, params: {keyword: valid_attributes}, session: valid_session
+        post :create, params: {keyword: valid_attributes}
         expect(response).to redirect_to(keywords_path)
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved keyword as @keyword" do
-        post :create, params: {keyword: invalid_attributes}, session: valid_session
+        post :create, params: {keyword: invalid_attributes}
         expect(assigns(:keyword)).to be_a_new(Keyword)
       end
 
       it "re-renders the 'new' template" do
-        post :create, params: {keyword: invalid_attributes}, session: valid_session
+        post :create, params: {keyword: invalid_attributes}
         expect(response).to render_template("new")
       end
     end
@@ -112,20 +111,20 @@ RSpec.describe KeywordsController, type: :controller do
 
       it "updates the requested keyword" do
         keyword = Keyword.create! valid_attributes
-        put :update, params: {id: keyword.to_param, keyword: new_attributes}, session: valid_session
+        put :update, params: {id: keyword.to_param, keyword: new_attributes}
         keyword.reload
         skip("Add assertions for updated state")
       end
 
       it "assigns the requested keyword as @keyword" do
         keyword = Keyword.create! valid_attributes
-        put :update, params: {id: keyword.to_param, keyword: valid_attributes}, session: valid_session
+        put :update, params: {id: keyword.to_param, keyword: valid_attributes}
         expect(assigns(:keyword)).to eq(keyword)
       end
 
       it "redirects to the keyword" do
         keyword = Keyword.create! valid_attributes
-        put :update, params: {id: keyword.to_param, keyword: valid_attributes}, session: valid_session
+        put :update, params: {id: keyword.to_param, keyword: valid_attributes}
         expect(response).to redirect_to(keywords_path)
       end
     end
@@ -133,13 +132,13 @@ RSpec.describe KeywordsController, type: :controller do
     context "with invalid params" do
       it "assigns the keyword as @keyword" do
         keyword = Keyword.create! valid_attributes
-        put :update, params: {id: keyword.to_param, keyword: invalid_attributes}, session: valid_session
+        put :update, params: {id: keyword.to_param, keyword: invalid_attributes}
         expect(assigns(:keyword)).to eq(keyword)
       end
 
       it "re-renders the 'edit' template" do
         keyword = Keyword.create! valid_attributes
-        put :update, params: {id: keyword.to_param, keyword: invalid_attributes}, session: valid_session
+        put :update, params: {id: keyword.to_param, keyword: invalid_attributes}
         expect(response).to render_template("edit")
       end
     end
@@ -149,13 +148,13 @@ RSpec.describe KeywordsController, type: :controller do
     it "destroys the requested keyword" do
       keyword = Keyword.create! valid_attributes
       expect {
-        delete :destroy, params: {id: keyword.to_param}, session: valid_session
+        delete :destroy, params: {id: keyword.to_param}
       }.to change(Keyword, :count).by(-1)
     end
 
     it "redirects to the keywords list" do
       keyword = Keyword.create! valid_attributes
-      delete :destroy, params: {id: keyword.to_param}, session: valid_session
+      delete :destroy, params: {id: keyword.to_param}
       expect(response).to redirect_to(keywords_url)
     end
   end
