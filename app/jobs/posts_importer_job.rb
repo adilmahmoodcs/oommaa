@@ -1,0 +1,33 @@
+class PostsImporterJob < ApplicationJob
+  queue_as :posts
+
+  after_perform do |job|
+    self.class.set(wait: 60.minutes).perform_later(job.arguments)
+  end
+
+  def perform(page_id)
+    posts_data = FBPostSearcher.new(page_id: page_id, token: token).call
+    keyword_matcher = KeywordMatcher.new
+
+    posts_data.each do |data|
+      if data["message"].present? && !FacebookPost.exists?(facebook_id: data["id"])
+        match = keyword_matcher.match?(data["message"])
+
+        FacebookPost.create!(
+          facebook_id: data["id"],
+          message: data["message"],
+          posted_at: data["created_time"],
+          permalink: data["permalink_url"],
+          image_url: data["full_picture"],
+          status: match ? :suspect : :not_suspect
+        )
+      end
+    end
+  end
+
+  private
+
+  def token
+    Rails.configuration.counterfind["facebook"]["tokens"].sample
+  end
+end

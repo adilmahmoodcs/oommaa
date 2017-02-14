@@ -14,6 +14,8 @@ RSpec.describe PagesImporterJob, type: :job do
 
   it "re-enqueue itself" do
     allow_any_instance_of(PagesImporterJob).to receive(:perform) # stub method
-    expect{ PagesImporterJob.perform_now(@facebook_page_term) }.to have_enqueued_job(PagesImporterJob).exactly(1)
+    expect{ PagesImporterJob.perform_now(@facebook_page_term) }.to(
+      have_enqueued_job(PagesImporterJob).exactly(1).with([@facebook_page_term])
+    )
   end
 end
