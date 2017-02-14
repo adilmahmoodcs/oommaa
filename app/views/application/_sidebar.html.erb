@@ -19,27 +19,25 @@
         <hr>
 
         <li class="nav-item">
-          <%= link_to t(:all_posts),
-                      posts_path,
-                      class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status].nil?}" %>
+          <h4>Posts</h4>
         </li>
         <li class="nav-item">
-          <%= link_to t(:suspect_posts),
+          <%= link_to "#{t(:suspect)} (#{FacebookPost.suspect.size})",
                       posts_path(status: :suspect),
                       class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'suspect'}" %>
         </li>
         <li class="nav-item">
-          <%= link_to t(:not_suspect_posts),
+          <%= link_to "#{t(:not_suspect)} (#{FacebookPost.not_suspect.size})",
                       posts_path(status: :not_suspect),
                       class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'not_suspect'}" %>
         </li>
         <li class="nav-item">
-          <%= link_to t(:whitelisted_posts),
+          <%= link_to "#{t(:whitelisted)} (#{FacebookPost.whitelisted.size})",
                       posts_path(status: :whitelisted),
                       class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'whitelisted'}" %>
         </li>
         <li class="nav-item">
-          <%= link_to t(:blacklisted_posts),
+          <%= link_to "#{t(:blacklisted)} (#{FacebookPost.blacklisted.size})",
                       posts_path(status: :blacklisted),
                       class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'blacklisted'}" %>
         </li>
