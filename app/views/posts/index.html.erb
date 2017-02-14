@@ -26,12 +26,10 @@
                       target: "_blank" if post.image_url.present? %>
         </td>
         <td>
-          <%= link_to post.permalink, post.permalink, target: "_blank"  %>
-          <br><br>
-          <%= post.message %>
+          <%= link_to post.message, post.permalink, target: "_blank" %>
         </td>
         <td>
-          <%= link_to post.facebook_page.name, post.facebook_page.url %>
+          <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
         </td>
         <td>
           <%= l(post.posted_at, format: :long) %>
