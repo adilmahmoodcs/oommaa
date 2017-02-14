@@ -7,3 +7,16 @@ en:
   not_suspect: Not suspect
   whitelisted: Whitelisted
   blacklisted: Blacklisted
+  user_activities: User activities
+  activities:
+    brand:
+      create: 'Created Brand "%{name}"'
+      update: 'Updated Brand "%{name}"'
+      destroy: 'Destroyed Brand "%{name}"'
+    keyword:
+      create: 'Created Keyword "%{name}"'
+      update: 'Updated Keyword "%{name}"'
+      destroy: 'Destroyed Keyword "%{name}"'
+    facebook_post:
+      whitelisted: 'Whitelisted Post "%{name}"'
+      blacklisted: 'Blacklisted Post "%{name}"'

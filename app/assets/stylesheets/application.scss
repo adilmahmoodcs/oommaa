@@ -11,3 +11,13 @@ $link-color: #3055A4;
 .container-fluid {
   margin-top: 30px;
 }
+
+.table-destroy {
+  @extend .table-active;
+}
+.table-whitelisted {
+  @extend .table-success;
+}
+.table-blacklisted {
+  @extend .table-danger;
+}

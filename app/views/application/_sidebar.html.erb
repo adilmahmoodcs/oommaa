@@ -7,29 +7,29 @@
     <div class="collapse" id="collapseExample">
       <ul class="nav nav-pills flex-column" id="exCollapsingNavbar3">
         <li class="nav-item">
-          <%= link_to t(:keywords),
+          <%= link_to "#{t(:keywords)} (#{Keyword.count})",
                       keywords_path,
                       class: "nav-link #{'active' if controller.controller_name == 'keywords'}" %>
         </li>
         <li class="nav-item">
-          <%= link_to t(:brands),
+          <%= link_to "#{t(:brands)} (#{Brand.count})",
                       brands_path,
                       class: "nav-link #{'active' if controller.controller_name == 'brands'}" %>
         </li>
-        <hr>
 
+        <hr>
         <li class="nav-item">
           <h4>Posts</h4>
+        </li>
+        <li class="nav-item">
+          <%= link_to "#{t(:not_suspect)} (#{FacebookPost.not_suspect.size})",
+          posts_path(status: :not_suspect),
+          class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'not_suspect'}" %>
         </li>
         <li class="nav-item">
           <%= link_to "#{t(:suspect)} (#{FacebookPost.suspect.size})",
                       posts_path(status: :suspect),
                       class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'suspect'}" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "#{t(:not_suspect)} (#{FacebookPost.not_suspect.size})",
-                      posts_path(status: :not_suspect),
-                      class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'not_suspect'}" %>
         </li>
         <li class="nav-item">
           <%= link_to "#{t(:whitelisted)} (#{FacebookPost.whitelisted.size})",
@@ -40,6 +40,13 @@
           <%= link_to "#{t(:blacklisted)} (#{FacebookPost.blacklisted.size})",
                       posts_path(status: :blacklisted),
                       class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'blacklisted'}" %>
+        </li>
+
+        <hr>
+        <li class="nav-item">
+          <%= link_to t(:user_activities),
+                      activities_path,
+                      class: "nav-link #{'active' if controller.controller_name == 'activities'}" %>
         </li>
       </ul>
     </div>
