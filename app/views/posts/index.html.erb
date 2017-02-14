@@ -11,7 +11,8 @@
     <tr>
       <th>Image</th>
       <th>Message</th>
-      <th>Post Creation</th>
+      <th>Page</th>
+      <th>Published at</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -28,6 +29,9 @@
           <%= link_to post.permalink, post.permalink, target: "_blank"  %>
           <br><br>
           <%= post.message %>
+        </td>
+        <td>
+          <%= link_to post.facebook_page.name, post.facebook_page.url %>
         </td>
         <td>
           <%= l(post.posted_at, format: :long) %>

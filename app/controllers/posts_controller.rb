@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = FacebookPost.all
+    @posts = FacebookPost.includes(:facebook_page)
 
     if params[:status] && params[:status].in?(FacebookPost.statuses.keys)
       @posts = @posts.public_send(params[:status])

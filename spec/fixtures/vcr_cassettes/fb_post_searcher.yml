@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://graph.facebook.com/v2.8/961278360606211/feed?access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&fields=id,message,created_time,permalink_url,full_picture&limit=100
+    uri: https://graph.facebook.com/v2.8/961278360606211/feed?access_token=EAACEdEose0cBAL6V48bRsvGvqA6kpuscgsZC8TePnWiSlfsNmj3ZBlw6BSIvMvldV5uFGcYrWU56iPpjgFvs7pnpdJ2WJLiUsTFKpJOqX4Fv9ifPgDnCaZA18bNwBGHx3I2ZCZCknLVP0J0ITkyiIWYmtkq8OMxYDx3bCdBHdsLg8uodYYCaw&fields=id,message,created_time,permalink_url,full_picture&limit=100
     body:
       encoding: US-ASCII
       string: ''
@@ -19,11 +19,11 @@ http_interactions:
       message: OK
     headers:
       X-App-Usage:
-      - '{"call_count":2,"total_cputime":2,"total_time":2}'
+      - '{"call_count":3,"total_cputime":1,"total_time":2}'
       X-Fb-Rev:
       - '2832002'
       X-Fb-Trace-Id:
-      - BmCaqggr0Vw
+      - H8L7za1pY/G
       Expires:
       - Sat, 01 Jan 2000 00:00:00 GMT
       Content-Type:
@@ -35,29 +35,29 @@ http_interactions:
       Pragma:
       - no-cache
       Etag:
-      - '"014120801c78ea0d6c5b67a8ca1f5f27ddfe37c4"'
+      - '"f3f2e7416e5b2f7df6999a3a13ca15e64557b8fb"'
       Access-Control-Allow-Origin:
       - "*"
       Vary:
       - Accept-Encoding
       X-Fb-Debug:
-      - UDp/Ll8KX/NO88NRVoRNjs1uBMDeJvka89g4W18MifA50Mfq8VhwecPU6qczEWhPO6kb1NR3dIa89yYXyYo7dw==
+      - 745BP6pWHlv/erVYUPV3Ar8Lk6bkH/XuO5GN0oAPLD9ynZE51m233rOqT2zHt3de+cTgPOWDMr5fFFJRS2pCPA==
       Date:
-      - Tue, 14 Feb 2017 07:30:21 GMT
+      - Tue, 14 Feb 2017 16:01:57 GMT
       Connection:
       - keep-alive
       Content-Length:
-      - '1097'
+      - '1099'
     body:
       encoding: ASCII-8BIT
       string: '{"data":[{"id":"961278360606211_1201216443279067","message":"Would
         You Wear These?\n\nGrab Yours Here: http:\/\/luxxart.com\/products\/cowboys2","created_time":"2016-10-19T04:20:45+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=1201216443279067&id=961278360606211&substory_index=0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/p720x720\/14720479_1201216443279067_2430641247280132142_n.png?oh=9397d0be879bb5dadd381f5c8210d3b5&oe=59418F73"},{"id":"961278360606211_1201213196612725","message":"Would
-        You Wear These?\n\nGrab Yours Here: http:\/\/luxxart.com\/products\/cowboys","created_time":"2016-10-19T04:15:32+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=1201213196612725&id=961278360606211&substory_index=0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/p720x720\/14570217_1201213196612725_7806096861346499481_n.png?oh=d0293a270a7eb69047656df6e28428db&oe=590775B1"},{"id":"961278360606211_961279250606122","created_time":"2015-10-09T00:43:33+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=961279277272786&id=961278360606211","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/11181798_961279250606122_251622038742728234_n.png?oh=a58131be52d29031a46aad8051b1d78f&oe=5901FC07"},{"id":"961278360606211_961278727272841","created_time":"2015-10-09T00:41:18+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=961278750606172&id=961278360606211&substory_index=0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/12115876_961278727272841_231302473342977595_n.jpg?oh=29b4737e88196ff2f09fc66b23586092&oe=58FFE6A3"}],"paging":{"previous":"https:\/\/graph.facebook.com\/v2.8\/961278360606211\/feed?fields=id,message,created_time,permalink_url,full_picture&limit=100&since=1476850845&access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&__paging_token=enc_AdDkZAzfGIHz4eFOZBoq4R72zjTuuZCc5uQru8zSTmZAYoKh5wqm8Jog2qKzxNXZBzcbaMgZBWPR7bd0JjFF9Pz1jM8pwZCyLN3KtjKnSCOvuvnrZC0sfAZDZD&__previous=1","next":"https:\/\/graph.facebook.com\/v2.8\/961278360606211\/feed?fields=id,message,created_time,permalink_url,full_picture&limit=100&access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&until=1444351278&__paging_token=enc_AdA3ZAFm55XjfD0SQksAMZBZB0l1zwWlrFZAvIBAeXZBKinNSau4PAiZAsx33W4wR7z9Uvrdliw6b6cGDBOFKQoBEk89SZAsFuspayJKMol4yJNa6RZBEwZDZD"}}'
+        You Wear These?\n\nGrab Yours Here: http:\/\/luxxart.com\/products\/cowboys","created_time":"2016-10-19T04:15:32+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=1201213196612725&id=961278360606211&substory_index=0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/p720x720\/14570217_1201213196612725_7806096861346499481_n.png?oh=d0293a270a7eb69047656df6e28428db&oe=590775B1"},{"id":"961278360606211_961279250606122","created_time":"2015-10-09T00:43:33+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=961279277272786&id=961278360606211","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/11181798_961279250606122_251622038742728234_n.png?oh=a58131be52d29031a46aad8051b1d78f&oe=5901FC07"},{"id":"961278360606211_961278727272841","created_time":"2015-10-09T00:41:18+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=961278750606172&id=961278360606211&substory_index=0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/12115876_961278727272841_231302473342977595_n.jpg?oh=29b4737e88196ff2f09fc66b23586092&oe=58FFE6A3"}],"paging":{"previous":"https:\/\/graph.facebook.com\/v2.8\/961278360606211\/feed?fields=id,message,created_time,permalink_url,full_picture&limit=100&since=1476850845&access_token=EAACEdEose0cBAL6V48bRsvGvqA6kpuscgsZC8TePnWiSlfsNmj3ZBlw6BSIvMvldV5uFGcYrWU56iPpjgFvs7pnpdJ2WJLiUsTFKpJOqX4Fv9ifPgDnCaZA18bNwBGHx3I2ZCZCknLVP0J0ITkyiIWYmtkq8OMxYDx3bCdBHdsLg8uodYYCaw&__paging_token=enc_AdDkZAzfGIHz4eFOZBoq4R72zjTuuZCc5uQru8zSTmZAYoKh5wqm8Jog2qKzxNXZBzcbaMgZBWPR7bd0JjFF9Pz1jM8pwZCyLN3KtjKnSCOvuvnrZC0sfAZDZD&__previous=1","next":"https:\/\/graph.facebook.com\/v2.8\/961278360606211\/feed?fields=id,message,created_time,permalink_url,full_picture&limit=100&access_token=EAACEdEose0cBAL6V48bRsvGvqA6kpuscgsZC8TePnWiSlfsNmj3ZBlw6BSIvMvldV5uFGcYrWU56iPpjgFvs7pnpdJ2WJLiUsTFKpJOqX4Fv9ifPgDnCaZA18bNwBGHx3I2ZCZCknLVP0J0ITkyiIWYmtkq8OMxYDx3bCdBHdsLg8uodYYCaw&until=1444351278&__paging_token=enc_AdA3ZAFm55XjfD0SQksAMZBZB0l1zwWlrFZAvIBAeXZBKinNSau4PAiZAsx33W4wR7z9Uvrdliw6b6cGDBOFKQoBEk89SZAsFuspayJKMol4yJNa6RZBEwZDZD"}}'
     http_version: 
-  recorded_at: Tue, 14 Feb 2017 07:30:21 GMT
+  recorded_at: Tue, 14 Feb 2017 16:01:57 GMT
 - request:
     method: get
-    uri: https://graph.facebook.com/v2.8/961278360606211/feed?__paging_token=enc_AdA3ZAFm55XjfD0SQksAMZBZB0l1zwWlrFZAvIBAeXZBKinNSau4PAiZAsx33W4wR7z9Uvrdliw6b6cGDBOFKQoBEk89SZAsFuspayJKMol4yJNa6RZBEwZDZD&access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&fields=id,message,created_time,permalink_url,full_picture&limit=100&until=1444351278
+    uri: https://graph.facebook.com/v2.8/961278360606211/feed?__paging_token=enc_AdA3ZAFm55XjfD0SQksAMZBZB0l1zwWlrFZAvIBAeXZBKinNSau4PAiZAsx33W4wR7z9Uvrdliw6b6cGDBOFKQoBEk89SZAsFuspayJKMol4yJNa6RZBEwZDZD&access_token=EAACEdEose0cBAL6V48bRsvGvqA6kpuscgsZC8TePnWiSlfsNmj3ZBlw6BSIvMvldV5uFGcYrWU56iPpjgFvs7pnpdJ2WJLiUsTFKpJOqX4Fv9ifPgDnCaZA18bNwBGHx3I2ZCZCknLVP0J0ITkyiIWYmtkq8OMxYDx3bCdBHdsLg8uodYYCaw&fields=id,message,created_time,permalink_url,full_picture&limit=100&until=1444351278
     body:
       encoding: US-ASCII
       string: ''
@@ -74,11 +74,11 @@ http_interactions:
       message: OK
     headers:
       X-App-Usage:
-      - '{"call_count":2,"total_cputime":2,"total_time":2}'
+      - '{"call_count":3,"total_cputime":1,"total_time":2}'
       X-Fb-Rev:
       - '2832002'
       X-Fb-Trace-Id:
-      - Gm1YDKSJaS3
+      - CqVTuc2zgtY
       Expires:
       - Sat, 01 Jan 2000 00:00:00 GMT
       Content-Type:
@@ -94,9 +94,9 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       X-Fb-Debug:
-      - 7+jFSBxD4qyzc8mrtoL8m/TQBFRrmlI4vDrDiFmhpJE3vcmMScjim7rgUFUhZQ1cX7pCP0JqdSf4HYWAhXiHdw==
+      - 1zIcgjLWkAccxos9h2VRga+K8G3azvxp1mbErOgvBj9Oo2XhCtLMqo2aC3sEUYHUcxg4yD2B0YDIRHDM3xKH8Q==
       Date:
-      - Tue, 14 Feb 2017 07:30:21 GMT
+      - Tue, 14 Feb 2017 16:01:57 GMT
       Connection:
       - keep-alive
       Content-Length:
@@ -105,10 +105,10 @@ http_interactions:
       encoding: UTF-8
       string: '{"data":[]}'
     http_version: 
-  recorded_at: Tue, 14 Feb 2017 07:30:21 GMT
+  recorded_at: Tue, 14 Feb 2017 16:01:57 GMT
 - request:
     method: get
-    uri: https://graph.facebook.com/v2.8/961278360606211/feed?access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&fields=id,message,created_time,permalink_url,full_picture&limit=100
+    uri: https://graph.facebook.com/v2.8/961278360606211/feed?access_token=EAACEdEose0cBAL6V48bRsvGvqA6kpuscgsZC8TePnWiSlfsNmj3ZBlw6BSIvMvldV5uFGcYrWU56iPpjgFvs7pnpdJ2WJLiUsTFKpJOqX4Fv9ifPgDnCaZA18bNwBGHx3I2ZCZCknLVP0J0ITkyiIWYmtkq8OMxYDx3bCdBHdsLg8uodYYCaw&fields=id,message,created_time,permalink_url,full_picture&limit=100
     body:
       encoding: US-ASCII
       string: ''
@@ -125,11 +125,11 @@ http_interactions:
       message: OK
     headers:
       X-App-Usage:
-      - '{"call_count":2,"total_cputime":2,"total_time":2}'
+      - '{"call_count":3,"total_cputime":1,"total_time":2}'
       X-Fb-Rev:
       - '2832002'
       X-Fb-Trace-Id:
-      - DMbo/IFZOWl
+      - EyMpb2DJDZI
       Expires:
       - Sat, 01 Jan 2000 00:00:00 GMT
       Content-Type:
@@ -141,29 +141,29 @@ http_interactions:
       Pragma:
       - no-cache
       Etag:
-      - '"014120801c78ea0d6c5b67a8ca1f5f27ddfe37c4"'
+      - '"f3f2e7416e5b2f7df6999a3a13ca15e64557b8fb"'
       Access-Control-Allow-Origin:
       - "*"
       Vary:
       - Accept-Encoding
       X-Fb-Debug:
-      - URyB2/rzL/p2kstRkm5LjyKw7WbBibLE5MiLBn4AcXdR2Vnf/UvHb9EYFIlrh+UW0b4DLRk3bwcCNX4CGWv5BQ==
+      - hM/V8MwvgHzu7ZpkbA2xNkG5GwKvEUM/Mj02lRpZ3qs6iFTiWHfb69moLrGWBaTRRrTSC/KalRkpsoAi/JbOYw==
       Date:
-      - Tue, 14 Feb 2017 07:30:22 GMT
+      - Tue, 14 Feb 2017 16:01:58 GMT
       Connection:
       - keep-alive
       Content-Length:
-      - '1097'
+      - '1099'
     body:
       encoding: ASCII-8BIT
       string: '{"data":[{"id":"961278360606211_1201216443279067","message":"Would
         You Wear These?\n\nGrab Yours Here: http:\/\/luxxart.com\/products\/cowboys2","created_time":"2016-10-19T04:20:45+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=1201216443279067&id=961278360606211&substory_index=0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/p720x720\/14720479_1201216443279067_2430641247280132142_n.png?oh=9397d0be879bb5dadd381f5c8210d3b5&oe=59418F73"},{"id":"961278360606211_1201213196612725","message":"Would
-        You Wear These?\n\nGrab Yours Here: http:\/\/luxxart.com\/products\/cowboys","created_time":"2016-10-19T04:15:32+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=1201213196612725&id=961278360606211&substory_index=0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/p720x720\/14570217_1201213196612725_7806096861346499481_n.png?oh=d0293a270a7eb69047656df6e28428db&oe=590775B1"},{"id":"961278360606211_961279250606122","created_time":"2015-10-09T00:43:33+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=961279277272786&id=961278360606211","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/11181798_961279250606122_251622038742728234_n.png?oh=a58131be52d29031a46aad8051b1d78f&oe=5901FC07"},{"id":"961278360606211_961278727272841","created_time":"2015-10-09T00:41:18+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=961278750606172&id=961278360606211&substory_index=0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/12115876_961278727272841_231302473342977595_n.jpg?oh=29b4737e88196ff2f09fc66b23586092&oe=58FFE6A3"}],"paging":{"previous":"https:\/\/graph.facebook.com\/v2.8\/961278360606211\/feed?fields=id,message,created_time,permalink_url,full_picture&limit=100&since=1476850845&access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&__paging_token=enc_AdDkZAzfGIHz4eFOZBoq4R72zjTuuZCc5uQru8zSTmZAYoKh5wqm8Jog2qKzxNXZBzcbaMgZBWPR7bd0JjFF9Pz1jM8pwZCyLN3KtjKnSCOvuvnrZC0sfAZDZD&__previous=1","next":"https:\/\/graph.facebook.com\/v2.8\/961278360606211\/feed?fields=id,message,created_time,permalink_url,full_picture&limit=100&access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&until=1444351278&__paging_token=enc_AdA3ZAFm55XjfD0SQksAMZBZB0l1zwWlrFZAvIBAeXZBKinNSau4PAiZAsx33W4wR7z9Uvrdliw6b6cGDBOFKQoBEk89SZAsFuspayJKMol4yJNa6RZBEwZDZD"}}'
+        You Wear These?\n\nGrab Yours Here: http:\/\/luxxart.com\/products\/cowboys","created_time":"2016-10-19T04:15:32+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=1201213196612725&id=961278360606211&substory_index=0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/p720x720\/14570217_1201213196612725_7806096861346499481_n.png?oh=d0293a270a7eb69047656df6e28428db&oe=590775B1"},{"id":"961278360606211_961279250606122","created_time":"2015-10-09T00:43:33+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=961279277272786&id=961278360606211","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/11181798_961279250606122_251622038742728234_n.png?oh=a58131be52d29031a46aad8051b1d78f&oe=5901FC07"},{"id":"961278360606211_961278727272841","created_time":"2015-10-09T00:41:18+0000","permalink_url":"https:\/\/www.facebook.com\/permalink.php?story_fbid=961278750606172&id=961278360606211&substory_index=0","full_picture":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-9\/s720x720\/12115876_961278727272841_231302473342977595_n.jpg?oh=29b4737e88196ff2f09fc66b23586092&oe=58FFE6A3"}],"paging":{"previous":"https:\/\/graph.facebook.com\/v2.8\/961278360606211\/feed?fields=id,message,created_time,permalink_url,full_picture&limit=100&since=1476850845&access_token=EAACEdEose0cBAL6V48bRsvGvqA6kpuscgsZC8TePnWiSlfsNmj3ZBlw6BSIvMvldV5uFGcYrWU56iPpjgFvs7pnpdJ2WJLiUsTFKpJOqX4Fv9ifPgDnCaZA18bNwBGHx3I2ZCZCknLVP0J0ITkyiIWYmtkq8OMxYDx3bCdBHdsLg8uodYYCaw&__paging_token=enc_AdDkZAzfGIHz4eFOZBoq4R72zjTuuZCc5uQru8zSTmZAYoKh5wqm8Jog2qKzxNXZBzcbaMgZBWPR7bd0JjFF9Pz1jM8pwZCyLN3KtjKnSCOvuvnrZC0sfAZDZD&__previous=1","next":"https:\/\/graph.facebook.com\/v2.8\/961278360606211\/feed?fields=id,message,created_time,permalink_url,full_picture&limit=100&access_token=EAACEdEose0cBAL6V48bRsvGvqA6kpuscgsZC8TePnWiSlfsNmj3ZBlw6BSIvMvldV5uFGcYrWU56iPpjgFvs7pnpdJ2WJLiUsTFKpJOqX4Fv9ifPgDnCaZA18bNwBGHx3I2ZCZCknLVP0J0ITkyiIWYmtkq8OMxYDx3bCdBHdsLg8uodYYCaw&until=1444351278&__paging_token=enc_AdA3ZAFm55XjfD0SQksAMZBZB0l1zwWlrFZAvIBAeXZBKinNSau4PAiZAsx33W4wR7z9Uvrdliw6b6cGDBOFKQoBEk89SZAsFuspayJKMol4yJNa6RZBEwZDZD"}}'
     http_version: 
-  recorded_at: Tue, 14 Feb 2017 07:30:22 GMT
+  recorded_at: Tue, 14 Feb 2017 16:01:58 GMT
 - request:
     method: get
-    uri: https://graph.facebook.com/v2.8/961278360606211/feed?__paging_token=enc_AdA3ZAFm55XjfD0SQksAMZBZB0l1zwWlrFZAvIBAeXZBKinNSau4PAiZAsx33W4wR7z9Uvrdliw6b6cGDBOFKQoBEk89SZAsFuspayJKMol4yJNa6RZBEwZDZD&access_token=EAACEdEose0cBABkrqiqPYNC34cW9f4jxaDLkeHm8KSMG2NgYZC5a2292xLQDZCKnA0tMgfX1NZCrMa0gP411rndl2FCFD6FHmt6zbzj9nYC8hv8scg9oZCDfxUEKewD19AgodHBL3VqnEpmqVKn5qGWr51gjvJSkfY3m3TLvJzkVJYX7HGIm&fields=id,message,created_time,permalink_url,full_picture&limit=100&until=1444351278
+    uri: https://graph.facebook.com/v2.8/961278360606211/feed?__paging_token=enc_AdA3ZAFm55XjfD0SQksAMZBZB0l1zwWlrFZAvIBAeXZBKinNSau4PAiZAsx33W4wR7z9Uvrdliw6b6cGDBOFKQoBEk89SZAsFuspayJKMol4yJNa6RZBEwZDZD&access_token=EAACEdEose0cBAL6V48bRsvGvqA6kpuscgsZC8TePnWiSlfsNmj3ZBlw6BSIvMvldV5uFGcYrWU56iPpjgFvs7pnpdJ2WJLiUsTFKpJOqX4Fv9ifPgDnCaZA18bNwBGHx3I2ZCZCknLVP0J0ITkyiIWYmtkq8OMxYDx3bCdBHdsLg8uodYYCaw&fields=id,message,created_time,permalink_url,full_picture&limit=100&until=1444351278
     body:
       encoding: US-ASCII
       string: ''
@@ -180,11 +180,11 @@ http_interactions:
       message: OK
     headers:
       X-App-Usage:
-      - '{"call_count":2,"total_cputime":2,"total_time":2}'
+      - '{"call_count":3,"total_cputime":1,"total_time":2}'
       X-Fb-Rev:
       - '2832002'
       X-Fb-Trace-Id:
-      - AiABvDmVHLq
+      - Ac+dhDbU7wM
       Expires:
       - Sat, 01 Jan 2000 00:00:00 GMT
       Content-Type:
@@ -200,9 +200,9 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       X-Fb-Debug:
-      - Uf+625YAxbRbC7Dtnp7yv5gpgs9UMrDPD6KDyHrfATrh45cdYfm/CTNx1/+A7LztVa5kXGm4ioOGfLSdVUWN+w==
+      - "+H7xrPE8TcxB+KUhSqfumfpETvDhPOpKy6QUZrBe67VqQ/0nEQJInPrU3VLWoU9FWP6+ZmWEdHVMRUzKQYk2vQ=="
       Date:
-      - Tue, 14 Feb 2017 07:30:22 GMT
+      - Tue, 14 Feb 2017 16:01:58 GMT
       Connection:
       - keep-alive
       Content-Length:
@@ -211,5 +211,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"data":[]}'
     http_version: 
-  recorded_at: Tue, 14 Feb 2017 07:30:22 GMT
+  recorded_at: Tue, 14 Feb 2017 16:01:58 GMT
 recorded_with: VCR 3.0.3
