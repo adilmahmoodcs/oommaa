@@ -12,4 +12,12 @@
 class FacebookPage < ApplicationRecord
   validates :name, :facebook_id, presence: true
   validates :facebook_id, uniqueness: true
+
+  after_commit :start_posts_importer, on: :create
+
+  private
+
+  def start_posts_importer
+    PostsImporterJob.perform_later(facebook_id)
+  end
 end
