@@ -11,27 +11,18 @@ class FBPostSearcher
 
   def call
     results = []
-    begin
-      page = graph.get_connections(page_id, "feed", fields: fields, limit: 100)
-      filtered_results = filter_data(page)
-      results = filtered_results
-      # data is sorted by date. if some where filtered out, we can stop
-      return results if filtered_results.size < page.size
+    page = graph.get_connections(page_id, "feed", fields: fields, limit: 100)
+    filtered_results = filter_data(page)
+    results = filtered_results
+    # data is sorted by date. if some where filtered out, we can stop
+    return results if filtered_results.size < page.size
 
-      if all_pages
-        while page = page.next_page
-          filtered_results = filter_data(page)
-          results += filtered_results
-          return results if filtered_results.size < page.size
-        end
+    if all_pages
+      while page = page.next_page
+        filtered_results = filter_data(page)
+        results += filtered_results
+        return results if filtered_results.size < page.size
       end
-
-      results
-    rescue Koala::Facebook::ClientError => e
-      raise e
-      puts "Facebook client error: #{e.message}"
-      # TODO handle errors
-      return []
     end
 
     results

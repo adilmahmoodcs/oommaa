@@ -12,17 +12,11 @@ class FBPageSearcher
 
   def call
     results = []
-    begin
-      result = graph.search(term, type: "page", fields: fields, limit: limit)
-      results = result
+    result = graph.search(term, type: "page", fields: fields, limit: limit)
+    results = result
 
-      if all_pages
-        results += result while result = result.next_page
-      end
-    rescue Koala::Facebook::ClientError => e
-      puts "Facebook client error: #{e.message}"
-      # TODO handle errors
-      return []
+    if all_pages
+      results += result while result = result.next_page
     end
 
     results
