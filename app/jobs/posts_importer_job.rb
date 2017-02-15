@@ -4,6 +4,7 @@ class PostsImporterJob
 
   def perform(page_id)
     import_posts(page_id)
+
     self.class.perform_in(60.minutes, page_id)
   end
 
@@ -15,7 +16,10 @@ class PostsImporterJob
     keyword_matcher = KeywordMatcher.new
 
     posts_data.each do |data|
-      if data["message"].present? && !FacebookPost.exists?(facebook_id: data["id"])
+      # we reached already imported posts...
+      break if FacebookPost.exists?(facebook_id: data["id"])
+
+      if data["message"].present?
         match = keyword_matcher.match?(data["message"])
 
         page.facebook_posts.create!(
