@@ -1,10 +1,6 @@
 class PostsImporterJob < ApplicationJob
   queue_as :posts
 
-  after_perform do |job|
-    self.class.set(wait: 60.minutes).perform_later(job.arguments)
-  end
-
   def perform(page)
     posts_data = FBPostSearcher.new(page_id: page.facebook_id, token: token).call
     keyword_matcher = KeywordMatcher.new
@@ -23,6 +19,8 @@ class PostsImporterJob < ApplicationJob
         )
       end
     end
+
+    self.class.set(wait: 60.minutes).perform_later(page)
   end
 
   private

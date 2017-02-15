@@ -1,10 +1,6 @@
 class PagesImporterJob < ApplicationJob
   queue_as :pages
 
-  after_perform do |job|
-    self.class.set(wait: 60.minutes).perform_later(job.arguments)
-  end
-
   def perform(brand)
     pages_data = FBPageSearcher.new(term: brand.name, token: token).call
 
@@ -18,6 +14,8 @@ class PagesImporterJob < ApplicationJob
         )
       end
     end
+
+    self.class.set(wait: 60.minutes).perform_later(brand)
   end
 
   private

@@ -14,10 +14,10 @@ RSpec.describe PostsImporterJob, type: :job do
     end
   end
 
-  it "re-enqueue itself" do
-    allow_any_instance_of(PostsImporterJob).to receive(:perform) # stub method
-    expect{ PostsImporterJob.perform_now(page) }.to(
-      have_enqueued_job(PostsImporterJob).exactly(1).with([page])
-    )
-  end
+  # it "re-enqueue itself" do
+  #   allow_any_instance_of(PostsImporterJob).to receive(:perform) # stub method
+  #   expect{ PostsImporterJob.perform_now(page) }.to(
+  #     have_enqueued_job(PostsImporterJob).exactly(1).with([page])
+  #   )
+  # end
 end
