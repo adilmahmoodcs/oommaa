@@ -26,5 +26,7 @@ module Counterfind
     config.generators.javascript_engine = :js
 
     config.active_job.queue_adapter = :sidekiq
+
+    config.time_zone = "Central America"
   end
 end
