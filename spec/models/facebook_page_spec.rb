@@ -4,14 +4,15 @@ RSpec.describe FacebookPage, type: :model do
   let(:facebook_page) { create(:facebook_page) }
 
   it "starts posts import after creation" do
-    facebook_page.run_callbacks(:commit)
-    expect(PostsImporterJob).to have_been_enqueued.with(facebook_page)
+    expect { facebook_page }.to(change(PostsImporterJob.jobs, :size).by(1))
   end
 
   it "do not start again after an update" do
-    facebook_page.run_callbacks(:commit)
-    facebook_page.update_attribute(:name, "some name")
-    facebook_page.run_callbacks(:commit)
-    expect(PostsImporterJob).to have_been_enqueued.with(facebook_page)
+    facebook_page
+    expect {
+      facebook_page.touch
+    }.to_not(
+      change(PostsImporterJob.jobs, :size)
+    )
   end
 end

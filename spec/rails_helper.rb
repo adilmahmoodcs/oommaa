@@ -11,6 +11,7 @@ require 'webmock/rspec'
 require 'database_cleaner'
 require 'devise'
 require 'public_activity/testing'
+require 'sidekiq/testing'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
@@ -21,6 +22,7 @@ ActiveRecord::Migration.maintain_test_schema!
 ActiveJob::Base.queue_adapter = :test
 
 PublicActivity.enabled = false
+Sidekiq::Testing.fake!
 
 VCR.configure do |config|
   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
@@ -86,5 +88,6 @@ RSpec.configure do |config|
   config.after(:each) do
     ActiveJob::Base.queue_adapter.enqueued_jobs = []
     ActiveJob::Base.queue_adapter.performed_jobs = []
+    Sidekiq::Worker.clear_all
   end
 end

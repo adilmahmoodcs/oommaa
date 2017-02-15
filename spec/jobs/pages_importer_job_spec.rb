@@ -14,10 +14,14 @@ RSpec.describe PagesImporterJob, type: :job do
     end
   end
 
-  # it "re-enqueue itself" do
-  #   allow_any_instance_of(PagesImporterJob).to receive(:perform) # stub method
-  #   expect{ PagesImporterJob.new.perform(brand) }.to(
-  #     have_enqueued_job(PagesImporterJob).exactly(1).with([brand])
-  #   )
-  # end
+  it "re-enqueue itself" do
+    allow_any_instance_of(PagesImporterJob).to receive(:import_pages) # stub method
+    expect{
+      PagesImporterJob.new.perform(666)
+    }.to(
+      change(PagesImporterJob.jobs, :size).by(1)
+    )
+
+    expect(PagesImporterJob.jobs.first["args"]).to eq([666])
+  end
 end

@@ -3,6 +3,13 @@ class PostsImporterJob
   sidekiq_options queue: "posts"
 
   def perform(page_id)
+    import_posts(page_id)
+    self.class.perform_in(60.minutes, page_id)
+  end
+
+  private
+
+  def import_posts(page_id)
     page = FacebookPage.find(page_id)
     posts_data = FBPostSearcher.new(page_id: page.facebook_id, token: token).call
     keyword_matcher = KeywordMatcher.new
@@ -21,11 +28,7 @@ class PostsImporterJob
         )
       end
     end
-
-    self.class.perform_in(60.minutes, page_id)
   end
-
-  private
 
   def token
     Rails.configuration.counterfind["facebook"]["tokens"].sample
