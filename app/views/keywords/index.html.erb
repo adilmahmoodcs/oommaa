@@ -1,5 +1,7 @@
 <h1>Keywords</h1>
 
+<%= paginate @keywords %>
+
 <%= form_for Keyword.new, html: { class: "form-inline" } do |f| %>
   <%= f.text_field :name, class: "form-control mb-2 mr-sm-2 mb-sm-0", placeholder: "Name" %>
   <%= f.button "Add New", class: "btn btn-primary" %>
@@ -33,3 +35,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= paginate @keywords %>
