@@ -12,12 +12,21 @@ class FBPostSearcher
   def call
     results = []
     begin
-      result = graph.get_connections(page_id, "feed", fields: fields, limit: 100)
-      results = result
+      page = graph.get_connections(page_id, "feed", fields: fields, limit: 100)
+      filtered_results = filter_data(page)
+      results = filtered_results
+      # data is sorted by date. if some where filtered out, we can stop
+      return results if filtered_results.size < page.size
 
       if all_pages
-        results += result while result = result.next_page
+        while page = page.next_page
+          filtered_results = filter_data(page)
+          results += filtered_results
+          return results if filtered_results.size < page.size
+        end
       end
+
+      results
     rescue Koala::Facebook::ClientError => e
       raise e
       puts "Facebook client error: #{e.message}"
@@ -26,6 +35,14 @@ class FBPostSearcher
     end
 
     results
+  end
+
+  # skip posts older than 60 days. data is sorted by descending date
+  def filter_data(posts)
+    limit_date = 60.days.ago
+    posts.take_while do |data|
+      Time.parse(data["created_time"]) > limit_date
+    end
   end
 
   private
