@@ -34,18 +34,21 @@
         <td>
           <%= l(post.posted_at, format: :long) %>
         </td>
-        <td class="text-right">
-          <%= link_to 'Whitelist!',
-                      post_change_status_path(post, :whitelisted),
-                      method: :post,
-                      remote: true,
-                      class: "btn btn-success btn-sm" %>
-          <br><br>
-          <%= link_to 'Blacklist!',
+        <td>
+          <% unless @status == "whitelisted" %>
+            <%= link_to 'Approve',
+                        post_change_status_path(post, :whitelisted),
+                        method: :post,
+                        class: "btn btn-success" %>
+            <br><br>
+          <% end %>
+
+          <% unless @status == "blacklisted" %>
+          <%= link_to 'Reject',
                       post_change_status_path(post, :blacklisted),
                       method: :post,
-                      remote: true,
-                      class: "btn btn-danger btn-sm" %>
+                      class: "btn btn-danger" %>
+          <% end %>
         </td>
       </tr>
     <% end %>

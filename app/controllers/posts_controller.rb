@@ -18,6 +18,6 @@ class PostsController < ApplicationController
       @post.create_activity(params[:status], owner: current_user, parameters: { name: @post.permalink })
     end
 
-    head :no_content
+    redirect_to :back
   end
 end
