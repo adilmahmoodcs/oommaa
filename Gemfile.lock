@@ -284,7 +284,7 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
-    sidekiq (5.0.0.beta1)
+    sidekiq (4.2.9)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
@@ -370,7 +370,7 @@ DEPENDENCIES
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   shoulda-matchers (~> 3.1)
-  sidekiq (~> 5.0.0.beta1)
+  sidekiq (~> 4.2.9)
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
