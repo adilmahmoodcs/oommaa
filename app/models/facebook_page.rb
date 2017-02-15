@@ -22,6 +22,6 @@ class FacebookPage < ApplicationRecord
   private
 
   def start_posts_importer
-    PostsImporterJob.perform_later(self)
+    PostsImporterJob.perform_async(id)
   end
 end

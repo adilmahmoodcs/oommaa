@@ -9,14 +9,14 @@ RSpec.describe PagesImporterJob, type: :job do
 
   it "creates FacebookPage objects once" do
     VCR.use_cassette("fb_page_searcher", allow_playback_repeats: true) do
-      expect{ PagesImporterJob.perform_now(brand) }.to change{ FacebookPage.count }.from(0)
-      expect{ PagesImporterJob.perform_now(brand) }.to_not change{ FacebookPage.count }
+      expect{ PagesImporterJob.new.perform(brand.id) }.to change{ FacebookPage.count }.from(0)
+      expect{ PagesImporterJob.new.perform(brand.id) }.to_not change{ FacebookPage.count }
     end
   end
 
   # it "re-enqueue itself" do
   #   allow_any_instance_of(PagesImporterJob).to receive(:perform) # stub method
-  #   expect{ PagesImporterJob.perform_now(brand) }.to(
+  #   expect{ PagesImporterJob.new.perform(brand) }.to(
   #     have_enqueued_job(PagesImporterJob).exactly(1).with([brand])
   #   )
   # end

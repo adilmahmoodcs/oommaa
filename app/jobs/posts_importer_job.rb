@@ -1,7 +1,9 @@
-class PostsImporterJob < ApplicationJob
-  queue_as :posts
+class PostsImporterJob
+  include Sidekiq::Worker
+  sidekiq_options queue: "posts"
 
-  def perform(page)
+  def perform(page_id)
+    page = FacebookPage.find(page_id)
     posts_data = FBPostSearcher.new(page_id: page.facebook_id, token: token).call
     keyword_matcher = KeywordMatcher.new
 
@@ -20,7 +22,7 @@ class PostsImporterJob < ApplicationJob
       end
     end
 
-    self.class.set(wait: 60.minutes).perform_later(page)
+    self.class.perform_in(60.minutes, page_id)
   end
 
   private

@@ -1,7 +1,9 @@
-class PagesImporterJob < ApplicationJob
-  queue_as :pages
+class PagesImporterJob
+  include Sidekiq::Worker
+  sidekiq_options queue: "pages"
 
-  def perform(brand)
+  def perform(brand_id)
+    brand = Brand.find(brand_id)
     pages_data = FBPageSearcher.new(term: brand.name, token: token).call
 
     pages_data.each do |data|
@@ -15,7 +17,7 @@ class PagesImporterJob < ApplicationJob
       end
     end
 
-    self.class.set(wait: 60.minutes).perform_later(brand)
+    self.class.perform_in(60.minutes, brand_id)
   end
 
   private
