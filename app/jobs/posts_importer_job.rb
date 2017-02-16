@@ -28,6 +28,7 @@ class PostsImporterJob
           posted_at: data["created_time"],
           permalink: data["permalink_url"],
           image_url: data["full_picture"],
+          link: data["link"],
           status: match ? :suspect : :not_suspect
         )
       end

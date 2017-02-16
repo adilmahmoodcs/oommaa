@@ -13,6 +13,7 @@
 #  updated_at        :datetime         not null
 #  facebook_page_id  :integer
 #  status_changed_at :datetime
+#  link              :string
 #
 # Indexes
 #

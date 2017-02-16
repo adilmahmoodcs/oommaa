@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://graph.facebook.com/v2.8/961278360606211/feed?access_token=EAACEdEose0cBAL6V48bRsvGvqA6kpuscgsZC8TePnWiSlfsNmj3ZBlw6BSIvMvldV5uFGcYrWU56iPpjgFvs7pnpdJ2WJLiUsTFKpJOqX4Fv9ifPgDnCaZA18bNwBGHx3I2ZCZCknLVP0J0ITkyiIWYmtkq8OMxYDx3bCdBHdsLg8uodYYCaw&fields=id,message,created_time,permalink_url,full_picture&limit=100
+    uri: https://graph.facebook.com/v2.8/961278360606211/feed?access_token=EAACEdEose0cBAL6V48bRsvGvqA6kpuscgsZC8TePnWiSlfsNmj3ZBlw6BSIvMvldV5uFGcYrWU56iPpjgFvs7pnpdJ2WJLiUsTFKpJOqX4Fv9ifPgDnCaZA18bNwBGHx3I2ZCZCknLVP0J0ITkyiIWYmtkq8OMxYDx3bCdBHdsLg8uodYYCaw&fields=id,message,created_time,permalink_url,full_picture,link&limit=100
     body:
       encoding: US-ASCII
       string: ''

@@ -43,6 +43,6 @@ class FBPostSearcher
   end
 
   def fields
-    ["id", "message", "created_time", "permalink_url", "full_picture"]
+    ["id", "message", "created_time", "permalink_url", "full_picture", "link"]
   end
 end
