@@ -27,6 +27,7 @@ gem "koala", "~> 2.4.0"
 gem "sidekiq", "~> 4.2.9"
 gem "kaminari", "~> 1.0.1"
 gem "public_activity", "~> 1.5.0"
+gem "ransack", github: "activerecord-hackery/ransack"
 
 group :development, :test do
   gem "byebug", platform: :mri
