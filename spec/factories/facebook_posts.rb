@@ -14,9 +14,11 @@
 #  facebook_page_id  :integer
 #  status_changed_at :datetime
 #  link              :string
+#  all_links         :string           default("{}"), is an Array
 #
 # Indexes
 #
+#  index_facebook_posts_on_all_links         (all_links)
 #  index_facebook_posts_on_facebook_page_id  (facebook_page_id)
 #
 
