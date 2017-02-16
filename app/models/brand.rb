@@ -16,6 +16,10 @@ class Brand < ApplicationRecord
 
   after_commit :start_pages_importer, on: :create
 
+  def pages
+    @pages ||= FacebookPage.where("? = ANY (brand_ids)", id)
+  end
+
   private
 
   def start_pages_importer
