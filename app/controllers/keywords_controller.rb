@@ -1,25 +1,21 @@
 class KeywordsController < ApplicationController
   before_action :set_keyword, only: [:show, :edit, :update, :destroy]
 
-  # GET /keywords
   def index
-    @keywords = Keyword.page(params[:page])
+    @q = Keyword.ransack(params[:q])
+    @keywords = @q.result.page(params[:page])
   end
 
-  # GET /keywords/1
   def show
   end
 
-  # GET /keywords/new
   def new
     @keyword = Keyword.new
   end
 
-  # GET /keywords/1/edit
   def edit
   end
 
-  # POST /keywords
   def create
     @keyword = Keyword.new(keyword_params)
 
@@ -31,7 +27,6 @@ class KeywordsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /keywords/1
   def update
     if @keyword.update(keyword_params)
       @keyword.create_activity(:update, owner: current_user, parameters: { name: @keyword.name })
@@ -41,7 +36,6 @@ class KeywordsController < ApplicationController
     end
   end
 
-  # DELETE /keywords/1
   def destroy
     @keyword.create_activity(:destroy, owner: current_user, parameters: { name: @keyword.name })
     @keyword.destroy
@@ -49,13 +43,12 @@ class KeywordsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_keyword
-      @keyword = Keyword.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def keyword_params
-      params.require(:keyword).permit(:name)
-    end
+  def set_keyword
+    @keyword = Keyword.find(params[:id])
+  end
+
+  def keyword_params
+    params.require(:keyword).permit(:name)
+  end
 end

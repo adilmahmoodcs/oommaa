@@ -11,8 +11,8 @@
     <tr>
       <th>Image</th>
       <th>Message</th>
-      <th>Page</th>
-      <th>Published at</th>
+      <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
+      <th><%= sort_link(@q, :posted_at, "Published at") %></th>
       <th>Actions</th>
     </tr>
   </thead>

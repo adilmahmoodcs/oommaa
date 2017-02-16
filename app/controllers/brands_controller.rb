@@ -1,25 +1,21 @@
 class BrandsController < ApplicationController
   before_action :set_brand, only: [:show, :edit, :update, :destroy]
 
-  # GET /brands
   def index
-    @brands = Brand.page(params[:page])
+    @q = Brand.ransack(params[:q])
+    @brands = @q.result.page(params[:page])
   end
 
-  # GET /brands/1
   def show
   end
 
-  # GET /brands/new
   def new
     @brand = Brand.new
   end
 
-  # GET /brands/1/edit
   def edit
   end
 
-  # POST /brands
   def create
     @brand = Brand.new(brand_params)
 
@@ -31,7 +27,6 @@ class BrandsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /brands/1
   def update
     if @brand.update(brand_params)
       @brand.create_activity(:update, owner: current_user, parameters: { name: @brand.name })
@@ -41,7 +36,6 @@ class BrandsController < ApplicationController
     end
   end
 
-  # DELETE /brands/1
   def destroy
     @brand.create_activity(:destroy, owner: current_user, parameters: { name: @brand.name })
     @brand.destroy
@@ -49,13 +43,12 @@ class BrandsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_brand
-      @brand = Brand.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def brand_params
-      params.require(:brand).permit(:name)
-    end
+  def set_brand
+    @brand = Brand.find(params[:id])
+  end
+
+  def brand_params
+    params.require(:brand).permit(:name)
+  end
 end
