@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170214151544) do
+ActiveRecord::Schema.define(version: 20170216154546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,15 +47,16 @@ ActiveRecord::Schema.define(version: 20170214151544) do
   end
 
   create_table "facebook_posts", force: :cascade do |t|
-    t.string   "facebook_id",                  null: false
-    t.string   "message",                      null: false
+    t.string   "facebook_id",                   null: false
+    t.string   "message",                       null: false
     t.datetime "posted_at"
     t.string   "permalink"
     t.string   "image_url"
-    t.integer  "status",           default: 0, null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.integer  "status",            default: 0, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "facebook_page_id"
+    t.datetime "status_changed_at"
     t.index ["facebook_page_id"], name: "index_facebook_posts_on_facebook_page_id", using: :btree
   end
 

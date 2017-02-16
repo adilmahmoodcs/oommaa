@@ -2,16 +2,17 @@
 #
 # Table name: facebook_posts
 #
-#  id               :integer          not null, primary key
-#  facebook_id      :string           not null
-#  message          :string           not null
-#  posted_at        :datetime
-#  permalink        :string
-#  image_url        :string
-#  status           :integer          default("0"), not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  facebook_page_id :integer
+#  id                :integer          not null, primary key
+#  facebook_id       :string           not null
+#  message           :string           not null
+#  posted_at         :datetime
+#  permalink         :string
+#  image_url         :string
+#  status            :integer          default("0"), not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  facebook_page_id  :integer
+#  status_changed_at :datetime
 #
 # Indexes
 #
@@ -25,8 +26,7 @@ FactoryGirl.define do
     posted_at { Time.now }
     permalink { Faker::Internet.url }
     image_url { Faker::LoremPixel.image("150x150") }
-    status 1
-    page
+    facebook_page
   end
 
 end

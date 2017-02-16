@@ -15,8 +15,7 @@ class PostsController < ApplicationController
   def change_status
     if params[:status] && params[:status].in?(FacebookPost.statuses.keys)
       @post = FacebookPost.find(params[:post_id])
-      @post.status = params[:status]
-      @post.save!
+      @post.change_status_to!(params[:status])
       @post.create_activity(params[:status], owner: current_user, parameters: { name: @post.permalink })
     end
 

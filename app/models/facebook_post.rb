@@ -2,16 +2,17 @@
 #
 # Table name: facebook_posts
 #
-#  id               :integer          not null, primary key
-#  facebook_id      :string           not null
-#  message          :string           not null
-#  posted_at        :datetime
-#  permalink        :string
-#  image_url        :string
-#  status           :integer          default("0"), not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  facebook_page_id :integer
+#  id                :integer          not null, primary key
+#  facebook_id       :string           not null
+#  message           :string           not null
+#  posted_at         :datetime
+#  permalink         :string
+#  image_url         :string
+#  status            :integer          default("0"), not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  facebook_page_id  :integer
+#  status_changed_at :datetime
 #
 # Indexes
 #
@@ -27,4 +28,10 @@ class FacebookPost < ApplicationRecord
 
   validates :facebook_id, :message, :facebook_page, presence: true
   validates :facebook_id, uniqueness: true
+
+  def change_status_to!(new_status)
+    self.status = new_status
+    self.status_changed_at = Time.now
+    save!
+  end
 end
