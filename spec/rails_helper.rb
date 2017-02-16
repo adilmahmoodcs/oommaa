@@ -71,7 +71,8 @@ RSpec.configure do |config|
     # a new token at https://developers.facebook.com/tools/explorer/ and replace this
     @facebook_token = "EAACEdEose0cBAL6V48bRsvGvqA6kpuscgsZC8TePnWiSlfsNmj3ZBlw6BSIvMvldV5uFGcYrWU56iPpjgFvs7pnpdJ2WJLiUsTFKpJOqX4Fv9ifPgDnCaZA18bNwBGHx3I2ZCZCknLVP0J0ITkyiIWYmtkq8OMxYDx3bCdBHdsLg8uodYYCaw"
     @facebook_page_id = "961278360606211" # a page with few posts
-    @facebook_page_term = "Dallas Cowboys Fans"
+    @facebook_page_term = "Dallas Cowboys"
+    @facebook_page_term_alternative = "Other Term"
   end
 
   config.before(:suite) do

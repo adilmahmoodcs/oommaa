@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://graph.facebook.com/v2.8/search?access_token=EAACEdEose0cBAL6V48bRsvGvqA6kpuscgsZC8TePnWiSlfsNmj3ZBlw6BSIvMvldV5uFGcYrWU56iPpjgFvs7pnpdJ2WJLiUsTFKpJOqX4Fv9ifPgDnCaZA18bNwBGHx3I2ZCZCknLVP0J0ITkyiIWYmtkq8OMxYDx3bCdBHdsLg8uodYYCaw&fields=id,name,link,picture.width(200)&limit=10&q=Dallas%20Cowboys&type=page
+    uri: https://graph.facebook.com/v2.8/search?access_token=EAACEdEose0cBAL6V48bRsvGvqA6kpuscgsZC8TePnWiSlfsNmj3ZBlw6BSIvMvldV5uFGcYrWU56iPpjgFvs7pnpdJ2WJLiUsTFKpJOqX4Fv9ifPgDnCaZA18bNwBGHx3I2ZCZCknLVP0J0ITkyiIWYmtkq8OMxYDx3bCdBHdsLg8uodYYCaw&fields=id,name,link,picture.width(200)&limit=500&q=Other%20Term&type=page
     body:
       encoding: US-ASCII
       string: ''
@@ -19,11 +19,11 @@ http_interactions:
       message: OK
     headers:
       X-App-Usage:
-      - '{"call_count":3,"total_cputime":1,"total_time":2}'
+      - '{"call_count":1,"total_cputime":1,"total_time":2}'
       X-Fb-Rev:
       - '2832002'
       X-Fb-Trace-Id:
-      - CbvN06DHJ5h
+      - Ea6QaZO3dZK
       Expires:
       - Sat, 01 Jan 2000 00:00:00 GMT
       Content-Type:
@@ -35,19 +35,19 @@ http_interactions:
       Pragma:
       - no-cache
       Etag:
-      - '"6b83d2a883e96ae9889b916a026cf8fa39bf7348"'
+      - '"8a021056647e61ccd8d448b2ebf7b1e3000c42f8"'
       Access-Control-Allow-Origin:
       - "*"
       Vary:
       - Accept-Encoding
       X-Fb-Debug:
-      - iV2ebSANj5MLebU77kq+kI9ONvPkvOCK6d/YphaqpYanUV3JsTc1I4SCXPNyLR/OIfjV7GY5fuaORQAYrFJUcQ==
+      - 1wL34vE7GevXPrmVGJJeS0uqIEkAp5Zj95PRSvsD5krvvNRVoTZifdHag0suvMvb0sfAkK8bZkTyWHWnVsiung==
       Date:
-      - Tue, 14 Feb 2017 16:02:11 GMT
+      - Tue, 14 Feb 2017 16:01:53 GMT
       Connection:
       - keep-alive
       Content-Length:
-      - '1408'
+      - '31725'
     body:
       encoding: ASCII-8BIT
       string: '{"data":[{"id":"546449858737680","name":"Dallas Cowboys Fans","link":"https:\/\/www.facebook.com\/DallasCowboysFansNow\/","picture":{"data":{"height":166,"is_silhouette":false,"url":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-1\/s200x200\/1097986_546450085404324_775172588_n.jpg?oh=77da7b2e8e6f1d4fb1809243f4275215&oe=59393125","width":200}}},{"id":"384317418346157","name":"Dallas
@@ -58,8 +58,7 @@ http_interactions:
         Cowboy''s Fans House","link":"https:\/\/www.facebook.com\/pages\/Dallas-Cowboys-Fans-House\/420810438099395","picture":{"data":{"height":125,"is_silhouette":true,"url":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-1\/s200x200\/251956_10149999254857806_191904059_n.jpg?oh=d13f3e777b05de9a78ae89da2f797bb8&oe=5901427D","width":200}}},{"id":"113002415733846","name":"Dallas
         Cowboys Fan Pages","link":"https:\/\/www.facebook.com\/dallascowboysfanpages\/","picture":{"data":{"height":150,"is_silhouette":false,"url":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-1\/s200x200\/12509002_178425795858174_5420520473881136138_n.jpg?oh=866da718c56d879cdf98ba19a5edf170&oe=5939EED9","width":200}}},{"id":"135642253441353","name":"Dallas
         Cowboys Fans","link":"https:\/\/www.facebook.com\/Dallas-Cowboys-Fans-135642253441353\/","picture":{"data":{"height":150,"is_silhouette":false,"url":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-1\/s200x200\/11781772_135679190104326_3419280895819748725_n.jpg?oh=d343dc72309df766e69bfdd1889589a1&oe=5930B0A0","width":200}}},{"id":"691091040951424","name":"Dallas
-        Cowboys Fans","link":"https:\/\/www.facebook.com\/UltimateCowboysFanpage\/","picture":{"data":{"height":200,"is_silhouette":false,"url":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-1\/p200x200\/15338809_1267091300018059_3882388426586222543_n.jpg?oh=d5046de3a029c94e84efef658c009b0a&oe=5902BABC","width":200}}},{"id":"268890973262246","name":"Dallas
-        Cowboys Fan Club","link":"https:\/\/www.facebook.com\/bleedingbluefanclub\/","picture":{"data":{"height":186,"is_silhouette":false,"url":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-1\/s200x200\/1495497_268891259928884_1305586283_n.png?oh=cfe3e0ff0d5c3a21e635fc3a19656065&oe=59332893","width":200}}}],"paging":{"cursors":{"before":"MAZDZD","after":"OQZDZD"},"next":"https:\/\/graph.facebook.com\/v2.8\/search?access_token=EAACEdEose0cBAL6V48bRsvGvqA6kpuscgsZC8TePnWiSlfsNmj3ZBlw6BSIvMvldV5uFGcYrWU56iPpjgFvs7pnpdJ2WJLiUsTFKpJOqX4Fv9ifPgDnCaZA18bNwBGHx3I2ZCZCknLVP0J0ITkyiIWYmtkq8OMxYDx3bCdBHdsLg8uodYYCaw&fields=id\u00252Cname\u00252Clink\u00252Cpicture.width\u002528200\u002529&q=Dallas+Cowboys+Fans&type=page&limit=10&after=OQZDZD"}}'
+        Cowboys Fans","link":"https:\/\/www.facebook.com\/UltimateCowboysFanpage\/","picture":{"data":{"height":200,"is_silhouette":false,"url":"https:\/\/scontent.xx.fbcdn.net\/v\/t1.0-1\/p200x200\/15338809_1267091300018059_3882388426586222543_n.jpg?oh=d5046de3a029c94e84efef658c009b0a&oe=5902BABC","width":200}}}],"paging":{"cursors":{"before":"MAZDZD","after":"NDU4"}}}'
     http_version:
-  recorded_at: Tue, 14 Feb 2017 16:02:11 GMT
+  recorded_at: Tue, 14 Feb 2017 16:01:53 GMT
 recorded_with: VCR 3.0.3

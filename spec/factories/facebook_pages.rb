@@ -9,6 +9,11 @@
 #  facebook_id :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  brand_ids   :integer          default("{}"), is an Array
+#
+# Indexes
+#
+#  index_facebook_pages_on_brand_ids  (brand_ids)
 #
 
 FactoryGirl.define do
@@ -17,6 +22,7 @@ FactoryGirl.define do
     url { Faker::Internet.url }
     image_url { Faker::LoremPixel.image("150x150") }
     facebook_id { Faker::Number.number(10) }
+    brand_ids { [create(:brand).id] }
   end
 
 end

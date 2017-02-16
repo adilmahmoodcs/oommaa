@@ -15,13 +15,20 @@ class PagesImporterJob
     pages_data = FBPageSearcher.new(term: brand.name, token: token).call
 
     pages_data.each do |data|
-      unless FacebookPage.exists?(facebook_id: data["id"])
+      if !FacebookPage.exists?(facebook_id: data["id"])
         FacebookPage.create!(
           facebook_id: data["id"],
           name: data["name"],
           url: data["link"],
-          image_url: data.dig("picture", "data", "url")
+          image_url: data.dig("picture", "data", "url"),
+          brand_ids: [brand.id]
         )
+      else
+        page = FacebookPage.find_by(facebook_id: data["id"])
+        if !brand.id.in?(page.brand_ids)
+          page.brand_ids << brand.id
+          page.save!
+        end
       end
     end
   end

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PagesImporterJob, type: :job do
   let(:brand) { create(:brand, name: @facebook_page_term) }
+  let(:brand2) { create(:brand, name: @facebook_page_term_alternative) }
 
   before(:each) do
     allow_any_instance_of(FBPageSearcher).to receive(:token) { @facebook_token }
@@ -11,6 +12,27 @@ RSpec.describe PagesImporterJob, type: :job do
     VCR.use_cassette("fb_page_searcher", allow_playback_repeats: true) do
       expect{ PagesImporterJob.new.perform(brand.id) }.to change{ FacebookPage.count }.from(0)
       expect{ PagesImporterJob.new.perform(brand.id) }.to_not change{ FacebookPage.count }
+    end
+  end
+
+  it "associate brand to page" do
+    VCR.use_cassette("fb_page_searcher") do
+      PagesImporterJob.new.perform(brand.id)
+      expect(FacebookPage.last.brands).to eq([brand])
+    end
+  end
+
+  it "adds new matching brands to exiting pages, once" do
+    VCR.use_cassette("fb_page_searcher") do
+      PagesImporterJob.new.perform(brand.id)
+    end
+
+    VCR.use_cassette("fb_page_searcher_alternative", allow_playback_repeats: true) do
+      # this cassette has same content of fb_page_searcher...
+      expect{ PagesImporterJob.new.perform(brand2.id) }.to_not change{ FacebookPage.count }
+      expect(FacebookPage.last.brands).to eq([brand, brand2])
+      PagesImporterJob.new.perform(brand2.id)
+      expect(FacebookPage.last.brands).to eq([brand, brand2])
     end
   end
 
