@@ -12,7 +12,7 @@ class LinksParser
       begin
         Embiggen::URI(link).expand.to_s
       rescue Embiggen::BadShortenedURI, Embiggen::TooManyRedirects => e
-        puts "Bad short url '#{raw_link}': #{e.message}"
+        puts "Bad short url '#{link}': #{e.message}"
         nil
       end
     end.compact
