@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: head
+    uri: http://buff.ly/2kJE5fx
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 301
+      message: Moved Permanently
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 16 Feb 2017 17:49:38 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Content-Length:
+      - '293'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private, max-age=90
+      Location:
+      - https://www.destroyallsoftware.com/blog/2017/the-biggest-and-weirdest-commits-in-linux-kernel-git-history?utm_content=bufferbed64&utm_medium=social&utm_source=plus.google.com&utm_campaign=buffer
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 16 Feb 2017 17:49:38 GMT
+recorded_with: VCR 3.0.3
