@@ -29,6 +29,7 @@ gem "kaminari", "~> 1.0.1"
 gem "public_activity", "~> 1.5.0"
 gem "ransack", github: "activerecord-hackery/ransack"
 gem "embiggen", "~> 1.2.4"
+gem "public_suffix", "~> 2.0"
 
 group :development, :test do
   gem "byebug", platform: :mri

@@ -12,6 +12,12 @@ RSpec.describe FacebookPost, type: :model do
            message: "Get yours here >> https://www.facebook.com/something or here: https://bit.ly/2kHJRz3",
            link: "https://www.facebook.com/fanprint/photos/a.469606039735992.116788.461431677220095/1531062416923677/?type=3")
   }
+  let(:post_with_all_links) {
+    create(:facebook_post, all_links: [
+      "https://www.counterfind.com/something",
+      "http://somedomain.co.uk/something"
+    ])
+  }
 
   it { is_expected.to define_enum_for(:status) }
 
@@ -51,6 +57,12 @@ RSpec.describe FacebookPost, type: :model do
 
     it "skips facebook.com links" do
       expect(post_with_fb_links.raw_links).to eq(["https://bit.ly/2kHJRz3"])
+    end
+  end
+
+  describe "#all_domains" do
+    it "works as expected" do
+      expect(post_with_all_links.all_domains).to eq(["counterfind.com", "somedomain.co.uk"])
     end
   end
 end

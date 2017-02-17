@@ -48,4 +48,11 @@ class FacebookPost < ApplicationRecord
   def set_all_links
     self.all_links = LinksParser.new(raw_links).call
   end
+
+  def all_domains
+    all_links.map do |link|
+      uri = URI.parse(link)
+      PublicSuffix.parse(uri.host).domain
+    end
+  end
 end
