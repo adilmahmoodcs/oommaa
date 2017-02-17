@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe DomainsController, type: :controller do
+  before(:each) do
+    login_user
+  end
 
   describe "GET #index" do
     it "returns http success" do

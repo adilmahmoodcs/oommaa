@@ -8,7 +8,7 @@ RSpec.describe KeywordMatcher do
     expect{subject.new.match?("term")}.to_not raise_error
   end
 
-  describe "#call" do
+  describe "#match?" do
     before(:each) do
       create(:keyword, name: "first keyword")
       create(:keyword, name: "second keyword")
