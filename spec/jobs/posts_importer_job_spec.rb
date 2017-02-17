@@ -22,4 +22,11 @@ RSpec.describe PostsImporterJob, type: :job do
 
     expect(PostsImporterJob.jobs.first["args"]).to eq([666])
   end
+
+  it "calls PostStatusJob" do
+    VCR.use_cassette("fb_post_searcher", allow_playback_repeats: true) do
+      expect(PostStatusJob).to receive(:perform_async).at_least(2).times
+      PostsImporterJob.new.perform(page.id)
+    end
+  end
 end

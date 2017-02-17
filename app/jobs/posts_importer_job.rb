@@ -17,7 +17,7 @@ class PostsImporterJob
     posts_data.each do |data|
       # we reached already imported posts...
       break if FacebookPost.exists?(facebook_id: data["id"])
-      break unless data["message"].present?
+      break if data["message"].blank?
 
       post = page.facebook_posts.create!(
         facebook_id: data["id"],
@@ -28,7 +28,7 @@ class PostsImporterJob
         link: data["link"]
       )
 
-      PostProcessingJob.perform_async(post.id)
+      PostStatusJob.perform_async(post.id)
     end
   end
 
