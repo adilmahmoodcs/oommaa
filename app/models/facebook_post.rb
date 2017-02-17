@@ -40,7 +40,7 @@ class FacebookPost < ApplicationRecord
   end
 
   def raw_links
-    raw_links = URI.extract(message)
+    raw_links = URI.extract(message, ["http", "https"])
     raw_links << link if link.present?
     raw_links.delete_if { |l| l.match?(/https\:\/\/www\.facebook\.com\//) }
   end

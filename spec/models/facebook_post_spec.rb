@@ -4,12 +4,12 @@ RSpec.describe FacebookPost, type: :model do
   let(:post) { create(:facebook_post) }
   let(:post_with_links) {
     create(:facebook_post,
-           message: "Get yours here >> http://bit.ly/2ksZpIv or here https://bit.ly/2kHJRz3",
+           message: "Get yours here >> http://bit.ly/2ksZpIv or here: https://bit.ly/2kHJRz3",
            link: "https://www.fanprint.com/products/tom-brady-goat-stats")
   }
   let(:post_with_fb_links) {
     create(:facebook_post,
-           message: "Get yours here >> https://www.facebook.com/something or here https://bit.ly/2kHJRz3",
+           message: "Get yours here >> https://www.facebook.com/something or here: https://bit.ly/2kHJRz3",
            link: "https://www.facebook.com/fanprint/photos/a.469606039735992.116788.461431677220095/1531062416923677/?type=3")
   }
 
