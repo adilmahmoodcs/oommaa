@@ -19,7 +19,12 @@ class PostStatusJob
       :suspect
     end
 
-    post.update_attributes!(status: status) if status
+    if status
+      post.update_attributes!(
+        status: status,
+        status_changed_at: Time.now
+      )
+    end
   end
 
   def keyword_matcher
