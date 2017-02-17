@@ -54,7 +54,7 @@ class FacebookPost < ApplicationRecord
     all_links.map do |link|
       uri = URI.parse(link)
       PublicSuffix.parse(uri.host).domain
-    end
+    end.uniq
   end
 
   private

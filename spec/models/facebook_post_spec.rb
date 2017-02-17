@@ -15,7 +15,8 @@ RSpec.describe FacebookPost, type: :model do
   let(:post_with_all_links) {
     create(:facebook_post, all_links: [
       "https://www.counterfind.com/something",
-      "http://somedomain.co.uk/something"
+      "http://somedomain.co.uk/something",
+      "http://somedomain.co.uk/something_else"
     ])
   }
 
