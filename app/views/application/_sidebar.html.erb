@@ -49,6 +49,13 @@
 
         <hr>
         <li class="nav-item">
+          <%= link_to t(:export_blacklist),
+                      export_posts_path,
+                      class: "nav-link #{'active' if current_page?('/posts/export')}" %>
+        </li>
+
+        <hr>
+        <li class="nav-item">
           <%= link_to t(:user_activities),
                       activities_path,
                       class: "nav-link #{'active' if controller.controller_name == 'activities'}" %>

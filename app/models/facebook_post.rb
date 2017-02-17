@@ -32,6 +32,8 @@ class FacebookPost < ApplicationRecord
   validates :facebook_id, :message, :facebook_page, presence: true
   validates :facebook_id, uniqueness: true
 
+  delegate :brands, to: :facebook_page
+
   # used for manual status changes
   def change_status_to!(new_status)
     self.status = new_status
@@ -49,7 +51,11 @@ class FacebookPost < ApplicationRecord
   def all_domains
     all_links.map do |link|
       uri = URI.parse(link)
-      PublicSuffix.parse(uri.host).domain
+      begin
+        PublicSuffix.parse(uri.host).domain
+      rescue PublicSuffix::DomainInvalid
+        "<INVALID URL>"
+      end
     end.uniq
   end
 
