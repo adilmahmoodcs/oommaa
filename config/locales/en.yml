@@ -9,7 +9,7 @@ en:
   whitelisted: Whitelisted
   blacklisted: Blacklisted
   user_activities: User activities
-  export_blacklist: Export blacklist
+  blacklist_export: Blacklist export
   activities:
     brand:
       create: 'Created Brand "%{name}"'

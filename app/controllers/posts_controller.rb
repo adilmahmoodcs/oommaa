@@ -19,6 +19,13 @@ class PostsController < ApplicationController
                 blacklisted.
                 includes(:facebook_page).
                 page(params[:page])
+
+    if params[:from].present?
+      @posts = @posts.where("status_changed_at >= ?", Date.parse(params[:from]).beginning_of_day)
+    end
+    if params[:to].present?
+      @posts = @posts.where("status_changed_at <= ?", Date.parse(params[:to]).end_of_day)
+    end
   end
 
   def change_status
