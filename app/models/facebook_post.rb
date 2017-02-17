@@ -37,4 +37,10 @@ class FacebookPost < ApplicationRecord
     self.status_changed_at = Time.now
     save!
   end
+
+  def raw_links
+    raw_links = URI.extract(message)
+    raw_links << link if link.present?
+    raw_links.delete_if { |l| l.match?(/https\:\/\/www\.facebook\.com\//) }
+  end
 end
