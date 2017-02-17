@@ -271,6 +271,7 @@ GEM
     redis (3.3.3)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    rinku (2.0.2)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -385,6 +386,7 @@ DEPENDENCIES
   rails-controller-testing
   ransack!
   rb-fsevent
+  rinku (~> 2.0.2)
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   shoulda-matchers (~> 3.1)

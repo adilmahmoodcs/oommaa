@@ -30,6 +30,7 @@ gem "public_activity", "~> 1.5.0"
 gem "ransack", github: "activerecord-hackery/ransack"
 gem "embiggen", "~> 1.2.4"
 gem "public_suffix", "~> 2.0"
+gem "rinku", "~> 2.0.2"
 
 group :development, :test do
   gem "byebug", platform: :mri
