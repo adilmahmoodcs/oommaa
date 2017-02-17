@@ -1,0 +1,23 @@
+<h1>Domains</h1>
+
+<%= paginate @domains %>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th><%= sort_link(@q, :name, "Name") %></th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @domains.each do |domain| %>
+      <tr>
+        <td><%= domain.name %></td>
+        <td><%= t(domain.status) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @domains %>
