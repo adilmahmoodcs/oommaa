@@ -12,7 +12,7 @@
 FactoryGirl.define do
   factory :domain do
     name { Faker::Internet.domain_name }
-    status 1
+    status 0
   end
 
 end
