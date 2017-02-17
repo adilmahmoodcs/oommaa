@@ -66,4 +66,14 @@ RSpec.describe FacebookPost, type: :model do
       expect(post_with_all_links.all_domains).to eq(["counterfind.com", "somedomain.co.uk"])
     end
   end
+
+  describe "#parse_all_links!" do
+    it "works as expected" do
+      expect(post.all_links).to be_none
+      VCR.use_cassette(:links_parser) do
+        post.parse_all_links!
+      end
+      expect(post.all_links).to be_many
+    end
+  end
 end

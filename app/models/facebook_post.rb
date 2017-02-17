@@ -53,6 +53,12 @@ class FacebookPost < ApplicationRecord
     end.uniq
   end
 
+  # better to call this in async context
+  def parse_all_links!
+    links = LinksParser.new(raw_links).call
+    update_attributes!(all_links: links)
+  end
+
   private
 
   def blacklist_domains!
