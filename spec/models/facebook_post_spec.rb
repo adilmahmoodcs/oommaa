@@ -34,25 +34,13 @@ RSpec.describe FacebookPost, type: :model do
       expect(post.status_changed_at.to_s).to eq(Time.current.to_s)
     end
 
-    it "call #set_all_links on blacklisting" do
-      expect(post).to receive(:set_all_links)
+    it "call #blacklist_domains! on blacklisting" do
+      expect(post).to receive(:blacklist_domains!)
       post.change_status_to!(:blacklisted)
     end
 
-    it "does not call #set_all_links on other status changes" do
-      expect(post).to_not receive(:set_all_links)
-      post.change_status_to!(:whitelisted)
-      post.change_status_to!(:not_suspect)
-      post.change_status_to!(:suspect)
-    end
-
-    it "calls Domain.blacklist! on blacklisting" do
-      expect(Domain).to receive(:blacklist!).exactly(2).times
-      post.change_status_to!(:blacklisted)
-    end
-
-    it "calls Domain.blacklist! on other status changes" do
-      expect(Domain).to_not receive(:blacklist!)
+    it "does not call #blacklist_domains! on other status changes" do
+      expect(post).to_not receive(:blacklist_domains!)
       post.change_status_to!(:whitelisted)
       post.change_status_to!(:not_suspect)
       post.change_status_to!(:suspect)

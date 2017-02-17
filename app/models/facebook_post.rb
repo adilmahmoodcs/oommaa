@@ -32,22 +32,18 @@ class FacebookPost < ApplicationRecord
   validates :facebook_id, :message, :facebook_page, presence: true
   validates :facebook_id, uniqueness: true
 
+  # used for manual status changes
   def change_status_to!(new_status)
     self.status = new_status
     self.status_changed_at = Time.now
-    set_all_links if blacklisted? # TODO should be better async?
     save!
-    blacklist_domains!
+    blacklist_domains! if blacklisted?
   end
 
   def raw_links
     raw_links = URI.extract(message, ["http", "https"])
     raw_links << link if link.present?
     raw_links.delete_if { |l| l.match?(/https\:\/\/www\.facebook\.com\//) }
-  end
-
-  def set_all_links
-    self.all_links = LinksParser.new(raw_links).call
   end
 
   def all_domains
