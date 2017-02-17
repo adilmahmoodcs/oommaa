@@ -26,6 +26,18 @@ RSpec.describe FacebookPost, type: :model do
       expect(post.status).to eq("whitelisted")
       expect(post.status_changed_at.to_s).to eq(Time.current.to_s)
     end
+
+    it "call #set_all_links on blacklisting" do
+      expect(post).to receive(:set_all_links)
+      post.change_status_to!(:blacklisted)
+    end
+
+    it "does not call #set_all_links on other status changes" do
+      expect(post).to_not receive(:set_all_links)
+      post.change_status_to!(:whitelisted)
+      post.change_status_to!(:not_suspect)
+      post.change_status_to!(:suspect)
+    end
   end
 
   describe "#raw_links" do

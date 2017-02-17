@@ -35,6 +35,7 @@ class FacebookPost < ApplicationRecord
   def change_status_to!(new_status)
     self.status = new_status
     self.status_changed_at = Time.now
+    set_all_links if blacklisted? # TODO should be better async?
     save!
   end
 
@@ -42,5 +43,9 @@ class FacebookPost < ApplicationRecord
     raw_links = URI.extract(message)
     raw_links << link if link.present?
     raw_links.delete_if { |l| l.match?(/https\:\/\/www\.facebook\.com\//) }
+  end
+
+  def set_all_links
+    self.all_links = LinksParser.new(raw_links).call
   end
 end

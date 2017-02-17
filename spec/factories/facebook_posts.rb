@@ -25,7 +25,7 @@
 FactoryGirl.define do
   factory :facebook_post do
     facebook_id { Faker::Number.number(10) }
-    message { Faker::Lorem.sentence }
+    message { [Faker::Lorem.sentence, Faker::Internet.url, Faker::Lorem.sentence, Faker::Internet.url].join(" ")  }
     posted_at { Time.now }
     permalink { Faker::Internet.url }
     image_url { Faker::LoremPixel.image("150x150") }
