@@ -37,6 +37,7 @@ class FacebookPost < ApplicationRecord
     self.status_changed_at = Time.now
     set_all_links if blacklisted? # TODO should be better async?
     save!
+    blacklist_domains!
   end
 
   def raw_links
@@ -53,6 +54,14 @@ class FacebookPost < ApplicationRecord
     all_links.map do |link|
       uri = URI.parse(link)
       PublicSuffix.parse(uri.host).domain
+    end
+  end
+
+  private
+
+  def blacklist_domains!
+    all_domains.each do |domain|
+      Domain.blacklist!(domain)
     end
   end
 end

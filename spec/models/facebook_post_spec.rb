@@ -44,6 +44,18 @@ RSpec.describe FacebookPost, type: :model do
       post.change_status_to!(:not_suspect)
       post.change_status_to!(:suspect)
     end
+
+    it "calls Domain.blacklist! on blacklisting" do
+      expect(Domain).to receive(:blacklist!).exactly(2).times
+      post.change_status_to!(:blacklisted)
+    end
+
+    it "calls Domain.blacklist! on other status changes" do
+      expect(Domain).to_not receive(:blacklist!)
+      post.change_status_to!(:whitelisted)
+      post.change_status_to!(:not_suspect)
+      post.change_status_to!(:suspect)
+    end
   end
 
   describe "#raw_links" do

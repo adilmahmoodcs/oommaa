@@ -11,4 +11,10 @@
 
 class Domain < ApplicationRecord
   enum status: [:blacklisted]
+
+  def self.blacklist!(name)
+    if !exists?(name: name)
+      create!(name: name, status: :blacklisted)
+    end
+  end
 end
