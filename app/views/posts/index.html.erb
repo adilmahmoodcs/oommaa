@@ -26,7 +26,14 @@
                       target: "_blank" if post.image_url.present? %>
         </td>
         <td>
-          <%= link_to post.message, post.permalink, target: "_blank" %>
+          <%= auto_link(post.message) %>
+          <br>
+          <%= link_to post.permalink,
+                      target: "_blank",
+                      class: "btn btn-sm btn-outline-primary go-to-post" do %>
+            Go to post
+            <%= icon("external-link") %>
+          <% end %>
         </td>
         <td>
           <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
