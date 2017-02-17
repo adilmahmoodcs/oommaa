@@ -13,25 +13,22 @@ class PostsImporterJob
   def import_posts(page_id)
     page = FacebookPage.find(page_id)
     posts_data = FBPostSearcher.new(page_id: page.facebook_id, token: token).call
-    keyword_matcher = KeywordMatcher.new
 
     posts_data.each do |data|
       # we reached already imported posts...
       break if FacebookPost.exists?(facebook_id: data["id"])
+      break unless data["message"].present?
 
-      if data["message"].present?
-        match = keyword_matcher.match?(data["message"])
+      post = page.facebook_posts.create!(
+        facebook_id: data["id"],
+        message: data["message"],
+        posted_at: data["created_time"],
+        permalink: data["permalink_url"],
+        image_url: data["full_picture"],
+        link: data["link"]
+      )
 
-        page.facebook_posts.create!(
-          facebook_id: data["id"],
-          message: data["message"],
-          posted_at: data["created_time"],
-          permalink: data["permalink_url"],
-          image_url: data["full_picture"],
-          link: data["link"],
-          status: match ? :suspect : :not_suspect
-        )
-      end
+      PostProcessingJob.perform_async(post.id)
     end
   end
 
