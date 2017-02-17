@@ -13,13 +13,13 @@ class PostStatusJob
   def set_status!(post)
     # if any domain is already blacklisted
     status = if domain_matcher.match?(post.all_domains)
-      :blacklisted
+      "blacklisted"
     # if some suspect keyword match
     elsif keyword_matcher.match?(post.message)
-      :suspect
+      "suspect"
     end
 
-    if status
+    if status && status != post.status
       post.update_attributes!(
         status: status,
         status_changed_at: Time.now

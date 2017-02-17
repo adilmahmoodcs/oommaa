@@ -25,6 +25,8 @@ RSpec.describe PostStatusJob, type: :job do
     end
 
     it "keep post as not_suspect if none matches" do
+      expect(post).to_not receive(:update_attributes!)
+      subject.new.perform(post.id)
       expect(post.not_suspect?).to be true
     end
   end
