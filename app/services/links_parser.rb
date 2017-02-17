@@ -11,7 +11,7 @@ class LinksParser
     clean_links.map do |link|
       begin
         Embiggen::URI(link).expand.to_s
-      rescue BadShortenedURI, TooManyRedirects => e
+      rescue Embiggen::BadShortenedURI, Embiggen::TooManyRedirects => e
         puts "Bad short url '#{raw_link}': #{e.message}"
         nil
       end
