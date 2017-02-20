@@ -41,14 +41,14 @@
 <table class="table table-hover table-bordered">
   <thead>
     <tr>
-      <th><%= sort_link(@q, :posted_at, "Published at") %></th>
-      <th><%= sort_link(@q, :status_changed_at, "Blacklisted at") %></th>
-      <th>Brand</th>
-      <th>Licensor</th>
-      <th>Platform/Company</th>
-      <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
-      <th>Message</th>
-      <th>Link to product</th>
+      <th><%= sort_link(@q, :posted_at, t(:posted_at)) %></th>
+      <th><%= sort_link(@q, :status_changed_at, t(:status_changed_at)) %></th>
+      <th><%= t(:brand_name) %></th>
+      <th><%= t(:licensor_name) %></th>
+      <th><%= t(:platform_or_company) %></th>
+      <th><%= sort_link(@q, :facebook_page_name, t(:facebook_page_name)) %></th>
+      <th><%= t(:message) %></th>
+      <th><%= t(:link_to_product) %></th>
     </tr>
   </thead>
 
@@ -62,10 +62,10 @@
           <%= l(post.status_changed_at, format: :long) %>
         </td>
         <td>
-          <%= post.brands.map(&:name).join(" ") %>
+          <%= post.brand_names %>
         </td>
         <td>
-          <%#= post.brands.map(&:licensor_name).join(" ") TODO %>
+          <%= post.licensor_names %>
         </td>
         <td>
           <%= post.all_domains.join(", ") %>

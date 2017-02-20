@@ -10,6 +10,14 @@ en:
   blacklisted: Blacklisted
   user_activities: User activities
   blacklist_export: Blacklist export
+  brand_name: Brand
+  licensor_name: Licensor
+  platform_or_company: Platform/Company
+  posted_at: Published at
+  status_changed_at: Blacklisted at
+  facebook_page_name: Facebook page
+  message: Message
+  link_to_product: Link to product
   activities:
     brand:
       create: 'Created Brand "%{name}"'

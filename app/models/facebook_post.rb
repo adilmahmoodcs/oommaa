@@ -65,6 +65,15 @@ class FacebookPost < ApplicationRecord
     update_attributes!(all_links: links)
   end
 
+  def brand_names
+    brands.map(&:name).join(", ")
+  end
+
+  def licensor_names
+    return "" # TODO
+    brands.map(&:licensor_name).join(", ")
+  end
+
   private
 
   def blacklist_domains!
