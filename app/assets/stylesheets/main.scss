@@ -32,3 +32,15 @@ nav a.user-action {
   color: white;
   float: right;
 }
+
+li.nav-item {
+  line-height: 1;
+  h5 {
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+  }
+}
+
+li.nav-spacer {
+  margin-top: 1rem;
+}

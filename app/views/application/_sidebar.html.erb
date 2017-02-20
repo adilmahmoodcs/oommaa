@@ -7,24 +7,40 @@
     <div class="collapse" id="collapseExample">
       <ul class="nav nav-pills flex-column" id="exCollapsingNavbar3">
         <li class="nav-item">
-          <%= link_to "#{t(:keywords)} (#{Keyword.count})",
-                      keywords_path,
-                      class: "nav-link #{'active' if controller.controller_name == 'keywords'}" %>
+          <%= link_to keywords_path,
+                      class: "nav-link #{'active' if current_page?('/keywords')}" do %>
+            <%= icon("quote-right") %>
+            <%= "#{t(:keywords)} (#{Keyword.count})" %>
+          <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to "#{t(:brands)} (#{Brand.count})",
-                      brands_path,
-                      class: "nav-link #{'active' if controller.controller_name == 'brands'}" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "#{t(:domains)} (#{Domain.count})",
-                      domains_path,
-                      class: "nav-link #{'active' if controller.controller_name == 'domains'}" %>
+          <%= link_to brands_path,
+                      class: "nav-link #{'active' if current_page?('/brands')}" do %>
+            <%= icon("shield") %>
+            <%= "#{t(:brands)} (#{Brand.count})" %>
+          <% end %>
         </li>
 
-        <hr>
         <li class="nav-item">
-          <h4>Posts</h4>
+          <h5>Domains</h5>
+        </li>
+        <li class="nav-item">
+          <%= link_to domains_path(status: :whitelisted),
+                      class: "nav-link #{'active' if current_page?('/domains') && params[:status] == 'whitelisted'}" do %>
+            <%= icon("check") %>
+            <%= "#{t(:whitelisted)} (#{Domain.whitelisted.count})" %>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to domains_path(status: :blacklisted),
+                      class: "nav-link #{'active' if current_page?('/domains') && params[:status] == 'blacklisted'}" do %>
+            <%= icon("ban") %>
+            <%= "#{t(:blacklisted)} (#{Domain.blacklisted.count})" %>
+          <% end %>
+        </li>
+
+        <li class="nav-item">
+          <h5>Posts</h5>
         </li>
         <!-- <li class="nav-item">
           <%= link_to new_facebook_post_path,
@@ -34,38 +50,49 @@
           <% end %>
         </li> -->
         <li class="nav-item">
-          <%= link_to "#{t(:not_suspect)} (#{FacebookPost.not_suspect.size})",
-          facebook_posts_path(status: :not_suspect),
-          class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'not_suspect'}" %>
+          <%= link_to facebook_posts_path(status: :not_suspect),
+                      class: "nav-link #{'active' if current_page?('/facebook_posts') && params[:status] == 'not_suspect'}" do %>
+            <%= icon("circle-thin") %>
+            <%= "#{t(:not_suspect)} (#{FacebookPost.not_suspect.size})" %>
+          <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to "#{t(:suspect)} (#{FacebookPost.suspect.size})",
-                      facebook_posts_path(status: :suspect),
-                      class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'suspect'}" %>
+          <%= link_to facebook_posts_path(status: :suspect),
+                      class: "nav-link #{'active' if current_page?('/facebook_posts') && params[:status] == 'suspect'}" do %>
+            <%= icon("question") %>
+            <%= "#{t(:suspect)} (#{FacebookPost.suspect.size})" %>
+          <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to "#{t(:whitelisted)} (#{FacebookPost.whitelisted.size})",
-                      facebook_posts_path(status: :whitelisted),
-                      class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'whitelisted'}" %>
+          <%= link_to facebook_posts_path(status: :whitelisted),
+                      class: "nav-link #{'active' if current_page?('/facebook_posts') && params[:status] == 'whitelisted'}" do %>
+            <%= icon("check") %>
+            <%= "#{t(:whitelisted)} (#{FacebookPost.whitelisted.size})" %>
+          <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to "#{t(:blacklisted)} (#{FacebookPost.blacklisted.size})",
-                      facebook_posts_path(status: :blacklisted),
-                      class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'blacklisted'}" %>
+          <%= link_to facebook_posts_path(status: :blacklisted),
+                      class: "nav-link #{'active' if current_page?('/facebook_posts') && params[:status] == 'blacklisted'}" do %>
+            <%= icon("ban") %>
+            <%= "#{t(:blacklisted)} (#{FacebookPost.blacklisted.size})" %>
+          <% end %>
         </li>
 
-        <hr>
         <li class="nav-item">
-          <%= link_to t(:blacklist_export),
-                      export_facebook_posts_path,
-                      class: "nav-link #{'active' if current_page?('/posts/export')}" %>
+          <%= link_to export_facebook_posts_path,
+                      class: "nav-link #{'active' if current_page?('/facebook_posts/export')}" do %>
+            <%= icon("download") %>
+            <%= t(:blacklist_export) %>
+          <% end %>
         </li>
 
-        <hr>
+        <li class="nav-spacer"></li>
         <li class="nav-item">
-          <%= link_to t(:user_activities),
-                      activities_path,
-                      class: "nav-link #{'active' if controller.controller_name == 'activities'}" %>
+          <%= link_to activities_path,
+                      class: "nav-link #{'active' if current_page?('/activities')}" do %>
+            <%= icon("users") %>
+            <%= t(:user_activities) %>
+          <% end %>
         </li>
       </ul>
     </div>
