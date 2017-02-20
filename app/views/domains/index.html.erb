@@ -7,6 +7,7 @@
     <tr>
       <th><%= sort_link(@q, :name, "Name") %></th>
       <th>Status</th>
+      <th>Actions</th>
     </tr>
   </thead>
 
@@ -15,6 +16,17 @@
       <tr>
         <td><%= domain.name %></td>
         <td><%= t(domain.status) %></td>
+        <td>
+          <% unless domain.whitelisted? %>
+            <%= link_to domain_change_status_path(domain, :whitelisted),
+                        method: :post,
+                        class: "btn btn-success" do %>
+              <%= icon("check") %>
+              Whitelist domain
+            <% end %>
+            <br><br>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
