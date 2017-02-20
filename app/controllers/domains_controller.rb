@@ -1,7 +1,14 @@
 class DomainsController < ApplicationController
   def index
     @q = Domain.ransack(params[:q])
-    @domains = @q.result.page(params[:page])
+    @domains = @q.result
+
+    if params[:status] && params[:status].in?(Domain.statuses.keys)
+      @domains = @domains.public_send(params[:status])
+      @status = params[:status]
+    end
+
+    @domains = @domains.page(params[:page])
   end
 
   def change_status

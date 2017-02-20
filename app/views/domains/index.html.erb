@@ -1,4 +1,8 @@
-<h1>Domains</h1>
+<h1>
+  <%= t(@status || :all) %>
+  Domains
+  (<%= @domains.total_count %>)
+</h1>
 
 <%= paginate @domains %>
 
@@ -6,7 +10,6 @@
   <thead>
     <tr>
       <th><%= sort_link(@q, :name, "Name") %></th>
-      <th>Status</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -14,8 +17,9 @@
   <tbody>
     <% @domains.each do |domain| %>
       <tr>
-        <td><%= domain.name %></td>
-        <td><%= t(domain.status) %></td>
+        <td>
+          <%= domain.name %>
+        </td>
         <td>
           <% unless domain.whitelisted? %>
             <%= link_to domain_change_status_path(domain, :whitelisted),
@@ -23,6 +27,16 @@
                         class: "btn btn-success" do %>
               <%= icon("check") %>
               Whitelist domain
+            <% end %>
+            <br><br>
+          <% end %>
+
+          <% unless domain.blacklisted? %>
+            <%= link_to domain_change_status_path(domain, :blacklisted),
+                        method: :post,
+                        class: "btn btn-success" do %>
+              <%= icon("ban") %>
+              Blacklist domain
             <% end %>
             <br><br>
           <% end %>
