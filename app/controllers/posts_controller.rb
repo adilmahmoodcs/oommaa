@@ -26,6 +26,14 @@ class PostsController < ApplicationController
     if params[:to].present?
       @posts = @posts.where("status_changed_at <= ?", Date.parse(params[:to]).end_of_day)
     end
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data PostsCSVExporter.new(@posts).call,
+                  filename: "blacklist_export_#{Time.now.to_i}.csv"
+      end
+    end
   end
 
   def change_status
