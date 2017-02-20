@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PostsController, type: :controller do
+RSpec.describe FacebookPostsController, type: :controller do
 
   before(:each) do
     login_user
