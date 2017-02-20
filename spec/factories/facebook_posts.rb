@@ -30,6 +30,11 @@ FactoryGirl.define do
     permalink { Faker::Internet.url }
     image_url { Faker::LoremPixel.image("150x150") }
     facebook_page
+
+    factory :blacklisted_post do
+      status "blacklisted"
+      status_changed_at { Time.now }
+    end
   end
 
 end
