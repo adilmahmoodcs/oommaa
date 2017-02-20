@@ -11,9 +11,14 @@ class PostStatusJob
   private
 
   def set_status!(post)
+    domains = post.all_domains
+
     # if any domain is already blacklisted
-    status = if domain_matcher.match?(post.all_domains)
+    status = if blacklist_domain_matcher.match?(domains)
       "blacklisted"
+    # if all domains are whitelisted
+    elsif whitelist_domain_matcher.match_all?(domains)
+      "not_suspect"
     # if some suspect keyword match
     elsif keyword_matcher.match?(post.message)
       "suspect"
@@ -31,7 +36,11 @@ class PostStatusJob
     @keyword_matcher ||= KeywordMatcher.new
   end
 
-  def domain_matcher
-    @domain_matcher ||= DomainMatcher.new
+  def blacklist_domain_matcher
+    @blacklist_domain_matcher ||= DomainMatcher.new
+  end
+
+  def whitelist_domain_matcher
+    @whitelist_domain_matcher ||= DomainMatcher.new(status: "whitelisted")
   end
 end

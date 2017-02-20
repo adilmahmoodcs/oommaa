@@ -11,6 +11,12 @@ class DomainMatcher
     end
   end
 
+  def match_all?(terms)
+    terms.any? && terms.all? do |term|
+      term.to_s.match?(regexp)
+    end
+  end
+
   private
 
   def names
