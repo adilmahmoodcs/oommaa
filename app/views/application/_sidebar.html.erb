@@ -27,30 +27,37 @@
           <h4>Posts</h4>
         </li>
         <li class="nav-item">
+          <%= link_to new_facebook_post_path,
+                      class: "nav-link #{'active' if current_page?('/posts/new')}" do %>
+            <%= icon("plus") %>
+            Add new
+          <% end %>
+        </li>
+        <li class="nav-item">
           <%= link_to "#{t(:not_suspect)} (#{FacebookPost.not_suspect.size})",
-          posts_path(status: :not_suspect),
+          facebook_posts_path(status: :not_suspect),
           class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'not_suspect'}" %>
         </li>
         <li class="nav-item">
           <%= link_to "#{t(:suspect)} (#{FacebookPost.suspect.size})",
-                      posts_path(status: :suspect),
+                      facebook_posts_path(status: :suspect),
                       class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'suspect'}" %>
         </li>
         <li class="nav-item">
           <%= link_to "#{t(:whitelisted)} (#{FacebookPost.whitelisted.size})",
-                      posts_path(status: :whitelisted),
+                      facebook_posts_path(status: :whitelisted),
                       class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'whitelisted'}" %>
         </li>
         <li class="nav-item">
           <%= link_to "#{t(:blacklisted)} (#{FacebookPost.blacklisted.size})",
-                      posts_path(status: :blacklisted),
+                      facebook_posts_path(status: :blacklisted),
                       class: "nav-link #{'active' if controller.controller_name == 'posts' && params[:status] == 'blacklisted'}" %>
         </li>
 
         <hr>
         <li class="nav-item">
           <%= link_to t(:blacklist_export),
-                      export_posts_path,
+                      export_facebook_posts_path,
                       class: "nav-link #{'active' if current_page?('/posts/export')}" %>
         </li>
 

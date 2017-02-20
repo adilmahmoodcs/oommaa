@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :keywords
   resources :brands
   resources :activities, only: [:index]
-  resources :posts, only: [:index] do
+  resources :facebook_posts, only: [:index, :new, :create] do
     collection do
       get :export
     end

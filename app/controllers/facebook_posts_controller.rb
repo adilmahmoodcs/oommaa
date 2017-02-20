@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class FacebookPostsController < ApplicationController
   def index
     @q = FacebookPost.ransack(params[:q])
     @q.sorts = "posted_at desc" if @q.sorts.empty?
