@@ -3,6 +3,7 @@ development:
     - example.com
     - fanprint.com
     - counterfind.com
+    - freegoweb.it
   facebook:
     tokens:
       - EAAIUKbXn8xsBAAZB1821Y3tZBbwjYPdzL5nbuPaEassSCJLURGlFzMQGXUHvuxIMd6ZCLHhS83ABXeJ1KkVXgvGji6bGbyZA5HP2nPa8hxWu81THMhFGtj6ZC1oTvXAdXVm4sLHe4gN9oIryFDj3WmwVgap5hpu4ZD #robertdingcong
@@ -15,6 +16,7 @@ production:
   whitelisted_email_domains:
     - fanprint.com
     - counterfind.com
+    - freegoweb.it
   facebook:
     tokens:
       - EAAIUKbXn8xsBAAZB1821Y3tZBbwjYPdzL5nbuPaEassSCJLURGlFzMQGXUHvuxIMd6ZCLHhS83ABXeJ1KkVXgvGji6bGbyZA5HP2nPa8hxWu81THMhFGtj6ZC1oTvXAdXVm4sLHe4gN9oIryFDj3WmwVgap5hpu4ZD #robertdingcong
@@ -24,6 +26,8 @@ production:
       - EAAIUKbXn8xsBABqlU1Lb0d3c0HcdL1Wyo3TJanKYvXx7pdkzNhvy3wMbmvvzjDgjn0rP6Pbf89XZACO0hURPEk7alZBz9JfJFDnQprajHLUnUKepSAlMNmrLg8B43tGtzjWLbae4CYPA2ZAb3l7kZAqBVNON2wsZD
 
 test:
+  whitelisted_email_domains:
+    - example.com
   facebook:
     tokens:
       - EAAIUKbXn8xsBAPsYb2xKl4fcrpDnJKQZCrZB2EuLjHyg4GrXrlqnd1xHROqV3DFFbPRuzILTEwtoXLr5fo8PTxvvyN68uPUpbvCwnoIPrdJLmmKkuJXd2dMGekT8THoc2eZBuftIVXaLTN656NYzpxOu9FtG10ZD
