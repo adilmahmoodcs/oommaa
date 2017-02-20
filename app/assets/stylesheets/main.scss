@@ -15,3 +15,15 @@
 .btn.go-to-post {
   margin-top: 5px;
 }
+
+.pagination {
+  justify-content: flex-end;
+}
+
+#new_brand input.fast-add-form, #new_keyword input.fast-add-form {
+  width: 50%;
+}
+
+form#new_brand, form#new_keyword {
+  margin-top: 40px;
+}
