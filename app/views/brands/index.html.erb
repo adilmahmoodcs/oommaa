@@ -19,6 +19,7 @@
     <tr>
       <th>Logo</th>
       <th><%= sort_link(@q, :name, "Name") %></th>
+      <th>Licensor</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -31,6 +32,9 @@
         </td>
         <td>
           <%= brand.name %>
+        </td>
+        <td>
+          <%= brand.licensor&.name %>
         </td>
         <td class="text-right">
           <%= link_to 'Edit',

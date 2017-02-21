@@ -10,6 +10,11 @@
 #  logo_content_type :string
 #  logo_file_size    :integer
 #  logo_updated_at   :datetime
+#  licensor_id       :integer
+#
+# Indexes
+#
+#  index_brands_on_licensor_id  (licensor_id)
 #
 
 FactoryGirl.define do

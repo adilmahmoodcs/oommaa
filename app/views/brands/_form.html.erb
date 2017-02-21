@@ -17,6 +17,16 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :licensor_id %>
+    <%= f.collection_select :licensor_id,
+                            Licensor.order(:name),
+                            :id,
+                            :name,
+                            { include_blank: true },
+                            class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :logo %>
     <% if f.object.logo? %>
       <br>

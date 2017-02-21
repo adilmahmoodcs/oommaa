@@ -5,6 +5,7 @@ guard 'rails' do
   watch(%r{^config/.*\.yml})
   watch(%r{^config/initializers/.*})
   watch(%r{^config/environments/.*})
+  watch(%r{^db/schema.rb})
 end
 
 guard 'livereload' do

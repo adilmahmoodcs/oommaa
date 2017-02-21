@@ -20,6 +20,10 @@
   justify-content: flex-end;
 }
 
+form {
+  max-width: 600px;
+}
+
 form.form-inline input.fast-add-form {
   width: 50%;
 }

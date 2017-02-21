@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221134205) do
+ActiveRecord::Schema.define(version: 20170221135700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20170221134205) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.integer  "licensor_id"
+    t.index ["licensor_id"], name: "index_brands_on_licensor_id", using: :btree
   end
 
   create_table "domains", force: :cascade do |t|
@@ -109,5 +111,6 @@ ActiveRecord::Schema.define(version: 20170221134205) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "brands", "licensors"
   add_foreign_key "facebook_posts", "facebook_pages"
 end

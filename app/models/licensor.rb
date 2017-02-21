@@ -9,6 +9,8 @@
 #
 
 class Licensor < ApplicationRecord
+  has_many :brands, dependent: :nullify
+
   validates :name, presence: true
   validates :name, uniqueness: true
 end
