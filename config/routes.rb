@@ -1,6 +1,7 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  resources :licensors
   resources :keywords
   resources :brands
   resources :activities, only: [:index]

@@ -1,0 +1,44 @@
+<h1>Licensors</h1>
+
+<%= paginate @licensors %>
+
+<%= form_for Licensor.new, html: { class: "form-inline" } do |f| %>
+  <%= f.text_field :name,
+                   class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
+                   placeholder: "Name" %>
+  <%= f.button class: "btn btn-primary" do %>
+    <%= icon("plus") %>
+    Add New
+  <% end %>
+<% end %>
+
+<br>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @licensors.each do |licensor| %>
+      <tr>
+        <td><%= licensor.name %></td>
+        <td class="text-right">
+          <%= link_to 'Edit',
+                      edit_licensor_path(licensor),
+                      class: "btn btn-secondary btn-sm" %>
+          <%= link_to 'Destroy',
+                      licensor,
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' },
+                      class: "btn btn-danger btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @licensors %>

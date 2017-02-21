@@ -20,6 +20,13 @@
             <%= "#{t(:brands)} (#{Brand.count})" %>
           <% end %>
         </li>
+        <li class="nav-item">
+          <%= link_to licensors_path,
+                      class: "nav-link #{'active' if current_page?('/licensors')}" do %>
+            <%= icon("handshake-o") %>
+            <%= "#{t(:licensors)} (#{Licensor.count})" %>
+          <% end %>
+        </li>
 
         <li class="nav-item">
           <h5>Domains</h5>
