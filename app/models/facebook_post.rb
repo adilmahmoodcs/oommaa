@@ -70,8 +70,7 @@ class FacebookPost < ApplicationRecord
   end
 
   def licensor_names
-    return "" # TODO
-    brands.map(&:licensor_name).join(", ")
+    brands.map(&:licensor_name).compact.uniq.join(", ")
   end
 
   private

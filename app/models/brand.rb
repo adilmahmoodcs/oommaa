@@ -40,6 +40,10 @@ class Brand < ApplicationRecord
     @pages ||= FacebookPage.where("? = ANY (brand_ids)", id)
   end
 
+  def licensor_name
+    licensor&.name
+  end
+
   private
 
   def start_pages_importer
