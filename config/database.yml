@@ -18,3 +18,10 @@ production:
   username: counterfind
   password: rAIkCKD2dMatvz3SGiM
   pool: 15
+
+demo:
+  <<: *default
+  database: counterfind_demo
+  username: counterfind
+  password: s897JHgJg87y6rtHFG
+  pool: 15

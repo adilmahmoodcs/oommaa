@@ -1,4 +1,4 @@
-if Rails.env.production?
+unless Rails.env.development?
   url = "unix:///tmp/redis_persistent.sock"
 
   Sidekiq.configure_server do |config|
