@@ -12,6 +12,24 @@ class FacebookPostsController < ApplicationController
     @posts = @posts.page(params[:page])
   end
 
+  def new
+    @post = FacebookPost.new
+  end
+
+  def create
+    url = facebook_post_params[:permalink]
+    facebook_id, type = FbURLParser.new(url).call
+
+    if facebook_id
+      # TODO
+      flash[:notice] = "A job to import this #{type} was enqueued."
+    else
+      flash[:alert] = "Unable to parse URL. It may be misspelled or not yet supported."
+    end
+
+    redirect_to :back
+  end
+
   def export
     @q = FacebookPost.ransack(params[:q])
     @q.sorts = "status_changed_at desc" if @q.sorts.empty?
@@ -44,5 +62,11 @@ class FacebookPostsController < ApplicationController
     end
 
     redirect_to :back
+  end
+
+  private
+
+  def facebook_post_params
+    params.require(:facebook_post).permit(:permalink)
   end
 end

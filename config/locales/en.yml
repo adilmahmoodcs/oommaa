@@ -19,7 +19,10 @@ en:
   message: Message
   link_to_product: Link to product
   download_as_csv: Download as CSV
-
+  activerecord:
+    attributes:
+      facebook_post:
+        permalink: Facebook URL
   activities:
     brand:
       create: 'Created Brand "%{name}"'
