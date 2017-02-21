@@ -2,10 +2,14 @@
 #
 # Table name: brands
 #
-#  id         :integer          not null, primary key
-#  name       :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                :integer          not null, primary key
+#  name              :string           not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  logo_file_name    :string
+#  logo_content_type :string
+#  logo_file_size    :integer
+#  logo_updated_at   :datetime
 #
 
 class Brand < ApplicationRecord
@@ -15,6 +19,11 @@ class Brand < ApplicationRecord
   validates :name, uniqueness: true
 
   after_commit :start_pages_importer, on: :create
+
+  has_attached_file :logo,
+                    styles: { thumb: "100x100>" },
+                    default_url: "/images/missing.png"
+  validates_attachment_content_type :logo, content_type: /\Aimage\/.*\z/
 
   def pages
     @pages ||= FacebookPage.where("? = ANY (brand_ids)", id)

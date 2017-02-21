@@ -17,6 +17,7 @@
 <table class="table table-hover table-bordered">
   <thead>
     <tr>
+      <th>Logo</th>
       <th><%= sort_link(@q, :name, "Name") %></th>
       <th>Actions</th>
     </tr>
@@ -25,7 +26,12 @@
   <tbody>
     <% @brands.each do |brand| %>
       <tr>
-        <td><%= brand.name %></td>
+        <td>
+          <%= image_tag brand.logo.url(:thumb), width: "100px" %>
+        </td>
+        <td>
+          <%= brand.name %>
+        </td>
         <td class="text-right">
           <%= link_to 'Edit',
                       edit_brand_path(brand),
