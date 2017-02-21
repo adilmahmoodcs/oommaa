@@ -1,4 +1,4 @@
-<%= form_for licensor do |f| %>
+<%= form_for licensor, html: { class: "resource-form" } do |f| %>
   <% if licensor.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(licensor.errors.count, "error") %> prohibited this licensor from being saved:</h2>

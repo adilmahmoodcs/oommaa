@@ -28,24 +28,17 @@
 </strong>
 <hr>
 
-<%= form_tag export_facebook_posts_path, method: :get, html: { class: "form-inline" } do %>
-  <div class="form-group row">
-    <div class="col-md-2">
-      <%= label_tag :from, "From date", class: "col-form-label" %>
-      <%= date_field_tag :from, params[:from], class: "form-control" %>
-    </div>
-    <div class="col-md-2">
-      <%= label_tag :from , "To date", class: "col-form-label" %>
-      <%= date_field_tag :to, params[:to], class: "form-control" %>
-    </div>
-    <div class="col-md-2">
-      <br>
-      <%= button_tag class: "btn btn-primary" do %>
-        <%= icon("filter") %>
-        Filter
-      <% end %>
-    </div>
-  </div>
+<%= form_tag export_facebook_posts_path, method: :get, class: "form-inline" do %>
+  <%= label_tag :from, "From date:", class: "col-form-label mb-2 mr-sm-2 mb-sm-0" %>
+  <%= date_field_tag :from, params[:from], class: "form-control mb-2 mr-sm-2 mb-sm-0" %>
+
+  <%= label_tag :from , "To date:", class: "col-form-label mb-2 mr-sm-2 mb-sm-0" %>
+  <%= date_field_tag :to, params[:to], class: "form-control mb-2 mr-sm-2 mb-sm-0" %>
+
+  <%= button_tag class: "btn btn-primary" do %>
+    <%= icon("filter") %>
+    Filter
+  <% end %>
 <% end %>
 
 <hr>
