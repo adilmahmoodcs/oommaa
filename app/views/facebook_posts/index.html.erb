@@ -41,7 +41,7 @@
         <td>
           <%= l(post.posted_at, format: :long) %>
         </td>
-        <td>
+        <td class="text-right">
           <% unless @status == "whitelisted" %>
             <%= link_to post_change_status_path(post, :whitelisted),
                         method: :post,
@@ -56,7 +56,7 @@
           <%= link_to post_change_status_path(post, :blacklisted),
                       method: :post,
                       class: "btn btn-danger" do %>
-              <%= icon("ban") %>
+              <%= icon("ban") %>&nbsp;
               Reject
             <% end %>
           <% end %>

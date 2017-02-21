@@ -20,7 +20,7 @@
         <td>
           <%= domain.name %>
         </td>
-        <td>
+        <td class="text-right">
           <% unless domain.whitelisted? %>
             <%= link_to domain_change_status_path(domain, :whitelisted),
                         method: :post,
@@ -34,7 +34,7 @@
           <% unless domain.blacklisted? %>
             <%= link_to domain_change_status_path(domain, :blacklisted),
                         method: :post,
-                        class: "btn btn-success" do %>
+                        class: "btn btn-danger" do %>
               <%= icon("ban") %>
               Blacklist domain
             <% end %>
