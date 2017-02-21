@@ -1,6 +1,7 @@
 class DomainsController < ApplicationController
   def index
     @q = Domain.ransack(params[:q])
+    @q.sorts = "name_case_insensitive asc" if @q.sorts.empty?
     @domains = @q.result
 
     if params[:status] && params[:status].in?(Domain.statuses.keys)

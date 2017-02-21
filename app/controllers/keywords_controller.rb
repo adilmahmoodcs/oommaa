@@ -3,6 +3,7 @@ class KeywordsController < ApplicationController
 
   def index
     @q = Keyword.ransack(params[:q])
+    @q.sorts = "name_case_insensitive asc" if @q.sorts.empty?
     @keywords = @q.result.page(params[:page])
   end
 

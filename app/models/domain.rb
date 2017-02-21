@@ -12,6 +12,10 @@
 class Domain < ApplicationRecord
   enum status: [:blacklisted, :whitelisted]
 
+  ransacker :name_case_insensitive, type: :string do
+    arel_table[:name].lower
+  end
+
   def self.blacklist!(name)
     if !exists?(name: name)
       create!(name: name, status: :blacklisted)

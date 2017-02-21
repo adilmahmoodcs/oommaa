@@ -32,6 +32,10 @@ class Brand < ApplicationRecord
                     default_url: "/images/missing.png"
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\z/
 
+  ransacker :name_case_insensitive, type: :string do
+    arel_table[:name].lower
+  end
+
   def pages
     @pages ||= FacebookPage.where("? = ANY (brand_ids)", id)
   end

@@ -3,6 +3,7 @@ class LicensorsController < ApplicationController
 
   def index
     @q = Licensor.ransack(params[:q])
+    @q.sorts = "name_case_insensitive asc" if @q.sorts.empty?
     @licensors = @q.result.page(params[:page])
   end
 
