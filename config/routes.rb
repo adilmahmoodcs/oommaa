@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       get :export
     end
   end
-  post "/posts/:post_id/change_status/:status" => "posts#change_status", as: :post_change_status
+  post "/facebook_posts/:post_id/change_status/:status" => "facebook_posts#change_status", as: :post_change_status
   resources :domains, only: [:index]
   post "/domains/:domain_id/change_status/:status" => "domains#change_status", as: :domain_change_status
 
