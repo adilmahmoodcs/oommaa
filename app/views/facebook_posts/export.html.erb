@@ -84,7 +84,7 @@
           <%= link_to truncate(post.message, length: 20), post.permalink, target: "_blank" %>
         </td>
         <td>
-          <%= link_to "Link", post.all_links.last %>
+          <%= link_to "Link", post.all_links.last, target: "_blank" %>
         </td>
       </tr>
     <% end %>
