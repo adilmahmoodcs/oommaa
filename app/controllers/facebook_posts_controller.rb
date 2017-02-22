@@ -17,12 +17,9 @@ class FacebookPostsController < ApplicationController
   end
 
   def create
-    url = facebook_post_params[:permalink]
-    facebook_id, type = FbURLParser.new(url).call
-
-    if facebook_id
-      # TODO
-      flash[:notice] = "A job to import this #{type} was enqueued."
+    if url = facebook_post_params[:permalink].presence
+      PostImporterJob.perform_async(url)
+      flash[:notice] = "A job to import this post was enqueued."
     else
       flash[:alert] = "Unable to parse URL. It may be misspelled or not yet supported."
     end
