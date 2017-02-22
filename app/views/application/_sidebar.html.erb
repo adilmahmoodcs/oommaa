@@ -49,13 +49,13 @@
         <li class="nav-item">
           <h5>Posts</h5>
         </li>
-        <!-- <li class="nav-item">
+        <li class="nav-item">
           <%= link_to new_facebook_post_path,
                       class: "nav-link #{'active' if current_page?('/posts/new')}" do %>
             <%= icon("plus") %>
             Add new
           <% end %>
-        </li> -->
+        </li>
         <li class="nav-item">
           <%= link_to facebook_posts_path(status: :not_suspect),
                       class: "nav-link #{'active' if current_page?('/facebook_posts') && params[:status] == 'not_suspect'}" do %>
