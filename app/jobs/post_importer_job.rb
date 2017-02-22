@@ -53,7 +53,7 @@ class PostImporterJob
       permalink: data["permalink_url"],
       image_url: data["picture"],
       link: data["link"],
-      status: "suspect"
+      status: "blacklisted"
     )
   end
 
