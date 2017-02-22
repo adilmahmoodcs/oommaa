@@ -24,7 +24,7 @@ class FacebookPostsController < ApplicationController
       flash[:alert] = "Unable to parse URL. It may be misspelled or not yet supported."
     end
 
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   def export
@@ -58,7 +58,7 @@ class FacebookPostsController < ApplicationController
       @post.create_activity(params[:status], owner: current_user, parameters: { name: @post.permalink })
     end
 
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   private

@@ -18,6 +18,6 @@ class DomainsController < ApplicationController
       @domain.public_send("#{params[:status]}!")
     end
 
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 end
