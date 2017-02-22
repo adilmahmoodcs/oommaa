@@ -16,13 +16,14 @@ class PagesImporterJob
 
     pages_data.each do |data|
       if !FacebookPage.exists?(facebook_id: data["id"])
-        FacebookPage.create!(
+        page = FacebookPage.create!(
           facebook_id: data["id"],
           name: data["name"],
           url: data["link"],
           image_url: data.dig("picture", "data", "url"),
           brand_ids: [brand.id]
         )
+        PostsImporterJob.perform_async(page.id)
       else
         page = FacebookPage.find_by(facebook_id: data["id"])
         if !brand.id.in?(page.brand_ids)
