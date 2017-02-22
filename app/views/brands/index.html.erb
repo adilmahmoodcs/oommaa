@@ -37,14 +37,18 @@
           <%= brand.licensor&.name %>
         </td>
         <td class="text-right">
-          <%= link_to 'Edit',
-                      edit_brand_path(brand),
-                      class: "btn btn-secondary btn-sm" %>
-          <%= link_to "Delete",
-                      brand,
+          <%= link_to edit_brand_path(brand),
+                      class: "btn btn-secondary btn-sm" do %>
+            <%= icon("pencil") %>
+            Edit
+          <% end %>
+          <%= link_to brand,
                       method: :delete,
                       data: { confirm: 'Are you sure?' },
-                      class: "btn btn-danger btn-sm" %>
+                      class: "btn btn-danger btn-sm" do %>
+            <%= icon("trash") %>
+            Delete
+          <% end %>
         </td>
       </tr>
     <% end %>
