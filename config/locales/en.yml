@@ -36,3 +36,5 @@ en:
     facebook_post:
       whitelisted: 'Whitelisted Post "%{name}"'
       blacklisted: 'Blacklisted Post "%{name}"'
+    user:
+      url_added: 'Added URL "%{name}"'

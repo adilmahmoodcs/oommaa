@@ -27,6 +27,8 @@
 #
 
 class User < ApplicationRecord
+  include PublicActivity::Common
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable
 
