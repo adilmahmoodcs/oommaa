@@ -13,6 +13,7 @@ class FbURLParser
     case url.strip
     when /\Ahttps:\/\/www\.facebook\.com\/.+\/posts\/(\w+)/
       [$1, :post]
+    # FIXME this can also be a user status update
     when /\Ahttps:\/\/www\.facebook\.com\/permalink\.php/
       id = Addressable::URI.parse(url).query_values["id"].presence
       [id, :post]
