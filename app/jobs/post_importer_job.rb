@@ -46,15 +46,18 @@ class PostImporterJob
   end
 
   def find_or_create_post(data, page)
-    page.facebook_posts.create!(
+    post = page.facebook_posts.create!(
       facebook_id: data["id"],
       message: data["name"],
       posted_at: data["created_time"],
       permalink: data["permalink_url"],
       image_url: data["picture"],
       link: data["link"],
-      status: "blacklisted"
+      status: "blacklisted", # temp
+      status_changed_at: Time.now # temp
     )
+    post.parse_all_links!
+    post
   end
 
   def matching_brands_for(term)
