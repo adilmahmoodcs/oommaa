@@ -10,7 +10,12 @@
 #
 
 class Domain < ApplicationRecord
+  include PublicActivity::Common
+
   enum status: [:blacklisted, :whitelisted]
+
+  validates :name, presence: true
+  validates :name, uniqueness: true
 
   ransacker :name_case_insensitive, type: :string do
     arel_table[:name].lower

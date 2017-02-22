@@ -4,6 +4,19 @@
   (<%= @domains.total_count %>)
 </h1>
 
+<%= form_for Domain.new, html: { class: "form-inline" } do |f| %>
+  <%= f.hidden_field :status, value: @status if @status %>
+  <%= f.text_field :name,
+                   class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
+                   placeholder: "Name" %>
+  <%= f.button class: "btn btn-primary" do %>
+    <%= icon("plus") %>
+    Add New
+  <% end %>
+<% end %>
+
+<br>
+
 <%= paginate @domains %>
 
 <table class="table table-hover table-bordered">
@@ -24,9 +37,9 @@
           <% unless domain.whitelisted? %>
             <%= link_to domain_change_status_path(domain, :whitelisted),
                         method: :post,
-                        class: "btn btn-success" do %>
+                        class: "btn btn-success btn-sm" do %>
               <%= icon("check") %>
-              Whitelist domain
+              Move to Whitelist
             <% end %>
             <br><br>
           <% end %>
@@ -34,11 +47,19 @@
           <% unless domain.blacklisted? %>
             <%= link_to domain_change_status_path(domain, :blacklisted),
                         method: :post,
-                        class: "btn btn-danger" do %>
+                        class: "btn btn-danger btn-sm" do %>
               <%= icon("ban") %>
-              Blacklist domain
+              move to Blacklist
             <% end %>
             <br><br>
+          <% end %>
+
+          <%= link_to domain,
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' },
+                      class: "btn btn-danger btn-sm" do %>
+            <%= icon("trash") %>
+            Delete
           <% end %>
         </td>
       </tr>
