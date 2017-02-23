@@ -46,4 +46,12 @@ RSpec.describe PagesImporterJob, type: :job do
 
     expect(PagesImporterJob.jobs.first["args"]).to eq([666])
   end
+
+  it "starts posts import" do
+    VCR.use_cassette("fb_page_searcher") do
+      expect { PagesImporterJob.new.perform(brand.id) }.to(
+        change(PostsImporterJob.jobs, :size)
+      )
+    end
+  end
 end
