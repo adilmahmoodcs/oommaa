@@ -51,6 +51,8 @@
       <th><%= sort_link(@q, :published_at, t(:published_at)) %></th>
       <th><%= sort_link(@q, :blacklisted_at, t(:blacklisted_at)) %></th>
       <th><%= sort_link(@q, :blacklisted_by, t(:blacklisted_by)) %></th>
+      <th><%= sort_link(@q, :reported_to_facebook_at, t(:reported_to_facebook_at)) %></th>
+      <th><%= sort_link(@q, :reported_to_facebook_by, t(:reported_to_facebook_by)) %></th>
       <th><%= t(:brand_name) %></th>
       <th><%= t(:licensor_name) %></th>
       <th><%= t(:platform_or_company) %></th>
@@ -71,6 +73,12 @@
         </td>
         <td>
           <%= post.blacklisted_by %>
+        </td>
+        <td>
+          <%= l(post.reported_to_facebook_at, format: :compact) if post.reported_to_facebook_at %>
+        </td>
+        <td>
+          <%= post.reported_to_facebook_by %>
         </td>
         <td>
           <%= post.brand_names %>

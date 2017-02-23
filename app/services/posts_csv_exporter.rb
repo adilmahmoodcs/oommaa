@@ -16,8 +16,10 @@ class PostsCSVExporter
       posts.each do |post|
          csv << [
           I18n.l(post.published_at, format: :compact),
-          I18n.l(post.blacklisted_at, format: :compact),
+          (I18n.l(post.blacklisted_at, format: :compact) if post.blacklisted_at),
           post.blacklisted_by,
+          (I18n.l(post.reported_to_facebook_at, format: :compact) if post.reported_to_facebook_at),
+          post.reported_to_facebook_by,
           post.brand_names,
           post.licensor_names,
           post.all_domains.join(", "),
@@ -36,7 +38,8 @@ class PostsCSVExporter
   end
 
   def fields
-    %w[published_at blacklisted_at blacklisted_by brand_name licensor_name platform_or_company
+    %w[published_at blacklisted_at blacklisted_by reported_to_facebook_at
+       reported_to_facebook_by brand_name licensor_name platform_or_company
        facebook_page_name message link_to_product]
   end
 end

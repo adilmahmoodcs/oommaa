@@ -18,6 +18,10 @@
         <th>Approved at</th>
         <th>Approved by</th>
       <% end %>
+      <% if @status == "blacklisted" %>
+        <th>Reported to Facebook at</th>
+        <th>Reported to Facebook by</th>
+      <% end %>
       <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
       <th><%= sort_link(@q, :published_at, "Published at") %></th>
       <th>Actions</th>
@@ -51,6 +55,16 @@
 
           <td>
             <%= post.status_changed_by if post.status_changed_by%>
+          </td>
+        <% end %>
+
+        <% if @status == "blacklisted" %>
+          <td>
+            <%= l(post.reported_to_facebook_at, format: :compact) if post.reported_to_facebook_at %>
+          </td>
+
+          <td>
+            <%= post.reported_to_facebook_by if post.reported_to_facebook_by%>
           </td>
         <% end %>
 
