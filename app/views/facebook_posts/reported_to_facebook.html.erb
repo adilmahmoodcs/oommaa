@@ -10,17 +10,9 @@
     <tr>
       <th>Image</th>
       <th>Message</th>
-      <% if @status == "blacklisted" %>
-        <th>Reported at</th>
-        <th>Reported by</th>
-      <% elsif @status == "whitelisted" %>
-        <th>Approved at</th>
-        <th>Approved by</th>
-      <% end %>
-      <% if @status == "blacklisted" %>
-        <th>Reported to Facebook at</th>
-        <th>Reported to Facebook by</th>
-      <% end %>
+      <th>Reported to Facebook at</th>
+      <th>Reported to Facebook by</th>
+      <th><%= sort_link(@q, :shut_down_by_facebook_at, "Shut down by Facebook at") %></th>
       <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
       <th><%= sort_link(@q, :published_at, "Published at") %></th>
       <th>Actions</th>
@@ -47,25 +39,21 @@
           <% end %>
         </td>
 
-        <% if @status.in? ["blacklisted", "whitelisted"] %>
-          <td>
-            <%= l(post.status_changed_at, format: :compact) if post.status_changed_at %>
-          </td>
+        <td>
+          <%= l(post.reported_to_facebook_at, format: :compact) if post.reported_to_facebook_at %>
+        </td>
 
-          <td>
-            <%= post.status_changed_by if post.status_changed_by%>
-          </td>
-        <% end %>
+        <td>
+          <%= post.reported_to_facebook_by %>
+        </td>
 
-        <% if @status == "blacklisted" %>
-          <td>
-            <%= l(post.reported_to_facebook_at, format: :compact) if post.reported_to_facebook_at %>
-          </td>
-
-          <td>
-            <%= post.reported_to_facebook_by if post.reported_to_facebook_by%>
-          </td>
-        <% end %>
+        <td>
+          <% if post.shut_down_by_facebook_at %>
+            <%= l(post.shut_down_by_facebook_at, format: :compact)  %>
+          <% else %>
+            Pending
+          <% end %>
+        </td>
 
         <td>
           <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
@@ -76,7 +64,7 @@
         </td>
 
         <td class="index-actions">
-          <%= render 'actions', post: post, status: @status %>
+          <%= render 'actions', post: post, status: post.status %>
         </td>
       </tr>
     <% end %>
