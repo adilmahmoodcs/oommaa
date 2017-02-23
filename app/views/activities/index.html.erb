@@ -21,7 +21,7 @@
           <%= t("activities.#{activity.key}", name: activity.parameters[:name]) %>
         </td>
         <td>
-          <%= l(activity.created_at, format: :long) %>
+          <%= l(activity.created_at, format: :compact) %>
         </td>
       </tr>
     <% end %>

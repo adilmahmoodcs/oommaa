@@ -15,7 +15,10 @@ en:
   licensor_name: Licensor
   platform_or_company: Platform/Company
   posted_at: Published at
-  status_changed_at: Blacklisted at
+  blacklisted_at: Reported at
+  blacklisted_by: Reported by
+  whitelisted_at: Approved at
+  whitelisted_by: Approved by
   facebook_page_name: Facebook page
   message: Message
   link_to_product: Link to product
@@ -24,6 +27,9 @@ en:
     attributes:
       facebook_post:
         permalink: Facebook URL
+  time:
+    formats:
+      compact: "%m-%d-%Y %H:%M"
   activities:
     brand:
       create: 'Created Brand "%{name}"'

@@ -16,11 +16,11 @@
 <strong>
   <% if params[:from].present? %>
     From
-    <%= l(Date.parse(params[:from]), format: :long) %>
+    <%= l(Date.parse(params[:from]), format: :compact) %>
   <% end %>
   <% if params[:to].present? %>
     to
-    <%= l(Date.parse(params[:to]), format: :long) %>
+    <%= l(Date.parse(params[:to]), format: :compact) %>
   <% else %>
     All time
   <% end %>
@@ -49,7 +49,8 @@
   <thead>
     <tr>
       <th><%= sort_link(@q, :posted_at, t(:posted_at)) %></th>
-      <th><%= sort_link(@q, :status_changed_at, t(:status_changed_at)) %></th>
+      <th><%= sort_link(@q, :blacklisted_at, t(:blacklisted_at)) %></th>
+      <th><%= sort_link(@q, :blacklisted_by, t(:blacklisted_by)) %></th>
       <th><%= t(:brand_name) %></th>
       <th><%= t(:licensor_name) %></th>
       <th><%= t(:platform_or_company) %></th>
@@ -63,10 +64,13 @@
     <% @posts.each do |post| %>
       <tr>
         <td>
-          <%= l(post.posted_at, format: :long) %>
+          <%= l(post.posted_at, format: :compact) %>
         </td>
         <td>
-          <%= l(post.status_changed_at, format: :long) %>
+          <%= l(post.blacklisted_at, format: :compact) if post.blacklisted_at %>
+        </td>
+        <td>
+          <%= post.blacklisted_by %>
         </td>
         <td>
           <%= post.brand_names %>
