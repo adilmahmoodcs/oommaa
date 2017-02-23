@@ -62,34 +62,8 @@
           <%= l(post.published_at, format: :compact) %>
         </td>
 
-        <td class="text-right">
-          <% unless @status == "whitelisted" %>
-            <%= link_to post_change_status_path(post, :whitelisted),
-                        method: :post,
-                        class: "btn btn-success" do %>
-              <%= icon("check") %>
-              Approve
-            <% end %>
-            <br><br>
-          <% end %>
-
-          <% unless @status == "blacklisted" %>
-            <%= link_to post_change_status_path(post, :blacklisted),
-                      method: :post,
-                      class: "btn btn-danger" do %>
-              <%= icon("ban") %>
-              Counterfeit
-            <% end %>
-          <% end %>
-
-          <% if @status == "blacklisted" %>
-            <%= link_to facebook_post_facebook_report_path(post),
-                        class: "btn btn-info",
-                        target: "_blank" do %>
-              <%= icon("facebook") %>
-              Report to Facebook
-            <% end %>
-          <% end %>
+        <td class="index-actions">
+          <%= render 'actions', post: post, status: @status %>
         </td>
       </tr>
     <% end %>

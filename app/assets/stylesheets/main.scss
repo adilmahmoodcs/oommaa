@@ -48,3 +48,11 @@ li.nav-item {
 li.nav-spacer {
   margin-top: 1rem;
 }
+
+td.index-actions {
+  @extend .text-right;
+  padding-top: 0;
+  a {
+    margin-top: 10px;
+  }
+}
