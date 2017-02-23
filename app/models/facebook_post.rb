@@ -39,6 +39,8 @@ class FacebookPost < ApplicationRecord
 
   delegate :brands, to: :facebook_page
 
+  scope :reported_to_facebook, -> { where("reported_to_facebook_at IS NOT NULL") }
+
   def change_status_to!(new_status, by)
     self.status = new_status
     if respond_to?(status_changed_at_writer, true)

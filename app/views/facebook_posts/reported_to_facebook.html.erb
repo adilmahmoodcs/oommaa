@@ -1,0 +1,86 @@
+<h1>
+  Reported to Facebook Posts
+  (<%= @posts.total_count %>)
+</h1>
+
+<%= paginate @posts %>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Message</th>
+      <% if @status == "blacklisted" %>
+        <th>Reported at</th>
+        <th>Reported by</th>
+      <% elsif @status == "whitelisted" %>
+        <th>Approved at</th>
+        <th>Approved by</th>
+      <% end %>
+      <% if @status == "blacklisted" %>
+        <th>Reported to Facebook at</th>
+        <th>Reported to Facebook by</th>
+      <% end %>
+      <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
+      <th><%= sort_link(@q, :published_at, "Published at") %></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td>
+          <%= link_to image_tag(post.image_url, width: "150px"),
+                      post.permalink,
+                      target: "_blank" if post.image_url.present? %>
+        </td>
+
+        <td>
+          <%= auto_link(post.message) %>
+          <br>
+          <%= link_to post.permalink,
+                      target: "_blank",
+                      class: "btn btn-sm btn-outline-primary go-to-post" do %>
+            <%= icon("external-link") %>
+            &nbsp;Go to post
+          <% end %>
+        </td>
+
+        <% if @status.in? ["blacklisted", "whitelisted"] %>
+          <td>
+            <%= l(post.status_changed_at, format: :compact) if post.status_changed_at %>
+          </td>
+
+          <td>
+            <%= post.status_changed_by if post.status_changed_by%>
+          </td>
+        <% end %>
+
+        <% if @status == "blacklisted" %>
+          <td>
+            <%= l(post.reported_to_facebook_at, format: :compact) if post.reported_to_facebook_at %>
+          </td>
+
+          <td>
+            <%= post.reported_to_facebook_by if post.reported_to_facebook_by%>
+          </td>
+        <% end %>
+
+        <td>
+          <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
+        </td>
+
+        <td>
+          <%= l(post.published_at, format: :compact) %>
+        </td>
+
+        <td class="index-actions">
+          <%= render 'actions', post: post, status: @status %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @posts %>

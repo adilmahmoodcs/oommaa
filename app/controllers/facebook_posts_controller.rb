@@ -12,6 +12,15 @@ class FacebookPostsController < ApplicationController
     @posts = @posts.page(params[:page])
   end
 
+  def reported_to_facebook
+    @q = FacebookPost.ransack(params[:q])
+    @q.sorts = "published_at desc" if @q.sorts.empty?
+    @posts = @q.result.
+                includes(:facebook_page).
+                reported_to_facebook.
+                page(params[:page])
+  end
+
   def new
     @post = FacebookPost.new
   end

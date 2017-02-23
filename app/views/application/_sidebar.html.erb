@@ -86,6 +86,14 @@
         </li>
 
         <li class="nav-item">
+          <%= link_to reported_to_facebook_facebook_posts_path,
+                      class: "nav-link #{'active' if current_page?(reported_to_facebook_facebook_posts_path)}" do %>
+            <%= icon("facebook") %>
+            <%= "#{t(:reported_to_facebook)} (#{FacebookPost.reported_to_facebook.size})" %>
+          <% end %>
+        </li>
+
+        <li class="nav-item">
           <%= link_to export_facebook_posts_path,
                       class: "nav-link #{'active' if current_page?('/facebook_posts/export')}" do %>
             <%= icon("download") %>
