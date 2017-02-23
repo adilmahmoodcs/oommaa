@@ -63,6 +63,17 @@ class FacebookPostsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def facebook_report
+    post = FacebookPost.find(params[:facebook_post_id])
+    post.update_attributes!(
+      reported_to_facebook_at: Time.now,
+      reported_to_facebook_by: current_user.email
+    )
+    post.create_activity(:facebook_report, owner: current_user, parameters: { name: post.permalink })
+
+    redirect_to Rails.configuration.counterfind["facebook"]["report_url"]
+  end
+
   private
 
   def facebook_post_params

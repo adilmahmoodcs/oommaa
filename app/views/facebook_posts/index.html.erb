@@ -74,11 +74,20 @@
           <% end %>
 
           <% unless @status == "blacklisted" %>
-          <%= link_to post_change_status_path(post, :blacklisted),
+            <%= link_to post_change_status_path(post, :blacklisted),
                       method: :post,
                       class: "btn btn-danger" do %>
               <%= icon("ban") %>
-              &nbsp;Report&nbsp;
+              Counterfeit
+            <% end %>
+          <% end %>
+
+          <% if @status == "blacklisted" %>
+            <%= link_to facebook_post_facebook_report_path(post),
+                        class: "btn btn-info",
+                        target: "_blank" do %>
+              <%= icon("facebook") %>
+              Report to Facebook
             <% end %>
           <% end %>
         </td>

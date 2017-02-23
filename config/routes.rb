@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :brands
   resources :activities, only: [:index]
   resources :facebook_posts, only: [:index, :new, :create] do
+    get :facebook_report
     collection do
       get :export
     end

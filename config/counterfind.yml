@@ -5,6 +5,7 @@ development:
     - counterfind.com
     - freegoweb.it
   facebook:
+    report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
       - EAAIUKbXn8xsBAAZB1821Y3tZBbwjYPdzL5nbuPaEassSCJLURGlFzMQGXUHvuxIMd6ZCLHhS83ABXeJ1KkVXgvGji6bGbyZA5HP2nPa8hxWu81THMhFGtj6ZC1oTvXAdXVm4sLHe4gN9oIryFDj3WmwVgap5hpu4ZD #robertdingcong
       - EAAIUKbXn8xsBANsbEyPGAKdHaE4yzWqNOA2j7ABNopGchfvT3k9uErrSkYLZATBhNZCBD3izZBhZBfJZC5ws9q2QOH7WcZClMA3qixGYxzKAk3rnLA2DZCSztMamIc69ZCmhNvzHcOpLBvytsZALkdUw6aD7qW63xqZC0ZD #miranda
@@ -18,6 +19,7 @@ production:
     - counterfind.com
     - freegoweb.it
   facebook:
+    report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
       - EAAIUKbXn8xsBAAZB1821Y3tZBbwjYPdzL5nbuPaEassSCJLURGlFzMQGXUHvuxIMd6ZCLHhS83ABXeJ1KkVXgvGji6bGbyZA5HP2nPa8hxWu81THMhFGtj6ZC1oTvXAdXVm4sLHe4gN9oIryFDj3WmwVgap5hpu4ZD #robertdingcong
       - EAAIUKbXn8xsBANsbEyPGAKdHaE4yzWqNOA2j7ABNopGchfvT3k9uErrSkYLZATBhNZCBD3izZBhZBfJZC5ws9q2QOH7WcZClMA3qixGYxzKAk3rnLA2DZCSztMamIc69ZCmhNvzHcOpLBvytsZALkdUw6aD7qW63xqZC0ZD #miranda
@@ -31,6 +33,7 @@ demo:
     - counterfind.com
     - freegoweb.it
   facebook:
+    report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
       - EAAIUKbXn8xsBAAZB1821Y3tZBbwjYPdzL5nbuPaEassSCJLURGlFzMQGXUHvuxIMd6ZCLHhS83ABXeJ1KkVXgvGji6bGbyZA5HP2nPa8hxWu81THMhFGtj6ZC1oTvXAdXVm4sLHe4gN9oIryFDj3WmwVgap5hpu4ZD #robertdingcong
       - EAAIUKbXn8xsBANsbEyPGAKdHaE4yzWqNOA2j7ABNopGchfvT3k9uErrSkYLZATBhNZCBD3izZBhZBfJZC5ws9q2QOH7WcZClMA3qixGYxzKAk3rnLA2DZCSztMamIc69ZCmhNvzHcOpLBvytsZALkdUw6aD7qW63xqZC0ZD #miranda
@@ -42,5 +45,6 @@ test:
   whitelisted_email_domains:
     - example.com
   facebook:
+    report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
       - EAAIUKbXn8xsBAPsYb2xKl4fcrpDnJKQZCrZB2EuLjHyg4GrXrlqnd1xHROqV3DFFbPRuzILTEwtoXLr5fo8PTxvvyN68uPUpbvCwnoIPrdJLmmKkuJXd2dMGekT8THoc2eZBuftIVXaLTN656NYzpxOu9FtG10ZD

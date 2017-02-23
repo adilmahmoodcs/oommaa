@@ -2,22 +2,24 @@
 #
 # Table name: facebook_posts
 #
-#  id               :integer          not null, primary key
-#  facebook_id      :string           not null
-#  message          :string           not null
-#  published_at     :datetime
-#  permalink        :string
-#  image_url        :string
-#  status           :integer          default("0"), not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  facebook_page_id :integer
-#  link             :string
-#  all_links        :string           default("{}"), is an Array
-#  whitelisted_at   :datetime
-#  whitelisted_by   :string
-#  blacklisted_at   :datetime
-#  blacklisted_by   :string
+#  id                      :integer          not null, primary key
+#  facebook_id             :string           not null
+#  message                 :string           not null
+#  published_at            :datetime
+#  permalink               :string
+#  image_url               :string
+#  status                  :integer          default("0"), not null
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  facebook_page_id        :integer
+#  link                    :string
+#  all_links               :string           default("{}"), is an Array
+#  whitelisted_at          :datetime
+#  whitelisted_by          :string
+#  blacklisted_at          :datetime
+#  blacklisted_by          :string
+#  reported_to_facebook_at :datetime
+#  reported_to_facebook_by :string
 #
 # Indexes
 #
