@@ -48,7 +48,7 @@
 <table class="table table-hover table-bordered">
   <thead>
     <tr>
-      <th><%= sort_link(@q, :posted_at, t(:posted_at)) %></th>
+      <th><%= sort_link(@q, :published_at, t(:published_at)) %></th>
       <th><%= sort_link(@q, :blacklisted_at, t(:blacklisted_at)) %></th>
       <th><%= sort_link(@q, :blacklisted_by, t(:blacklisted_by)) %></th>
       <th><%= t(:brand_name) %></th>
@@ -64,7 +64,7 @@
     <% @posts.each do |post| %>
       <tr>
         <td>
-          <%= l(post.posted_at, format: :compact) %>
+          <%= l(post.published_at, format: :compact) %>
         </td>
         <td>
           <%= l(post.blacklisted_at, format: :compact) if post.blacklisted_at %>

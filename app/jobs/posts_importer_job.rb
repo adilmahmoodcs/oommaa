@@ -25,7 +25,7 @@ class PostsImporterJob
       post = page.facebook_posts.new(
         facebook_id: data["id"],
         message: data["message"],
-        posted_at: data["created_time"],
+        published_at: data["created_time"],
         permalink: data["permalink_url"],
         image_url: data["full_picture"],
         link: data["link"]

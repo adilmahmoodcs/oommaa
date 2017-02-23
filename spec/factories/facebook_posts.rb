@@ -5,7 +5,7 @@
 #  id                :integer          not null, primary key
 #  facebook_id       :string           not null
 #  message           :string           not null
-#  posted_at         :datetime
+#  published_at      :datetime
 #  permalink         :string
 #  image_url         :string
 #  status            :integer          default("0"), not null
@@ -30,7 +30,7 @@ FactoryGirl.define do
   factory :facebook_post do
     facebook_id { Faker::Number.number(10) }
     message { [Faker::Lorem.sentence, Faker::Internet.url, Faker::Lorem.sentence, Faker::Internet.url].join(" ")  }
-    posted_at { Time.now }
+    published_at { Time.now }
     permalink { Faker::Internet.url }
     image_url { Faker::LoremPixel.image("150x150") }
     facebook_page

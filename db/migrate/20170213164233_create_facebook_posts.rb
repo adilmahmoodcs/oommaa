@@ -3,7 +3,7 @@ class CreateFacebookPosts < ActiveRecord::Migration[5.0]
     create_table :facebook_posts do |t|
       t.string :facebook_id, null: false
       t.string :message, null: false
-      t.datetime :posted_at
+      t.datetime :published_at
       t.string :permalink
       t.string :image_url
       t.integer :status, null: false, default: 0 # enum

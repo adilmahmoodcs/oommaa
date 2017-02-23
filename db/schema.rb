@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223083701) do
+ActiveRecord::Schema.define(version: 20170223091039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20170223083701) do
   create_table "facebook_posts", force: :cascade do |t|
     t.string   "facebook_id",                    null: false
     t.string   "message",                        null: false
-    t.datetime "posted_at"
+    t.datetime "published_at"
     t.string   "permalink"
     t.string   "image_url"
     t.integer  "status",            default: 0,  null: false

@@ -12,7 +12,7 @@
       <th>Image</th>
       <th>Message</th>
       <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
-      <th><%= sort_link(@q, :posted_at, "Published at") %></th>
+      <th><%= sort_link(@q, :published_at, "Published at") %></th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -39,7 +39,7 @@
           <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
         </td>
         <td>
-          <%= l(post.posted_at, format: :compact) %>
+          <%= l(post.published_at, format: :compact) %>
         </td>
         <td class="text-right">
           <% unless @status == "whitelisted" %>

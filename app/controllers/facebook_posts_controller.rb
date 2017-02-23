@@ -1,7 +1,7 @@
 class FacebookPostsController < ApplicationController
   def index
     @q = FacebookPost.ransack(params[:q])
-    @q.sorts = "posted_at desc" if @q.sorts.empty?
+    @q.sorts = "published_at desc" if @q.sorts.empty?
     @posts = @q.result.includes(:facebook_page)
 
     if params[:status] && params[:status].in?(FacebookPost.statuses.keys)

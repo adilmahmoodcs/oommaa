@@ -14,7 +14,7 @@ en:
   brand_name: Brand
   licensor_name: Licensor
   platform_or_company: Platform/Company
-  posted_at: Published at
+  published_at: Published at
   blacklisted_at: Reported at
   blacklisted_by: Reported by
   whitelisted_at: Approved at

@@ -49,7 +49,7 @@ class PostImporterJob
     post = page.facebook_posts.create!(
       facebook_id: data["id"],
       message: data["name"],
-      posted_at: data["created_time"],
+      published_at: data["created_time"],
       permalink: data["permalink_url"],
       image_url: data["picture"],
       link: data["link"],

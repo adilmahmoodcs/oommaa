@@ -5,7 +5,7 @@
 #  id                :integer          not null, primary key
 #  facebook_id       :string           not null
 #  message           :string           not null
-#  posted_at         :datetime
+#  published_at      :datetime
 #  permalink         :string
 #  image_url         :string
 #  status            :integer          default("0"), not null
