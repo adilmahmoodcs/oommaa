@@ -28,22 +28,28 @@ RSpec.describe FacebookPost, type: :model do
   end
 
   describe "#change_status_to!" do
-    it "sets status" do
-      post.change_status_to!(:whitelisted)
+    it "can set whitelisted status" do
+      post.change_status_to!(:whitelisted, "user@example.com")
       expect(post.status).to eq("whitelisted")
-      expect(post.status_changed_at.to_s).to eq(Time.current.to_s)
+      expect(post.whitelisted_at.to_s).to eq(Time.current.to_s)
+      expect(post.whitelisted_by).to eq("user@example.com")
     end
 
-    it "call #blacklist_domains! on blacklisting" do
-      expect(post).to receive(:blacklist_domains!)
-      post.change_status_to!(:blacklisted)
+    it "can set blacklisted status" do
+      post.change_status_to!(:blacklisted, "user@example.com")
+      expect(post.status).to eq("blacklisted")
+      expect(post.blacklisted_at.to_s).to eq(Time.current.to_s)
+      expect(post.blacklisted_by).to eq("user@example.com")
     end
 
-    it "does not call #blacklist_domains! on other status changes" do
-      expect(post).to_not receive(:blacklist_domains!)
-      post.change_status_to!(:whitelisted)
-      post.change_status_to!(:not_suspect)
-      post.change_status_to!(:suspect)
+    it "can set suspect status" do
+      post.change_status_to!(:suspect, "user@example.com")
+      expect(post.status).to eq("suspect")
+    end
+
+    it "can set not_suspect status" do
+      post.change_status_to!(:not_suspect, "user@example.com")
+      expect(post.status).to eq("not_suspect")
     end
   end
 

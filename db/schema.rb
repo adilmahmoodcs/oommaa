@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221135700) do
+ActiveRecord::Schema.define(version: 20170223083701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,10 @@ ActiveRecord::Schema.define(version: 20170221135700) do
     t.datetime "status_changed_at"
     t.string   "link"
     t.string   "all_links",         default: [],              array: true
+    t.datetime "whitelisted_at"
+    t.string   "whitelisted_by"
+    t.datetime "blacklisted_at"
+    t.string   "blacklisted_by"
     t.index ["all_links"], name: "index_facebook_posts_on_all_links", using: :gin
     t.index ["facebook_page_id"], name: "index_facebook_posts_on_facebook_page_id", using: :btree
   end

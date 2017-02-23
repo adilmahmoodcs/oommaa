@@ -15,6 +15,10 @@
 #  status_changed_at :datetime
 #  link              :string
 #  all_links         :string           default("{}"), is an Array
+#  whitelisted_at    :datetime
+#  whitelisted_by    :string
+#  blacklisted_at    :datetime
+#  blacklisted_by    :string
 #
 # Indexes
 #

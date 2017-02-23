@@ -54,7 +54,8 @@ class PostImporterJob
       image_url: data["picture"],
       link: data["link"],
       status: "blacklisted", # temp
-      status_changed_at: Time.now # temp
+      blacklisted_at: Time.now, # temp
+      blacklisted_by: "demo import" # temp
     )
     post.parse_all_links!
     post

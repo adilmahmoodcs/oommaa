@@ -25,10 +25,7 @@ class PostStatusJob
     end
 
     if status && status != post.status
-      post.update_attributes!(
-        status: status,
-        status_changed_at: Time.now
-      )
+      post.change_status_to!(status, "PostStatusJob")
     end
   end
 

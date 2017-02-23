@@ -15,6 +15,10 @@
 #  status_changed_at :datetime
 #  link              :string
 #  all_links         :string           default("{}"), is an Array
+#  whitelisted_at    :datetime
+#  whitelisted_by    :string
+#  blacklisted_at    :datetime
+#  blacklisted_by    :string
 #
 # Indexes
 #
@@ -34,12 +38,15 @@ class FacebookPost < ApplicationRecord
 
   delegate :brands, to: :facebook_page
 
-  # used for manual status changes
-  def change_status_to!(new_status)
+  def change_status_to!(new_status, by)
+    timestamp_method = "#{new_status}_at="
+    by_method = "#{new_status}_by="
+
     self.status = new_status
-    self.status_changed_at = Time.now
+    self.send(timestamp_method, Time.now) if respond_to?(timestamp_method)
+    self.send(by_method, by) if by && respond_to?(by_method)
+
     save!
-    blacklist_domains! if blacklisted?
   end
 
   def raw_links
