@@ -1,14 +1,21 @@
-<h1>Keywords</h1>
+<h1>
+  Keywords
+</h1>
 
 <%= form_for Keyword.new, html: { class: "form-inline" } do |f| %>
-  <%= f.text_field :name,
-                   class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
-                   placeholder: "Name" %>
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon"><%= icon("plus") %></div>
+    <%= f.text_field :name,
+                     class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
+                     placeholder: "New keyword name" %>
+  </div>
   <%= f.button class: "btn btn-primary" do %>
     <%= icon("plus") %>
     Add New
   <% end %>
 <% end %>
+
+<hr>
 
 <%= paginate @keywords %>
 
