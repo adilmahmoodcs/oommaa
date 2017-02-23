@@ -8,7 +8,7 @@ RSpec.describe PostsImporterJob, type: :job do
   end
 
   it "creates FacebookPost objects once" do
-    VCR.use_cassette("fb_post_searcher", allow_playback_repeats: true) do
+    VCR.use_cassette("fb_posts_searcher", allow_playback_repeats: true) do
       expect{ PostsImporterJob.new.perform(page.id) }.to change{ FacebookPost.count }.from(0)
       expect{ PostsImporterJob.new.perform(page.id) }.to_not change{ FacebookPost.count }
     end
@@ -24,9 +24,15 @@ RSpec.describe PostsImporterJob, type: :job do
   end
 
   it "calls PostStatusJob" do
-    VCR.use_cassette("fb_post_searcher", allow_playback_repeats: true) do
+    VCR.use_cassette("fb_posts_searcher", allow_playback_repeats: true) do
       expect(PostStatusJob).to receive(:perform_async).at_least(2).times
       PostsImporterJob.new.perform(page.id)
+    end
+  end
+
+  it "does not create FacebookPost with no external links" do
+    VCR.use_cassette("fb_posts_searcher_with_no_links") do
+      expect{ PostsImporterJob.new.perform(page.id) }.to_not change{ FacebookPost.count }
     end
   end
 end

@@ -19,7 +19,7 @@ RSpec.describe FBPostSearcher do
 
   describe "#call" do
     it "return an array of facebook posts data" do
-      result = VCR.use_cassette("fb_post_searcher") do
+      result = VCR.use_cassette("fb_posts_searcher") do
         subject.new(page_id: @facebook_page_id, token: @facebook_token, all_pages: false).call
       end
 

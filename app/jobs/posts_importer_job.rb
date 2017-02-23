@@ -1,3 +1,6 @@
+# Import new posts from a facebook page
+#
+# @todo rename to PagePostsImporterJob ?
 class PostsImporterJob
   include Sidekiq::Worker
   sidekiq_options queue: "posts"
@@ -19,7 +22,7 @@ class PostsImporterJob
       break if FacebookPost.exists?(facebook_id: data["id"])
       break if data["message"].blank?
 
-      post = page.facebook_posts.create!(
+      post = page.facebook_posts.new(
         facebook_id: data["id"],
         message: data["message"],
         posted_at: data["created_time"],
@@ -28,6 +31,9 @@ class PostsImporterJob
         link: data["link"]
       )
 
+      next if post.raw_links.none? # skip posts with no external links
+
+      post.save!
       PostStatusJob.perform_async(post.id)
     end
   end
