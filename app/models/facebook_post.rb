@@ -38,12 +38,13 @@ class FacebookPost < ApplicationRecord
   delegate :brands, to: :facebook_page
 
   def change_status_to!(new_status, by)
-    timestamp_method = "#{new_status}_at="
-    by_method = "#{new_status}_by="
-
     self.status = new_status
-    self.send(timestamp_method, Time.now) if respond_to?(timestamp_method)
-    self.send(by_method, by) if by && respond_to?(by_method)
+    if respond_to?(status_changed_at_writer, true)
+      self.send(status_changed_at_writer, Time.now)
+    end
+    if respond_to?(status_changed_by_writer, true) && by
+      self.send(status_changed_by_writer, by)
+    end
 
     save!
   end
@@ -79,11 +80,35 @@ class FacebookPost < ApplicationRecord
     brands.map(&:licensor_name).compact.uniq.join(", ")
   end
 
-  private
+  def status_changed_at
+    send(status_changed_at_reader) if respond_to?(status_changed_at_reader, true)
+  end
+
+  def status_changed_by
+    send(status_changed_by_reader) if respond_to?(status_changed_by_reader, true)
+  end
 
   def blacklist_domains!
     all_domains.each do |domain|
       Domain.blacklist!(domain)
     end
+  end
+
+  private
+
+  def status_changed_at_reader
+    "#{status}_at"
+  end
+
+  def status_changed_by_reader
+    "#{status}_by"
+  end
+
+  def status_changed_at_writer
+    "#{status_changed_at_reader}="
+  end
+
+  def status_changed_by_writer
+    "#{status_changed_by_reader}="
   end
 end

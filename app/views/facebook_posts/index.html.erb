@@ -11,6 +11,13 @@
     <tr>
       <th>Image</th>
       <th>Message</th>
+      <% if @status == "blacklisted" %>
+        <th>Reported at</th>
+        <th>Reported by</th>
+      <% elsif @status == "whitelisted" %>
+        <th>Approved at</th>
+        <th>Approved by</th>
+      <% end %>
       <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
       <th><%= sort_link(@q, :published_at, "Published at") %></th>
       <th>Actions</th>
@@ -25,6 +32,7 @@
                       post.permalink,
                       target: "_blank" if post.image_url.present? %>
         </td>
+
         <td>
           <%= auto_link(post.message) %>
           <br>
@@ -35,12 +43,25 @@
             &nbsp;Go to post
           <% end %>
         </td>
+
+        <% if @status.in? ["blacklisted", "whitelisted"] %>
+          <td>
+            <%= l(post.status_changed_at, format: :compact) if post.status_changed_at %>
+          </td>
+
+          <td>
+            <%= post.status_changed_by if post.status_changed_by%>
+          </td>
+        <% end %>
+
         <td>
           <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
         </td>
+
         <td>
           <%= l(post.published_at, format: :compact) %>
         </td>
+
         <td class="text-right">
           <% unless @status == "whitelisted" %>
             <%= link_to post_change_status_path(post, :whitelisted),
