@@ -26,6 +26,7 @@ class PostStatusJob
 
     if status && status != post.status
       post.change_status_to!(status, "PostStatusJob")
+      post.create_activity(status, parameters: { name: post.permalink, auto: true })
     end
   end
 
