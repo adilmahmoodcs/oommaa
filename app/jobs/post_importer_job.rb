@@ -24,6 +24,7 @@ class PostImporterJob
     end
 
     page = find_or_create_page(data["from"]["id"])
+    # create a post from the submitted URL
     post = find_or_create_post(data, page)
     post
   end
@@ -36,13 +37,17 @@ class PostImporterJob
     end
 
     data = FBPageReader.new(object_id: object_id, token: token).call
-    FacebookPage.create!(
+    page = FacebookPage.create!(
       facebook_id: data["id"],
       name: data["name"],
       url: data["link"],
       image_url: data.dig("picture", "data", "url"),
       brand_ids: matching_brands_for(data["name"]).map(&:id)
     )
+
+    # start import of all page posts
+    PostsImporterJob.perform_in(1.minutes, page.id)
+    page
   end
 
   def find_or_create_post(data, page)
