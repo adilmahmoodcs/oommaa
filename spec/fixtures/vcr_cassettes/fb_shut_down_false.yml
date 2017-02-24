@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://graph.facebook.com/v2.8/1484628094895311?access_token=EAACEdEose0cBAL6V48bRsvGvqA6kpuscgsZC8TePnWiSlfsNmj3ZBlw6BSIvMvldV5uFGcYrWU56iPpjgFvs7pnpdJ2WJLiUsTFKpJOqX4Fv9ifPgDnCaZA18bNwBGHx3I2ZCZCknLVP0J0ITkyiIWYmtkq8OMxYDx3bCdBHdsLg8uodYYCaw
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-App-Usage:
+      - '{"call_count":2,"total_cputime":2,"total_time":2}'
+      X-Fb-Rev:
+      - '2853593'
+      X-Fb-Trace-Id:
+      - FOIEW1XYliS
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Facebook-Api-Version:
+      - v2.8
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Etag:
+      - '"99bbebba41082afa14a557ce24dfb921300d3ee7"'
+      Access-Control-Allow-Origin:
+      - "*"
+      Vary:
+      - Accept-Encoding
+      X-Fb-Debug:
+      - XcVJPNuXdelwvXONmvQ4lrdz0WKxEkzsYMqsfvf4AztZWGsnYslRa/jceRtrRzaNtKhwT757Z/LsPPILcsBYGA==
+      Date:
+      - Fri, 24 Feb 2017 11:34:26 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '226'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"created_time":"2017-02-17T04:16:50+0000","name":"\ud83c\udf40Don\u2019t
+        get pinched this St. Patrick\u2019s Day \ud83c\udf40\n\nGet your green with
+        the Cowboys here: http:\/\/bit.ly\/2lpTzIW\n\nShare & Tag friend who would
+        love it","id":"1484628094895311"}'
+    http_version:
+  recorded_at: Fri, 24 Feb 2017 11:34:26 GMT
+recorded_with: VCR 3.0.3
