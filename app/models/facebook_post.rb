@@ -33,7 +33,9 @@
 class FacebookPost < ApplicationRecord
   include PublicActivity::Common
 
-  enum status: [:not_suspect, :suspect, :whitelisted, :blacklisted]
+  enum status: [
+    :not_suspect, :suspect, :whitelisted, :blacklisted, :reported_to_facebook
+  ]
 
   belongs_to :facebook_page
 
@@ -41,8 +43,6 @@ class FacebookPost < ApplicationRecord
   validates :facebook_id, uniqueness: true
 
   delegate :brands, to: :facebook_page
-
-  scope :reported_to_facebook, -> { where("reported_to_facebook_at IS NOT NULL") }
 
   def change_status_to!(new_status, by)
     self.status = new_status

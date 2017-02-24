@@ -12,15 +12,6 @@ class FacebookPostsController < ApplicationController
     @posts = @posts.page(params[:page])
   end
 
-  def reported_to_facebook
-    @q = FacebookPost.ransack(params[:q])
-    @q.sorts = "published_at desc" if @q.sorts.empty?
-    @posts = @q.result.
-                includes(:facebook_page).
-                reported_to_facebook.
-                page(params[:page])
-  end
-
   def new
     @post = FacebookPost.new
   end
@@ -69,18 +60,11 @@ class FacebookPostsController < ApplicationController
       @post.create_activity(params[:status], owner: current_user, parameters: { name: @post.permalink })
     end
 
-    redirect_back(fallback_location: root_path)
-  end
-
-  def facebook_report
-    post = FacebookPost.find(params[:facebook_post_id])
-    post.update_attributes!(
-      reported_to_facebook_at: Time.now,
-      reported_to_facebook_by: current_user.email
-    )
-    post.create_activity(:facebook_report, owner: current_user, parameters: { name: post.permalink })
-
-    redirect_to Rails.configuration.counterfind["facebook"]["report_url"]
+    if @post.reported_to_facebook?
+      redirect_to Rails.configuration.counterfind["facebook"]["report_url"]
+    else
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   private

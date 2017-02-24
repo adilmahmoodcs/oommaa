@@ -6,10 +6,8 @@ Rails.application.routes.draw do
   resources :brands
   resources :activities, only: [:index]
   resources :facebook_posts, only: [:index, :new, :create] do
-    get :facebook_report
     collection do
       get :export
-      get :reported_to_facebook
     end
   end
   post "/facebook_posts/:post_id/change_status/:status" => "facebook_posts#change_status", as: :post_change_status

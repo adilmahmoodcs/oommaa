@@ -17,7 +17,8 @@
 <% end %>
 
 <% if status == "blacklisted" %>
-  <%= link_to facebook_post_facebook_report_path(post),
+  <%= link_to post_change_status_path(post, :reported_to_facebook),
+              method: :post,
               class: "btn btn-info",
               target: "_blank" do %>
     <%= icon("facebook") %>
