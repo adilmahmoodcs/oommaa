@@ -50,6 +50,8 @@ class FacebookPost < ApplicationRecord
     joins(:facebook_page).merge(FacebookPage.with_licensor_name(name))
   }
 
+  ransacker :status, formatter: proc { |status_name| statuses[status_name] }
+
   def self.ransackable_scopes(auth_object = nil)
     [:with_any_domain, :with_any_brand, :with_licensor_name]
   end

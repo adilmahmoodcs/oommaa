@@ -1,15 +1,14 @@
 class FacebookPostsController < ApplicationController
   def index
+    params[:q] ||= {}
+    params[:q].delete(:status_eq) unless params[:q][:status_eq].in?(FacebookPost.statuses.keys)
+
     @q = FacebookPost.ransack(params[:q])
     @q.sorts = "published_at desc" if @q.sorts.empty?
-    @posts = @q.result.includes(:facebook_page)
 
-    if params[:status] && params[:status].in?(FacebookPost.statuses.keys)
-      @posts = @posts.public_send(params[:status])
-      @status = params[:status]
-    end
-
-    @posts = @posts.page(params[:page])
+    @posts = @q.result.
+                page(params[:page])
+    @status = params[:q][:status_eq]
   end
 
   def new

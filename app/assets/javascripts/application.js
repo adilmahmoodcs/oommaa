@@ -16,8 +16,10 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require facebook_report
+//= require search_form
 //= require_self
 
 document.addEventListener("turbolinks:load", function() {
   FacebookReport.init()
+  SearchForm.init()
 })

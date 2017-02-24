@@ -2,6 +2,8 @@
   <div class="card-block">
     <h4 class="card-title">Filters</h4>
     <%= search_form_for @q do |f| %>
+      <%= f.hidden_field :status_eq, value: params[:q][:status_eq] %>
+
       <div class="row">
         <div class="col-md-3 form-group">
           <%= f.label :with_any_domain, t(:platform_or_company) %>
@@ -43,7 +45,8 @@
             Filter
           <% end %>
           &nbsp;
-          <%= link_to url_for, class: "btn btn-secondary" do %>
+          <%= link_to url_for(q: { status_eq: params[:q][:status_eq] }),
+                      class: "btn btn-secondary" do %>
             <%= icon("eraser") %>
             Clear filters
           <% end %>

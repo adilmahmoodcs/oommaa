@@ -63,7 +63,7 @@
         </li>
 
         <li class="nav-item">
-          <%= link_to facebook_posts_path(status: :not_suspect),
+          <%= link_to facebook_posts_path(q: { status_eq: :not_suspect }),
                       class: "nav-link #{'active' if current_page?('/facebook_posts') && @status == 'not_suspect'}" do %>
             <%= icon("circle-thin") %>
             <%= "#{t(:not_suspect)} (#{FacebookPost.not_suspect.size})" %>
@@ -71,7 +71,7 @@
         </li>
 
         <li class="nav-item">
-          <%= link_to facebook_posts_path(status: :suspect),
+          <%= link_to facebook_posts_path(q: { status_eq: :suspect }),
                       class: "nav-link #{'active' if current_page?('/facebook_posts') && @status == 'suspect'}" do %>
             <%= icon("question") %>
             <%= "#{t(:suspect)} (#{FacebookPost.suspect.size})" %>
@@ -79,7 +79,7 @@
         </li>
 
         <li class="nav-item">
-          <%= link_to facebook_posts_path(status: :whitelisted),
+          <%= link_to facebook_posts_path(q: { status_eq: :whitelisted }),
                       class: "nav-link #{'active' if current_page?('/facebook_posts') && @status == 'whitelisted'}" do %>
             <%= icon("check") %>
             <%= "#{t(:whitelisted)} (#{FacebookPost.whitelisted.size})" %>
@@ -87,7 +87,7 @@
         </li>
 
         <li class="nav-item">
-          <%= link_to facebook_posts_path(status: :blacklisted),
+          <%= link_to facebook_posts_path(q: { status_eq: :blacklisted }),
                       class: "nav-link #{'active' if current_page?('/facebook_posts') && @status == 'blacklisted'}" do %>
             <%= icon("ban") %>
             <%= "#{t(:blacklisted)} (#{FacebookPost.blacklisted.size})" %>
@@ -95,7 +95,7 @@
         </li>
 
         <li class="nav-item">
-          <%= link_to facebook_posts_path(status: :reported_to_facebook),
+          <%= link_to facebook_posts_path(q: { status_eq: :reported_to_facebook }),
                       class: "nav-link #{'active' if current_page?('/facebook_posts') && @status == 'reported_to_facebook'}" do %>
             <%= icon("facebook") %>
             <%= "#{t(:reported_to_facebook)} (#{FacebookPost.reported_to_facebook.size})" %>
