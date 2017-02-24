@@ -26,4 +26,8 @@ class Domain < ApplicationRecord
       create!(name: name, status: :blacklisted)
     end
   end
+
+  def posts
+    FacebookPost.where("? = ANY (all_domains)", name)
+  end
 end
