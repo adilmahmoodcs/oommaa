@@ -37,13 +37,21 @@ en:
     brand:
       create: 'Created Brand "%{name}"'
       update: 'Updated Brand "%{name}"'
-      destroy: 'Destroyed Brand "%{name}"'
+      destroy: 'Deleted Brand "%{name}"'
     keyword:
       create: 'Created Keyword "%{name}"'
       update: 'Updated Keyword "%{name}"'
-      destroy: 'Destroyed Keyword "%{name}"'
+      destroy: 'Deleted Keyword "%{name}"'
     facebook_post:
       whitelisted: 'Whitelisted Post "%{name}"'
       blacklisted: 'Blacklisted Post "%{name}"'
+      suspect: 'Marked Post as suspect: "%{name}"'
+      not_suspect: 'Marked Post as not suspect: "%{name}"'
+      reported_to_facebook: 'Reported Post to Facebook: "%{name}"'
+    domain:
+      create: 'Created domain "%{name}"'
+      destroy: 'Deleted domain "%{name}"'
+      whitelisted: 'Whitelisted Domain "%{name}"'
+      blacklisted: 'Blacklisted Domain "%{name}"'
     user:
       url_added: 'Added URL "%{name}"'

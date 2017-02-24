@@ -2,20 +2,6 @@
   margin-top: 30px;
 }
 
-.table-destroy {
-  @extend .table-active;
-}
-.table-whitelisted {
-  @extend .table-success;
-}
-.table-blacklisted {
-  @extend .table-danger;
-}
-
-.btn.go-to-post {
-  margin-top: 5px;
-}
-
 .pagination {
   justify-content: flex-end;
 }
@@ -35,12 +21,4 @@ li.nav-item {
 
 li.nav-spacer {
   margin-top: 1rem;
-}
-
-td.index-actions {
-  @extend .text-right;
-  padding-top: 0;
-  a {
-    margin-top: 10px;
-  }
 }

@@ -15,7 +15,7 @@
     <% @activities.each do |activity| %>
       <tr class="<%= "table-#{activity.key.split(".").last}" %>">
         <td>
-          <%= activity.owner.email %>
+          <%= activity.owner ? activity.owner.email : "<AUTOMATIC>" %>
         </td>
         <td>
           <%= t("activities.#{activity.key}", name: activity.parameters[:name]) %>

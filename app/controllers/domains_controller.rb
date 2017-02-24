@@ -37,6 +37,7 @@ class DomainsController < ApplicationController
     if params[:status] && params[:status].in?(Domain.statuses.keys)
       @domain = Domain.find(params[:domain_id])
       @domain.public_send("#{params[:status]}!")
+      @domain.create_activity(params[:status], owner: current_user, parameters: { name: @domain.name })
       @domain.update_posts!
     end
 
