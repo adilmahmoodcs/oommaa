@@ -44,6 +44,16 @@ class FacebookPost < ApplicationRecord
 
   delegate :brands, to: :facebook_page
 
+  scope :with_any_domain, -> (name) { where("? = ANY (all_domains)", name) }
+  scope :with_any_brand, -> (name) { joins(:facebook_page).merge(FacebookPage.with_any_brand(name)) }
+  scope :with_licensor_name, ->(name) {
+    joins(:facebook_page).merge(FacebookPage.with_licensor_name(name))
+  }
+
+  def self.ransackable_scopes(auth_object = nil)
+    [:with_any_domain, :with_any_brand, :with_licensor_name]
+  end
+
   def change_status_to!(new_status, by)
     self.status = new_status
     if respond_to?(status_changed_at_writer, true)

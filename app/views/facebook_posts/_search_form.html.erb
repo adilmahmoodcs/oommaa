@@ -1,0 +1,54 @@
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title">Filters</h4>
+    <%= search_form_for @q do |f| %>
+      <div class="row">
+        <div class="col-md-3 form-group">
+          <%= f.label :with_any_domain, t(:platform_or_company) %>
+          <%= f.select :with_any_domain,
+                       Domain.pluck(:name),
+                       { include_blank: true },
+                       class: "form-control" %>
+        </div>
+
+        <div class="col-md-3 form-group">
+          <%= f.label :with_any_brand, t(:brand_name) %>
+          <%= f.collection_select :with_any_brand,
+                                  Brand.all,
+                                  :id,
+                                  :name,
+                                  { include_blank: true },
+                                  class: "form-control" %>
+        </div>
+
+        <div class="col-md-3 form-group">
+          <%= f.label :facebook_page_name_eq, "Page" %>
+          <%= f.select :facebook_page_name_eq,
+                       FacebookPage.pluck(:name),
+                       { include_blank: true },
+                       class: "form-control" %>
+        </div>
+
+        <div class="col-md-3 form-group">
+          <%= f.label :with_licensor_name, "Licensor" %>
+          <%= f.select :with_licensor_name,
+                       Licensor.pluck(:name),
+                       { include_blank: true },
+                       class: "form-control" %>
+        </div>
+
+        <div class="col-md-12 form-group">
+          <%= button_tag class: "btn btn-primary" do %>
+            <%= icon("search") %>
+            Filter
+          <% end %>
+          &nbsp;
+          <%= link_to url_for, class: "btn btn-secondary" do %>
+            <%= icon("eraser") %>
+            Clear filters
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

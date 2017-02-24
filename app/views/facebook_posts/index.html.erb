@@ -4,6 +4,8 @@
   (<%= @posts.total_count %>)
 </h1>
 
+<%= render 'search_form' %>
+
 <%= paginate @posts %>
 
 <%= render_if_exists "table_#{@status}", fallback: "table_default" %>

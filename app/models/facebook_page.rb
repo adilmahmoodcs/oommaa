@@ -22,6 +22,13 @@ class FacebookPage < ApplicationRecord
   validates :name, :url, :facebook_id, presence: true
   validates :facebook_id, uniqueness: true
 
+  scope :with_any_brand, -> (id) { where("? = ANY (brand_ids)", id) }
+  scope :with_licensor_name, -> (name) {
+    joins("JOIN brands ON brands.id = ANY(facebook_pages.brand_ids)
+           JOIN licensors ON licensors.id = brands.licensor_id
+           WHERE licensors.name = '#{name}'")
+  }
+
   def brands
     @brands ||= Brand.where(id: brand_ids)
   end

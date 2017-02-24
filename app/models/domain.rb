@@ -30,7 +30,7 @@ class Domain < ApplicationRecord
   end
 
   def posts
-    FacebookPost.where("? = ANY (all_domains)", name)
+    FacebookPost.with_any_domain(name)
   end
 
   # if whitelisted, re-check all backlisted posts (and vice versa)
