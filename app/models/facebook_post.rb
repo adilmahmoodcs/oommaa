@@ -21,9 +21,11 @@
 #  reported_to_facebook_at  :datetime
 #  reported_to_facebook_by  :string
 #  shut_down_by_facebook_at :datetime
+#  all_domains              :string           default("{}"), is an Array
 #
 # Indexes
 #
+#  index_facebook_posts_on_all_domains       (all_domains)
 #  index_facebook_posts_on_all_links         (all_links)
 #  index_facebook_posts_on_facebook_page_id  (facebook_page_id)
 #
@@ -60,21 +62,13 @@ class FacebookPost < ApplicationRecord
     raw_links.delete_if { |l| l.match?(/https\:\/\/www\.facebook\.com\//) }
   end
 
-  def all_domains
-    all_links.map do |link|
-      uri = URI.parse(link)
-      begin
-        PublicSuffix.parse(uri.host).domain
-      rescue PublicSuffix::DomainInvalid
-        "<INVALID URL>"
-      end
-    end.uniq
-  end
-
-  # better to call this in async context
+  # does HTTP requests, better to call in async context
   def parse_all_links!
     links = LinksParser.new(raw_links).call
-    update_attributes!(all_links: links)
+    update_attributes!(
+      all_links: links,
+      all_domains: get_all_domains_from(links)
+    )
   end
 
   def brand_names
@@ -100,6 +94,17 @@ class FacebookPost < ApplicationRecord
   end
 
   private
+
+  def get_all_domains_from(links)
+    links.map do |link|
+      uri = URI.parse(link)
+      begin
+        PublicSuffix.parse(uri.host).domain
+      rescue PublicSuffix::DomainInvalid
+        "<INVALID URL>"
+      end
+    end.uniq
+  end
 
   def status_changed_at_reader
     "#{status}_at"

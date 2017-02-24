@@ -21,9 +21,11 @@
 #  reported_to_facebook_at  :datetime
 #  reported_to_facebook_by  :string
 #  shut_down_by_facebook_at :datetime
+#  all_domains              :string           default("{}"), is an Array
 #
 # Indexes
 #
+#  index_facebook_posts_on_all_domains       (all_domains)
 #  index_facebook_posts_on_all_links         (all_links)
 #  index_facebook_posts_on_facebook_page_id  (facebook_page_id)
 #

@@ -1,0 +1,77 @@
+---
+http_interactions:
+- request:
+    method: head
+    uri: http://bit.ly/2ksZpIv
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 301
+      message: Moved Permanently
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 24 Feb 2017 07:50:36 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Content-Length:
+      - '252'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private, max-age=90
+      Location:
+      - https://www.fanprint.com/products/clemson-tigers-champion-play-2016-champions?variant=30176149069&utm_source=facebook&utm_medium=cpc&utm_campaign=clemson
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 24 Feb 2017 07:50:36 GMT
+- request:
+    method: head
+    uri: https://bit.ly/2kHJRz3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 301
+      message: Moved Permanently
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 24 Feb 2017 07:50:36 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Content-Length:
+      - '223'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private, max-age=90
+      Content-Security-Policy:
+      - referrer always;
+      Location:
+      - https://www.fanprint.com/products/julian-edelman-believe-in-incredelman?variant=31495827789&fb=629774080537580&rfsn=283615.efd82
+      Referrer-Policy:
+      - unsafe-url
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 24 Feb 2017 07:50:36 GMT
+recorded_with: VCR 3.0.3
