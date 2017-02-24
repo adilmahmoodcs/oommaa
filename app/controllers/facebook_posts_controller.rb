@@ -58,6 +58,9 @@ class FacebookPostsController < ApplicationController
       @post.change_status_to!(params[:status], current_user.email)
       @post.blacklist_domains! if @post.blacklisted?
       @post.create_activity(params[:status], owner: current_user, parameters: { name: @post.permalink })
+
+      callback_method = "after_#{params[:status]}"
+      send(callback_method) if respond_to?(callback_method, true)
     end
 
     redirect_back(fallback_location: root_path)
@@ -67,5 +70,9 @@ class FacebookPostsController < ApplicationController
 
   def facebook_post_params
     params.require(:facebook_post).permit(:permalink)
+  end
+
+  def after_reported_to_facebook
+    ShutDownCheckerJob.perform_async(@post.id)
   end
 end
