@@ -19,6 +19,7 @@ class DomainsController < ApplicationController
 
     if @domain.save
       @domain.create_activity(:create, owner: current_user, parameters: { name: @domain.name })
+      @domain.update_posts!
       flash[:notice] = "Domain was successfully created."
     end
 
@@ -36,6 +37,7 @@ class DomainsController < ApplicationController
     if params[:status] && params[:status].in?(Domain.statuses.keys)
       @domain = Domain.find(params[:domain_id])
       @domain.public_send("#{params[:status]}!")
+      @domain.update_posts!
     end
 
     redirect_back(fallback_location: domains_path)
