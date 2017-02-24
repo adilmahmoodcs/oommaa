@@ -4,7 +4,7 @@ class PostStatusJob
 
   def perform(post_id)
     post = FacebookPost.find(post_id)
-    post.parse_all_links! # ensure posts have #all_links
+    post.parse_all_links! # ensure posts have #all_links and #all_domains
     set_status!(post)
   end
 
@@ -13,7 +13,7 @@ class PostStatusJob
   def set_status!(post)
     domains = post.all_domains
 
-    # if any domain is already blacklisted
+    # if any domain is blacklisted
     status = if blacklist_domain_matcher.match?(domains)
       "blacklisted"
     # if all domains are whitelisted
