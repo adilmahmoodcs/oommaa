@@ -1,4 +1,4 @@
-<% unless status == "whitelisted" %>
+<% if !post.whitelisted? && !post.reported_to_facebook? %>
   <%= link_to post_change_status_path(post, :whitelisted),
               method: :post,
               class: "btn btn-success" do %>
@@ -7,7 +7,7 @@
   <% end %>
 <% end %>
 
-<% unless status == "blacklisted" %>
+<% if !post.blacklisted? && !post.reported_to_facebook? %>
   <%= link_to post_change_status_path(post, :blacklisted),
             method: :post,
             class: "btn btn-danger" do %>
@@ -16,7 +16,7 @@
   <% end %>
 <% end %>
 
-<% if status == "blacklisted" %>
+<% if post.blacklisted? %>
   <%= link_to post_change_status_path(post, :reported_to_facebook),
               method: :post,
               class: "btn btn-info",
@@ -26,7 +26,9 @@
   <% end %>
 <% end %>
 
-<%= link_to "#", class: "btn btn-secondary disabled" do %>
-  <%= icon("handshake-o") %>
-  Report to Licensor
+<% if post.blacklisted? || post.reported_to_facebook? %>
+  <%= link_to "#", class: "btn btn-secondary disabled" do %>
+    <%= icon("handshake-o") %>
+    Report to Licensor
+  <% end %>
 <% end %>
