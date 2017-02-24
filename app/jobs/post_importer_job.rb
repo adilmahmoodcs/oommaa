@@ -3,7 +3,7 @@ class PostImporterJob
   include Sidekiq::Worker
   sidekiq_options queue: "posts"
 
-  def perform(url)
+  def perform(url, user_email)
     object_id, type = FbURLParser.new(url).call
     return false unless object_id
 
@@ -25,7 +25,7 @@ class PostImporterJob
 
     page = find_or_create_page(data["from"]["id"])
     # create a post from the submitted URL
-    post = find_or_create_post(data, page)
+    post = find_or_create_post(data, page, user_email)
     post
   end
 
@@ -50,7 +50,7 @@ class PostImporterJob
     page
   end
 
-  def find_or_create_post(data, page)
+  def find_or_create_post(data, page, user_email)
     post = page.facebook_posts.create!(
       facebook_id: data["id"],
       message: data["name"],
@@ -58,11 +58,18 @@ class PostImporterJob
       permalink: data["permalink_url"],
       image_url: data["picture"],
       link: data["link"],
-      status: "blacklisted", # temp
-      blacklisted_at: Time.now, # temp
-      blacklisted_by: "demo import" # temp
+      # we start as blacklisted, but PostStatusJob will also run
+      status: "blacklisted",
+      blacklisted_at: Time.now,
+      blacklisted_by: user_email
     )
+
     post.parse_all_links!
+    # mark its domains as blacklisted
+    Domain.blacklist_new_domains!(post.all_domains)
+    # this will **probably** keep the post as blacklisted
+    PostStatusJob.perform_async(post.id)
+
     post
   end
 

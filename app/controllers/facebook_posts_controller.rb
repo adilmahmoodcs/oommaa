@@ -18,7 +18,7 @@ class FacebookPostsController < ApplicationController
 
   def create
     if url = facebook_post_params[:permalink].presence
-      PostImporterJob.perform_async(url)
+      PostImporterJob.perform_async(url, current_user.email)
       current_user.create_activity(:url_added, owner: current_user, parameters: { name: url })
       flash[:notice] = "A job to import this post was enqueued."
     else
