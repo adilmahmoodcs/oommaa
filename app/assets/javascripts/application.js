@@ -15,3 +15,9 @@
 //= require tether
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require facebook_report
+//= require_self
+
+document.addEventListener("turbolinks:load", function() {
+  FacebookReport.init()
+})

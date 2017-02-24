@@ -60,11 +60,7 @@ class FacebookPostsController < ApplicationController
       @post.create_activity(params[:status], owner: current_user, parameters: { name: @post.permalink })
     end
 
-    if @post.reported_to_facebook?
-      redirect_to Rails.configuration.counterfind["facebook"]["report_url"]
-    else
-      redirect_back(fallback_location: root_path)
-    end
+    redirect_back(fallback_location: root_path)
   end
 
   private

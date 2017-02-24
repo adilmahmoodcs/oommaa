@@ -19,8 +19,7 @@
 <% if post.blacklisted? %>
   <%= link_to post_change_status_path(post, :reported_to_facebook),
               method: :post,
-              class: "btn btn-info",
-              target: "_blank" do %>
+              class: "btn btn-info report-to-facebook-button" do %>
     <%= icon("facebook") %>
     Report to Facebook
   <% end %>
