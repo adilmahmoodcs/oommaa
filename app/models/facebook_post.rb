@@ -87,12 +87,6 @@ class FacebookPost < ApplicationRecord
     send(status_changed_by_reader) if respond_to?(status_changed_by_reader, true)
   end
 
-  def blacklist_domains!
-    all_domains.each do |domain|
-      Domain.blacklist!(domain)
-    end
-  end
-
   private
 
   def get_all_domains_from(links)

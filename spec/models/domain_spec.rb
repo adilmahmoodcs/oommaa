@@ -8,14 +8,16 @@ RSpec.describe Domain, type: :model do
   let(:blacklisted_domain_post) { create(:facebook_post, status: "blacklisted", all_domains: [domain_name]) }
   let(:whitelisted_domain_post) { create(:facebook_post, status: "whitelisted", all_domains: [domain_name]) }
 
-  describe ".blacklist!" do
+  describe ".blacklist_new_domains!" do
     it "adds a blacklisted domain" do
-      Domain.blacklist!(domain_name)
-      expect(Domain.first.name).to eq(domain_name)
+      Domain.blacklist_new_domains!([domain_name])
+      domain = Domain.first
+      expect(domain.name).to eq(domain_name)
+      expect(domain.status).to eq("blacklisted")
     end
 
     it "doesn't add duplicates" do
-      3.times { Domain.blacklist!(domain_name) }
+      Domain.blacklist_new_domains!([domain_name, domain_name, domain_name])
       expect(Domain.count).to eq(1)
     end
   end

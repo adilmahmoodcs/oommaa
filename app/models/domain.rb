@@ -21,9 +21,11 @@ class Domain < ApplicationRecord
     arel_table[:name].lower
   end
 
-  def self.blacklist!(name)
-    if !exists?(name: name)
-      create!(name: name, status: :blacklisted)
+  # create some new blacklisted domains
+  # existing domains are not touched
+  def self.blacklist_new_domains!(names)
+    names.each do |name|
+      create!(name: name, status: :blacklisted) unless exists?(name: name)
     end
   end
 

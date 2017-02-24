@@ -56,7 +56,7 @@ class FacebookPostsController < ApplicationController
     if params[:status] && params[:status].in?(FacebookPost.statuses.keys)
       @post = FacebookPost.find(params[:post_id])
       @post.change_status_to!(params[:status], current_user.email)
-      @post.blacklist_domains! if @post.blacklisted?
+      Domain.blacklist_new_domains!(@post.all_domains) if @post.blacklisted?
       @post.create_activity(params[:status], owner: current_user, parameters: { name: @post.permalink })
 
       callback_method = "after_#{params[:status]}"
