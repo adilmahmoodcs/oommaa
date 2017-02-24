@@ -30,4 +30,18 @@ class Domain < ApplicationRecord
   def posts
     FacebookPost.where("? = ANY (all_domains)", name)
   end
+
+  # if whitelisted, re-check all backlisted posts (and vice versa)
+  def update_posts!
+    post_scope = if whitelisted?
+      :blacklisted
+    elsif blacklisted?
+      :whitelisted
+    end
+    return unless post_scope
+
+    posts.select(:id).public_send(post_scope).each do |post|
+      PostStatusJob.perform_async(post.id)
+    end
+  end
 end
