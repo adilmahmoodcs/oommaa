@@ -1,6 +1,7 @@
 class FacebookPostsController < ApplicationController
   def index
     params[:q] ||= {}
+    params[:q][:status_eq] ||= "not_suspect"
     params[:q].delete(:status_eq) unless params[:q][:status_eq].in?(FacebookPost.statuses.keys)
 
     @q = FacebookPost.ransack(params[:q])

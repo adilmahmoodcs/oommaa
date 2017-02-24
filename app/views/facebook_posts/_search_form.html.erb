@@ -8,7 +8,11 @@
         <div class="col-md-3 form-group">
           <%= f.label :with_any_domain, t(:platform_or_company) %>
           <%= f.select :with_any_domain,
-                       Domain.pluck(:name),
+                       FacebookPost.where(status: params[:q][:status_eq]).
+                                    pluck(:all_domains).
+                                    flatten.
+                                    uniq.
+                                    sort,
                        { include_blank: true },
                        class: "form-control" %>
         </div>
@@ -16,7 +20,7 @@
         <div class="col-md-3 form-group">
           <%= f.label :with_any_brand, t(:brand_name) %>
           <%= f.collection_select :with_any_brand,
-                                  Brand.all,
+                                  Brand.all.order("LOWER(name)"),
                                   :id,
                                   :name,
                                   { include_blank: true },
@@ -26,7 +30,7 @@
         <div class="col-md-3 form-group">
           <%= f.label :facebook_page_name_eq, "Page" %>
           <%= f.select :facebook_page_name_eq,
-                       FacebookPage.pluck(:name),
+                       FacebookPage.order("LOWER(name)").pluck(:name),
                        { include_blank: true },
                        class: "form-control" %>
         </div>
@@ -34,7 +38,7 @@
         <div class="col-md-3 form-group">
           <%= f.label :with_licensor_name, "Licensor" %>
           <%= f.select :with_licensor_name,
-                       Licensor.pluck(:name),
+                       Licensor.order("LOWER(name)").pluck(:name),
                        { include_blank: true },
                        class: "form-control" %>
         </div>
