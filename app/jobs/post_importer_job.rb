@@ -5,7 +5,7 @@ class PostImporterJob
 
   def perform(url, user_email)
     object_id, type = FbURLParser.new(url).call
-    return false unless object_id
+    return unless object_id
 
     data = case type
     when :photo
@@ -15,28 +15,26 @@ class PostImporterJob
     when :video
       FBVideoReader.new(object_id: object_id, token: token).call
     when :page
-      # TODO
-      return false
+      find_or_create_page(object_id)
+      return
     end
 
-    if post = FacebookPost.find_by(facebook_id: data["id"])
-      return post
-    end
+    return if FacebookPost.exists?(facebook_id: data["id"])
 
     page = find_or_create_page(data["from"]["id"])
     # create a post from the submitted URL
-    post = find_or_create_post(data, page, user_email)
-    post
+    find_or_create_post(data, page, user_email)
   end
 
   private
 
   def find_or_create_page(object_id)
-    if page = FacebookPage.find_by(facebook_id: object_id)
+    data = FBPageReader.new(object_id: object_id, token: token).call
+
+    if page = FacebookPage.find_by(facebook_id: data["id"])
       return page
     end
 
-    data = FBPageReader.new(object_id: object_id, token: token).call
     page = FacebookPage.create!(
       facebook_id: data["id"],
       name: data["name"],
