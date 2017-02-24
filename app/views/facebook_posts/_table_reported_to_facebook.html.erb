@@ -6,6 +6,7 @@
       <th>Reported to Facebook at</th>
       <th>Reported to Facebook by</th>
       <th><%= sort_link(@q, :shut_down_by_facebook_at, "Shut down by Facebook at") %></th>
+      <th><%= t(:platform_or_company) %></th>
       <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
       <th><%= sort_link(@q, :published_at, "Published at") %></th>
       <th>Actions</th>
@@ -46,6 +47,10 @@
           <% else %>
             Pending
           <% end %>
+        </td>
+
+        <td>
+          <%= post.all_domains.join(", ") %>
         </td>
 
         <td>

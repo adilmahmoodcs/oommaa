@@ -8,6 +8,7 @@
       <% elsif @status == "whitelisted" %>
         <th>Approved at</th>
       <% end %>
+      <th><%= t(:platform_or_company) %></th>
       <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
       <th><%= sort_link(@q, :published_at, "Published at") %></th>
       <th>Actions</th>
@@ -41,6 +42,10 @@
             <%= post.status_changed_by if post.status_changed_by%>
           </td>
         <% end %>
+
+        <td>
+          <%= post.all_domains.join(", ") %>
+        </td>
 
         <td>
           <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
