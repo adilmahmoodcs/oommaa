@@ -6,11 +6,11 @@ en:
   licensors: Licensors
   all: All
   suspect: Suspect
-  not_suspect: Not suspect
+  not_suspect: Needs Review
   whitelisted: Whitelisted
   blacklisted: Blacklisted
-  user_activities: User activities
-  blacklist_export: Blacklist export
+  user_activities: User Activities
+  blacklist_export: Blacklist Export
   brand_name: Brand
   licensor_name: Licensor
   platform_or_company: Platform/Company
