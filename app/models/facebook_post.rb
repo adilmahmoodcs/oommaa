@@ -49,6 +49,7 @@ class FacebookPost < ApplicationRecord
   scope :with_licensor_name, ->(name) {
     joins(:facebook_page).merge(FacebookPage.with_licensor_name(name))
   }
+  scope :date_yesterday, -> { where() }
 
   ransacker :status, formatter: proc { |status_name| statuses[status_name] }
 

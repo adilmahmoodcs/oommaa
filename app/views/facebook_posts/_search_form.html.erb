@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card search-filters">
   <div class="card-block">
     <h4 class="card-title">Filters</h4>
     <%= search_form_for @q do |f| %>
@@ -42,6 +42,52 @@
                        { include_blank: true },
                        class: "form-control" %>
         </div>
+
+        <div class="col-md-3 form-group">
+          <%= f.label :published_at_gteq, "Published at date" %>
+          <%= f.select :published_at_gteq,
+                       date_filter_options_for(:published_at_gteq),
+                       { include_blank: true },
+                       class: "form-control" %>
+        </div>
+
+        <% if @status == "whitelisted" %>
+          <div class="col-md-3 form-group">
+            <%= f.label :whitelisted_at_gteq, "Approved at date" %>
+            <%= f.select :whitelisted_at_gteq,
+                         date_filter_options_for(:whitelisted_at_gteq),
+                         { include_blank: true },
+                         class: "form-control" %>
+          </div>
+        <% end %>
+
+        <% if @status == "blacklisted" %>
+          <div class="col-md-3 form-group">
+            <%= f.label :blacklisted_at_gteq, "Reported at date" %>
+            <%= f.select :blacklisted_at_gteq,
+                         date_filter_options_for(:blacklisted_at_gteq),
+                         { include_blank: true },
+                         class: "form-control" %>
+          </div>
+        <% end %>
+
+        <% if @status == "reported_to_facebook" %>
+          <div class="col-md-3 form-group">
+            <%= f.label :reported_to_facebook_at_gteq, "Reported to Facebook at date" %>
+            <%= f.select :reported_to_facebook_at_gteq,
+                         date_filter_options_for(:reported_to_facebook_at_gteq),
+                         { include_blank: true },
+                         class: "form-control" %>
+          </div>
+
+          <div class="col-md-3 form-group">
+            <%= f.label :shut_down_by_facebook_at_gteq, "Shut down by Facebook at date" %>
+            <%= f.select :shut_down_by_facebook_at_gteq,
+                         date_filter_options_for(:shut_down_by_facebook_at_gteq),
+                         { include_blank: true },
+                         class: "form-control" %>
+          </div>
+        <% end %>
 
         <div class="col-md-12 form-group">
           <%= button_tag class: "btn btn-primary" do %>
