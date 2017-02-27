@@ -9,7 +9,7 @@
         <li class="nav-item">
           <%= link_to keywords_path,
                       class: "nav-link #{'active' if current_page?('/keywords')}" do %>
-            <%= icon("fa-fw quote-right") %>
+            <%= icon("quote-right", class: "fa-fw") %>
             <%= "#{t(:keywords)} (#{Keyword.count})" %>
           <% end %>
         </li>
@@ -17,7 +17,7 @@
         <li class="nav-item">
           <%= link_to brands_path,
                       class: "nav-link #{'active' if current_page?('/brands')}" do %>
-            <%= icon("fa-fw shield") %>
+            <%= icon("shield", class: "fa-fw") %>
             <%= "#{t(:brands)} (#{Brand.count})" %>
           <% end %>
         </li>
@@ -25,7 +25,7 @@
         <li class="nav-item">
           <%= link_to licensors_path,
                       class: "nav-link #{'active' if current_page?('/licensors')}" do %>
-            <%= icon("fa-fw handshake-o") %>
+            <%= icon("handshake-o", class: "fa-fw") %>
             <%= "#{t(:licensors)} (#{Licensor.count})" %>
           <% end %>
         </li>
@@ -37,7 +37,7 @@
         <li class="nav-item">
           <%= link_to domains_path(status: :whitelisted),
                       class: "nav-link #{'active' if current_page?('/domains') && @status == 'whitelisted'}" do %>
-            <%= icon("fa-fw check") %>
+            <%= icon("check", class: "fa-fw") %>
             <%= "#{t(:whitelisted)} (#{Domain.whitelisted.count})" %>
           <% end %>
         </li>
@@ -45,7 +45,7 @@
         <li class="nav-item">
           <%= link_to domains_path(status: :blacklisted),
                       class: "nav-link #{'active' if current_page?('/domains') && @status == 'blacklisted'}" do %>
-            <%= icon("fa-fw ban") %>
+            <%= icon("ban", class: "fa-fw") %>
             <%= "#{t(:blacklisted)} (#{Domain.blacklisted.count})" %>
           <% end %>
         </li>
@@ -57,7 +57,7 @@
         <li class="nav-item">
           <%= link_to new_facebook_post_path,
                       class: "nav-link #{'active' if current_page?('/posts/new')}" do %>
-            <%= icon("fa-fw plus") %>
+            <%= icon("plus", class: "fa-fw") %>
             Add new
           <% end %>
         </li>
@@ -65,7 +65,7 @@
         <li class="nav-item">
           <%= link_to facebook_posts_path(q: { status_eq: :not_suspect }),
                       class: "nav-link #{'active' if current_page?('/facebook_posts') && @status == 'not_suspect'}" do %>
-            <%= icon("fa-fw circle-thin") %>
+            <%= icon("circle-thin", class: "fa-fw") %>
             <%= "#{t(:not_suspect)} (#{FacebookPost.not_suspect.size})" %>
           <% end %>
         </li>
@@ -73,7 +73,7 @@
         <li class="nav-item">
           <%= link_to facebook_posts_path(q: { status_eq: :suspect }),
                       class: "nav-link #{'active' if current_page?('/facebook_posts') && @status == 'suspect'}" do %>
-            <%= icon("fa-fw question") %>
+            <%= icon("question", class: "fa-fw") %>
             <%= "#{t(:suspect)} (#{FacebookPost.suspect.size})" %>
           <% end %>
         </li>
@@ -81,7 +81,7 @@
         <li class="nav-item">
           <%= link_to facebook_posts_path(q: { status_eq: :whitelisted }),
                       class: "nav-link #{'active' if current_page?('/facebook_posts') && @status == 'whitelisted'}" do %>
-            <%= icon("fa-fw check") %>
+            <%= icon("check", class: "fa-fw") %>
             <%= "#{t(:whitelisted)} (#{FacebookPost.whitelisted.size})" %>
           <% end %>
         </li>
@@ -89,7 +89,7 @@
         <li class="nav-item">
           <%= link_to facebook_posts_path(q: { status_eq: :blacklisted }),
                       class: "nav-link #{'active' if current_page?('/facebook_posts') && @status == 'blacklisted'}" do %>
-            <%= icon("fa-fw ban") %>
+            <%= icon("ban", class: "fa-fw") %>
             <%= "#{t(:blacklisted)} (#{FacebookPost.blacklisted.size})" %>
           <% end %>
         </li>
@@ -97,7 +97,7 @@
         <li class="nav-item">
           <%= link_to facebook_posts_path(q: { status_eq: :reported_to_facebook }),
                       class: "nav-link #{'active' if current_page?('/facebook_posts') && @status == 'reported_to_facebook'}" do %>
-            <%= icon("fa-fw facebook") %>
+            <%= icon("facebook", class: "fa-fw") %>
             <%= "#{t(:reported_to_facebook)} (#{FacebookPost.reported_to_facebook.size})" %>
           <% end %>
         </li>
@@ -105,7 +105,7 @@
         <li class="nav-item">
           <%= link_to export_facebook_posts_path,
                       class: "nav-link #{'active' if current_page?('/facebook_posts/export')}" do %>
-            <%= icon("fa-fw download") %>
+            <%= icon("download", class: "fa-fw") %>
             <%= t(:blacklist_export) %>
           <% end %>
         </li>
@@ -114,7 +114,7 @@
         <li class="nav-item">
           <%= link_to activities_path,
                       class: "nav-link #{'active' if current_page?('/activities')}" do %>
-            <%= icon("fa-fw users") %>
+            <%= icon("users", class: "fa-fw") %>
             <%= t(:user_activities) %>
           <% end %>
         </li>
