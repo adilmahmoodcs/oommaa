@@ -4,9 +4,9 @@
       <th>Image</th>
       <th>Message</th>
       <% if @status == "blacklisted" %>
-        <th>Reported at</th>
+        <th><%= sort_link(@q, :blacklisted_at, "Reported at") %></th>
       <% elsif @status == "whitelisted" %>
-        <th>Approved at</th>
+        <th><%= sort_link(@q, :whitelisted_at, "Approved at") %></th>
       <% end %>
       <th><%= t(:platform_or_company) %></th>
       <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>

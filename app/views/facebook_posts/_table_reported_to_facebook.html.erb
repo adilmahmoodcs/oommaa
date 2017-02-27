@@ -3,8 +3,8 @@
     <tr>
       <th>Image</th>
       <th>Message</th>
-      <th>Reported to Facebook at</th>
-      <th>Reported to Facebook by</th>
+      <th><%= sort_link(@q, :reported_to_facebook_at, "Reported to Facebook at") %></th>
+      <th><%= sort_link(@q, :reported_to_facebook_by, "Reported to Facebook by") %></th>
       <th><%= sort_link(@q, :shut_down_by_facebook_at, "Shut down by Facebook at") %></th>
       <th><%= t(:platform_or_company) %></th>
       <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
