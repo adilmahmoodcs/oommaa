@@ -37,7 +37,6 @@ class FacebookPage < ApplicationRecord
     now = Time.now
     update_attributes(shut_down_by_facebook_at: now)
     facebook_posts.where(shut_down_by_facebook_at: nil).
-                   update_all(shut_down_by_facebook_at: now,
-                              updated_at: now)
+                   update_all(shut_down_by_facebook_at: now, updated_at: now)
   end
 end

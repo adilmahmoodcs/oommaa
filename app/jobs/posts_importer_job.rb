@@ -6,15 +6,27 @@ class PostsImporterJob
   sidekiq_options queue: "posts"
 
   def perform(page_id)
-    import_posts(page_id)
+    page = FacebookPage.find(page_id)
+
+    begin
+      import_posts(page)
+    rescue Koala::Facebook::ClientError => e
+      # make sure it's shut down
+      is_shut_down = FBShutDownChecker.new(object_id: page.facebook_id, token: token).call
+      if is_shut_down
+        page.mark_as_shut_down!
+        return
+      end
+
+      raise e
+    end
 
     self.class.perform_in(60.minutes, page_id)
   end
 
   private
 
-  def import_posts(page_id)
-    page = FacebookPage.find(page_id)
+  def import_posts(page)
     posts_data = FBPostSearcher.new(page_id: page.facebook_id, token: token).call
 
     posts_data.each do |data|
