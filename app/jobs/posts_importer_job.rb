@@ -18,6 +18,8 @@ class PostsImporterJob
     posts_data = FBPostSearcher.new(page_id: page.facebook_id, token: token).call
 
     posts_data.each do |data|
+      data["id"] = data["id"].split("_").last
+
       # we reached already imported posts...
       break if FacebookPost.exists?(facebook_id: data["id"])
       break if data["message"].blank?

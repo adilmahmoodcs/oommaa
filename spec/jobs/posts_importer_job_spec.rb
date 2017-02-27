@@ -14,6 +14,17 @@ RSpec.describe PostsImporterJob, type: :job do
     end
   end
 
+  it "clears two-components facebook ids" do
+    VCR.use_cassette("fb_posts_searcher") do
+      PostsImporterJob.new.perform(page.id)
+      expect(FacebookPost.count).to be > 0
+
+      FacebookPost.find_each do |post|
+        expect(post.facebook_id).not_to include("_")
+      end
+    end
+  end
+
   it "re-enqueue itself" do
     allow_any_instance_of(PostsImporterJob).to receive(:import_posts) # stub method
     expect {

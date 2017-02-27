@@ -19,6 +19,8 @@ class PostImporterJob
       return
     end
 
+    data["id"] = data["id"].split("_").last
+
     return if FacebookPost.exists?(facebook_id: data["id"])
 
     page = find_or_create_page(data["from"]["id"])
