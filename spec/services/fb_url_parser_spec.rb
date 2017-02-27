@@ -10,6 +10,7 @@ RSpec.describe FbURLParser do
   let(:photo_url) { "https://www.facebook.com/dallas.cowboys.fanprint/photos/a.1422014691156652.1073741828.1422004941157627/1485364868154967/?type=3&theater" }
   let(:photo_url2) { "https://www.facebook.com/photo.php?fbid=1466717743347171&set=o.499785186724407&type=3&theater" }
   let(:video_url) { "https://www.facebook.com/dallas.cowboys.fanprint/videos/1482310061793781/" }
+  let(:group_post_url) { "https://www.facebook.com/groups/1699988863566929/permalink/1903057716593375/" }
 
   it "raise ArgumentError with missing arguments" do
     expect{subject.new}.to raise_error(ArgumentError)
@@ -34,6 +35,10 @@ RSpec.describe FbURLParser do
 
   it "can extract a video id from url" do
     expect(subject.new(video_url).call).to eq(["1482310061793781", :video])
+  end
+
+  it "can extract a video id from group post url" do
+    expect(subject.new(group_post_url).call).to eq(["1903057716593375", :post])
   end
 
 end
