@@ -25,8 +25,10 @@ class PostStatusJob
     end
 
     if status && status != post.status
+      old_status = post.status
       post.change_status_to!(status, "PostStatusJob")
       post.create_activity(status, parameters: { name: post.permalink, auto: true })
+      logger.info "PostStatusJob: changed FacebookPost #{post.id} status from #{old_status} to #{status}"
     end
   end
 
@@ -40,5 +42,9 @@ class PostStatusJob
 
   def whitelist_domain_matcher
     @whitelist_domain_matcher ||= DomainMatcher.new(status: "whitelisted")
+  end
+
+  def logger
+    @logger ||= Logger.new(Rails.root.join('log/jobs.log'))
   end
 end

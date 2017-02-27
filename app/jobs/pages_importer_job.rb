@@ -24,11 +24,13 @@ class PagesImporterJob
           brand_ids: [brand.id]
         )
         PostsImporterJob.perform_async(page.id)
+        logger.info "PagesImporterJob: new FacebookPage #{page.id} created for Brand #{brand.id}"
       else
         page = FacebookPage.find_by(facebook_id: data["id"])
         if !brand.id.in?(page.brand_ids)
           page.brand_ids << brand.id
           page.save!
+          logger.info "PagesImporterJob: new Brand #{brand.id} added to FacebookPage #{page.id}"
         end
       end
     end
@@ -36,5 +38,9 @@ class PagesImporterJob
 
   def token
     Rails.configuration.counterfind["facebook"]["tokens"].sample
+  end
+
+  def logger
+    @logger ||= Logger.new(Rails.root.join('log/jobs.log'))
   end
 end

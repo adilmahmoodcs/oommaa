@@ -25,7 +25,7 @@ class PostImporterJob
 
     page = find_or_create_page(data["from"]["id"])
     # create a post from the submitted URL
-    find_or_create_post(data, page, user_email)
+    create_post(data, page, user_email)
   end
 
   private
@@ -47,10 +47,11 @@ class PostImporterJob
 
     # start import of all page posts
     PostsImporterJob.perform_in(1.minutes, page.id)
+    logger.info "PostImporterJob: created new FacebookPage #{page.id}"
     page
   end
 
-  def find_or_create_post(data, page, user_email)
+  def create_post(data, page, user_email)
     post = page.facebook_posts.create!(
       facebook_id: data["id"],
       message: data["name"],
@@ -69,6 +70,7 @@ class PostImporterJob
     Domain.blacklist_new_domains!(post.all_domains)
     # this will **probably** keep the post as blacklisted
     PostStatusJob.perform_async(post.id)
+    logger.info "PostImporterJob: created new FacebookPost #{post.id}"
 
     post
   end
@@ -81,5 +83,9 @@ class PostImporterJob
 
   def token
     Rails.configuration.counterfind["facebook"]["tokens"].sample
+  end
+
+  def logger
+    @logger ||= Logger.new(Rails.root.join('log/jobs.log'))
   end
 end

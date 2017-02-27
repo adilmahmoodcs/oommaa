@@ -10,6 +10,7 @@ class ShutDownCheckerJob
     if result
       unless post.shut_down_by_facebook_at
         post.update_attributes!(shut_down_by_facebook_at: Time.now)
+        logger.info "ShutDownCheckerJob: marked FacebookPost #{post_id} as shut down"
       end
     else
       # retry...
@@ -21,5 +22,9 @@ class ShutDownCheckerJob
 
   def token
     Rails.configuration.counterfind["facebook"]["tokens"].sample
+  end
+
+  def logger
+    @logger ||= Logger.new(Rails.root.join('log/jobs.log'))
   end
 end

@@ -15,6 +15,7 @@ class PostsImporterJob
       is_shut_down = FBShutDownChecker.new(object_id: page.facebook_id, token: token).call
       if is_shut_down
         page.mark_as_shut_down!
+        logger.info("PostsImporterJob: FacebookPage #{page.id} marked as shut down")
         return
       end
 
@@ -49,10 +50,15 @@ class PostsImporterJob
 
       post.save!
       PostStatusJob.perform_async(post.id)
+      logger.info("PostsImporterJob: new FacebookPost #{post.id} created for FacebookPage #{page.id}")
     end
   end
 
   def token
     Rails.configuration.counterfind["facebook"]["tokens"].sample
+  end
+
+  def logger
+    @logger ||= Logger.new(Rails.root.join('log/jobs.log'))
   end
 end
