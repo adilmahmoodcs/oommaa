@@ -3,7 +3,7 @@ class PostImporterJob
   include Sidekiq::Worker
   sidekiq_options queue: "posts"
 
-  def perform(url, user_email)
+  def perform(url, user_email = "user@example.com")
     object_id, type = FbURLParser.new(url).call
     return unless object_id
 
