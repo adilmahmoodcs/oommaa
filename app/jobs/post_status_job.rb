@@ -18,7 +18,7 @@ class PostStatusJob
       "blacklisted"
     # if all domains are whitelisted
     elsif whitelist_domain_matcher.match_all?(domains)
-      "not_suspect"
+      "whitelisted"
     # if some suspect keyword match
     elsif keyword_matcher.match?(post.message)
       "suspect"

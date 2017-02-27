@@ -26,16 +26,16 @@ RSpec.describe PostStatusJob, type: :job do
       expect(post_with_keyword.reload.suspect?).to be true
     end
 
-    it "sets keyword-matching post as not suspect if all domains matches whitelist" do
+    it "sets keyword-matching post as whitelisted if all domains matches whitelist" do
       allow_any_instance_of(FacebookPost).to receive(:all_domains) { [whitelisted_domain.name, whitelisted_domain2.name] }
       subject.new.perform(post_with_keyword.id)
-      expect(post_with_keyword.reload.not_suspect?).to be true
+      expect(post_with_keyword.reload.whitelisted?).to be true
     end
 
-    it "does not set keyword-matching post as not suspect if not all domains matches whitelist" do
+    it "does not set keyword-matching post as whitelisted if not all domains matches whitelist" do
       allow_any_instance_of(FacebookPost).to receive(:all_domains) { [whitelisted_domain.name, domain.name] }
       subject.new.perform(post_with_keyword.id)
-      expect(post_with_keyword.reload.not_suspect?).to be false
+      expect(post_with_keyword.reload.whitelisted?).to be false
     end
 
     it "keep post as not_suspect if none matches" do
