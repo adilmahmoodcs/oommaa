@@ -32,6 +32,7 @@ gem "embiggen", "~> 1.2.4"
 gem "public_suffix", "~> 2.0"
 gem "rinku", "~> 2.0.2"
 gem "paperclip", "~> 5.0.0"
+gem "aws-sdk", "~> 2.7"
 
 group :development, :test do
   gem "byebug", platform: :mri

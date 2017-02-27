@@ -79,4 +79,24 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    path: ":class/:attachment/:id_partition/:style/:filename",
+    url: ":s3_domain_url",
+    s3_credentials: {
+      bucket: "counterfind-prod"
+    },
+    s3_protocol: "https",
+    s3_region: "us-east-1",
+    s3_headers: proc {
+      {
+        "Expires" => 1.year.from_now.httpdate
+      }
+    }
+  }
 end
+
+Aws.config.update({
+  credentials: Aws::Credentials.new("AKIAJFFHERP3FHIE46HQ", "nG6bHyIo6/Npv7Pf6RccGPxN/OaX8BzQmzlaZRqj")
+})
