@@ -38,6 +38,7 @@ class FacebookPost < ApplicationRecord
   ]
 
   belongs_to :facebook_page
+  has_many :screenshots
 
   validates :facebook_id, :message, :facebook_page, presence: true
   validates :facebook_id, uniqueness: true
