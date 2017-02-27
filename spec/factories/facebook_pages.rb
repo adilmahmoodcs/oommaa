@@ -2,14 +2,15 @@
 #
 # Table name: facebook_pages
 #
-#  id          :integer          not null, primary key
-#  name        :string           not null
-#  url         :string           not null
-#  image_url   :string
-#  facebook_id :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  brand_ids   :integer          default("{}"), is an Array
+#  id                       :integer          not null, primary key
+#  name                     :string           not null
+#  url                      :string           not null
+#  image_url                :string
+#  facebook_id              :string           not null
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  brand_ids                :integer          default("{}"), is an Array
+#  shut_down_by_facebook_at :datetime
 #
 # Indexes
 #

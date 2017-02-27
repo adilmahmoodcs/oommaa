@@ -2,14 +2,15 @@
 #
 # Table name: facebook_pages
 #
-#  id          :integer          not null, primary key
-#  name        :string           not null
-#  url         :string           not null
-#  image_url   :string
-#  facebook_id :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  brand_ids   :integer          default("{}"), is an Array
+#  id                       :integer          not null, primary key
+#  name                     :string           not null
+#  url                      :string           not null
+#  image_url                :string
+#  facebook_id              :string           not null
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  brand_ids                :integer          default("{}"), is an Array
+#  shut_down_by_facebook_at :datetime
 #
 # Indexes
 #
@@ -30,5 +31,13 @@ class FacebookPage < ApplicationRecord
 
   def brands
     @brands ||= Brand.where(id: brand_ids)
+  end
+
+  def mark_as_shut_down!
+    now = Time.now
+    update_attributes(shut_down_by_facebook_at: now)
+    facebook_posts.where(shut_down_by_facebook_at: nil).
+                   update_all(shut_down_by_facebook_at: now,
+                              updated_at: now)
   end
 end
