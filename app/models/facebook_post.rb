@@ -53,6 +53,9 @@ class FacebookPost < ApplicationRecord
     joins(:facebook_page).merge(FacebookPage.with_licensor_name(name))
   }
   scope :date_yesterday, -> { where() }
+  scope :blacklisted_or_reported_to_facebook, -> {
+    where(status: [statuses[:blacklisted], statuses[:reported_to_facebook]])
+  }
 
   ransacker :status, formatter: proc { |status_name| statuses[status_name] }
 

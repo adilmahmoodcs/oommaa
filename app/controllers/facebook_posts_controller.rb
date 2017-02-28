@@ -29,24 +29,35 @@ class FacebookPostsController < ApplicationController
   end
 
   def export
-    @q = FacebookPost.ransack(params[:q])
-    @q.sorts = "blacklisted_at desc" if @q.sorts.empty?
-    @posts = @q.result.
-                blacklisted.
-                includes(:facebook_page).
-                page(params[:page])
-
-    if params[:from].present?
-      @posts = @posts.where("blacklisted_at >= ?", Date.parse(params[:from]).beginning_of_day)
-    end
-    if params[:to].present?
-      @posts = @posts.where("blacklisted_at <= ?", Date.parse(params[:to]).end_of_day)
-    end
-
     respond_to do |format|
-      format.html
+      @q = FacebookPost.ransack(params[:q])
+      @q.sorts = "blacklisted_at desc" if @q.sorts.empty?
+
+      format.html do
+        @posts = @q.result.
+                    blacklisted_or_reported_to_facebook.
+                    includes(:facebook_page).
+                    page(params[:page])
+
+        if params[:from].present?
+          @posts = @posts.where("blacklisted_at >= ?", Date.parse(params[:from]).beginning_of_day)
+        end
+        if params[:to].present?
+          @posts = @posts.where("blacklisted_at <= ?", Date.parse(params[:to]).end_of_day)
+        end
+      end
+
       format.csv do
-        send_data PostsCSVExporter.new(@posts).call,
+        posts = FacebookPost.blacklisted_or_reported_to_facebook.
+                             order("blacklisted_at desc")
+        if params[:from].present?
+          posts = posts.where("blacklisted_at >= ?", Date.parse(params[:from]).beginning_of_day)
+        end
+        if params[:to].present?
+          posts = posts.where("blacklisted_at <= ?", Date.parse(params[:to]).end_of_day)
+        end
+
+        send_data PostsCSVExporter.new(posts).call,
                   filename: "blacklist_export_#{Time.now.to_i}.csv"
       end
     end
