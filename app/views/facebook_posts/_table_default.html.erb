@@ -3,14 +3,16 @@
     <tr>
       <th>Image</th>
       <th>Message</th>
+      <th><%= t(:brand_name) %></th>
+      <th><%= t(:licensor_name) %></th>
+      <th><%= t(:platform_or_company) %></th>
+      <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
+      <th><%= sort_link(@q, :published_at, "Published at") %></th>
       <% if @status == "blacklisted" %>
         <th><%= sort_link(@q, :blacklisted_at, "Reported at") %></th>
       <% elsif @status == "whitelisted" %>
         <th><%= sort_link(@q, :whitelisted_at, "Approved at") %></th>
       <% end %>
-      <th><%= t(:platform_or_company) %></th>
-      <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
-      <th><%= sort_link(@q, :published_at, "Published at") %></th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -23,7 +25,6 @@
                       post.permalink,
                       target: "_blank" if post.image_url.present? %>
         </td>
-
         <td>
           <%= auto_link(post.message) %>
           <br>
@@ -34,7 +35,21 @@
             &nbsp;Go to post
           <% end %>
         </td>
-
+        <td>
+          <%= post.brand_names %>
+        </td>
+        <td>
+          <%= post.licensor_names %>
+        </td>
+        <td>
+          <%= post.all_domains.join(", ") %>
+        </td>
+        <td>
+          <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
+        </td>
+        <td>
+          <%= l(post.published_at, format: :compact) %>
+        </td>
         <% if @status.in? ["blacklisted", "whitelisted"] %>
           <td>
             <%= l(post.status_changed_at, format: :compact) if post.status_changed_at %>
@@ -42,18 +57,6 @@
             <%= post.status_changed_by if post.status_changed_by%>
           </td>
         <% end %>
-
-        <td>
-          <%= post.all_domains.join(", ") %>
-        </td>
-
-        <td>
-          <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
-        </td>
-
-        <td>
-          <%= l(post.published_at, format: :compact) %>
-        </td>
 
         <td class="index-actions">
           <%= render 'actions', post: post %>

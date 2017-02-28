@@ -59,6 +59,8 @@
       <th><%= sort_link(@q, :facebook_page_name, t(:facebook_page_name)) %></th>
       <th><%= t(:message) %></th>
       <th><%= t(:link_to_product) %></th>
+      <th><%= t(:link_to_ad_screenshot) %></th>
+      <th><%= t(:link_to_product_screenshot) %></th>
     </tr>
   </thead>
 
@@ -98,6 +100,8 @@
         <td>
           <%= link_to "Link", post.all_links.last, target: "_blank" %>
         </td>
+        <td></td>
+        <td></td>
       </tr>
     <% end %>
   </tbody>
