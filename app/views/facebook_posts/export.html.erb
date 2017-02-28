@@ -100,8 +100,12 @@
         <td>
           <%= link_to "Link", post.all_links.last, target: "_blank" %>
         </td>
-        <td></td>
-        <td></td>
+        <td>
+          <%= ad_screenshot_links(post) %>
+        </td>
+        <td>
+          <%= product_screenshot_links(post) %>
+        </td>
       </tr>
     <% end %>
   </tbody>

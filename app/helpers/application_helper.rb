@@ -16,4 +16,18 @@ module ApplicationHelper
       ["Last 30 days", 30.days.ago.beginning_of_day],
     ], params[:q][field_name])
   end
+
+  def ad_screenshot_links(post)
+    post.ad_screenshots.each_with_index.map do |screenshot, i|
+      name = i > 0 ? "Link #{i.succ}" : "Link"
+      link_to name, screenshot.image.url, target: "_blank"
+    end.join("<br>").html_safe
+  end
+
+  def product_screenshot_links(post)
+    post.product_screenshots.each_with_index.map do |screenshot, i|
+      name = i > 0 ? "Link #{i.succ}" : "Link"
+      link_to name, screenshot.image.url, target: "_blank"
+    end.join("<br>").html_safe
+  end
 end
