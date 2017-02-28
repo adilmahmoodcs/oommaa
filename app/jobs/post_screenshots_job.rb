@@ -20,14 +20,27 @@ class PostScreenshotsJob
   private
 
   def save_screenshot!(post, url, klass)
-    tmp_file_name = ScreenshotGrabber.new(url).call
-    return unless tmp_file_name
+    begin
+      tmp_file_name = ScreenshotGrabber.new(url).call
+      return unless tmp_file_name
 
-    screenshot = klass.new
-    screenshot.facebook_post = post
-    screenshot.image = File.open(tmp_file_name)
-    screenshot.save!
+      screenshot = klass.new
+      screenshot.facebook_post = post
+      screenshot.image = File.open(tmp_file_name)
+      screenshot.save!
 
-    # File.unlink(tmp_file_name)
+      # File.unlink(tmp_file_name)
+      logger.info "PostScreenshotsJob: saved #{screenshot.image.url}"
+    rescue Capybara::Poltergeist::StatusFailError,
+           Capybara::Poltergeist::BrowserError,
+           Capybara::Poltergeist::DeadClient,
+           Capybara::Poltergeist::TimeoutError,
+           Errno::EPIPE => e
+      logger.error "PostScreenshotsJob: Capybara error for url #{url}: #{e.message.inspect}"
+    end
+  end
+
+  def logger
+    @logger ||= Logger.new(Rails.root.join('log/jobs.log'))
   end
 end
