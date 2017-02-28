@@ -21,7 +21,7 @@ class ScreenshotGrabber
     sleep 2
     return false unless valid_status_code?(page.driver.status_code.to_i)
 
-    file_name = "#{Dir.tmpdir}/ScreenshotGrabber_#{Time.now.to_f}.jpg"
+    file_name = "#{Dir.tmpdir}/counterfind_screenshot_#{Time.now.to_f}.jpg"
     page.driver.save_screenshot(file_name, screenshot_options)
 
     file_name

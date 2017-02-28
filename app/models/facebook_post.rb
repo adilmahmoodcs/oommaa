@@ -38,6 +38,7 @@ class FacebookPost < ApplicationRecord
   ]
 
   belongs_to :facebook_page
+  has_many :screenshots, dependent: :destroy
   has_many :ad_screenshots
   has_many :product_screenshots
 
