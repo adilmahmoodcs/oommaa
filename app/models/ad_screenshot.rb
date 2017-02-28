@@ -17,9 +17,5 @@
 #  index_screenshots_on_facebook_post_id  (facebook_post_id)
 #
 
-FactoryGirl.define do
-  factory :screenshot do
-    facebook_post nil
-  end
-
+class AdScreenshot < Screenshot
 end
