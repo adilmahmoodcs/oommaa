@@ -1,0 +1,116 @@
+# flow code to be used on code2flow.com
+
+User sign in;
+
+switch(Action) {
+  case Add keyword:
+  case Add Licensor:
+    End;
+    break;
+  case Add Brand:
+    [loop]
+    Import
+    matching pages;
+    if (Is shut
+    down?) {
+      Mark page
+      and posts as
+      shut down;
+    } else {
+      import_posts:
+      [loop]
+      Import all recent
+      posts of page;
+      check_post_status:
+      switch(Check post
+      status) {
+        case Any domain is
+        Blacklisted:
+          Blacklist!;
+          break;
+        case All domains are
+        whitelisted:
+          Whitelist!;
+          break;
+        case Any keyword
+        matches:
+          Suspect!;
+          break;
+      }
+    }
+    break;
+  case Add Domain:
+    switch Status: {
+      case Whitelisted:
+        Re-check
+        domains's
+        blacklisted
+        posts;
+        goto check_post_status;
+      case Blacklisted:
+        Re-check
+        domains's
+        whitelisted
+        posts;
+        goto check_post_status;
+        break
+    }
+    break;
+  case Insert URL:
+    (try to) find
+    FB object
+    from url;
+    if (Found?) {
+      Import that
+      post /
+      image /
+      video
+      as blacklisted;
+      blacklist_domains:
+      Mark its domains
+      as blacklisted;
+      if (Its page
+      exists?) {
+        goto import_posts;
+      } else {
+        Also create
+        the Page;
+        goto check_post_status;
+      }
+    }
+
+    break;
+  case Change Post Status:
+    switch(Status) {
+      case Not suspect:
+        Mark as
+        not suspect;
+        break;
+      case Suspect:
+        Mark as
+        suspect;
+        break;
+      case Whitelist:
+        Mark as
+        whitelisted;
+        break;
+      case Blacklisted:
+        Mark as
+        blacklisted;
+        goto blacklist_domains;
+        break;
+      case Report to Facebook:
+        Mark as
+        reported to FB;
+        check_shut_down:
+        if ([loop] is
+        shut down?) {
+          Mark as
+          shut down;
+        } else {
+          loop check_shut_down;
+        }
+      break;
+    }
+    break;
+}
