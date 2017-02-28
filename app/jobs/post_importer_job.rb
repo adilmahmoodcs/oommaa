@@ -45,8 +45,6 @@ class PostImporterJob
       brand_ids: matching_brands_for(data["name"]).map(&:id)
     )
 
-    # start import of all page posts
-    PostsImporterJob.perform_in(1.minutes, page.id)
     logger.info "PostImporterJob: created new FacebookPage #{page.id}"
     page
   end
