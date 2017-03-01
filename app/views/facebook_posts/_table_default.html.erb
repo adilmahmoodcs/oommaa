@@ -10,8 +10,10 @@
       <th><%= sort_link(@q, :published_at, "Published at") %></th>
       <% if @status == "blacklisted" %>
         <th><%= sort_link(@q, :blacklisted_at, t(:blacklisted_at)) %></th>
+        <th><%= sort_link(@q, :blacklisted_by, t(:blacklisted_by)) %></th>
       <% elsif @status == "whitelisted" %>
-        <th><%= sort_link(@q, :whitelisted_at, "Approved at") %></th>
+        <th><%= sort_link(@q, :whitelisted_at, t(:whitelisted_at)) %></th>
+        <th><%= sort_link(@q, :whitelisted_by, t(:whitelisted_by)) %></th>
       <% end %>
       <% if @status == "blacklisted" %>
         <th><%= t(:link_to_ad_screenshot) %></th>
@@ -57,8 +59,9 @@
         <% if @status.in? ["blacklisted", "whitelisted"] %>
           <td>
             <%= l(post.status_changed_at, format: :compact) if post.status_changed_at %>
-            <br>
-            <%= post.status_changed_by if post.status_changed_by%>
+          </td>
+          <td>
+            <%= post.status_changed_by if post.status_changed_by %>
           </td>
         <% end %>
         <% if @status == "blacklisted" %>
