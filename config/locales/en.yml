@@ -35,6 +35,9 @@ en:
   time:
     formats:
       compact: "%m-%d-%Y %H:%M"
+  date:
+    formats:
+      compact: "%m-%d-%Y"
   activities:
     brand:
       create: 'Created Brand "%{name}"'
