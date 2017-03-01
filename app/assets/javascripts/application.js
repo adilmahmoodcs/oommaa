@@ -15,11 +15,14 @@
 //= require tether
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require select2
 //= require facebook_report
 //= require search_form
+//= require selects
 //= require_self
 
 document.addEventListener("turbolinks:load", function() {
   FacebookReport.init()
   SearchForm.init()
+  Selects.init()
 })
