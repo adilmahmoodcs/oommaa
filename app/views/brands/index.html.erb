@@ -7,39 +7,7 @@
   <% end %>
 </h1>
 
-<%= form_for Brand.new, html: { class: "form-inline" } do |f| %>
-  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-    <div class="input-group-addon"><%= icon("plus") %></div>
-    <%= f.text_field :name,
-                     class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
-                     placeholder: "Name" %>
-  </div>
-  <%= f.button class: "btn btn-primary" do %>
-    <%= icon("plus") %>
-    Add New
-  <% end %>
-<% end %>
-
-<hr>
-
-<%= search_form_for @q, class: "form-inline" do |f| %>
-  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-    <div class="input-group-addon"><%= icon("search") %></div>
-    <%= f.search_field :name_cont,
-                       class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
-                       placeholder: "Search term" %>
-  </div>
-  <%= button_tag class: "btn btn-primary" do %>
-    <%= icon("search") %>
-    Search
-  <% end %>
-  &nbsp;
-  <%= link_to url_for, class: "btn btn-secondary" do %>
-    <%= icon("eraser") %>
-    Clear search
-  <% end %>
-<% end %>
-
+<%= render "shared/resource_top_forms", resource: Brand.new %>
 <hr>
 
 <%= paginate @brands %>

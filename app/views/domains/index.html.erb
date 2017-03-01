@@ -4,16 +4,20 @@
   (<%= @domains.total_count %>)
 </h1>
 
-<%= form_for Domain.new, html: { class: "form-inline" } do |f| %>
-  <%= f.hidden_field :status, value: @status if @status %>
-  <%= f.text_field :name,
-                   class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
-                   placeholder: "Name" %>
-  <%= f.button class: "btn btn-primary" do %>
-    <%= icon("plus") %>
-    Add New
-  <% end %>
-<% end %>
+<div class="card">
+  <div class="card-block">
+    <%= form_for Domain.new, html: { class: "form-inline" } do |f| %>
+      <%= f.hidden_field :status, value: @status if @status %>
+      <%= f.text_field :name,
+                       class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
+                       placeholder: "Name" %>
+      <%= f.button class: "btn btn-primary" do %>
+        <%= icon("plus") %>
+        Add New
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
 <br>
 
