@@ -21,7 +21,8 @@
   <% if params[:to].present? %>
     to
     <%= l(Date.parse(params[:to]), format: :compact) %>
-  <% else %>
+  <% end %>
+  <% if !params[:from].present? && !params[:to].present? %>
     All time
   <% end %>
   (<%= @posts.total_count %> posts)
