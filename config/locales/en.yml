@@ -15,8 +15,8 @@ en:
   licensor_name: Licensor
   platform_or_company: Platform/Company
   published_at: Published at
-  blacklisted_at: Reported at
-  blacklisted_by: Reported by
+  blacklisted_at: Discovered at
+  blacklisted_by: Discovered by
   whitelisted_at: Approved at
   whitelisted_by: Approved by
   reported_to_facebook: Reported to Facebook

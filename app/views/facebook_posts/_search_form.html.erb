@@ -63,7 +63,7 @@
 
         <% if @status == "blacklisted" %>
           <div class="col-md-3 form-group">
-            <%= f.label :blacklisted_at_gteq, "Reported at date" %>
+            <%= f.label :blacklisted_at_gteq, "#{t(:blacklisted_at)} date" %>
             <%= f.select :blacklisted_at_gteq,
                          date_filter_options_for(:blacklisted_at_gteq),
                          { include_blank: true },

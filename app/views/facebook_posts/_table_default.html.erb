@@ -9,7 +9,7 @@
       <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
       <th><%= sort_link(@q, :published_at, "Published at") %></th>
       <% if @status == "blacklisted" %>
-        <th><%= sort_link(@q, :blacklisted_at, "Reported at") %></th>
+        <th><%= sort_link(@q, :blacklisted_at, t(:blacklisted_at)) %></th>
       <% elsif @status == "whitelisted" %>
         <th><%= sort_link(@q, :whitelisted_at, "Approved at") %></th>
       <% end %>
