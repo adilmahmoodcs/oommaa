@@ -11,12 +11,17 @@ class PostImporterJob
     when :photo
       FBPhotoReader.new(object_id: object_id, token: token).call
     when :post
-      FBPostReader.new(object_id: object_id, token: token).call
+      begin
+        FBPostReader.new(object_id: object_id, token: token).call
+      rescue Koala::Facebook::ClientError => e
+        if e.message.match?(/type \(Photo\)/) # so it's a photo...
+          FBPhotoReader.new(object_id: object_id, token: token).call
+        else
+          raise e
+        end
+      end
     when :video
       FBVideoReader.new(object_id: object_id, token: token).call
-    when :page
-      # find_or_create_page(object_id)
-      return
     else
       return
     end
@@ -84,7 +89,7 @@ class PostImporterJob
     post
   end
 
-  def matching_brands_for(term)
+  def matching_brand_ids_for(term)
     Brand.select(:id, :name).find_all do |brand|
       term.to_s.match?(/#{brand.name}/i)
     end.map(&:id)

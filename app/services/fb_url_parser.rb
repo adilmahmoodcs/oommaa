@@ -11,6 +11,7 @@ class FbURLParser
 
   def call
     case url.strip
+    # can also be a photo...
     when /\Ahttps:\/\/www\.facebook\.com\/.+\/posts\/(\w+)/
       [$1, :post]
     when /\Ahttps:\/\/www\.facebook\.com\/groups\/.+\/permalink\/(\w+)/
