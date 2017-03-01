@@ -50,6 +50,6 @@ class BrandsController < ApplicationController
   end
 
   def brand_params
-    params.require(:brand).permit(:name, :logo, :licensor_id)
+    params.require(:brand).permit(:name, :logo, :licensor_id, { nicknames: [] })
   end
 end

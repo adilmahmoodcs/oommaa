@@ -23,7 +23,17 @@
                             :id,
                             :name,
                             { include_blank: true },
-                            class: "form-control" %>
+                            class: "form-control select2" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :nicknames %>
+    <% f.object.nicknames.each do |nickname| %>
+      <%= text_field_tag "brand[nicknames][]", nickname, class: "form-control" %>
+    <% end %>
+    <% 4.times do %>
+      <%= text_field_tag "brand[nicknames][]", nil, class: "form-control" %>
+    <% end %>
   </div>
 
   <div class="form-group">

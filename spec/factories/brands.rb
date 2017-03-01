@@ -11,10 +11,12 @@
 #  logo_file_size    :integer
 #  logo_updated_at   :datetime
 #  licensor_id       :integer
+#  nicknames         :string           default("{}"), is an Array
 #
 # Indexes
 #
 #  index_brands_on_licensor_id  (licensor_id)
+#  index_brands_on_nicknames    (nicknames)
 #
 
 FactoryGirl.define do

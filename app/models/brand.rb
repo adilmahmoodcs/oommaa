@@ -11,10 +11,12 @@
 #  logo_file_size    :integer
 #  logo_updated_at   :datetime
 #  licensor_id       :integer
+#  nicknames         :string           default("{}"), is an Array
 #
 # Indexes
 #
 #  index_brands_on_licensor_id  (licensor_id)
+#  index_brands_on_nicknames    (nicknames)
 #
 
 class Brand < ApplicationRecord
@@ -25,6 +27,7 @@ class Brand < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: true
 
+  before_validation :remove_blank_values
   after_commit :start_pages_importer, on: :create
 
   has_attached_file :logo,
@@ -48,5 +51,9 @@ class Brand < ApplicationRecord
 
   def start_pages_importer
     PagesImporterJob.perform_async(id)
+  end
+
+  def remove_blank_values
+    nicknames.delete('')
   end
 end

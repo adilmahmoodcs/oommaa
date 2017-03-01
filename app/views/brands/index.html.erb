@@ -7,7 +7,38 @@
   <% end %>
 </h1>
 
-<%= render "shared/resource_top_forms", resource: Brand.new %>
+<div class="card">
+  <div class="card-block">
+    <div class="row">
+      <div class="col-md-6">
+          <%= link_to new_brand_path, class: "btn btn-primary" do %>
+            <%= icon("plus") %>
+            Add New
+          <% end %>
+      </div>
+
+      <div class="col-md-6">
+        <%= search_form_for @q, class: "form-inline search-form text-right" do |f| %>
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon"><%= icon("search") %></div>
+            <%= f.search_field :name_cont,
+                               class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
+                               placeholder: "Search term" %>
+          </div>
+          <%= button_tag class: "btn btn-primary" do %>
+            <%= icon("search") %>
+            Search
+          <% end %>
+          &nbsp;
+          <%= link_to url_for, class: "btn btn-secondary" do %>
+            <%= icon("eraser") %>
+            Clear search
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 <hr>
 
 <%= paginate @brands %>
@@ -17,7 +48,8 @@
     <tr>
       <th>Logo</th>
       <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
-      <th>Licensor</th>
+      <th>Nicknames</th>
+      <th><%= sort_link(@q, :licensor_id, "Licensor") %></th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -30,6 +62,9 @@
         </td>
         <td>
           <%= brand.name %>
+        </td>
+        <td>
+          <%= brand.nicknames.join(", ") %>
         </td>
         <td>
           <%= brand.licensor&.name %>
