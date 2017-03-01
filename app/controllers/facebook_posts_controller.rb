@@ -12,22 +12,6 @@ class FacebookPostsController < ApplicationController
     @status = params[:q][:status_eq]
   end
 
-  def new
-    @post = FacebookPost.new
-  end
-
-  def create
-    if url = facebook_post_params[:permalink].presence
-      PostImporterJob.perform_async(url, current_user.email)
-      current_user.create_activity(:url_added, owner: current_user, parameters: { name: url })
-      flash[:notice] = "A job to import this post was enqueued."
-    else
-      flash[:alert] = "Unable to parse URL. It may be misspelled or not yet supported."
-    end
-
-    redirect_back(fallback_location: root_path)
-  end
-
   def export
     respond_to do |format|
       @q = FacebookPost.ransack(params[:q])

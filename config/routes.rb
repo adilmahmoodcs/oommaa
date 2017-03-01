@@ -5,8 +5,14 @@ Rails.application.routes.draw do
   resources :keywords
   resources :brands
   resources :activities, only: [:index]
+  resources :imports, only: [] do
+    collection do
+      get :url
+      post :create_from_url
+    end
+  end
 
-  resources :facebook_posts, only: [:index, :new, :create] do
+  resources :facebook_posts, only: [:index] do
     collection do
       get :export
     end
