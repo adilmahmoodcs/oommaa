@@ -28,6 +28,7 @@ class PostStatusJob
       old_status = post.status
       post.change_status_to!(status, "PostStatusJob")
       post.create_activity(status, parameters: { name: post.permalink, auto: true })
+      PostScreenshotsJob.perform_async(post.id) if status == "blacklisted"
       logger.info "PostStatusJob: changed FacebookPost #{post.id} status from #{old_status} to #{status}"
     end
   end

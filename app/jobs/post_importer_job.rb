@@ -68,6 +68,8 @@ class PostImporterJob
     Domain.blacklist_new_domains!(post.all_domains)
     # this will **probably** keep the post as blacklisted
     PostStatusJob.perform_async(post.id)
+    # import screenshots
+    PostScreenshotsJob.perform_async(post.id)
     logger.info "PostImporterJob: created new FacebookPost #{post.id}"
 
     post

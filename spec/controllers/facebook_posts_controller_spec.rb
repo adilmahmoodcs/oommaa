@@ -42,6 +42,38 @@ RSpec.describe FacebookPostsController, type: :controller do
         expect(ShutDownCheckerJob.jobs.size).to eq(0)
       end
     end
+
+    it "calls PostScreenshotsJob on blacklisted status change" do
+      facebook_post = FacebookPost.create! valid_attributes
+
+      post :change_status, params: { post_id: facebook_post.id, status: :blacklisted }
+      expect(PostScreenshotsJob.jobs.size).to eq(1)
+    end
+
+    it "does not call PostScreenshotsJob on other status change" do
+      facebook_post = FacebookPost.create! valid_attributes
+
+      (statuses - ["blacklisted"]).each do |status|
+        post :change_status, params: { post_id: facebook_post.id, status: status }
+        expect(PostScreenshotsJob.jobs.size).to eq(0)
+      end
+    end
+
+    it "calls Domain.blacklist_new_domains! on blacklisted status change" do
+      facebook_post = FacebookPost.create! valid_attributes
+
+      expect(Domain).to receive(:blacklist_new_domains!)
+      post :change_status, params: { post_id: facebook_post.id, status: :blacklisted }
+    end
+
+    it "does not call Domain.blacklist_new_domains! on other status change" do
+      facebook_post = FacebookPost.create! valid_attributes
+
+      (statuses - ["blacklisted"]).each do |status|
+        expect(Domain).to_not receive(:blacklist_new_domains!)
+        post :change_status, params: { post_id: facebook_post.id, status: status }
+      end
+    end
   end
 
 end
