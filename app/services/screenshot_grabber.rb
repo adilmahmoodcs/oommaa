@@ -12,14 +12,13 @@ class ScreenshotGrabber
 
   def call
     setup!
-    # page.driver.resize(1024)
     page.driver.headers = {
       "User-Agent" => user_agent
     }
 
     visit url
     sleep 2
-    return false unless valid_status_code?(page.driver.status_code.to_i)
+    return false unless valid_status_code?(page.status_code.to_i)
 
     file_name = "#{Dir.tmpdir}/counterfind_screenshot_#{Time.now.to_f}.jpg"
     page.driver.save_screenshot(file_name, screenshot_options)
@@ -48,8 +47,8 @@ class ScreenshotGrabber
   end
 
   def valid_status_code?(code)
-    return true if status_code == 200
-    return true if status_code / 100 == 3
+    return true if code == 200
+    return true if code / 100 == 3
   end
 
   def screenshot_options
