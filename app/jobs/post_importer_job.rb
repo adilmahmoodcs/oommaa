@@ -15,7 +15,9 @@ class PostImporterJob
     when :video
       FBVideoReader.new(object_id: object_id, token: token).call
     when :page
-      find_or_create_page(object_id)
+      # find_or_create_page(object_id)
+      return
+    else
       return
     end
 
