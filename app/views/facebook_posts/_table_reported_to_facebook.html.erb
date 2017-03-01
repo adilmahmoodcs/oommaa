@@ -10,6 +10,8 @@
       <th><%= sort_link(@q, :reported_to_facebook_at, "Reported to Facebook at") %></th>
       <th><%= sort_link(@q, :reported_to_facebook_by, "Reported to Facebook by") %></th>
       <th><%= sort_link(@q, :shut_down_by_facebook_at, "Shut down by Facebook at") %></th>
+      <th><%= t(:link_to_ad_screenshot) %></th>
+      <th><%= t(:link_to_product_screenshot) %></th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -56,6 +58,12 @@
           <% else %>
             Pending
           <% end %>
+        </td>
+        <td>
+          <%= ad_screenshot_links(post) %>
+        </td>
+        <td>
+          <%= product_screenshot_links(post) %>
         </td>
 
         <td class="index-actions">

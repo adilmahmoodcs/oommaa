@@ -13,6 +13,10 @@
       <% elsif @status == "whitelisted" %>
         <th><%= sort_link(@q, :whitelisted_at, "Approved at") %></th>
       <% end %>
+      <% if @status == "blacklisted" %>
+        <th><%= t(:link_to_ad_screenshot) %></th>
+        <th><%= t(:link_to_product_screenshot) %></th>
+      <% end %>
       <th>Actions</th>
     </tr>
   </thead>
@@ -55,6 +59,14 @@
             <%= l(post.status_changed_at, format: :compact) if post.status_changed_at %>
             <br>
             <%= post.status_changed_by if post.status_changed_by%>
+          </td>
+        <% end %>
+        <% if @status == "blacklisted" %>
+          <td>
+            <%= ad_screenshot_links(post) %>
+          </td>
+          <td>
+            <%= product_screenshot_links(post) %>
           </td>
         <% end %>
 
