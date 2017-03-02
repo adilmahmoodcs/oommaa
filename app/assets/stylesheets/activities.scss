@@ -1,0 +1,12 @@
+.table-destroy {
+  @extend .table-active;
+}
+.table-whitelisted {
+  @extend .table-success;
+}
+.table-blacklisted {
+  @extend .table-danger;
+}
+.table-reported_to_facebook {
+  @extend .table-info;
+}
