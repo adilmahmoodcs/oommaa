@@ -36,15 +36,25 @@ RSpec.describe PagesImporterJob, type: :job do
     end
   end
 
-  it "re-enqueue itself" do
+  it "re-enqueue itself if brand exists" do
+    brand
     allow_any_instance_of(PagesImporterJob).to receive(:import_pages) # stub method
     expect{
-      PagesImporterJob.new.perform(666)
+      PagesImporterJob.new.perform(brand.id)
     }.to(
       change(PagesImporterJob.jobs, :size).by(1)
     )
 
-    expect(PagesImporterJob.jobs.first["args"]).to eq([666])
+    expect(PagesImporterJob.jobs.first["args"]).to eq([brand.id])
+  end
+
+  it "does not re-enqueue itself if brand does not exists" do
+    allow_any_instance_of(PagesImporterJob).to receive(:import_pages) # stub method
+    expect{
+      PagesImporterJob.new.perform(666)
+    }.to_not(
+      change(PagesImporterJob.jobs, :size)
+    )
   end
 
   it "starts posts import" do
