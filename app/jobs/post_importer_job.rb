@@ -7,23 +7,35 @@ class PostImporterJob
     object_id, type = FbURLParser.new(url).call
     return unless object_id
 
-    data = case type
-    when :photo
-      FBPhotoReader.new(object_id: object_id, token: token).call
-    when :post
-      begin
+    begin
+      data = case type
+      when :photo
+        FBPhotoReader.new(object_id: object_id, token: token).call
+      when :post
         FBPostReader.new(object_id: object_id, token: token).call
-      rescue Koala::Facebook::ClientError => e
-        if e.message.match?(/type \(Photo\)/) # so it's a photo...
+      when :video
+        FBVideoReader.new(object_id: object_id, token: token).call
+      else # type not supported
+        return
+      end
+    rescue Koala::Facebook::ClientError => e
+      if e.fb_error_code == 100
+        # so it's a photo...
+        if e.message.match?(/nonexisting field.*type \(Photo\)/i)
           FBPhotoReader.new(object_id: object_id, token: token).call
+        # so it's a post...
+        elsif e.message.match?(/nonexisting field.*type \(Post\)/i)
+          FBPostReader.new(object_id: object_id, token: token).call
+        # cannot read for some reason (deleted? old?)
+        elsif e.message.match?(/Object with ID .* does not exist/i)
+          logger.info "PostImporterJob: cannot read URL, skipping #{url}"
+          return
         else
           raise e
         end
+      else
+        raise e
       end
-    when :video
-      FBVideoReader.new(object_id: object_id, token: token).call
-    else
-      return
     end
 
     data["id"] = data["id"].split("_").last
