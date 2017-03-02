@@ -81,7 +81,7 @@ class PostImporterJob
   def create_post(data, page, user_email)
     post = page.facebook_posts.create!(
       facebook_id: data["id"],
-      message: data["name"],
+      message: (data["name"].presence || "<BLANK MESSAGE>"),
       published_at: data["created_time"],
       permalink: data["permalink_url"],
       image_url: data["picture"],
