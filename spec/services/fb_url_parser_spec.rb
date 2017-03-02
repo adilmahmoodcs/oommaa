@@ -24,7 +24,7 @@ RSpec.describe FbURLParser do
 
   it "can extract a post id from url" do
     expect(subject.new(post_url).call).to eq(["1473078859383568", :post])
-    expect(subject.new(post_url2).call).to eq(["408307019517746", :post])
+    expect(subject.new(post_url2).call).to eq(["419027201779061", :post])
     expect(subject.new(post_url3).call).to eq(["652545598258367", :post])
   end
 

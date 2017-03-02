@@ -18,7 +18,7 @@ class FbURLParser
       [$1, :post]
     # FIXME this can also be a user status update
     when /\Ahttps:\/\/www\.facebook\.com\/permalink\.php/
-      id = Addressable::URI.parse(url).query_values["id"].presence
+      id = Addressable::URI.parse(url).query_values["story_fbid"].presence
       [id, :post]
     when /\Ahttps:\/\/www\.facebook\.com\/.+\/videos\/(\w+)/
       [$1, :video]
