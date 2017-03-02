@@ -14,6 +14,12 @@
 //= require jquery_ujs
 //= require tether
 //= require bootstrap-sprockets
+//= require startui/plugins
+//= require jquery-ui
+//= require startui/lib/lobipanel/lobipanel
+//= require startui/lib/match-height/jquery.matchHeight
+//= require startui/lib/loader
+//= require startui/app
 //= require turbolinks
 //= require select2
 //= require facebook_report
@@ -27,4 +33,11 @@ document.addEventListener("turbolinks:load", function() {
   SearchForm.init()
   Selects.init()
   Forms.init()
+
+  $('.panel').lobiPanel({
+    sortable: true
+  });
+  $('.panel').on('dragged.lobiPanel', function(ev, lobiPanel){
+    $('.dahsboard-column').matchHeight();
+  });
 })
