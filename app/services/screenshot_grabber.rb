@@ -10,15 +10,15 @@ class ScreenshotGrabber
     @url = url
   end
 
-  def call
+  def call(timeout = 2)
     setup!
     page.driver.headers = {
       "User-Agent" => user_agent
     }
 
     visit url
-    sleep 2
     return false unless valid_status_code?(page.status_code.to_i)
+    sleep timeout
 
     file_name = "#{Dir.tmpdir}/counterfind_screenshot_#{Time.now.to_f}.jpg"
     page.driver.save_screenshot(file_name, screenshot_options)
@@ -29,13 +29,12 @@ class ScreenshotGrabber
   private
 
   def setup!
-    ENV["QT_QPA_PLATFORM"] = "offscreen" if linux? # needed for ubuntu
-
     Capybara.run_server = false
     Capybara.register_driver :poltergeist do |app|
       Capybara::Poltergeist::Driver.new(app, {
+        phantomjs: Phantomjs.path,
         js_errors: false,
-        phantomjs_options: ['--ignore-ssl-errors=yes', '--ssl-protocol=any']
+        phantomjs_options: ["--ignore-ssl-errors=yes", "--ssl-protocol=any"]
       })
     end
     Capybara.current_driver = :poltergeist

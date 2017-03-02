@@ -36,6 +36,7 @@ gem "paperclip", "~> 5.0.0"
 gem "aws-sdk", "~> 2.7"
 gem "capybara"
 gem "poltergeist"
+gem "phantomjs", require: "phantomjs/poltergeist"
 gem "rollbar", "~> 2.14"
 
 group :development, :test do
