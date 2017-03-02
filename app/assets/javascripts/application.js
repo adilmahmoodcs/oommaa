@@ -19,10 +19,12 @@
 //= require facebook_report
 //= require search_form
 //= require selects
+//= require forms
 //= require_self
 
 document.addEventListener("turbolinks:load", function() {
   FacebookReport.init()
   SearchForm.init()
   Selects.init()
+  Forms.init()
 })

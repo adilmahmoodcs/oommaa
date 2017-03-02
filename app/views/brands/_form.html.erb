@@ -31,9 +31,8 @@
     <% f.object.nicknames.each do |nickname| %>
       <%= text_field_tag "brand[nicknames][]", nickname, class: "form-control" %>
     <% end %>
-    <% 4.times do %>
-      <%= text_field_tag "brand[nicknames][]", nil, class: "form-control" %>
-    <% end %>
+    <%= text_field_tag "brand[nicknames][]", nil, class: "form-control multiple-field" %>
+    <%= link_to "Add another nickname", "#", class: "btn btn-sm btn-secondary add-another-field" %>
   </div>
 
   <div class="form-group">
