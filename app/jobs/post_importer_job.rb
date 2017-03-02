@@ -28,11 +28,14 @@ class PostImporterJob
           FBPostReader.new(object_id: object_id, token: token).call
         # cannot read for some reason (deleted? old?)
         elsif e.message.match?(/Object with ID .* does not exist/i)
-          logger.info "PostImporterJob: cannot read URL, skipping #{url}"
+          logger.info "PostImporterJob: skipping, cannot read URL: #{url}"
           return
         else
           raise e
         end
+      elsif e.fb_error_code == 12
+        logger.info "PostImporterJob: skipping, single URL not supported: #{url}"
+        return
       else
         raise e
       end
