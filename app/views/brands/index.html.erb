@@ -17,12 +17,12 @@
           <% end %>
       </div>
 
-      <div class="col-md-6">
-        <%= search_form_for @q, class: "form-inline search-form text-right" do |f| %>
+      <div class="col-md-6 text-right">
+        <%= search_form_for @q, class: "form-inline" do |f| %>
           <div class="input-group mb-2 mr-sm-2 mb-sm-0">
             <div class="input-group-addon"><%= icon("search") %></div>
-            <%= f.search_field :name_cont,
-                               class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
+            <%= f.text_field :name_cont,
+                               class: "form-control mb-2 mr-sm-2 mb-sm-0",
                                placeholder: "Search term" %>
           </div>
           <%= button_tag class: "btn btn-primary" do %>
@@ -39,7 +39,6 @@
     </div>
   </div>
 </div>
-<hr>
 
 <%= paginate @brands %>
 
