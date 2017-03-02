@@ -6,7 +6,9 @@ module ApplicationHelper
   def render_if_exists(path, *args)
     render path, *args
   rescue ActionView::MissingTemplate
-    render args.first[:fallback]
+    if args.first && fallback = args.first[:fallback].presence
+      render fallback
+    end
   end
 
   def date_filter_options_for(field_name)
