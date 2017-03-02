@@ -3,15 +3,17 @@ class PagesImporterJob
   sidekiq_options queue: "pages"
 
   def perform(brand_id)
-    import_pages(brand_id)
+    brand = Brand.find_by(id: brand_id)
+    return unless brand # brand was deleted
+
+    import_pages(brand)
 
     self.class.perform_in(60.minutes, brand_id)
   end
 
   private
 
-  def import_pages(brand_id)
-    brand = Brand.find(brand_id)
+  def import_pages(brand)
     pages_data = FBPageSearcher.new(term: brand.name, token: token).call
 
     pages_data.each do |data|
