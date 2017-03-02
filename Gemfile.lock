@@ -73,8 +73,6 @@ GEM
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
     arel (7.1.4)
-    autoprefixer-rails (6.7.2)
-      execjs
     aws-sdk (2.7.15)
       aws-sdk-resources (= 2.7.15)
     aws-sdk-core (2.7.15)
@@ -84,9 +82,6 @@ GEM
       aws-sdk-core (= 2.7.15)
     aws-sigv4 (1.0.0)
     bcrypt (3.1.11)
-    bootstrap (4.0.0.alpha6)
-      autoprefixer-rails (>= 6.0.3)
-      sass (>= 3.4.19)
     builder (3.2.3)
     byebug (9.0.6)
     capistrano (3.7.2)
@@ -398,7 +393,6 @@ PLATFORMS
 DEPENDENCIES
   annotate
   aws-sdk (~> 2.7)
-  bootstrap (~> 4.0.0.alpha6)
   byebug
   capistrano (~> 3.7)
   capistrano-rails (~> 1.2)

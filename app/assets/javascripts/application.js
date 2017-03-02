@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require tether
-//= require bootstrap-sprockets
+//= require startui/lib/bootstrap/bootstrap
 //= require startui/plugins
 //= require jquery-ui
 //= require startui/lib/lobipanel/lobipanel

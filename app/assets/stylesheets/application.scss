@@ -2,20 +2,12 @@
  *= require startui/vendor/lobipanel
  *= require jquery-ui
  *= require startui/pages/widgets
+ *= require startui/vendor/bootstrap
  *= require startui/main
  *= require_self
  */
 
 @import "font-awesome-sprockets";
 @import "font-awesome";
-
-// @import "variables"; // Custom bootstrap variables must be set or imported *before* bootstrap.
-@import "bootstrap";
-
 @import "select2";
-@import "select2-bootstrap4";
-
-@import "main";
-// @import "sidebar";
-// @import "forms";
-// @import "tables";
+@import "counterfind";
