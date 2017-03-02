@@ -24,9 +24,11 @@
               </div>
           </div>
         </div>
-        <div class="site-header-shown">
-          Counterfind
-        </div>
+        <% if user_signed_in? %>
+          <div class="site-header-shown">
+            <%= current_user.email %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
