@@ -4,7 +4,9 @@ class BrandsController < ApplicationController
   def index
     @q = Brand.ransack(params[:q])
     @q.sorts = "name_case_insensitive asc" if @q.sorts.empty?
-    @brands = @q.result.page(params[:page])
+    @brands = @q.result.
+                 includes(:licensor).
+                 page(params[:page])
   end
 
   def show

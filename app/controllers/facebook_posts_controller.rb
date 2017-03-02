@@ -8,6 +8,7 @@ class FacebookPostsController < ApplicationController
     @q.sorts = "published_at desc" if @q.sorts.empty?
 
     @posts = @q.result.
+                includes(:facebook_page, :ad_screenshots, :product_screenshots).
                 page(params[:page])
     @status = params[:q][:status_eq]
   end
