@@ -8,6 +8,7 @@
 
 <%= paginate @posts %>
 
+<%= render_if_exists "mass_actions_#{@status}" %>
 <%= render_if_exists "table_#{@status}", fallback: "table_default" %>
 
 <%= paginate @posts %>

@@ -3,14 +3,15 @@ class ImportsController < ApplicationController
   end
 
   def create_from_url
-    if url = params[:url].presence
-      PostImporterJob.perform_async(url, current_user.email, params[:brand_id])
-      current_user.create_activity(:url_added, owner: current_user, parameters: { name: url })
-      flash[:notice] = "A job to import this post was enqueued."
-    else
-      flash[:alert] = "Unable to parse URL. It may be missing, misspelled or not yet supported."
+    if params[:url].blank? || params[:brand_id].blank?
+      flash[:alert] = "Error: please fill all the fields"
+      redirect_to url_imports_path and return
     end
 
-    redirect_back(fallback_location: url_imports_path)
+    PostImporterJob.perform_async(url, current_user.email, params[:brand_id])
+    current_user.create_activity(:url_added, owner: current_user, parameters: { name: url })
+
+    flash[:notice] = "A job to import this post was enqueued."
+    redirect_to url_imports_path
   end
 end
