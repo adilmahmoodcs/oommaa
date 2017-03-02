@@ -17,6 +17,10 @@ set :bundle_jobs, 3
 set :sidekiq_role, -> { :sidekiq }
 set :sidekiq_timeout, 60
 
+set :rollbar_token, "dd1b969fcd9d41bfa12e891423abf01a"
+set :rollbar_env, Proc.new { fetch :stage }
+set :rollbar_role, Proc.new { :app }
+
 namespace :deploy do
   before :publishing, 'puma:config'
   after :finishing, :cleanup

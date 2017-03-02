@@ -303,6 +303,8 @@ GEM
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rinku (2.0.2)
+    rollbar (2.14.0)
+      multi_json
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -426,6 +428,7 @@ DEPENDENCIES
   ransack!
   rb-fsevent
   rinku (~> 2.0.2)
+  rollbar (~> 2.14)
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   select2-rails (~> 4.0.3)
