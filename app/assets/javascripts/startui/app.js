@@ -1,4 +1,4 @@
-$(document).ready(function(){
+document.addEventListener("turbolinks:load", function() {
 /* ==========================================================================
 	Scroll
 	========================================================================== */
@@ -290,7 +290,7 @@ $(document).ready(function(){
 	$('[data-toggle="popover"]').popover({
 		trigger: 'focus'
 	});
-	
+
 /* ==========================================================================
 	Full height box
 	========================================================================== */
@@ -558,7 +558,7 @@ $(document).ready(function(){
 
 	$('.control-panel-toggle').on('click', function() {
 		var self = $(this);
-		
+
 		if (self.hasClass('open')) {
 			self.removeClass('open');
 			$('.control-panel').removeClass('open');

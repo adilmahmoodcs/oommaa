@@ -1,11 +1,11 @@
-<h1>
+<h3>
   Keywords
   <% if term = params.dig(:q, :name_cont).presence %>
     (matching '<%= term %>')
   <% else %>
     (all)
   <% end %>
-</h1>
+</h3>
 
 <%= render "shared/resource_top_forms", resource: Keyword.new %>
 <hr>
