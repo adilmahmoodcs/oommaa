@@ -1,0 +1,7 @@
+<% if false && @posts.total_count > 0 %>
+  <%= link_to "Delete all #{@posts.total_count} posts",
+              "#",
+              class: "btn btn-danger",
+              "data-confirm": "This will delete #{@posts.total_count} posts. Are you sure?"
+ %>
+<% end %>
