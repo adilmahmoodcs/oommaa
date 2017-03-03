@@ -19,7 +19,12 @@ class PostImporterJob
         return
       end
     rescue Koala::Facebook::ClientError => e
-      if e.fb_error_code == 100
+      case e.fb_error_code
+      when 4
+        logger.info "PostImporterJob: rate limiting, re-enqueued"
+        self.class.perform_in(rand(10..60).minutes, page_id)
+        return
+      when 100
         # so it's a photo...
         if e.message.match?(/nonexisting field.*type \(Photo\)/i)
           FBPhotoReader.new(object_id: object_id, token: token).call
@@ -33,7 +38,7 @@ class PostImporterJob
         else
           raise e
         end
-      elsif e.fb_error_code == 12
+      when 12
         logger.info "PostImporterJob: skipping, single URL not supported: #{url}"
         return
       else
