@@ -1,32 +1,39 @@
-<h3>Add new Facebook Post URL</h3>
+<section class="box-typical box-panel col-xl-9">
+  <header class="box-typical-header">
+    <div class="tbl-row">
+      <div class="tbl-cell tbl-cell-title">
+        <h3>Add new Facebook Post URL</h3>
+      </div>
+    </div>
+  </header>
+  <div class="box-typical-body">
+    <%= form_tag create_from_url_imports_path do %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= label_tag :url %>
+            <%= text_field_tag :url, nil, class: "form-control", required: true %>
+          </div>
+        </div>
 
-<div class="col-xl-6">
-  <%= form_tag create_from_url_imports_path do %>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="form-group">
-          <%= label_tag :url %>
-          <%= text_field_tag :url, nil, class: "form-control", required: true %>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= label_tag :brand_id, t(:brand) %>
+            <%= select_tag :brand_id,
+                           options_from_collection_for_select(Brand.all.order("LOWER(name)"), :id, :name),
+                           include_blank: true,
+                           required: true,
+                           class: "form-control select2" %>
+          </div>
         </div>
       </div>
 
-      <div class="col-md-4">
-        <div class="form-group">
-          <%= label_tag :brand_id, t(:brand) %>
-          <%= select_tag :brand_id,
-                         options_from_collection_for_select(Brand.all.order("LOWER(name)"), :id, :name),
-                         include_blank: true,
-                         required: true,
-                         class: "form-control select2" %>
-        </div>
+      <div class="actions">
+        <%= button_tag class: "btn btn-primary" do %>
+          <%= icon("plus") %>
+          Add New
+        <% end %>
       </div>
-    </div>
-
-    <div class="actions">
-      <%= button_tag class: "btn btn-primary" do %>
-        <%= icon("plus") %>
-        Add New
-      <% end %>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+</section>
