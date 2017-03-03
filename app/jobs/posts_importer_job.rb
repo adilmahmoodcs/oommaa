@@ -6,7 +6,11 @@ class PostsImporterJob
   sidekiq_options queue: "posts"
 
   def perform(page_id)
-    page = FacebookPage.find(page_id)
+    page = FacebookPage.find_by(id: page_id)
+    unless page
+      logger.info "PostsImporterJob: FacebookPage #{page.id} was deleted"
+      return
+    end
 
     begin
       import_posts(page)
@@ -15,7 +19,7 @@ class PostsImporterJob
       is_shut_down = FBShutDownChecker.new(object_id: page.facebook_id, token: token).call
       if is_shut_down
         page.mark_as_shut_down!
-        logger.info("PostsImporterJob: FacebookPage #{page.id} marked as shut down")
+        logger.info "PostsImporterJob: FacebookPage #{page.id} marked as shut down"
         return
       end
 
@@ -50,7 +54,7 @@ class PostsImporterJob
 
       post.save!
       PostStatusJob.perform_async(post.id)
-      logger.info("PostsImporterJob: new FacebookPost #{post.id} created for FacebookPage #{page.id}")
+      logger.info "PostsImporterJob: new FacebookPost #{post.id} created for FacebookPage #{page.id}"
     end
   end
 
