@@ -53,6 +53,8 @@ en:
       suspect: 'Marked Post as suspect: "%{name}"'
       not_suspect: 'Marked Post as not suspect: "%{name}"'
       reported_to_facebook: 'Reported Post to Facebook: "%{name}"'
+    facebook_page:
+      destroy: 'Deleted page "%{name}"'
     domain:
       create: 'Created domain "%{name}"'
       destroy: 'Deleted domain "%{name}"'

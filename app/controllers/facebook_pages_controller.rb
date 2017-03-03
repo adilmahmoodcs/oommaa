@@ -8,8 +8,13 @@ class FacebookPagesController < ApplicationController
   end
 
   def destroy
-    @facebook_page.create_activity(:destroy, owner: current_user, parameters: { name: @facebook_page.name })
-    @facebook_page.destroy
-    redirect_to facebook_pages_path, notice: 'Keyword was successfully destroyed.'
+    facebook_page = FacebookPage.find(params[:id])
+    posts_count = facebook_page.facebook_posts.size
+
+    facebook_page.create_activity(:destroy, owner: current_user, parameters: { name: facebook_page.name })
+    facebook_page.destroy!
+
+    flash[:notice] = "1 Page and #{posts_count} post were successfully destroyed."
+    redirect_to facebook_pages_path
   end
 end

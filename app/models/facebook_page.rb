@@ -18,6 +18,8 @@
 #
 
 class FacebookPage < ApplicationRecord
+  include PublicActivity::Common
+
   has_many :facebook_posts, dependent: :destroy
 
   validates :name, :url, :facebook_id, presence: true
