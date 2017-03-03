@@ -56,22 +56,17 @@ class PostImporterJob
     data = FBPageReader.new(object_id: object_id, token: token).call
 
     if page = FacebookPage.find_by(facebook_id: data["id"])
-      if brand_id && !brand_id.in?(page.brand_ids)
-        page.brand_ids << brand_id
-        page.save!
-        logger.info "PostImporterJob: Brand ##{brand_id} added to FacebookPage #{page.id}"
-      end
       return page
     end
 
-    brand_ids = ([brand_id] + matching_brand_ids_for(data["name"])).uniq.compact
+    matching_brand_ids = BrandMatcher.new(data["name"]).call
 
     page = FacebookPage.create!(
       facebook_id: data["id"],
       name: data["name"],
       url: data["link"],
       image_url: data.dig("picture", "data", "url"),
-      brand_ids: brand_ids
+      brand_ids: matching_brand_ids
     )
 
     logger.info "PostImporterJob: created new FacebookPage #{page.id}"
@@ -102,12 +97,6 @@ class PostImporterJob
     logger.info "PostImporterJob: created new FacebookPost #{post.id}"
 
     post
-  end
-
-  def matching_brand_ids_for(term)
-    Brand.select(:id, :name).find_all do |brand|
-      term.to_s.match?(/#{brand.name}/i)
-    end.map(&:id)
   end
 
   def token
