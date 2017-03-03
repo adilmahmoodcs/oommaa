@@ -6,7 +6,17 @@ class PagesImporterJob
     brand = Brand.find_by(id: brand_id)
     return unless brand # brand was deleted
 
-    import_pages(brand)
+    begin
+      import_pages(brand)
+    rescue Koala::Facebook::ClientError => e
+      if e.fb_error_code == 4 # Application request limit reached
+        logger.info "PagesImporterJob: rate limiting, re-enqueued"
+        self.class.perform_in(rand(10..60).minutes, brand_id)
+        return
+      end
+
+      raise e
+    end
 
     self.class.perform_in(60.minutes, brand_id)
   end
