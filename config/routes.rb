@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :facebook_pages, only: [:index, :destroy]
   resources :facebook_posts, only: [:index] do
     collection do
       get :export

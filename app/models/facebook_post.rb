@@ -45,7 +45,7 @@ class FacebookPost < ApplicationRecord
   validates :facebook_id, :message, :facebook_page, presence: true
   validates :facebook_id, uniqueness: true
 
-  delegate :brands, to: :facebook_page
+  delegate :brands, :brand_names, :licensor_names, to: :facebook_page
 
   scope :with_any_domain, -> (name) { where("? = ANY (all_domains)", name) }
   scope :with_any_brand, -> (name) { joins(:facebook_page).merge(FacebookPage.with_any_brand(name)) }
@@ -90,14 +90,6 @@ class FacebookPost < ApplicationRecord
       all_links: links,
       all_domains: get_all_domains_from(links)
     )
-  end
-
-  def brand_names
-    brands.map(&:name).join(", ")
-  end
-
-  def licensor_names
-    brands.map(&:licensor_name).compact.uniq.join(", ")
   end
 
   def status_changed_at

@@ -29,8 +29,20 @@ class FacebookPage < ApplicationRecord
     where(licensors: { name: name })
   }
 
+  ransacker :name_case_insensitive, type: :string do
+    arel_table[:name].lower
+  end
+
   def brands
     @brands ||= Brand.where(id: brand_ids)
+  end
+
+  def brand_names
+    brands.map(&:name).join(", ")
+  end
+
+  def licensor_names
+    brands.map(&:licensor_name).compact.uniq.join(", ")
   end
 
   def mark_as_shut_down!

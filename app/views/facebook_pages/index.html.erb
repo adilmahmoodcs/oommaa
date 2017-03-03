@@ -1,0 +1,90 @@
+<h3>
+  Facebook Pages
+  <% if term = params.dig(:q, :name_cont).presence %>
+    (matching "<strong><%= term %></strong>")
+  <% else %>
+    (all)
+  <% end %>
+</h3>
+<h5>
+  <%= @facebook_pages.total_count %> records
+</h5>
+
+<div class="card">
+  <div class="card-block">
+    <div class="row">
+      <div class="col-md-6">
+      </div>
+
+      <div class="col-md-6 text-right">
+        <%= search_form_for @q, class: "form-inline" do |f| %>
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon"><%= icon("search") %></div>
+            <%= f.text_field :name_cont,
+                             class: "form-control mb-2 mr-sm-2 mb-sm-0",
+                             placeholder: "Search term" %>
+          </div>
+          <%= button_tag class: "btn btn-primary" do %>
+            <%= icon("search") %>
+            Search
+          <% end %>
+          &nbsp;
+          <%= link_to url_for, class: "btn btn-secondary" do %>
+            <%= icon("eraser") %>
+            Clear search
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= paginate @facebook_pages %>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
+      <th>Brands</th>
+      <th><%= sort_link(@q, :licensor_id, "Licensor") %></th>
+      <th><%= sort_link(@q, :shut_down_by_facebook_at, "Shut down by Facebook at") %></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @facebook_pages.each do |page| %>
+      <tr>
+        <td>
+          <%= image_tag page.image_url, width: "150px" if page.image_url %>
+        </td>
+        <td>
+          <%= link_to page.name, page.url, target: "_blank" %>
+        </td>
+        <td>
+          <%= page.brand_names %>
+        </td>
+        <td>
+          <%= page.licensor_names %>
+        </td>
+        <td>
+          <% if page.shut_down_by_facebook_at %>
+            <%= l(page.shut_down_by_facebook_at, format: :compact) %>
+          <% end %>
+        </td>
+        <td class="text-right">
+          <%= link_to page,
+                      method: :delete,
+                      data: { confirm: "Are you sure? #{page.facebook_posts.size} page posts will be deleted." },
+                      class: "btn btn-danger btn-sm" do %>
+            <%= icon("trash") %>
+            Delete
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @facebook_pages %>
