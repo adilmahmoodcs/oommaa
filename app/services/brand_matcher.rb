@@ -8,7 +8,7 @@ class BrandMatcher
 
   def call
     brand_ids = []
-    Brand.find_each do |brand|
+    Brand.select(:id, :name).find_each do |brand|
       if term.downcase.match? regexp_for(brand)
         brand_ids << brand.id
       end
