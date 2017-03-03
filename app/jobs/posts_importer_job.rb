@@ -15,15 +15,21 @@ class PostsImporterJob
     begin
       import_posts(page)
     rescue Koala::Facebook::ClientError => e
-      # make sure it's shut down
-      is_shut_down = FBShutDownChecker.new(object_id: page.facebook_id, token: token).call
-      if is_shut_down
-        page.mark_as_shut_down!
-        logger.info "PostsImporterJob: FacebookPage #{page.id} marked as shut down"
+      if e.fb_error_code == 4 # Application request limit reached
+        logger.info "PostsImporterJob: rate limiting, re-enqueued"
+        self.class.perform_in(rand(10..60).minutes, page_id)
         return
-      end
+      elsif e.fb_error_code == 100
+        # make sure it's shut down
+        is_shut_down = FBShutDownChecker.new(object_id: page.facebook_id, token: token).call
+        if is_shut_down
+          page.mark_as_shut_down!
+          logger.info "PostsImporterJob: FacebookPage #{page.id} marked as shut down"
+          return
+        end
 
-      raise e
+        raise e
+      end
     end
 
     self.class.perform_in(60.minutes, page_id)
