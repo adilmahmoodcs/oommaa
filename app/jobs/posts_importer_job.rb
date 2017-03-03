@@ -8,7 +8,7 @@ class PostsImporterJob
   def perform(page_id)
     page = FacebookPage.find_by(id: page_id)
     unless page
-      logger.info "PostsImporterJob: FacebookPage #{page.id} was deleted"
+      logger.info "PostsImporterJob: FacebookPage #{page_id} was deleted"
       return
     end
 
