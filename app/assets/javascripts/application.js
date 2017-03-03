@@ -34,10 +34,14 @@ document.addEventListener("turbolinks:load", function() {
   Selects.init()
   Forms.init()
 
-  $('.panel').lobiPanel({
+  $(".panel").lobiPanel({
     sortable: true
-  });
-  $('.panel').on('dragged.lobiPanel', function(ev, lobiPanel){
-    $('.dahsboard-column').matchHeight();
-  });
+  })
+  $(".panel").on("dragged.lobiPanel", function(ev, lobiPanel){
+    $(".dahsboard-column").matchHeight();
+  })
+
+  $(".alert-dismissible").delay(4000).slideUp(200, function() {
+    $(this).alert('close');
+  })
 })
