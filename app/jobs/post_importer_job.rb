@@ -27,10 +27,10 @@ class PostImporterJob
       when 100
         # so it's a photo...
         if e.message.match?(/nonexisting field.*type \(Photo\)/i)
-          FBPhotoReader.new(object_id: object_id, token: token).call
+          data = FBPhotoReader.new(object_id: object_id, token: token).call
         # so it's a post...
         elsif e.message.match?(/nonexisting field.*type \(Post\)/i)
-          FBPostReader.new(object_id: object_id, token: token).call
+          data = FBPostReader.new(object_id: object_id, token: token).call
         # cannot read for some reason (deleted? old?)
         elsif e.message.match?(/Object with ID .* does not exist/i)
           logger.info "PostImporterJob: skipping, cannot read URL: #{url}"
