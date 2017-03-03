@@ -18,15 +18,24 @@ class PagesImporterJob
 
     pages_data.each do |data|
       if !FacebookPage.exists?(facebook_id: data["id"])
+        matching_brand_ids = BrandMatcher.new(data["name"]).call
+
+        # only keep results with matching name, because Facebook returns
+        # lots of "similar" pages with other names
+        unless brand.id.in?(matching_brand_ids)
+          logger.info "PagesImporterJob: skipping non-matching page '#{data['name']}'"
+          next
+        end
+
         page = FacebookPage.create!(
           facebook_id: data["id"],
           name: data["name"],
           url: data["link"],
           image_url: data.dig("picture", "data", "url"),
-          brand_ids: [brand.id]
+          brand_ids: matching_brand_ids
         )
         PostsImporterJob.perform_async(page.id)
-        logger.info "PagesImporterJob: new FacebookPage #{page.id} created for Brand #{brand.id}"
+        logger.info "PagesImporterJob: new FacebookPage #{page.id} created for Brands #{matching_brand_ids.join(', ')}"
       else
         page = FacebookPage.find_by(facebook_id: data["id"])
         if !brand.id.in?(page.brand_ids)
