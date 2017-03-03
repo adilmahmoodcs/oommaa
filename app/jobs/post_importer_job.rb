@@ -64,7 +64,8 @@ class PostImporterJob
       return page
     end
 
-    brand_ids = ([brand_id] + matching_brand_ids_for(data["name"])).uniq.compact
+    matching_brand_ids = BrandMatcher.new(data["name"]).call
+    brand_ids = ([brand_id] + matching_brand_ids).uniq.compact
 
     page = FacebookPage.create!(
       facebook_id: data["id"],
@@ -102,12 +103,6 @@ class PostImporterJob
     logger.info "PostImporterJob: created new FacebookPost #{post.id}"
 
     post
-  end
-
-  def matching_brand_ids_for(term)
-    Brand.select(:id, :name).find_all do |brand|
-      term.to_s.match?(/#{brand.name}/i)
-    end.map(&:id)
   end
 
   def token
