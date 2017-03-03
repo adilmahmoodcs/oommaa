@@ -2,10 +2,11 @@
 #
 # Table name: licensors
 #
-#  id         :integer          not null, primary key
-#  name       :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :integer          not null, primary key
+#  name         :string           not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  main_contact :string
 #
 
 class Licensor < ApplicationRecord

@@ -32,6 +32,8 @@ en:
     attributes:
       facebook_post:
         permalink: Facebook URL
+      licensor:
+        main_contact: Main Point of Contact
   time:
     formats:
       compact: "%m-%d-%Y %H:%M"

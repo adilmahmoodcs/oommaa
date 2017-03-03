@@ -47,6 +47,6 @@ class LicensorsController < ApplicationController
   end
 
   def licensor_params
-    params.require(:licensor).permit(:name)
+    params.require(:licensor).permit(:name, :main_contact)
   end
 end

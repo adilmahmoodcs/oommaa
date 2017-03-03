@@ -17,6 +17,7 @@
   <thead>
     <tr>
       <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
+      <th><%= Licensor.human_attribute_name(:main_contact) %></th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -25,6 +26,7 @@
     <% @licensors.each do |licensor| %>
       <tr>
         <td><%= licensor.name %></td>
+        <td><%= licensor.main_contact %></td>
         <td class="text-right">
           <%= link_to edit_licensor_path(licensor),
                       class: "btn btn-secondary btn-sm" do %>
