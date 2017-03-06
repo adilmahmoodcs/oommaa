@@ -49,10 +49,6 @@ class FacebookPost < ApplicationRecord
   delegate :brands, :brand_names, :licensor_names, to: :facebook_page
 
   scope :with_any_domain, -> (name) { where("? = ANY (all_domains)", name) }
-  scope :with_any_brand, -> (name) { joins(:facebook_page).merge(FacebookPage.with_any_brand(name)) }
-  scope :with_licensor_name, ->(name) {
-    joins(:facebook_page).merge(FacebookPage.with_licensor_name(name))
-  }
   scope :date_yesterday, -> { where() }
   scope :blacklisted_or_reported_to_facebook, -> {
     where(status: [statuses[:blacklisted], statuses[:reported_to_facebook]])
@@ -61,7 +57,7 @@ class FacebookPost < ApplicationRecord
   ransacker :status, formatter: proc { |status_name| statuses[status_name] }
 
   def self.ransackable_scopes(auth_object = nil)
-    [:with_any_domain, :with_any_brand, :with_licensor_name]
+    [:with_any_domain]
   end
 
   def change_status_to!(new_status, by)

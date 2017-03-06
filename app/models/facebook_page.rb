@@ -23,15 +23,10 @@ class FacebookPage < ApplicationRecord
   has_many :facebook_posts, dependent: :destroy
   has_many :facebook_page_brands
   has_many :brands, through: :facebook_page_brands
+  has_many :licensors, through: :brands
 
   validates :name, :url, :facebook_id, presence: true
   validates :facebook_id, uniqueness: true
-
-  scope :with_any_brand, -> (id) { where("? = ANY (brand_ids)", id) }
-  scope :with_licensor_name, -> (name) {
-    joins("JOIN brands ON brands.id = ANY(facebook_pages.brand_ids) JOIN licensors ON licensors.id = brands.licensor_id").
-    where(licensors: { name: name })
-  }
 
   ransacker :name_case_insensitive, type: :string do
     arel_table[:name].lower
@@ -42,7 +37,7 @@ class FacebookPage < ApplicationRecord
   end
 
   def licensor_names
-    brands.map(&:licensor_name).compact.uniq.join(", ")
+    licensors.pluck(:name).compact.uniq.join(", ")
   end
 
   def mark_as_shut_down!

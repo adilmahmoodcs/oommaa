@@ -62,7 +62,8 @@ class PostImporterJob
 
     if page = FacebookPage.find_by(facebook_id: data["id"])
       if brand_id && !brand_id.in?(page.brand_ids)
-        page.brand_ids << brand_id
+        brand = Brand.find(brand_id)
+        page.brands << brand
         page.save!
         logger.info "PostImporterJob: Brand ##{brand_id} added to FacebookPage #{page.id}"
       end

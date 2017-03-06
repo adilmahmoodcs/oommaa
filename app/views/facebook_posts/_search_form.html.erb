@@ -19,7 +19,7 @@
 
         <div class="col-md-3 form-group">
           <%= f.label :with_any_brand, t(:brand_name) %>
-          <%= f.collection_select :with_any_brand,
+          <%= f.collection_select :facebook_page_brands_id_eq,
                                   Brand.all.order("LOWER(name)"),
                                   :id,
                                   :name,
@@ -29,18 +29,22 @@
 
         <div class="col-md-3 form-group">
           <%= f.label :facebook_page_name_eq, "Page" %>
-          <%= f.select :facebook_page_name_eq,
-                       FacebookPage.order("LOWER(name)").pluck(:name),
-                       { include_blank: true },
-                       class: "form-control select2" %>
+          <%= f.collection_select :facebook_page_id_eq,
+                                  FacebookPage.order("LOWER(name)"),
+                                  :id,
+                                  :name,
+                                  { include_blank: true },
+                                  class: "form-control select2" %>
         </div>
 
         <div class="col-md-3 form-group">
           <%= f.label :with_licensor_name, "Licensor" %>
-          <%= f.select :with_licensor_name,
-                       Licensor.order("LOWER(name)").pluck(:name),
-                       { include_blank: true },
-                       class: "form-control select2" %>
+          <%= f.collection_select :facebook_page_brands_licensor_id_eq,
+                                  Licensor.order("LOWER(name)"),
+                                  :id,
+                                  :name,
+                                  { include_blank: true },
+                                  class: "form-control select2" %>
         </div>
 
         <div class="col-md-3 form-group">
