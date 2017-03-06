@@ -29,7 +29,7 @@
 </strong>
 <hr>
 
-<%= form_tag export_facebook_posts_path, method: :get, class: "form-inline" do %>
+<%= form_tag export_facebook_posts_path, method: :get, class: "form-inline", id: "export-date" do %>
   <%= label_tag :from, "From date:", class: "col-form-label mb-2 mr-sm-2 mb-sm-0" %>
   <%= date_field_tag :from, params[:from], class: "form-control mb-2 mr-sm-2 mb-sm-0" %>
 
@@ -56,6 +56,7 @@
       <th><%= sort_link(@q, :reported_to_facebook_by, t(:reported_to_facebook_by)) %></th>
       <th><%= t(:brand_name) %></th>
       <th><%= t(:licensor_name) %></th>
+      <th><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></th>
       <th><%= t(:platform_or_company) %></th>
       <th><%= sort_link(@q, :facebook_page_name, t(:facebook_page_name)) %></th>
       <th><%= t(:message) %></th>
