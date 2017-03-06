@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303145630) do
+ActiveRecord::Schema.define(version: 20170306160401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 20170303145630) do
     t.integer  "status",     default: 0, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "facebook_page_brands", force: :cascade do |t|
+    t.integer  "facebook_page_id"
+    t.integer  "brand_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["brand_id"], name: "index_facebook_page_brands_on_brand_id", using: :btree
+    t.index ["facebook_page_id"], name: "index_facebook_page_brands_on_facebook_page_id", using: :btree
   end
 
   create_table "facebook_pages", force: :cascade do |t|
@@ -136,6 +145,8 @@ ActiveRecord::Schema.define(version: 20170303145630) do
   end
 
   add_foreign_key "brands", "licensors"
+  add_foreign_key "facebook_page_brands", "brands"
+  add_foreign_key "facebook_page_brands", "facebook_pages"
   add_foreign_key "facebook_posts", "facebook_pages"
   add_foreign_key "screenshots", "facebook_posts"
 end

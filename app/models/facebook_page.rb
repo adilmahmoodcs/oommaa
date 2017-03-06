@@ -21,6 +21,8 @@ class FacebookPage < ApplicationRecord
   include PublicActivity::Common
 
   has_many :facebook_posts, dependent: :destroy
+  has_many :facebook_page_brands
+  has_many :brands, through: :facebook_page_brands
 
   validates :name, :url, :facebook_id, presence: true
   validates :facebook_id, uniqueness: true
