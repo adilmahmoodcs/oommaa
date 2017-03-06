@@ -49,7 +49,7 @@ class PagesImporterJob
       else
         page = FacebookPage.find_by(facebook_id: data["id"])
         if !brand.id.in?(page.brand_ids)
-          page.brand_ids << brand.id
+          page.brands << brand
           page.save!
           logger.info "PagesImporterJob: new Brand #{brand.id} added to FacebookPage #{page.id}"
         end
