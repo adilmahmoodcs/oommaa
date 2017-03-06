@@ -34,7 +34,8 @@ class FacebookPost < ApplicationRecord
   include PublicActivity::Common
 
   enum status: [
-    :not_suspect, :suspect, :whitelisted, :blacklisted, :reported_to_facebook
+    :not_suspect, :suspect, :whitelisted, :blacklisted, :reported_to_facebook,
+    :ignored
   ]
 
   belongs_to :facebook_page
