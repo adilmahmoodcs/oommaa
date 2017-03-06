@@ -62,6 +62,21 @@ class FacebookPostsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def mass_change_status
+    if params[:new_status] && params[:new_status].in?(FacebookPost.statuses.keys)
+      posts = FacebookPost.ransack(params[:q]).result
+      posts.each do |post|
+        post.change_status_to!(params[:new_status], current_user.email)
+      end
+
+      current_user.create_activity("mass_#{params[:new_status]}",
+                                   owner: current_user,
+                                   parameters: { name: "#{posts.size} posts" })
+    end
+
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   def facebook_post_params

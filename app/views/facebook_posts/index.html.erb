@@ -5,10 +5,7 @@
 </h3>
 
 <%= render 'search_form' %>
-
+<%= render_if_exists "mass_actions_#{@status}", posts: @posts %>
 <%= paginate @posts %>
-
-<%= render_if_exists "mass_actions_#{@status}" %>
 <%= render_if_exists "table_#{@status}", fallback: "table_default" %>
-
 <%= paginate @posts %>

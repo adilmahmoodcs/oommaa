@@ -1,0 +1,12 @@
+<%= form_tag mass_change_status_facebook_posts_path do %>
+  <%= hidden_field_tag :new_status, :ignored %>
+  <% params[:q].each do |k, v| %>
+    <%= hidden_field_tag "q[#{k}]", v %>
+  <% end %>
+
+  <%= button_tag class: "btn btn-secondary",
+                 "data-confirm": "#{posts.total_count} posts will be ignored. Are you sure?" do %>
+    <%= icon("trash", class: "fa-fw") %>
+    Ignore all posts
+  <% end %>
+<% end %>

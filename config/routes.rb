@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :facebook_posts, only: [:index] do
     collection do
       get :export
+      post :mass_change_status
     end
   end
   post "/facebook_posts/:post_id/change_status/:status" => "facebook_posts#change_status",
