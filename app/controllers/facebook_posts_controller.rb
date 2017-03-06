@@ -1,4 +1,6 @@
 class FacebookPostsController < ApplicationController
+  before_action :set_facebook_post, only: [:edit, :update]
+
   def index
     params[:q] ||= {}
     params[:q][:status_eq] ||= "not_suspect"
@@ -11,6 +13,18 @@ class FacebookPostsController < ApplicationController
                 includes(:facebook_page, :ad_screenshots, :product_screenshots).
                 page(params[:page])
     @status = params[:q][:status_eq]
+  end
+
+  def edit
+  end
+
+  def update
+    if @facebook_post.update(facebook_post_params)
+      @facebook_post.create_activity(:update, owner: current_user, parameters: { name: @facebook_post.name })
+      redirect_to @facebook_post, notice: 'Post was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   def export
@@ -78,6 +92,10 @@ class FacebookPostsController < ApplicationController
   end
 
   private
+
+  def set_facebook_post
+    @facebook_post = FacebookPost.find(params[:id])
+  end
 
   def facebook_post_params
     params.require(:facebook_post).permit(:permalink)

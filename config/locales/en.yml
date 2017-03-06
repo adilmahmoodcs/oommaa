@@ -32,6 +32,7 @@ en:
     attributes:
       facebook_post:
         permalink: Facebook URL
+        facebook_id: Facebook ID
       licensor:
         main_contact: Main Point of Contact
   time:

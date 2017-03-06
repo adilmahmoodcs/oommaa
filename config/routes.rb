@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :facebook_pages, only: [:index, :destroy]
-  resources :facebook_posts, only: [:index] do
+  resources :facebook_posts, only: [:index, :edit, :update] do
     collection do
       get :export
       post :mass_change_status

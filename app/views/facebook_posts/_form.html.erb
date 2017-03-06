@@ -1,0 +1,22 @@
+<%= form_for facebook_post do |f| %>
+  <% if facebook_post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(facebook_post.errors.count, "error") %> prohibited this facebook post from being saved:</h2>
+
+      <ul>
+      <% facebook_post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :facebook_id %>
+    <%= f.text_field :facebook_id, class: "form-control", disabled: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
