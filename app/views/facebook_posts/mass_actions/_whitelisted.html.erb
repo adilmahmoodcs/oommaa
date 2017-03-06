@@ -4,7 +4,7 @@
     <%= hidden_field_tag "q[#{k}]", v %>
   <% end %>
 
-  <%= button_tag class: "btn btn-success",
+  <%= button_tag class: "btn btn-success btn-sm",
                  "data-confirm": "#{posts.total_count} posts will be approved. Are you sure?" do %>
     <%= icon("check", class: "fa-fw") %>
     Approve all posts
