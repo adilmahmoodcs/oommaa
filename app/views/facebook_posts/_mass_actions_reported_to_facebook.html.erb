@@ -1,0 +1,8 @@
+<% if posts.total_count > 0 %>
+  <div class="card mass-actions">
+    <div class="card-block">
+      <h4 class="card-title">Mass Actions</h4>
+      <%= render 'facebook_posts/mass_actions/ignored', posts: posts %>
+    </div>
+  </div>
+<% end %>
