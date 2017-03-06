@@ -3,9 +3,9 @@
     <tr>
       <th>Image</th>
       <th>Message</th>
-      <th><%= t(:brand_name) %></th>
-      <th><%= t(:licensor_name) %></th>
-      <th><%= t(:platform_or_company) %></th>
+      <th><%= sort_link(@q, :facebook_page_brands_name, t(:brand_name)) %></th>
+      <th><%= sort_link(@q, :facebook_page_brands_licensor_name, t(:licensor_name)) %></th>
+      <th><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></th>
       <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
       <th><%= sort_link(@q, :published_at, "Published at") %></th>
       <% if @status == "blacklisted" %>
