@@ -10,7 +10,7 @@ class FacebookPostsController < ApplicationController
     @q.sorts = "published_at desc" if @q.sorts.empty?
 
     @posts = @q.result.
-                includes(:facebook_page, :ad_screenshots, :product_screenshots).
+                includes({ facebook_page: { brands: :licensor } }, :ad_screenshots, :product_screenshots).
                 page(params[:page])
     @status = params[:q][:status_eq]
   end
@@ -35,7 +35,7 @@ class FacebookPostsController < ApplicationController
       format.html do
         @posts = @q.result.
                     blacklisted_or_reported_to_facebook.
-                    includes(:facebook_page, :ad_screenshots, :product_screenshots).
+                    includes({ facebook_page: { brands: :licensor } }, :ad_screenshots, :product_screenshots).
                     page(params[:page])
 
         if params[:from].present?
@@ -48,7 +48,7 @@ class FacebookPostsController < ApplicationController
 
       format.csv do
         posts = FacebookPost.blacklisted_or_reported_to_facebook.
-                             includes(:facebook_page, :ad_screenshots, :product_screenshots).
+                             includes({ facebook_page: { brands: :licensor } }, :ad_screenshots, :product_screenshots).
                              order("blacklisted_at desc")
         if params[:from].present?
           posts = posts.where("blacklisted_at >= ?", Date.parse(params[:from]).beginning_of_day)
