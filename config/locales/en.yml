@@ -64,3 +64,6 @@ en:
       blacklisted: 'Blacklisted Domain "%{name}"'
     user:
       url_added: 'Added URL "%{name}"'
+      mass_blacklisted: 'Mass marked %{name} as counterfeit'
+      mass_whitelisted: 'Mass approved %{name}'
+      mass_ignored: 'Mass ignored %{name}'
