@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @q = User.ransack(params[:q])
+    authorize User
+    @q = policy_scope(User).ransack(params[:q])
     @q.sorts = "id DESC" if @q.sorts.empty?
     @users = @q.result.
                 includes(:licensor).
@@ -10,9 +11,11 @@ class UsersController < ApplicationController
   end
 
   def edit
+    authorize @user
   end
 
   def update
+    authorize @user
     if @user.update(user_params)
       redirect_to users_path, notice: 'User was successfully updated.'
     else
@@ -21,6 +24,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    authorize @user
     @user.destroy
     redirect_to users_path, notice: 'User was successfully destroyed.'
   end

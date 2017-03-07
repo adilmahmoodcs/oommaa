@@ -2,7 +2,8 @@ class BrandsController < ApplicationController
   before_action :set_brand, only: [:show, :edit, :update, :destroy]
 
   def index
-    @q = Brand.ransack(params[:q])
+    authorize Brand
+    @q = policy_scope(Brand).ransack(params[:q])
     @q.sorts = "name_case_insensitive asc" if @q.sorts.empty?
     @brands = @q.result.
                  includes(:licensor).
@@ -10,16 +11,20 @@ class BrandsController < ApplicationController
   end
 
   def show
+    authorize @brand
   end
 
   def new
+    authorize Brand
     @brand = Brand.new
   end
 
   def edit
+    authorize @brand
   end
 
   def create
+    authorize Brand
     @brand = Brand.new(brand_params)
 
     if @brand.save
@@ -31,6 +36,7 @@ class BrandsController < ApplicationController
   end
 
   def update
+    authorize @brand
     if @brand.update(brand_params)
       @brand.create_activity(:update, owner: current_user, parameters: { name: @brand.name })
       redirect_to brands_path, notice: 'Brand was successfully updated.'
@@ -40,6 +46,7 @@ class BrandsController < ApplicationController
   end
 
   def destroy
+    authorize @brand
     @brand.create_activity(:destroy, owner: current_user, parameters: { name: @brand.name })
     @brand.destroy
     redirect_to brands_path, notice: 'Brand was successfully destroyed.'

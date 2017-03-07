@@ -2,22 +2,27 @@ class LicensorsController < ApplicationController
   before_action :set_licensor, only: [:show, :edit, :update, :destroy]
 
   def index
-    @q = Licensor.ransack(params[:q])
+    authorize Licensor
+    @q = policy_scope(Licensor).ransack(params[:q])
     @q.sorts = "name_case_insensitive asc" if @q.sorts.empty?
     @licensors = @q.result.page(params[:page])
   end
 
   def show
+    authorize @licensor
   end
 
   def new
+    authorize Licensor
     @licensor = Licensor.new
   end
 
   def edit
+    authorize @licensor
   end
 
   def create
+    authorize Licensor
     @licensor = Licensor.new(licensor_params)
 
     if @licensor.save
@@ -28,6 +33,7 @@ class LicensorsController < ApplicationController
   end
 
   def update
+    authorize @licensor
     if @licensor.update(licensor_params)
       redirect_to licensors_path, notice: 'Licensor was successfully updated.'
     else
@@ -36,6 +42,7 @@ class LicensorsController < ApplicationController
   end
 
   def destroy
+    authorize @licensor
     @licensor.destroy
     redirect_to licensors_path, notice: 'Licensor was successfully destroyed.'
   end

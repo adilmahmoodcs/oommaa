@@ -2,7 +2,8 @@ class DomainsController < ApplicationController
   before_action :set_domain, only: [:destroy]
 
   def index
-    @q = Domain.ransack(params[:q])
+    authorize Domain
+    @q = policy_scope(Domain).ransack(params[:q])
     @q.sorts = "name_case_insensitive asc" if @q.sorts.empty?
     @domains = @q.result
 
@@ -15,6 +16,7 @@ class DomainsController < ApplicationController
   end
 
   def create
+    authorize Domain
     @domain = Domain.new(domain_params)
 
     if @domain.save
@@ -27,6 +29,7 @@ class DomainsController < ApplicationController
   end
 
   def destroy
+    authorize @domain
     @domain.create_activity(:destroy, owner: current_user, parameters: { name: @domain.name })
     @domain.destroy
     flash[:notice] = "Domain was successfully destroyed."
@@ -34,11 +37,13 @@ class DomainsController < ApplicationController
   end
 
   def change_status
+    authorize Domain
     if params[:status] && params[:status].in?(Domain.statuses.keys)
       @domain = Domain.find(params[:domain_id])
       @domain.public_send("#{params[:status]}!")
       @domain.create_activity(params[:status], owner: current_user, parameters: { name: @domain.name })
       @domain.update_posts!
+      flash[:notice] = "Domain status changed"
     end
 
     redirect_back(fallback_location: domains_path)

@@ -2,11 +2,12 @@ class FacebookPostsController < ApplicationController
   before_action :set_facebook_post, only: [:edit, :update]
 
   def index
+    authorize FacebookPost
     params[:q] ||= {}
     params[:q][:status_eq] ||= "not_suspect"
     params[:q].delete(:status_eq) unless params[:q][:status_eq].in?(FacebookPost.statuses.keys)
 
-    @q = FacebookPost.ransack(params[:q])
+    @q = policy_scope(FacebookPost).ransack(params[:q])
     @q.sorts = "published_at desc" if @q.sorts.empty?
 
     @posts = @q.result.
@@ -16,9 +17,11 @@ class FacebookPostsController < ApplicationController
   end
 
   def edit
+    authorize @facebook_post
   end
 
   def update
+    authorize @facebook_post
     if @facebook_post.update(facebook_post_params)
       @facebook_post.create_activity(:update, owner: current_user, parameters: { name: @facebook_post.name })
       redirect_to @facebook_post, notice: 'Post was successfully updated.'
@@ -28,8 +31,9 @@ class FacebookPostsController < ApplicationController
   end
 
   def export
+    authorize FacebookPost
     respond_to do |format|
-      @q = FacebookPost.ransack(params[:q])
+      @q = policy_scope(FacebookPost).ransack(params[:q])
       @q.sorts = "blacklisted_at desc" if @q.sorts.empty?
 
       format.html do
@@ -47,7 +51,7 @@ class FacebookPostsController < ApplicationController
       end
 
       format.csv do
-        posts = FacebookPost.blacklisted_or_reported_to_facebook.
+        posts = policy_scope(FacebookPost).blacklisted_or_reported_to_facebook.
                              includes({ facebook_page: { brands: :licensor } }, :ad_screenshots, :product_screenshots).
                              order("blacklisted_at desc")
         if params[:from].present?
@@ -64,6 +68,7 @@ class FacebookPostsController < ApplicationController
   end
 
   def change_status
+    authorize FacebookPost
     if params[:status] && params[:status].in?(FacebookPost.statuses.keys)
       @post = FacebookPost.find(params[:post_id])
       @post.change_status_to!(params[:status], current_user.email)
@@ -77,6 +82,7 @@ class FacebookPostsController < ApplicationController
   end
 
   def mass_change_status
+    authorize FacebookPost
     if params[:new_status] && params[:new_status].in?(FacebookPost.statuses.keys)
       posts = FacebookPost.ransack(params[:q]).result
       posts.each do |post|

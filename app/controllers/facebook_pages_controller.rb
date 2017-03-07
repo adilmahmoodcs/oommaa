@@ -1,6 +1,7 @@
 class FacebookPagesController < ApplicationController
   def index
-    @q = FacebookPage.ransack(params[:q])
+    authorize FacebookPage
+    @q = policy_scope(FacebookPage).ransack(params[:q])
     @q.sorts = "created_at desc" if @q.sorts.empty?
 
     @facebook_pages = @q.result.
@@ -8,6 +9,7 @@ class FacebookPagesController < ApplicationController
   end
 
   def destroy
+    authorize FacebookPage
     facebook_page = FacebookPage.find(params[:id])
     posts_count = facebook_page.facebook_posts.size
 
