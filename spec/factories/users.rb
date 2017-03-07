@@ -18,6 +18,7 @@
 #  confirmation_token     :string
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
+#  role                   :integer          default("0"), not null
 #
 # Indexes
 #

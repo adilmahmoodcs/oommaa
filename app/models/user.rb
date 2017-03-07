@@ -18,6 +18,7 @@
 #  confirmation_token     :string
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
+#  role                   :integer          default("0"), not null
 #
 # Indexes
 #
@@ -28,6 +29,8 @@
 
 class User < ApplicationRecord
   include PublicActivity::Common
+
+  enum role: [:user, :admin, :licensor_admin]
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable
