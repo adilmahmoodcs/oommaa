@@ -32,7 +32,7 @@
 class User < ApplicationRecord
   include PublicActivity::Common
 
-  enum role: [:user, :admin, :licensor_admin]
+  enum role: [:unconfirmed_client, :confirmed_client, :admin]
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable
