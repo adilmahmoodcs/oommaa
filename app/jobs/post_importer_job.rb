@@ -7,6 +7,7 @@ class PostImporterJob
     object_id, type = FbURLParser.new(url).call
     return unless object_id
 
+    brand_ids = [brand_ids] unless brand_ids.respond_to?(:each)
     brand_ids = brand_ids.map(&:to_i)
 
     begin
