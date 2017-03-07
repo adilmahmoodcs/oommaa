@@ -1,6 +1,7 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  devise_for :users
   resources :licensors
   resources :keywords
   resources :brands
@@ -26,7 +27,9 @@ Rails.application.routes.draw do
   post "/domains/:domain_id/change_status/:status" => "domains#change_status",
        as: :domain_change_status
 
-  devise_for :users
+  scope :admin do
+    resources :users, only: [:index, :edit, :update, :destroy]
+  end
 
   mount Sidekiq::Web => "/sidekiq"
 

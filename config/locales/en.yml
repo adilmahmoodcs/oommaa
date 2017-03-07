@@ -28,6 +28,7 @@ en:
   link_to_ad_screenshot: Link to Screenshot of AD
   link_to_product_screenshot: Link to screenshot of purchase page
   download_as_csv: Download as CSV
+  users: Users
   activerecord:
     attributes:
       facebook_post:
@@ -68,3 +69,8 @@ en:
       mass_blacklisted: 'Mass marked %{name} as counterfeit'
       mass_whitelisted: 'Mass approved %{name}'
       mass_ignored: 'Mass ignored %{name}'
+  user_roles:
+    unconfirmed_client: Unconfirmed Client
+    confirmed_client: Confirmed Client
+    admin: Admin
+    user: User (no access)

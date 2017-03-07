@@ -109,9 +109,17 @@
   </li>
 
   <li class="nav-item">
+    <%= link_to users_path,
+                class: "nav-link #{'active' if current_page?(users_path)}" do %>
+      <%= icon("users", class: "fa-fw") %>
+      <%= t(:users) %>
+    <% end %>
+  </li>
+
+  <li class="nav-item">
     <%= link_to activities_path,
                 class: "nav-link #{'active' if current_page?('/activities')}" do %>
-      <%= icon("users", class: "fa-fw") %>
+      <%= icon("list-ul", class: "fa-fw") %>
       <%= t(:user_activities) %>
     <% end %>
   </li>

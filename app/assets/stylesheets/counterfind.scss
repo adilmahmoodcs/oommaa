@@ -25,3 +25,13 @@ td.index-actions .btn:nth-child(n+2) {
 form#export-date label {
   display: inline;
 }
+
+.label {
+  &.label_confirmed_client {
+    background-color: #46c35f;
+  }
+
+  &.label_admin {
+    background-color: #d9534f;
+  }
+}

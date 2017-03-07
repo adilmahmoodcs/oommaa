@@ -1,0 +1,87 @@
+<h3>
+  <%= t(:users) %>
+  <% if term = params.dig(:q, :name_or_email_cont).presence %>
+    (matching '<%= term %>')
+  <% else %>
+    (all)
+  <% end %>
+  (<%= @users.total_count %>)
+</h3>
+
+<div class="card">
+  <div class="card-block">
+    <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6 text-right">
+        <%= search_form_for @q, class: "form-inline" do |f| %>
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon"><%= icon("search") %></div>
+            <%= f.text_field :name_or_email_cont,
+                             class: "form-control mb-2 mr-sm-2 mb-sm-0",
+                             placeholder: "Search term" %>
+          </div>
+          <%= button_tag class: "btn btn-primary" do %>
+            <%= icon("search") %>
+            Search
+          <% end %>
+          &nbsp;
+          <%= link_to url_for, class: "btn btn-secondary" do %>
+            <%= icon("eraser") %>
+            Clear search
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= paginate @users %>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
+      <th><%= sort_link(@q, :email, "Email") %></th>
+      <th><%= sort_link(@q, :licensor_id, "Licensor") %></th>
+      <th><%= sort_link(@q, :role, "Role") %></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= user.name %>
+        </td>
+        <td>
+          <%= user.email %>
+        </td>
+        <td>
+          <%= user.licensor&.name %>
+        </td>
+        <td>
+          <span class="label label_<%= user.role %>">
+            <%= t("user_roles.#{user.role}") %>
+          </span>
+        </td>
+        <td class="text-right">
+          <%= link_to edit_user_path(user),
+                      class: "btn btn-secondary btn-sm" do %>
+            <%= icon("pencil") %>
+            Edit
+          <% end %>
+          <%= link_to user,
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' },
+                      class: "btn btn-danger btn-sm" do %>
+            <%= icon("trash") %>
+            Delete
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @users %>
