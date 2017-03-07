@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ActivityPolicy do
+RSpec.describe PublicActivity::ActivityPolicy do
 
   let(:user) { User.new }
 
