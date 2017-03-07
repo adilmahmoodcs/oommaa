@@ -47,18 +47,8 @@
 
   <div class="form-group">
     <%= f.label :message %>
-    <%= f.text_area :message, class: "form-control", disabled: true %>
+    <%= f.text_area :message, class: "form-control", rows: 4, disabled: true %>
   </div>
-
-  <% if facebook_post.all_links.any? %>
-    <div class="form-group">
-      <%= f.label :all_links %>
-      <% facebook_post.all_links do |link| %>
-        <%= link_to link, link, target: "_blank" %>
-      <% end %>
-    </div>
-  <% end %>
-
 
   <div class="actions">
     <%= f.submit class: "btn btn-primary" %>
