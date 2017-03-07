@@ -20,6 +20,7 @@
 #  confirmation_sent_at   :datetime
 #  role                   :integer          default("0"), not null
 #  licensor_id            :integer
+#  name                   :string
 #
 # Indexes
 #
@@ -34,6 +35,7 @@ FactoryGirl.define do
     email { "#{Faker::Internet.user_name}@example.com" }
     password "password"
     confirmed_at { Time.now }
+    name { Faker::Name.name }
   end
 
 end

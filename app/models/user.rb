@@ -20,6 +20,7 @@
 #  confirmation_sent_at   :datetime
 #  role                   :integer          default("0"), not null
 #  licensor_id            :integer
+#  name                   :string
 #
 # Indexes
 #
@@ -39,6 +40,7 @@ class User < ApplicationRecord
 
   belongs_to :licensor, optional: true
 
+  validates :name, presence: true
   validate :whitelisted_email
 
   private
