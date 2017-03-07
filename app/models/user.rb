@@ -41,16 +41,4 @@ class User < ApplicationRecord
   belongs_to :licensor, optional: true
 
   validates :name, presence: true
-  validate :whitelisted_email
-
-  private
-
-  def whitelisted_email
-    whitelist = Rails.configuration.counterfind["whitelisted_email_domains"]
-    union = whitelist.map { |w| Regexp.quote(w) }.join("|")
-
-    if !email.match?(/@(#{union})\z/)
-      errors.add(:email, "from this domain are not allowed")
-    end
-  end
 end

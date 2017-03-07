@@ -1,9 +1,4 @@
 development:
-  whitelisted_email_domains:
-    - example.com
-    - fanprint.com
-    - counterfind.com
-    - freegoweb.it
   facebook:
     report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
@@ -14,10 +9,6 @@ development:
       - EAAIUKbXn8xsBABqlU1Lb0d3c0HcdL1Wyo3TJanKYvXx7pdkzNhvy3wMbmvvzjDgjn0rP6Pbf89XZACO0hURPEk7alZBz9JfJFDnQprajHLUnUKepSAlMNmrLg8B43tGtzjWLbae4CYPA2ZAb3l7kZAqBVNON2wsZD
 
 production:
-  whitelisted_email_domains:
-    - fanprint.com
-    - counterfind.com
-    - freegoweb.it
   facebook:
     report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
@@ -28,10 +19,6 @@ production:
       - EAAIUKbXn8xsBABqlU1Lb0d3c0HcdL1Wyo3TJanKYvXx7pdkzNhvy3wMbmvvzjDgjn0rP6Pbf89XZACO0hURPEk7alZBz9JfJFDnQprajHLUnUKepSAlMNmrLg8B43tGtzjWLbae4CYPA2ZAb3l7kZAqBVNON2wsZD
 
 demo:
-  whitelisted_email_domains:
-    - fanprint.com
-    - counterfind.com
-    - freegoweb.it
   facebook:
     report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
@@ -42,8 +29,6 @@ demo:
       - EAAIUKbXn8xsBABqlU1Lb0d3c0HcdL1Wyo3TJanKYvXx7pdkzNhvy3wMbmvvzjDgjn0rP6Pbf89XZACO0hURPEk7alZBz9JfJFDnQprajHLUnUKepSAlMNmrLg8B43tGtzjWLbae4CYPA2ZAb3l7kZAqBVNON2wsZD
 
 test:
-  whitelisted_email_domains:
-    - example.com
   facebook:
     report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
