@@ -12,6 +12,13 @@ class PostsImporterJob
       return
     end
 
+    matching_brand_ids = BrandMatcher.new(page.name).call
+    if matching_brand_ids.none?
+      logger.info "PostsImporterJob: skipping non-matching FacebookPage #{page.name}"
+      self.class.perform_in(3.days, page_id)
+      return
+    end
+
     begin
       import_posts(page)
     rescue Koala::Facebook::ClientError => e
