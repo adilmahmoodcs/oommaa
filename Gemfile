@@ -68,4 +68,5 @@ group :development do
   gem "capistrano3-puma"
   gem "capistrano-rails-console"
   gem "capistrano-sidekiq", github: "seuros/capistrano-sidekiq"
+  gem "letter_opener"
 end
