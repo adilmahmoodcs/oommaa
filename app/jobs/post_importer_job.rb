@@ -3,9 +3,11 @@ class PostImporterJob
   include Sidekiq::Worker
   sidekiq_options queue: "posts"
 
-  def perform(url, user_email = "user@example.com", brand_id = nil)
+  def perform(url, user_email = "user@example.com", brand_ids = [])
     object_id, type = FbURLParser.new(url).call
     return unless object_id
+
+    brand_ids = brand_ids.map(&:to_i)
 
     begin
       data = case type
@@ -50,35 +52,37 @@ class PostImporterJob
 
     return if FacebookPost.exists?(facebook_id: data["id"])
 
-    page = find_or_create_page(data["from"]["id"], brand_id)
+    page = find_or_create_page(data["from"]["id"], brand_ids)
     # create a post from the submitted URL
     create_post(data, page, user_email)
   end
 
   private
 
-  def find_or_create_page(object_id, brand_id)
+  def find_or_create_page(object_id, brand_ids)
     data = FBPageReader.new(object_id: object_id, token: token).call
 
     if page = FacebookPage.find_by(facebook_id: data["id"])
-      if brand_id && !brand_id.in?(page.brand_ids)
-        brand = Brand.find(brand_id)
-        page.brands << brand
-        page.save!
-        logger.info "PostImporterJob: Brand ##{brand_id} added to FacebookPage #{page.id}"
+      brand_ids.each do |brand_id|
+        unless brand_id.in?(page.brand_ids)
+          brand = Brand.find(brand_id)
+          page.brands << brand
+          page.save!
+          logger.info "PostImporterJob: Brand ##{brand_id} added to FacebookPage #{page.id}"
+        end
       end
       return page
     end
 
     matching_brand_ids = BrandMatcher.new(data["name"]).call
-    brand_ids = ([brand_id] + matching_brand_ids).uniq.compact
+    all_brand_ids = (brand_ids + matching_brand_ids).uniq.compact
 
     page = FacebookPage.create!(
       facebook_id: data["id"],
       name: data["name"],
       url: data["link"],
       image_url: data.dig("picture", "data", "url"),
-      brand_ids: brand_ids
+      brand_ids: all_brand_ids
     )
 
     logger.info "PostImporterJob: created new FacebookPage #{page.id}"

@@ -11,18 +11,19 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-            <%= label_tag :url %>
+            <%= label_tag :url, "URL address" %>
             <%= text_field_tag :url, nil, class: "form-control", required: true %>
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-12">
           <div class="form-group">
-            <%= label_tag :brand_id, t(:brand) %>
-            <%= select_tag :brand_id,
+            <%= label_tag :brand_ids, "Brands" %>
+            <%= select_tag :brand_ids,
                            options_from_collection_for_select(Brand.all.order("LOWER(name)"), :id, :name),
                            include_blank: true,
                            required: true,
+                           multiple: true,
                            class: "form-control select2" %>
           </div>
         </div>
