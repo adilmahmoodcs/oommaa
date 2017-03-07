@@ -1,126 +1,147 @@
 <div class="mobile-menu-left-overlay"></div>
 <ul class="main-nav nav nav-inline">
-  <li class="nav-item">
-    <%= link_to keywords_path,
-                class: "nav-link #{'active' if current_page?('/keywords')}" do %>
-      <%= icon("quote-right", class: "fa-fw") %>
-      <%= "#{t(:keywords)} (#{Keyword.count})" %>
-    <% end %>
-  </li>
-
-  <li class="nav-item">
-    <%= link_to brands_path,
-                class: "nav-link #{'active' if current_page?('/brands')}" do %>
-      <%= icon("shield", class: "fa-fw") %>
-      <%= "#{t(:brands)} (#{Brand.count})" %>
-    <% end %>
-  </li>
-
-  <li class="nav-item">
-    <%= link_to licensors_path,
-                class: "nav-link #{'active' if current_page?('/licensors')}" do %>
-      <%= icon("handshake-o", class: "fa-fw") %>
-      <%= "#{t(:licensors)} (#{Licensor.count})" %>
-    <% end %>
-  </li>
-
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle <%= 'active' if current_page?('/domains') %>"
-       data-toggle="dropdown"
-       href="#"
-       role="button"
-       aria-haspopup="true"
-       aria-expanded="false">
-      <%= icon("globe", class: "fa-fw") %>
-      Domains
-    </a>
-    <div class="dropdown-menu">
-      <%= link_to domains_path(status: :whitelisted),
-                  class: "dropdown-item #{'active' if current_page?('/domains') && @status == 'whitelisted'}" do %>
-        <%= icon("check", class: "fa-fw") %>
-        <%= "#{t(:whitelisted)} (#{Domain.whitelisted.count})" %>
+  <% if policy(Keyword).index? %>
+    <li class="nav-item">
+      <%= link_to keywords_path,
+                  class: "nav-link #{'active' if current_page?('/keywords')}" do %>
+        <%= icon("quote-right", class: "fa-fw") %>
+        <%= "#{t(:keywords)} (#{Keyword.count})" %>
       <% end %>
+    </li>
+  <% end %>
 
-      <%= link_to domains_path(status: :blacklisted),
-                  class: "dropdown-item #{'active' if current_page?('/domains') && @status == 'blacklisted'}" do %>
-        <%= icon("ban", class: "fa-fw") %>
-        <%= "#{t(:blacklisted)} (#{Domain.blacklisted.count})" %>
+  <% if policy(Brand).index? %>
+    <li class="nav-item">
+      <%= link_to brands_path,
+                  class: "nav-link #{'active' if current_page?('/brands')}" do %>
+        <%= icon("shield", class: "fa-fw") %>
+        <%= "#{t(:brands)} (#{Brand.count})" %>
       <% end %>
-    </div>
-  </li>
+    </li>
+  <% end %>
 
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle <%= 'active' if current_page?('/facebook_posts') %>"
-       data-toggle="dropdown"
-       href="#"
-       role="button"
-       aria-haspopup="true"
-       aria-expanded="false">
-      <%= icon("facebook", class: "fa-fw") %>
-      Posts
-    </a>
-    <div class="dropdown-menu">
-      <%= link_to url_imports_path,
-                  class: "dropdown-item #{'active' if current_page?('/imports/url')}" do %>
-        <%= icon("plus", class: "fa-fw") %>
-        Add new
+  <% if policy(Licensor).index? %>
+    <li class="nav-item">
+      <%= link_to licensors_path,
+                  class: "nav-link #{'active' if current_page?('/licensors')}" do %>
+        <%= icon("handshake-o", class: "fa-fw") %>
+        <%= "#{t(:licensors)} (#{Licensor.count})" %>
       <% end %>
+    </li>
+  <% end %>
 
-      <div class="dropdown-divider"></div>
+  <% if policy(Domain).index? %>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle <%= 'active' if current_page?('/domains') %>"
+         data-toggle="dropdown"
+         href="#"
+         role="button"
+         aria-haspopup="true"
+         aria-expanded="false">
+        <%= icon("globe", class: "fa-fw") %>
+        Domains
+      </a>
+      <div class="dropdown-menu">
+        <%= link_to domains_path(status: :whitelisted),
+                    class: "dropdown-item #{'active' if current_page?('/domains') && @status == 'whitelisted'}" do %>
+          <%= icon("check", class: "fa-fw") %>
+          <%= "#{t(:whitelisted)} (#{Domain.whitelisted.count})" %>
+        <% end %>
 
-      <%= link_to facebook_posts_path(q: { status_eq: :not_suspect }),
-                  class: "dropdown-item #{'active' if current_page?('/facebook_posts') && @status == 'not_suspect'}" do %>
-        <%= icon("circle-thin", class: "fa-fw") %>
-        <%= "#{t(:not_suspect)} (#{FacebookPost.not_suspect.size})" %>
-      <% end %>
+        <%= link_to domains_path(status: :blacklisted),
+                    class: "dropdown-item #{'active' if current_page?('/domains') && @status == 'blacklisted'}" do %>
+          <%= icon("ban", class: "fa-fw") %>
+          <%= "#{t(:blacklisted)} (#{Domain.blacklisted.count})" %>
+        <% end %>
+      </div>
+    </li>
+  <% end %>
 
-      <%= link_to facebook_posts_path(q: { status_eq: :suspect }),
-                  class: "dropdown-item #{'active' if current_page?('/facebook_posts') && @status == 'suspect'}" do %>
-        <%= icon("question", class: "fa-fw") %>
-        <%= "#{t(:suspect)} (#{FacebookPost.suspect.size})" %>
-      <% end %>
-
-      <%= link_to facebook_posts_path(q: { status_eq: :whitelisted }),
-                  class: "dropdown-item #{'active' if current_page?('/facebook_posts') && @status == 'whitelisted'}" do %>
-        <%= icon("check", class: "fa-fw") %>
-        <%= "#{t(:whitelisted)} (#{FacebookPost.whitelisted.size})" %>
-      <% end %>
-
-      <%= link_to facebook_posts_path(q: { status_eq: :blacklisted }),
-                  class: "dropdown-item #{'active' if current_page?('/facebook_posts') && @status == 'blacklisted'}" do %>
-        <%= icon("ban", class: "fa-fw") %>
-        <%= "#{t(:blacklisted)} (#{FacebookPost.blacklisted.size})" %>
-      <% end %>
-
-      <%= link_to facebook_posts_path(q: { status_eq: :reported_to_facebook }),
-                  class: "dropdown-item #{'active' if current_page?('/facebook_posts') && @status == 'reported_to_facebook'}" do %>
+  <% if policy(:import).url? || policy(FacebookPost).index? %>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle <%= 'active' if current_page?('/facebook_posts') %>"
+         data-toggle="dropdown"
+         href="#"
+         role="button"
+         aria-haspopup="true"
+         aria-expanded="false">
         <%= icon("facebook", class: "fa-fw") %>
-        <%= "#{t(:reported_to_facebook)} (#{FacebookPost.reported_to_facebook.size})" %>
+        Posts
+      </a>
+      <div class="dropdown-menu">
+        <% if policy(:import).url? %>
+          <%= link_to url_imports_path,
+                      class: "dropdown-item #{'active' if current_page?('/imports/url')}" do %>
+            <%= icon("plus", class: "fa-fw") %>
+            Add new
+          <% end %>
+
+          <div class="dropdown-divider"></div>
+        <% end %>
+
+        <% if policy(FacebookPost).index? %>
+          <%= link_to facebook_posts_path(q: { status_eq: :not_suspect }),
+                      class: "dropdown-item #{'active' if current_page?('/facebook_posts') && @status == 'not_suspect'}" do %>
+            <%= icon("circle-thin", class: "fa-fw") %>
+            <%= "#{t(:not_suspect)} (#{FacebookPost.not_suspect.size})" %>
+          <% end %>
+
+          <%= link_to facebook_posts_path(q: { status_eq: :suspect }),
+                      class: "dropdown-item #{'active' if current_page?('/facebook_posts') && @status == 'suspect'}" do %>
+            <%= icon("question", class: "fa-fw") %>
+            <%= "#{t(:suspect)} (#{FacebookPost.suspect.size})" %>
+          <% end %>
+
+          <%= link_to facebook_posts_path(q: { status_eq: :whitelisted }),
+                      class: "dropdown-item #{'active' if current_page?('/facebook_posts') && @status == 'whitelisted'}" do %>
+            <%= icon("check", class: "fa-fw") %>
+            <%= "#{t(:whitelisted)} (#{FacebookPost.whitelisted.size})" %>
+          <% end %>
+
+          <%= link_to facebook_posts_path(q: { status_eq: :blacklisted }),
+                      class: "dropdown-item #{'active' if current_page?('/facebook_posts') && @status == 'blacklisted'}" do %>
+            <%= icon("ban", class: "fa-fw") %>
+            <%= "#{t(:blacklisted)} (#{FacebookPost.blacklisted.size})" %>
+          <% end %>
+
+          <%= link_to facebook_posts_path(q: { status_eq: :reported_to_facebook }),
+                      class: "dropdown-item #{'active' if current_page?('/facebook_posts') && @status == 'reported_to_facebook'}" do %>
+            <%= icon("facebook", class: "fa-fw") %>
+            <%= "#{t(:reported_to_facebook)} (#{FacebookPost.reported_to_facebook.size})" %>
+          <% end %>
+        <% end %>
+      </div>
+    </li>
+  <% end %>
+
+  <% if policy(FacebookPost).export? %>
+    <li class="nav-item">
+      <%= link_to export_facebook_posts_path,
+                  class: "nav-link #{'active' if current_page?('/facebook_posts/export')}" do %>
+        <%= icon("download", class: "fa-fw") %>
+        <%= t(:blacklist_export) %>
       <% end %>
-    </div>
-  </li>
+    </li>
+  <% end %>
 
-  <li class="nav-item">
-    <%= link_to export_facebook_posts_path,
-                class: "nav-link #{'active' if current_page?('/facebook_posts/export')}" do %>
-      <%= icon("download", class: "fa-fw") %>
-      <%= t(:blacklist_export) %>
-    <% end %>
-  </li>
+  <% if policy(User).index? %>
+    <li class="nav-item">
+      <%= link_to users_path,
+                  class: "nav-link #{'active' if current_page?(users_path)}" do %>
+        <%= icon("users", class: "fa-fw") %>
+        <%= t(:users) %>
+      <% end %>
+    </li>
+  <% end %>
 
-  <li class="nav-item">
-    <%= link_to users_path,
-                class: "nav-link #{'active' if current_page?(users_path)}" do %>
-      <%= icon("users", class: "fa-fw") %>
-      <%= t(:users) %>
-    <% end %>
-  </li>
 
-  <li class="nav-item">
-    <%= link_to activities_path,
-                class: "nav-link #{'active' if current_page?('/activities')}" do %>
-      <%= icon("list-ul", class: "fa-fw") %>
-      <%= t(:user_activities) %>
-    <% end %>
-  </li>
+  <% if policy(PublicActivity::Activity).index? %>
+    <li class="nav-item">
+      <%= link_to activities_path,
+                  class: "nav-link #{'active' if current_page?('/activities')}" do %>
+        <%= icon("list-ul", class: "fa-fw") %>
+        <%= t(:user_activities) %>
+      <% end %>
+    </li>
+  <% end %>
 </ul>
