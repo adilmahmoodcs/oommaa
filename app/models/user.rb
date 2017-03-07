@@ -19,11 +19,13 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  role                   :integer          default("0"), not null
+#  licensor_id            :integer
 #
 # Indexes
 #
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_licensor_id           (licensor_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
@@ -34,6 +36,8 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable
+
+  belongs_to :licensor, optional: true
 
   validate :whitelisted_email
 
