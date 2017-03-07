@@ -12,7 +12,7 @@
     <%= f.label :licensor_id %><br>
     <%= f.collection_select :licensor_id, Licensor.order(:name),
                             :id, :name,
-                            {},
+                            { include_blank: true },
                             class: "form-control select2",
-                            required: true %>
+                            required: !f.object.admin? %>
 </div>
