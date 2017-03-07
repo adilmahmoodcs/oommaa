@@ -3,13 +3,13 @@ class BrandMatcher
   attr_reader :term
 
   def initialize(term)
-    @term = term
+    @term = term.downcase
   end
 
   def call
     brand_ids = []
-    Brand.select(:id, :name).find_each do |brand|
-      if term.downcase.match? regexp_for(brand)
+    Brand.select(:id, :name, :nicknames).find_each do |brand|
+      if term.match? regexp_for(brand)
         brand_ids << brand.id
       end
     end
@@ -20,9 +20,7 @@ class BrandMatcher
   private
 
   def regexp_for(brand)
-    fields = [
-      brand.name
-    ].map(&:downcase)
+    fields = ([brand.name] + brand.nicknames).map(&:downcase)
     Regexp.union(fields)
   end
 end

@@ -22,5 +22,6 @@
 FactoryGirl.define do
   factory :brand do
     name { Faker::Team.name }
+    nicknames []
   end
 end
