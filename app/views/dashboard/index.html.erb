@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-sm-3">
+    <article class="statistic-box purple">
+        <div>
+          <div class="number">
+            <%= FacebookPage.count %>
+          </div>
+          <div class="caption">
+            <div>
+              Monitored Facebook Pages
+            </div>
+          </div>
+        </div>
+    </article>
+  </div>
+
+  <div class="col-sm-3">
+    <article class="statistic-box yellow">
+        <div>
+          <div class="number">
+            <%= FacebookPost.blacklisted.size %>
+          </div>
+          <div class="caption">
+            <div>
+              Blacklisted Ads
+            </div>
+          </div>
+        </div>
+    </article>
+  </div>
+
+  <div class="col-sm-3">
+    <article class="statistic-box green">
+        <div>
+          <div class="number">
+            <%= FacebookPost.reported_to_facebook.size %>
+          </div>
+          <div class="caption">
+            <div>
+              Reported to Facebook Ads
+            </div>
+          </div>
+        </div>
+    </article>
+  </div>
+</div>

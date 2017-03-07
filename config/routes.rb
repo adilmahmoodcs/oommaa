@@ -2,6 +2,7 @@ require "sidekiq/web"
 
 Rails.application.routes.draw do
   devise_for :users
+  resources :dashboard, only: :index
   resources :licensors
   resources :keywords
   resources :brands
@@ -33,5 +34,5 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => "/sidekiq"
 
-  root to: "keywords#index"
+  root to: "dashboard#index"
 end
