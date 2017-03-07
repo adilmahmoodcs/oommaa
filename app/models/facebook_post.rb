@@ -46,7 +46,8 @@ class FacebookPost < ApplicationRecord
   validates :facebook_id, :message, :facebook_page, presence: true
   validates :facebook_id, uniqueness: true
 
-  delegate :brands, :brand_names, :licensor_names, to: :facebook_page
+  delegate :brands, :brand_ids, :brand_ids=, :brand_names, :licensor_names,
+    to: :facebook_page
 
   scope :with_any_domain, -> (name) { where("? = ANY (all_domains)", name) }
   scope :date_yesterday, -> { where() }
@@ -96,6 +97,10 @@ class FacebookPost < ApplicationRecord
   def status_changed_by
     send(status_changed_by_reader) if respond_to?(status_changed_by_reader, true)
   end
+
+  # def brand_ids=(value)
+  #   p value
+  # end
 
   private
 

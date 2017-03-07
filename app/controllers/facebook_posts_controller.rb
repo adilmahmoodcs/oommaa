@@ -23,8 +23,8 @@ class FacebookPostsController < ApplicationController
   def update
     authorize @facebook_post
     if @facebook_post.update(facebook_post_params)
-      @facebook_post.create_activity(:update, owner: current_user, parameters: { name: @facebook_post.name })
-      redirect_to @facebook_post, notice: 'Post was successfully updated.'
+      @facebook_post.create_activity(:update, owner: current_user, parameters: { name: @facebook_post.permalink })
+      redirect_to edit_facebook_post_path(@facebook_post), notice: 'Post was successfully updated.'
     else
       render :edit
     end
@@ -104,7 +104,7 @@ class FacebookPostsController < ApplicationController
   end
 
   def facebook_post_params
-    params.require(:facebook_post).permit(:permalink)
+    params.require(:facebook_post).permit(brand_ids: [])
   end
 
   def after_reported_to_facebook
