@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe PostsImporterJob, type: :job do
   let(:page) { create(:facebook_page, facebook_id: @facebook_page_id) }
+  # because non matching pages are skipped
+  let!(:brand) { create(:brand, name: page.name) }
 
   before(:each) do
     allow_any_instance_of(FBPostSearcher).to receive(:token) { @facebook_token }
