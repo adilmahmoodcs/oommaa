@@ -30,6 +30,8 @@ class Brand < ApplicationRecord
   before_validation :remove_blank_values
   after_commit :start_pages_importer, on: :create
 
+  scope :of_licensor, -> (licensor) { where(licensor_id: licensor.id) }
+
   has_attached_file :logo,
                     styles: { thumb: "100x100>" },
                     default_url: "/images/missing.png"

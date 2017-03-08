@@ -11,9 +11,11 @@
   <div class="card-block">
     <div class="row">
       <div class="col-md-6">
-          <%= link_to new_brand_path, class: "btn btn-primary" do %>
-            <%= icon("plus") %>
-            Add New
+          <% if policy(Brand).new? %>
+            <%= link_to new_brand_path, class: "btn btn-primary" do %>
+              <%= icon("plus") %>
+              Add New
+            <% end %>
           <% end %>
       </div>
 
