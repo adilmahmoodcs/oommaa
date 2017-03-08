@@ -15,7 +15,7 @@
       <%= link_to keywords_path,
                   class: "nav-link #{'active' if current_page?(keywords_path)}" do %>
         <%= icon("quote-right", class: "fa-fw") %>
-        <%= "#{t(:keywords)} (#{Keyword.count})" %>
+        <%= "#{t(:keywords)} (#{policy_scope(Keyword).count})" %>
       <% end %>
     </li>
   <% end %>
@@ -25,7 +25,7 @@
       <%= link_to brands_path,
                   class: "nav-link #{'active' if current_page?(brands_path)}" do %>
         <%= icon("shield", class: "fa-fw") %>
-        <%= "#{t(:brands)} (#{Brand.count})" %>
+        <%= "#{t(:brands)} (#{policy_scope(Brand).count})" %>
       <% end %>
     </li>
   <% end %>
@@ -35,7 +35,7 @@
       <%= link_to licensors_path,
                   class: "nav-link #{'active' if current_page?(licensors_path)}" do %>
         <%= icon("handshake-o", class: "fa-fw") %>
-        <%= "#{t(:licensors)} (#{Licensor.count})" %>
+        <%= "#{t(:licensors)} (#{policy_scope(Licensor).count})" %>
       <% end %>
     </li>
   <% end %>
@@ -55,13 +55,13 @@
         <%= link_to domains_path(status: :whitelisted),
                     class: "dropdown-item #{'active' if current_page?(domains_path) && @status == 'whitelisted'}" do %>
           <%= icon("check", class: "fa-fw") %>
-          <%= "#{t(:whitelisted)} (#{Domain.whitelisted.count})" %>
+          <%= "#{t(:whitelisted)} (#{policy_scope(Domain).whitelisted.count})" %>
         <% end %>
 
         <%= link_to domains_path(status: :blacklisted),
                     class: "dropdown-item #{'active' if current_page?(domains_path) && @status == 'blacklisted'}" do %>
           <%= icon("ban", class: "fa-fw") %>
-          <%= "#{t(:blacklisted)} (#{Domain.blacklisted.count})" %>
+          <%= "#{t(:blacklisted)} (#{policy_scope(Domain).blacklisted.count})" %>
         <% end %>
       </div>
     </li>
@@ -93,31 +93,31 @@
           <%= link_to facebook_posts_path(q: { status_eq: :not_suspect }),
                       class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'not_suspect'}" do %>
             <%= icon("circle-thin", class: "fa-fw") %>
-            <%= "#{t(:not_suspect)} (#{FacebookPost.not_suspect.size})" %>
+            <%= "#{t(:not_suspect)} (#{policy_scope(FacebookPost).not_suspect.size})" %>
           <% end %>
 
           <%= link_to facebook_posts_path(q: { status_eq: :suspect }),
                       class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'suspect'}" do %>
             <%= icon("question", class: "fa-fw") %>
-            <%= "#{t(:suspect)} (#{FacebookPost.suspect.size})" %>
+            <%= "#{t(:suspect)} (#{policy_scope(FacebookPost).suspect.size})" %>
           <% end %>
 
           <%= link_to facebook_posts_path(q: { status_eq: :whitelisted }),
                       class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'whitelisted'}" do %>
             <%= icon("check", class: "fa-fw") %>
-            <%= "#{t(:whitelisted)} (#{FacebookPost.whitelisted.size})" %>
+            <%= "#{t(:whitelisted)} (#{policy_scope(FacebookPost).whitelisted.size})" %>
           <% end %>
 
           <%= link_to facebook_posts_path(q: { status_eq: :blacklisted }),
                       class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'blacklisted'}" do %>
             <%= icon("ban", class: "fa-fw") %>
-            <%= "#{t(:blacklisted)} (#{FacebookPost.blacklisted.size})" %>
+            <%= "#{t(:blacklisted)} (#{policy_scope(FacebookPost).blacklisted.size})" %>
           <% end %>
 
           <%= link_to facebook_posts_path(q: { status_eq: :reported_to_facebook }),
                       class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'reported_to_facebook'}" do %>
             <%= icon("facebook", class: "fa-fw") %>
-            <%= "#{t(:reported_to_facebook)} (#{FacebookPost.reported_to_facebook.size})" %>
+            <%= "#{t(:reported_to_facebook)} (#{policy_scope(FacebookPost).reported_to_facebook.size})" %>
           <% end %>
         <% end %>
       </div>
