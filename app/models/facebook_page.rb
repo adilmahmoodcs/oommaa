@@ -11,10 +11,12 @@
 #  updated_at               :datetime         not null
 #  old_brand_ids            :integer          default("{}"), is an Array
 #  shut_down_by_facebook_at :datetime
+#  cached_licensor_ids      :integer          default("{}"), is an Array
 #
 # Indexes
 #
-#  index_facebook_pages_on_old_brand_ids  (old_brand_ids)
+#  index_facebook_pages_on_cached_licensor_ids  (cached_licensor_ids)
+#  index_facebook_pages_on_old_brand_ids        (old_brand_ids)
 #
 
 class FacebookPage < ApplicationRecord
@@ -27,6 +29,8 @@ class FacebookPage < ApplicationRecord
 
   validates :name, :url, :facebook_id, presence: true
   validates :facebook_id, uniqueness: true
+
+  before_save :update_cached_licensor_ids
 
   ransacker :name_case_insensitive, type: :string do
     arel_table[:name].lower
@@ -45,5 +49,9 @@ class FacebookPage < ApplicationRecord
     update_attributes(shut_down_by_facebook_at: now)
     facebook_posts.where(shut_down_by_facebook_at: nil).
                    update_all(shut_down_by_facebook_at: now, updated_at: now)
+  end
+
+  def update_cached_licensor_ids
+    self.cached_licensor_ids = brands.pluck(:licensor_id).compact.uniq
   end
 end

@@ -54,6 +54,10 @@ class FacebookPost < ApplicationRecord
   scope :blacklisted_or_reported_to_facebook, -> {
     where(status: [statuses[:blacklisted], statuses[:reported_to_facebook]])
   }
+  scope :of_licensor, -> (licensor) {
+    joins(:facebook_page).
+    where("? = ANY(cached_licensor_ids)", licensor.id)
+  }
 
   ransacker :status, formatter: proc { |status_name| statuses[status_name] }
 
@@ -97,10 +101,6 @@ class FacebookPost < ApplicationRecord
   def status_changed_by
     send(status_changed_by_reader) if respond_to?(status_changed_by_reader, true)
   end
-
-  # def brand_ids=(value)
-  #   p value
-  # end
 
   private
 

@@ -11,10 +11,12 @@
 #  updated_at               :datetime         not null
 #  old_brand_ids            :integer          default("{}"), is an Array
 #  shut_down_by_facebook_at :datetime
+#  cached_licensor_ids      :integer          default("{}"), is an Array
 #
 # Indexes
 #
-#  index_facebook_pages_on_old_brand_ids  (old_brand_ids)
+#  index_facebook_pages_on_cached_licensor_ids  (cached_licensor_ids)
+#  index_facebook_pages_on_old_brand_ids        (old_brand_ids)
 #
 
 FactoryGirl.define do
