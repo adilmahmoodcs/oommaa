@@ -12,6 +12,6 @@ class BrandPolicy < ApplicationPolicy
   end
 
   def index?
-    user
+    user.admin? || user.confirmed_client?
   end
 end
