@@ -32,4 +32,12 @@ module ApplicationHelper
       link_to name, screenshot.image.url, target: "_blank"
     end.join("<br>").html_safe
   end
+
+  def logo_path
+    if licensor = current_user&.licensor
+      licensor.logo.url(:thumb)
+    else
+      "counterfind-logo.png"
+    end
+  end
 end
