@@ -36,6 +36,7 @@ FactoryGirl.define do
     password "password"
     confirmed_at { Time.now }
     name { Faker::Name.name }
+    role :admin
   end
 
 end
