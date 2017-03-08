@@ -11,7 +11,7 @@ class ImportsController < ApplicationController
     end
 
     PostImporterJob.perform_async(params[:url], current_user.email, params[:brand_ids])
-    current_user.create_activity(:url_added, owner: current_user, parameters: { name: url })
+    current_user.create_activity(:url_added, owner: current_user, parameters: { name: params[:url] })
 
     flash[:notice] = "A job to import this post was enqueued."
     redirect_to url_imports_path
