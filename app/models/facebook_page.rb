@@ -32,6 +32,10 @@ class FacebookPage < ApplicationRecord
 
   before_save :update_cached_licensor_ids
 
+  scope :of_licensor, -> (licensor) {
+    where("? = ANY(cached_licensor_ids)", licensor.id)
+  }
+
   ransacker :name_case_insensitive, type: :string do
     arel_table[:name].lower
   end
