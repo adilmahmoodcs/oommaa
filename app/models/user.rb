@@ -41,4 +41,12 @@ class User < ApplicationRecord
   belongs_to :licensor, optional: true
 
   validates :name, presence: true
+
+  before_save :remove_licensor_for_admins
+
+  private
+
+  def remove_licensor_for_admins
+    self.licensor = nil if admin?
+  end
 end
