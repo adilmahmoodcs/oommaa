@@ -3,7 +3,7 @@
     <article class="statistic-box purple">
         <div>
           <div class="number">
-            <%= FacebookPage.count %>
+            <%= policy_scope(FacebookPage).count %>
           </div>
           <div class="caption">
             <div>
@@ -18,7 +18,7 @@
     <article class="statistic-box yellow">
         <div>
           <div class="number">
-            <%= FacebookPost.blacklisted.size %>
+            <%= policy_scope(FacebookPost).blacklisted.size %>
           </div>
           <div class="caption">
             <div>
@@ -33,7 +33,7 @@
     <article class="statistic-box green">
         <div>
           <div class="number">
-            <%= FacebookPost.reported_to_facebook.size %>
+            <%= policy_scope(FacebookPost).reported_to_facebook.size %>
           </div>
           <div class="caption">
             <div>
