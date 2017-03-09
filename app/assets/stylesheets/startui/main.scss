@@ -7498,13 +7498,13 @@ a.label-light-grey:hover {
   color: #6c7a86;
 }
 .bootstrap-table .fixed-table-container thead th .both {
-  background-image: asset-url('bst-sort.png');
+  background-image: asset-url('startui/bst-sort.png');
 }
 .bootstrap-table .fixed-table-container thead th .desc {
-  background-image: asset-url('bst-down.png');
+  background-image: asset-url('startui/bst-down.png');
 }
 .bootstrap-table .fixed-table-container thead th .asc {
-  background-image: asset-url('bst-up.png');
+  background-image: asset-url('startui/bst-up.png');
 }
 .bootstrap-table .fixed-table-container thead th.detail,
 .bootstrap-table .fixed-table-container thead th.bs-checkbox {
@@ -8851,7 +8851,7 @@ a.label-light-grey:hover {
   position: absolute;
   left: 0;
   bottom: -1px;
-  background: asset-url('gradient-scroll.png') repeat-x bottom;
+  background: asset-url('startui/gradient-scroll.png') repeat-x bottom;
 }
 .scrollable-block.scrollable-gradient .jspVerticalBar {
   z-index: 10;
@@ -10185,25 +10185,29 @@ body.modal-open {
 }
 .statistic-box.red {
   background-color: #fa424a;
-  background-image: asset-url('statistic-box-red.png');
+  // background-image: asset-url('startui/statistic-box-red.png');
 }
 .statistic-box.purple {
   background-color: #ac6bec;
-  background-image: asset-url('statistic-box-purple.png');
+  // background-image: asset-url('startui/statistic-box-purple.png');
 }
 .statistic-box.yellow {
   background-color: #fdad2a;
-  background-image: asset-url('statistic-box-yellow.png');
+  // background-image: asset-url('startui/statistic-box-yellow.png');
 }
 .statistic-box.green {
   background-color: #46c35f;
-  background-image: asset-url('statistic-box-green.png');
+  // background-image: asset-url('startui/statistic-box-green.png');
+}
+.statistic-box.grey {
+  background-color: grey;
+  // background-image: asset-url('startui/statistic-box-green.png');
 }
 .statistic-box > div {
   -webkit-border-radius: inherit;
           border-radius: inherit;
   height: 142px;
-  background: asset-url('statistic-box-grid.png') 50% 0;
+  background: asset-url('startui/statistic-box-grid.png') 50% 0;
   background-size: 21px 20px;
   position: relative;
 }
