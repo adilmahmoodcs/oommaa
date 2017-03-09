@@ -58,6 +58,7 @@ class FacebookPost < ApplicationRecord
     joins(:facebook_page).
     where("? = ANY(cached_licensor_ids)", licensor.id)
   }
+  scope :shut_down, -> { where.not(shut_down_by_facebook_at: nil) }
 
   ransacker :status, formatter: proc { |status_name| statuses[status_name] }
 
