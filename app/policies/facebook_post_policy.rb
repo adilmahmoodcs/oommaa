@@ -27,7 +27,7 @@ class FacebookPostPolicy < ApplicationPolicy
   end
 
   def index_not_suspect?
-    user.admin?
+    user.admin? || user.confirmed_client?
   end
 
   def index_suspect?
@@ -53,7 +53,8 @@ class FacebookPostPolicy < ApplicationPolicy
   ### change_status
 
   def change_status_not_suspect?
-    user.admin?
+    user.admin? ||
+    (user.confirmed_client? && user.licensor.in?(record.licensors))
   end
 
   def change_status_suspect?
@@ -82,7 +83,7 @@ class FacebookPostPolicy < ApplicationPolicy
   ### mass_change_status
 
   def mass_change_status_not_suspect?
-    user.admin?
+    user.admin? || user.confirmed_client?
   end
 
   def mass_change_status_suspect?
