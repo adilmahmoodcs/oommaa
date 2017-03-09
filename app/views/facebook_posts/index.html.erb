@@ -5,7 +5,11 @@
 </h3>
 
 <%= render 'search_form' %>
-<%= render_if_exists "mass_actions_#{@status}", posts: @posts %>
+
+<% if policy(FacebookPost).public_send("mass_change_status_#{@status}?") %>
+  <%= render_if_exists "mass_actions_#{@status}", posts: @posts %>
+<% end %>
+
 <%= paginate @posts %>
 <%= render_if_exists "table_#{@status}", fallback: "table_default" %>
 <%= paginate @posts %>

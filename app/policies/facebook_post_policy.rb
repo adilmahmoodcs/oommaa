@@ -11,19 +11,97 @@ class FacebookPostPolicy < ApplicationPolicy
     end
   end
 
-  def index?
+  def export?
     user.admin? || user.confirmed_client?
   end
 
-  def export?
+  ### index
+
+  def index_any?
+    index_not_suspect? ||
+    index_suspect? ||
+    index_whitelisted? ||
+    index_blacklisted? ||
+    index_reported_to_facebook? ||
+    index_ignored?
+  end
+
+  def index_not_suspect?
     user.admin?
   end
 
-  def change_status?
+  def index_suspect?
+    user.admin? || user.confirmed_client?
+  end
+
+  def index_whitelisted?
+    user.admin? || user.confirmed_client?
+  end
+
+  def index_blacklisted?
+    user.admin? || user.confirmed_client?
+  end
+
+  def index_reported_to_facebook?
+    user.admin? || user.confirmed_client?
+  end
+
+  def index_ignored?
+    user.admin? || user.confirmed_client?
+  end
+
+  ### change_status
+
+  def change_status_not_suspect?
     user.admin?
   end
 
-  def mass_change_status?
+  def change_status_suspect?
+    user.admin? ||
+    (user.confirmed_client? && user.licensor.in?(record.licensors))
+  end
+
+  def change_status_whitelisted?
+    user.admin? ||
+    (user.confirmed_client? && user.licensor.in?(record.licensors))
+  end
+
+  def change_status_blacklisted?
+    user.admin? ||
+    (user.confirmed_client? && user.licensor.in?(record.licensors))
+  end
+
+  def change_status_reported_to_facebook?
+    user.admin?
+  end
+
+  def change_status_ignored?
+    user.admin?
+  end
+
+  ### mass_change_status
+
+  def mass_change_status_not_suspect?
+    user.admin?
+  end
+
+  def mass_change_status_suspect?
+    user.admin? || user.confirmed_client?
+  end
+
+  def mass_change_status_whitelisted?
+    user.admin? || user.confirmed_client?
+  end
+
+  def mass_change_status_blacklisted?
+    user.admin?
+  end
+
+  def mass_change_status_reported_to_facebook?
+    user.admin?
+  end
+
+  def mass_change_status_ignored?
     user.admin?
   end
 end

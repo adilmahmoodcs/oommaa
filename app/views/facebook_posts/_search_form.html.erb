@@ -20,7 +20,7 @@
         <div class="col-md-3 form-group">
           <%= f.label :with_any_brand, t(:brand_name) %>
           <%= f.collection_select :facebook_page_brands_id_eq,
-                                  Brand.all.order("LOWER(name)"),
+                                  policy_scope(Brand).order("LOWER(name)"),
                                   :id,
                                   :name,
                                   { include_blank: true },
@@ -37,15 +37,17 @@
                                   class: "form-control select2" %>
         </div>
 
-        <div class="col-md-3 form-group">
-          <%= f.label :with_licensor_name, "Licensor" %>
-          <%= f.collection_select :facebook_page_brands_licensor_id_eq,
-                                  Licensor.order("LOWER(name)"),
-                                  :id,
-                                  :name,
-                                  { include_blank: true },
-                                  class: "form-control select2" %>
-        </div>
+        <% if policy(Licensor).index? %>
+          <div class="col-md-3 form-group">
+            <%= f.label :with_licensor_name, "Licensor" %>
+            <%= f.collection_select :facebook_page_brands_licensor_id_eq,
+                                    Licensor.order("LOWER(name)"),
+                                    :id,
+                                    :name,
+                                    { include_blank: true },
+                                    class: "form-control select2" %>
+          </div>
+        <% end %>
 
         <div class="col-md-3 form-group">
           <%= f.label :published_at_gteq, "Published at date" %>

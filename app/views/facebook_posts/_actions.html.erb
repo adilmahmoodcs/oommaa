@@ -1,40 +1,43 @@
-<%= link_to edit_facebook_post_path(post),
-            class: "btn btn-secondary btn-sm" do %>
-  <%= icon("pencil") %>
-  Edit
+<% if policy(post).edit? %>
+  <%= link_to edit_facebook_post_path(post),
+              class: "btn btn-secondary btn-sm" do %>
+    <%= icon("pencil") %>
+    Edit
+  <% end %>
 <% end %>
 
+<% if policy(post).public_send("change_status_#{@status}?") %>
+  <% if !post.whitelisted? && !post.reported_to_facebook? %>
+    <%= link_to post_change_status_path(post, :whitelisted),
+                method: :post,
+                class: "btn btn-success" do %>
+      <%= icon("check") %>
+      Approve
+    <% end %>
+  <% end %>
 
-<% if !post.whitelisted? && !post.reported_to_facebook? %>
-  <%= link_to post_change_status_path(post, :whitelisted),
+  <% if !post.blacklisted? && !post.reported_to_facebook? %>
+    <%= link_to post_change_status_path(post, :blacklisted),
               method: :post,
-              class: "btn btn-success" do %>
-    <%= icon("check") %>
-    Approve
+              class: "btn btn-danger" do %>
+      <%= icon("ban") %>
+      Counterfeit
+    <% end %>
   <% end %>
-<% end %>
 
-<% if !post.blacklisted? && !post.reported_to_facebook? %>
-  <%= link_to post_change_status_path(post, :blacklisted),
-            method: :post,
-            class: "btn btn-danger" do %>
-    <%= icon("ban") %>
-    Counterfeit
+  <% if post.blacklisted? %>
+    <%= link_to post_change_status_path(post, :reported_to_facebook),
+                method: :post,
+                class: "btn btn-info report-to-facebook-button" do %>
+      <%= icon("facebook") %>
+      Report to Facebook
+    <% end %>
   <% end %>
-<% end %>
 
-<% if post.blacklisted? %>
-  <%= link_to post_change_status_path(post, :reported_to_facebook),
-              method: :post,
-              class: "btn btn-info report-to-facebook-button" do %>
-    <%= icon("facebook") %>
-    Report to Facebook
-  <% end %>
-<% end %>
-
-<% if post.blacklisted? || post.reported_to_facebook? %>
-  <%= link_to "#", class: "btn btn-secondary disabled" do %>
-    <%= icon("handshake-o") %>
-    Report to Licensor
+  <% if post.blacklisted? || post.reported_to_facebook? %>
+    <%= link_to "#", class: "btn btn-secondary disabled" do %>
+      <%= icon("handshake-o") %>
+      Report to Licensor
+    <% end %>
   <% end %>
 <% end %>

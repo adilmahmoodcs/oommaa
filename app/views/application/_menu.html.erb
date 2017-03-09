@@ -67,7 +67,7 @@
     </li>
   <% end %>
 
-  <% if policy(:import).url? || policy(FacebookPost).index? %>
+  <% if policy(:import).url? || policy(FacebookPost).index_any? %>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle <%= 'active' if current_page?(facebook_posts_path) %>"
          data-toggle="dropdown"
@@ -89,31 +89,39 @@
           <div class="dropdown-divider"></div>
         <% end %>
 
-        <% if policy(FacebookPost).index? %>
+        <% if policy(FacebookPost).index_not_suspect? %>
           <%= link_to facebook_posts_path(q: { status_eq: :not_suspect }),
                       class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'not_suspect'}" do %>
             <%= icon("circle-thin", class: "fa-fw") %>
             <%= "#{t(:not_suspect)} (#{policy_scope(FacebookPost).not_suspect.size})" %>
           <% end %>
+        <% end %>
 
+        <% if policy(FacebookPost).index_suspect? %>
           <%= link_to facebook_posts_path(q: { status_eq: :suspect }),
                       class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'suspect'}" do %>
             <%= icon("question", class: "fa-fw") %>
             <%= "#{t(:suspect)} (#{policy_scope(FacebookPost).suspect.size})" %>
           <% end %>
+        <% end %>
 
+        <% if policy(FacebookPost).index_whitelisted? %>
           <%= link_to facebook_posts_path(q: { status_eq: :whitelisted }),
                       class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'whitelisted'}" do %>
             <%= icon("check", class: "fa-fw") %>
             <%= "#{t(:whitelisted)} (#{policy_scope(FacebookPost).whitelisted.size})" %>
           <% end %>
+        <% end %>
 
+        <% if policy(FacebookPost).index_blacklisted? %>
           <%= link_to facebook_posts_path(q: { status_eq: :blacklisted }),
                       class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'blacklisted'}" do %>
             <%= icon("ban", class: "fa-fw") %>
             <%= "#{t(:blacklisted)} (#{policy_scope(FacebookPost).blacklisted.size})" %>
           <% end %>
+        <% end %>
 
+        <% if policy(FacebookPost).index_reported_to_facebook? %>
           <%= link_to facebook_posts_path(q: { status_eq: :reported_to_facebook }),
                       class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'reported_to_facebook'}" do %>
             <%= icon("facebook", class: "fa-fw") %>

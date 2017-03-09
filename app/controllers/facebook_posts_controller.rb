@@ -1,11 +1,13 @@
 class FacebookPostsController < ApplicationController
   before_action :set_facebook_post, only: [:edit, :update]
+  after_action :verify_policy_scoped, only: [:index, :export, :mass_change_status]
 
   def index
-    authorize FacebookPost
     params[:q] ||= {}
     params[:q][:status_eq] ||= "not_suspect"
     params[:q].delete(:status_eq) unless params[:q][:status_eq].in?(FacebookPost.statuses.keys)
+
+    authorize FacebookPost, "index_#{params[:q][:status_eq]}?"
 
     @q = policy_scope(FacebookPost).ransack(params[:q])
     @q.sorts = "published_at desc" if @q.sorts.empty?
@@ -68,9 +70,10 @@ class FacebookPostsController < ApplicationController
   end
 
   def change_status
-    authorize FacebookPost
     if params[:status] && params[:status].in?(FacebookPost.statuses.keys)
       @post = FacebookPost.find(params[:post_id])
+      authorize @post, "change_status_#{params[:status]}?"
+
       @post.change_status_to!(params[:status], current_user.email)
       @post.create_activity(params[:status], owner: current_user, parameters: { name: @post.permalink })
 
@@ -82,9 +85,10 @@ class FacebookPostsController < ApplicationController
   end
 
   def mass_change_status
-    authorize FacebookPost
     if params[:new_status] && params[:new_status].in?(FacebookPost.statuses.keys)
-      posts = FacebookPost.ransack(params[:q]).result
+      authorize FacebookPost, "mass_change_status_#{params[:new_status]}?"
+
+      posts = policy_scope(FacebookPost).ransack(params[:q]).result
       posts.each do |post|
         post.change_status_to!(params[:new_status], current_user.email)
       end

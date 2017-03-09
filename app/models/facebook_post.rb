@@ -46,7 +46,7 @@ class FacebookPost < ApplicationRecord
   validates :facebook_id, :message, :facebook_page, presence: true
   validates :facebook_id, uniqueness: true
 
-  delegate :brands, :brand_ids, :brand_ids=, :brand_names, :licensor_names,
+  delegate :brands, :brand_ids, :brand_ids=, :brand_names, :licensors, :licensor_names,
     to: :facebook_page
 
   scope :with_any_domain, -> (name) { where("? = ANY (all_domains)", name) }
