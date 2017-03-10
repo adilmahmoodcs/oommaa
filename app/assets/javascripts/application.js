@@ -22,6 +22,7 @@
 //= require startui/app
 //= require turbolinks
 //= require select2
+//= require jquery.tablesorter
 //= require facebook_report
 //= require search_form
 //= require selects
@@ -44,4 +45,6 @@ document.addEventListener("turbolinks:load", function() {
   $(".alert-dismissible").delay(4000).slideUp(200, function() {
     $(this).alert('close');
   })
+
+  $("table.client-sortable").tablesorter();
 })
