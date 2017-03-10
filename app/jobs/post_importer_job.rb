@@ -101,7 +101,8 @@ class PostImporterJob
       # we start as blacklisted, but PostStatusJob will also run
       status: "blacklisted",
       blacklisted_at: Time.now,
-      blacklisted_by: user_email
+      blacklisted_by: user_email,
+      added_by: user_email
     )
 
     post.parse_all_links!

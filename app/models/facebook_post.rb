@@ -22,6 +22,7 @@
 #  reported_to_facebook_by  :string
 #  shut_down_by_facebook_at :datetime
 #  all_domains              :string           default("{}"), is an Array
+#  added_by                 :string
 #
 # Indexes
 #
