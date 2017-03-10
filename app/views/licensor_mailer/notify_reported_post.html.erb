@@ -27,6 +27,17 @@
                                                  style="height: 50px;">
                                         </td>
                                     </tr>
+                                    <% if ad_screenshot = @post.ad_screenshots.first %>
+                                      <tr>
+                                          <td style="font-size:0;padding:30px 30px 16px;" align="center">
+                                              <%= link_to image_tag(ad_screenshot.image.url,
+                                                                    alt: "AD Screenshot",
+                                                                    style: "height: 250px; "),
+                                                          ad_screenshot.image.url,
+                                                          target: "_blank" %>
+                                          </td>
+                                      </tr>
+                                    <% end %>
                                     <tr>
                                         <td style="font-size:0;padding:30px 30px 16px;" align="left">
                                             <div class="mj-content" style="cursor:auto;color:#000000;font-family:Proxima Nova, Arial, Arial, Helvetica, sans-serif;font-size:15px;line-height:22px;">
@@ -50,17 +61,19 @@
                                                 </p>
                                               <% end %>
 
-                                              <% if ad_screenshot = @post.ad_screenshots.first %>
-                                                <p>
-                                                  <strong>Link to screenshot of Ad:</strong>
-                                                  <%= link_to "Link", ad_screenshot.image.url, target: "_blank" %>
-                                                </p>
-                                              <% end %>
+                                              <p>
+                                                <%= link_to "Link to Ad",
+                                                            @post.permalink,
+                                                            target: "_blank",
+                                                            style: "color: #0082c6; text-decoration: none; cursor: pointer; outline: none !important;font-weight:600;" %>
+                                              </p>
 
-                                              <% if product_screenshot = @post.product_screenshots.first %>
+                                              <% @post.all_links.each do |link| %>
                                                 <p>
-                                                  <strong>Link to screenshot of purchase page:</strong>
-                                                  <%= link_to "Link", product_screenshot.image.url, target: "_blank" %>
+                                                    <%= link_to "Link to purchase page",
+                                                                link,
+                                                                target: "_blank",
+                                                                style: "color: #0082c6; text-decoration: none; cursor: pointer; outline: none !important;font-weight:600;" %>
                                                 </p>
                                               <% end %>
                                             </div>
@@ -75,7 +88,7 @@
                                                             <a
                                                                 class="mj-content"
                                                                 href="#"
-                                                                style="display:inline-block;text-decoration:none;background:#00a8ff;border:1px solid #00a8ff;border-radius:25px;color:white;font-family:Proxima Nova, Arial, Arial, Helvetica, sans-serif;font-size:15px;font-weight:400;padding:8px 16px 10px;"
+                                                                style="display:inline-block;text-decoration:none;background:#00a8ff;border:1px solid #00a8ff;color:white;font-family:Proxima Nova, Arial, Arial, Helvetica, sans-serif;font-size:15px;font-weight:400;padding:8px 16px 10px;"
                                                                 target="_blank">
                                                               Click here to report an error
                                                             </a>
@@ -84,6 +97,9 @@
                                                 </tbody>
                                             </table>
                                         </td>
+                                    </tr>
+                                    <tr>
+                                      <td style="padding:0 30px 30px 30px;"></td>
                                     </tr>
                                     <tr>
                                         <td style="font-size:0;padding:0 30px 30px 30px;" align="left">
