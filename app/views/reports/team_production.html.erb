@@ -57,7 +57,7 @@
           <%= user.name %>
         </td>
         <td>
-
+          <%= FacebookPost.added_by(user).size %>
         </td>
         <td>
           <%= FacebookPost.reported_to_facebook_by(user).size %>
