@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-md-8">
+    <h3>
+      Team production report
+      <br>
+      (
+      <% if params[:from].present? %>
+        From
+        <%= l(Date.parse(params[:from]), format: :compact) %>
+      <% end %>
+      <% if params[:to].present? %>
+        to
+        <%= l(Date.parse(params[:to]), format: :compact) %>
+      <% end %>
+      <% if !params[:from].present? && !params[:to].present? %>
+        All time
+      <% end %>
+      )
+    </h3>
+  </div>
+  <div class="col-md-4 text-right">
+  </div>
+</div>
+
+<div class="card search-filters">
+  <div class="card-block">
+    <h4 class="card-title">Filters</h4>
+    <%= form_tag url_for, method: :get, class: "form-inline", id: "export-date" do %>
+      <%= label_tag :from, "From date:", class: "col-form-label mb-2 mr-sm-2 mb-sm-0" %>
+      <%= date_field_tag :from, params[:from], class: "form-control mb-2 mr-sm-2 mb-sm-0" %>
+
+      <%= label_tag :from , "To date:", class: "col-form-label mb-2 mr-sm-2 mb-sm-0" %>
+      <%= date_field_tag :to, params[:to], class: "form-control mb-2 mr-sm-2 mb-sm-0" %>
+
+      <%= button_tag class: "btn btn-primary" do %>
+        <%= icon("filter") %>
+        Filter
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Team Member</th>
+      <th>New Posts Added</th>
+      <th>Posts Reported to Facebook</th>
+      <th>Most Reported Brands</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= user.name %>
+        </td>
+        <td>
+
+        </td>
+        <td>
+          <%= FacebookPost.reported_to_facebook_by(user).size %>
+        </td>
+        <td>
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

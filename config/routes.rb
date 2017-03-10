@@ -28,6 +28,12 @@ Rails.application.routes.draw do
   post "/domains/:domain_id/change_status/:status" => "domains#change_status",
        as: :domain_change_status
 
+  resources :reports, only: [] do
+    collection do
+      get :team_production
+    end
+  end
+
   scope :admin do
     resources :users, only: [:index, :edit, :update, :destroy]
   end

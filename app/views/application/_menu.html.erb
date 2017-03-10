@@ -152,14 +152,34 @@
     </li>
   <% end %>
 
+  <% if policy(PublicActivity::Activity).index? || policy(:report).any? %>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle <%= 'active' if current_page?('/reports') %>"
+         data-toggle="dropdown"
+         href="#"
+         role="button"
+         aria-haspopup="true"
+         aria-expanded="false">
+        <%= icon("table", class: "fa-fw") %>
+        Reports
+      </a>
+      <div class="dropdown-menu">
+        <% if policy(PublicActivity::Activity).index? %>
+          <%= link_to activities_path,
+                      class: "dropdown-item #{'active' if current_page?(activities_path)}" do %>
+            <%= icon("list-ul", class: "fa-fw") %>
+            <%= t(:user_activities) %>
+          <% end %>
+        <% end %>
 
-  <% if policy(PublicActivity::Activity).index? %>
-    <li class="nav-item">
-      <%= link_to activities_path,
-                  class: "nav-link #{'active' if current_page?(activities_path)}" do %>
-        <%= icon("list-ul", class: "fa-fw") %>
-        <%= t(:user_activities) %>
-      <% end %>
+        <% if policy(:report).team_production? %>
+          <%= link_to team_production_reports_path,
+                      class: "dropdown-item #{'active' if current_page?(team_production_reports_path)}" do %>
+            <%= icon("users", class: "fa-fw") %>
+            Team Productions
+          <% end %>
+        <% end %>
+      </div>
     </li>
   <% end %>
 </ul>
