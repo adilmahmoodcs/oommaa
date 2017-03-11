@@ -7,7 +7,6 @@ class PostImporterJob
     object_id, type = FbURLParser.new(url).call
     return unless object_id
 
-    brand_ids = [brand_ids] unless brand_ids.respond_to?(:each)
     brand_ids = brand_ids.map(&:to_i)
 
     begin
@@ -25,7 +24,7 @@ class PostImporterJob
       case e.fb_error_code
       when 4
         logger.info "PostImporterJob: rate limiting, re-enqueued"
-        self.class.perform_in(rand(10..60).minutes, page_id)
+        self.class.perform_in(rand(10..60).minutes, url, user_email, brand_ids)
         return
       when 100
         # so it's a photo...
