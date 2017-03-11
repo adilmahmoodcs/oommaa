@@ -31,10 +31,16 @@
 
       <%= label_tag :from , "To date:", class: "col-form-label mb-2 mr-sm-2 mb-sm-0" %>
       <%= date_field_tag :to, params[:to], class: "form-control mb-2 mr-sm-2 mb-sm-0" %>
+      &nbsp;
 
       <%= button_tag class: "btn btn-primary" do %>
         <%= icon("filter") %>
         Filter
+      <% end %>
+      &nbsp;
+      <%= link_to url_for, class: "btn btn-secondary" do %>
+        <%= icon("eraser") %>
+        Clear search
       <% end %>
     <% end %>
   </div>
