@@ -1,7 +1,7 @@
 en:
   keywords: Keywords
   brands: Brands
-  posts: Posts
+  posts: Ads
   domains: Domains
   licensors: Licensors
   all: All
@@ -56,11 +56,11 @@ en:
       update: 'Updated Keyword "%{name}"'
       destroy: 'Deleted Keyword "%{name}"'
     facebook_post:
-      whitelisted: 'Whitelisted Post "%{name}"'
-      blacklisted: 'Blacklisted Post "%{name}"'
-      suspect: 'Marked Post as suspect: "%{name}"'
-      not_suspect: 'Marked Post as not suspect: "%{name}"'
-      reported_to_facebook: 'Reported Post to Facebook: "%{name}"'
+      whitelisted: 'Whitelisted Ad "%{name}"'
+      blacklisted: 'Blacklisted Ad "%{name}"'
+      suspect: 'Marked Ad as suspect: "%{name}"'
+      not_suspect: 'Marked Ad as not suspect: "%{name}"'
+      reported_to_facebook: 'Reported Ad to Facebook: "%{name}"'
     facebook_page:
       destroy: 'Deleted page "%{name}"'
     domain:

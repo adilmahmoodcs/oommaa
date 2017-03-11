@@ -1,7 +1,7 @@
 <%= form_for facebook_post do |f| %>
   <% if facebook_post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(facebook_post.errors.count, "error") %> prohibited this facebook post from being saved:</h2>
+      <h2><%= pluralize(facebook_post.errors.count, "error") %> prohibited this facebook ad from being saved:</h2>
 
       <ul>
       <% facebook_post.errors.full_messages.each do |message| %>
@@ -41,7 +41,7 @@
                             multiple: true,
                             class: "form-control select2" %>
     <small id="emailHelp" class="form-text text-muted">
-      Will apply to all page's posts.
+      Will apply to all page's ads.
     </small>
   </div>
 

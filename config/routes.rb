@@ -15,13 +15,13 @@ Rails.application.routes.draw do
   end
 
   resources :facebook_pages, only: [:index, :destroy]
-  resources :facebook_posts, only: [:index, :edit, :update] do
+  resources :facebook_posts, only: [:index, :edit, :update], path: "/facebook_ads" do
     collection do
       get :export
       post :mass_change_status
     end
   end
-  post "/facebook_posts/:post_id/change_status/:status" => "facebook_posts#change_status",
+  post "/facebook_ads/:post_id/change_status/:status" => "facebook_posts#change_status",
         as: :post_change_status
 
   resources :domains, only: [:index, :create, :destroy]
