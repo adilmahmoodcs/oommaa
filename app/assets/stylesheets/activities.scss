@@ -10,3 +10,14 @@
 .table-reported_to_facebook {
   @extend .table-info;
 }
+
+table.activities {
+  font-size: 0.87rem;
+
+  td.activities-long-text {
+    max-width: 700px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
