@@ -39,7 +39,7 @@
     <%= f.label :logo %>
     <% if f.object.logo? %>
       <br>
-      <%= image_tag f.object.logo.url(:thumb) %>
+      <%= image_tag f.object.logo.url(:thumb), width: "100px" %>
     <% end %>
     <%= f.file_field :logo, class: "form-control" %>
   </div>

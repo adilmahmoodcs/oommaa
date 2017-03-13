@@ -20,7 +20,7 @@ class Licensor < ApplicationRecord
   validates :name, uniqueness: true
 
   has_attached_file :logo,
-                    styles: { thumb: "100x100>" },
+                    styles: { thumb: "200x200>" },
                     default_url: "/images/missing.png"
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\z/
 
