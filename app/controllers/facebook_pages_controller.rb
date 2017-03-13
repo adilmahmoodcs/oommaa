@@ -19,4 +19,19 @@ class FacebookPagesController < ApplicationController
     flash[:notice] = "1 Page and #{posts_count} post were successfully destroyed."
     redirect_to facebook_pages_path
   end
+
+  def search
+    authorize FacebookPage
+    pages = policy_scope(FacebookPage).select(:id, :name).
+                                       ransack(name_cont: params[:term]).
+                                       result.
+                                       map do |page|
+                                         {
+                                           id: page.id,
+                                           text: page.name
+                                         }
+                                       end
+
+    render json: { results: pages }
+  end
 end

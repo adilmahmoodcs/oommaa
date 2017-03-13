@@ -29,12 +29,12 @@
 
         <div class="col-md-3 form-group">
           <%= f.label :facebook_page_name_eq, "Page" %>
-          <%= f.collection_select :facebook_page_id_eq,
-                                  FacebookPage.order("LOWER(name)"),
-                                  :id,
-                                  :name,
-                                  { include_blank: true },
-                                  class: "form-control select2" %>
+          <%= f.select :facebook_page_id_eq,
+                       [],
+                       {},
+                       include_blank: true,
+                       class: "form-control remote-select2",
+                       "data-source": search_facebook_pages_path(format: :js)  %>
         </div>
 
         <% if policy(Licensor).index? %>

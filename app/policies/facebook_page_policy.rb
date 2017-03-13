@@ -10,4 +10,8 @@ class FacebookPagePolicy < ApplicationPolicy
       end
     end
   end
+
+  def search?
+    user.admin? || user.confirmed_client?
+  end
 end

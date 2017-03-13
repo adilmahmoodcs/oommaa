@@ -14,7 +14,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :facebook_pages, only: [:index, :destroy]
+  resources :facebook_pages, only: [:index, :destroy] do
+    collection do
+      get :search
+    end
+  end
   resources :facebook_posts, only: [:index, :edit, :update], path: "/facebook_ads" do
     collection do
       get :export
