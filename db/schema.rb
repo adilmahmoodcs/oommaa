@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310103305) do
+ActiveRecord::Schema.define(version: 20170313165315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20170310103305) do
     t.index ["all_domains"], name: "index_facebook_posts_on_all_domains", using: :gin
     t.index ["all_links"], name: "index_facebook_posts_on_all_links", using: :gin
     t.index ["facebook_page_id"], name: "index_facebook_posts_on_facebook_page_id", using: :btree
+    t.index ["status", "published_at"], name: "index_facebook_posts_on_status_and_published_at", using: :btree
   end
 
   create_table "keywords", force: :cascade do |t|

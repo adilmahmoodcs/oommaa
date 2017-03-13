@@ -26,9 +26,10 @@
 #
 # Indexes
 #
-#  index_facebook_posts_on_all_domains       (all_domains)
-#  index_facebook_posts_on_all_links         (all_links)
-#  index_facebook_posts_on_facebook_page_id  (facebook_page_id)
+#  index_facebook_posts_on_all_domains              (all_domains)
+#  index_facebook_posts_on_all_links                (all_links)
+#  index_facebook_posts_on_facebook_page_id         (facebook_page_id)
+#  index_facebook_posts_on_status_and_published_at  (status,published_at)
 #
 
 FactoryGirl.define do
