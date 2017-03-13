@@ -2,19 +2,19 @@ development:
   facebook:
     report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
-      - EAAZApSMxNcVcBANrOVV8FeWhZCV47AUO8YeU4meEqWZCZCCGYxcpFvvu7lETLo8ExPYfqBAiyGyHKjLlTCEtQ1JhcVaMca93VLzu9xRleHLvGka96ZCR2BRAEndSzwxnNz8vkDoMyY2J808Bkg3jvNZCOrPoCCkQUZD # temporary
+      - EAAO0ZCIHKn24BAI8FriRBLaIHCDElXAR2rbM5PRwJ179h2YZADDwvSQo6QI8cBu27Yqc0iIdKXWAAuiy5ru6DbwPUXmp4xiXPgtATqqr8kuMzh1ZAiZCbnZCuPL0EeFXqi2QIwjNPvL0SaW9YzZCSKPecS0yWjB34ZD # alessandro
 
 production:
   facebook:
     report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
-      - EAAZApSMxNcVcBANrOVV8FeWhZCV47AUO8YeU4meEqWZCZCCGYxcpFvvu7lETLo8ExPYfqBAiyGyHKjLlTCEtQ1JhcVaMca93VLzu9xRleHLvGka96ZCR2BRAEndSzwxnNz8vkDoMyY2J808Bkg3jvNZCOrPoCCkQUZD # temporary
+      - EAAO0ZCIHKn24BAI8FriRBLaIHCDElXAR2rbM5PRwJ179h2YZADDwvSQo6QI8cBu27Yqc0iIdKXWAAuiy5ru6DbwPUXmp4xiXPgtATqqr8kuMzh1ZAiZCbnZCuPL0EeFXqi2QIwjNPvL0SaW9YzZCSKPecS0yWjB34ZD # alessandro
 
 demo:
   facebook:
     report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
-      - EAAZApSMxNcVcBANrOVV8FeWhZCV47AUO8YeU4meEqWZCZCCGYxcpFvvu7lETLo8ExPYfqBAiyGyHKjLlTCEtQ1JhcVaMca93VLzu9xRleHLvGka96ZCR2BRAEndSzwxnNz8vkDoMyY2J808Bkg3jvNZCOrPoCCkQUZD # temporary
+      - EAAO0ZCIHKn24BAI8FriRBLaIHCDElXAR2rbM5PRwJ179h2YZADDwvSQo6QI8cBu27Yqc0iIdKXWAAuiy5ru6DbwPUXmp4xiXPgtATqqr8kuMzh1ZAiZCbnZCuPL0EeFXqi2QIwjNPvL0SaW9YzZCSKPecS0yWjB34ZD # alessandro
 
 test:
   facebook:
