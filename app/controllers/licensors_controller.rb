@@ -47,6 +47,22 @@ class LicensorsController < ApplicationController
     redirect_to licensors_path, notice: 'Licensor was successfully destroyed.'
   end
 
+  def search
+    authorize Licensor
+    data = policy_scope(Licensor).select(:id, :name).
+                                order("LOWER(name)").
+                                ransack(name_cont: params[:term]).
+                                result.
+                                map do |item|
+                                  {
+                                    id: item.id,
+                                    text: item.name
+                                  }
+                                end
+
+    render json: { results: data }
+  end
+
   private
 
   def set_licensor

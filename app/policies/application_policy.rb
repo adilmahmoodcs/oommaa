@@ -34,6 +34,10 @@ class ApplicationPolicy
     user.admin?
   end
 
+  def search?
+    user.admin? || user.confirmed_client?
+  end
+
   def scope
     Pundit.policy_scope!(user, record.class)
   end

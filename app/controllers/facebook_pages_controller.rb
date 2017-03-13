@@ -22,16 +22,17 @@ class FacebookPagesController < ApplicationController
 
   def search
     authorize FacebookPage
-    pages = policy_scope(FacebookPage).select(:id, :name).
-                                       ransack(name_cont: params[:term]).
-                                       result.
-                                       map do |page|
-                                         {
-                                           id: page.id,
-                                           text: page.name
-                                         }
-                                       end
+    data = policy_scope(FacebookPage).select(:id, :name).
+                                      order("LOWER(name)").
+                                      ransack(name_cont: params[:term]).
+                                      result.
+                                      map do |item|
+                                        {
+                                          id: item.id,
+                                          text: item.name
+                                        }
+                                      end
 
-    render json: { results: pages }
+    render json: { results: data }
   end
 end

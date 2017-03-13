@@ -3,9 +3,17 @@ require "sidekiq/web"
 Rails.application.routes.draw do
   devise_for :users
   resources :dashboard, only: :index
-  resources :licensors
+  resources :licensors do
+    collection do
+      get :search
+    end
+  end
   resources :keywords
-  resources :brands
+  resources :brands do
+    collection do
+      get :search
+    end
+  end
   resources :activities, only: [:index]
   resources :imports, only: [] do
     collection do

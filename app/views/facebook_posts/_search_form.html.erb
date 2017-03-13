@@ -19,12 +19,11 @@
 
         <div class="col-md-3 form-group">
           <%= f.label :with_any_brand, t(:brand_name) %>
-          <%= f.collection_select :facebook_page_brands_id_eq,
-                                  policy_scope(Brand).order("LOWER(name)"),
-                                  :id,
-                                  :name,
-                                  { include_blank: true },
-                                  class: "form-control select2" %>
+          <%= f.select :facebook_page_brands_id_eq,
+                        [],
+                        { include_blank: true },
+                        class: "form-control remote-select2",
+                        "data-source": search_brands_path(format: :js)  %>
         </div>
 
         <div class="col-md-3 form-group">
@@ -37,15 +36,14 @@
                        "data-source": search_facebook_pages_path(format: :js)  %>
         </div>
 
-        <% if policy(Licensor).index? %>
+        <% if policy(Licensor).search? %>
           <div class="col-md-3 form-group">
             <%= f.label :with_licensor_name, "Licensor" %>
-            <%= f.collection_select :facebook_page_brands_licensor_id_eq,
-                                    Licensor.order("LOWER(name)"),
-                                    :id,
-                                    :name,
-                                    { include_blank: true },
-                                    class: "form-control select2" %>
+            <%= f.select :facebook_page_brands_licensor_id_eq,
+                         [],
+                         { include_blank: true },
+                         class: "form-control remote-select2",
+                         "data-source": search_licensors_path(format: :js)  %>
           </div>
         <% end %>
 

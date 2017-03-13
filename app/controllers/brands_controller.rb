@@ -52,6 +52,22 @@ class BrandsController < ApplicationController
     redirect_to brands_path, notice: 'Brand was successfully destroyed.'
   end
 
+  def search
+    authorize Brand
+    data = policy_scope(Brand).select(:id, :name).
+                               order("LOWER(name)").
+                               ransack(name_cont: params[:term]).
+                               result.
+                               map do |item|
+                                 {
+                                   id: item.id,
+                                   text: item.name
+                                 }
+                               end
+
+    render json: { results: data }
+  end
+
   private
 
   def set_brand
