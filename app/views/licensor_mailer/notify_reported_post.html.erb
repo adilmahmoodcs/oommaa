@@ -21,7 +21,7 @@
                             <table style="background:white;" width="100%">
                                 <tbody>
                                     <tr>
-                                        <td style="font-size:0;padding:30px 30px 16px;" align="left">
+                                        <td style="font-size:0;padding:30px 30px 16px;" align="center">
                                             <img src="http://dev.counterfind.com/counterfind-logo.png"
                                                  alt="CounterFind"
                                                  style="height: 50px;">
@@ -29,17 +29,17 @@
                                     </tr>
                                     <% if ad_screenshot = @post.ad_screenshots.first %>
                                       <tr>
-                                          <td style="font-size:0;padding:30px 30px 16px;" align="center">
+                                          <td style="font-size:0;padding:16px 30px 0px;" align="center">
                                               <%= link_to image_tag(ad_screenshot.image.url,
                                                                     alt: "AD Screenshot",
-                                                                    style: "height: 250px; "),
+                                                                    style: "height: 500px; "),
                                                           ad_screenshot.image.url,
                                                           target: "_blank" %>
                                           </td>
                                       </tr>
                                     <% end %>
                                     <tr>
-                                        <td style="font-size:0;padding:30px 30px 16px;" align="left">
+                                        <td style="font-size:0;padding:30px 30px 0px;" align="left">
                                             <div class="mj-content" style="cursor:auto;color:#000000;font-family:Proxima Nova, Arial, Arial, Helvetica, sans-serif;font-size:15px;line-height:22px;">
                                               CounterFind has identified content that violates your registered trademarks.<br>
                                               This ad will be reported to Facebook for shutdown within 24 hours. An auto-generated cease and desist letter will be sent on your behalf to the owner of this content.
