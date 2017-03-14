@@ -17,12 +17,10 @@ class BrandsController < ApplicationController
   def new
     authorize Brand
     @brand = Brand.new
-    @brand.logos.new
   end
 
   def edit
     authorize @brand
-    @brand.logos.new
   end
 
   def create
@@ -30,6 +28,9 @@ class BrandsController < ApplicationController
     @brand = Brand.new(brand_params)
 
     if @brand.save
+      params[:multiple_logos].each do |logo|
+        @brand.logos.create(image: logo)
+      end if params[:multiple_logos]
       @brand.create_activity(:create, owner: current_user, parameters: { name: @brand.name })
       redirect_to brands_path, notice: 'Brand was successfully created.'
     else
@@ -40,6 +41,9 @@ class BrandsController < ApplicationController
   def update
     authorize @brand
     if @brand.update(brand_params)
+      params[:multiple_logos].each do |logo|
+        @brand.logos.create(image: logo)
+      end if params[:multiple_logos]
       @brand.create_activity(:update, owner: current_user, parameters: { name: @brand.name })
       redirect_to brands_path, notice: 'Brand was successfully updated.'
     else
@@ -78,8 +82,7 @@ class BrandsController < ApplicationController
 
   def brand_params
     params.require(:brand).permit(
-      :name, :licensor_id, { nicknames: [] },
-      { logos_attributes: [:image, :id, :_destroy] }
+      :name, :licensor_id, { nicknames: [] }, { logos_attributes: [:id, :_destroy] }
     )
   end
 end

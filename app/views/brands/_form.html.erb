@@ -40,24 +40,21 @@
     <br>
     <div class="row">
       <%= f.fields_for :logos do |img_form| %>
-        <% if img_form.object.persisted? %>
-          <div class="col-xl-3">
-            <%= image_tag img_form.object.image.url(:thumb), width: "100px" %>
-            <div class="form-check">
-              <%= img_form.label :_destroy do %>
-                <%= img_form.check_box :_destroy %>
-                <%= t(:delete) %>
-              <% end %>
-            </div>
+        <div class="col-xl-3">
+          <%= image_tag img_form.object.image.url(:thumb), width: "100px" %>
+          <div class="form-check">
+            <%= img_form.label :_destroy do %>
+              <%= img_form.check_box :_destroy %>
+              <%= t(:delete) %>
+            <% end %>
           </div>
-        <% else %>
-          <div class="col-xl-12">
-            <br>
-            <%= img_form.label :image, t(:add_new) %>
-            <%= img_form.file_field :image, class: "form-control" %>
-          </div>
-        <% end %>
+        </div>
       <% end %>
+      <div class="col-xl-12">
+        <br>
+        <%= label_tag "multiple_logos[]", t(:add_new) %>
+        <%= file_field_tag "multiple_logos[]", multiple: true, class: "form-control" %>
+      </div>
     </div>
   </div>
 
