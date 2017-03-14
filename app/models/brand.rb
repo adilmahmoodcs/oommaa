@@ -23,7 +23,7 @@ class Brand < ApplicationRecord
   include PublicActivity::Common
 
   belongs_to :licensor, optional: true
-  has_many :brand_logos
+  has_many :logos, class_name: "BrandLogo"
   has_many :facebook_page_brands
   has_many :facebook_pages, through: :facebook_page_brands
 
