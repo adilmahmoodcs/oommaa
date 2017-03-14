@@ -45,7 +45,7 @@ Rollbar.configure do |config|
   # You can supply custom Sidekiq options:
   # config.use_sidekiq "queue" => "default"
 
-  config.js_enabled = true
+  config.js_enabled = Rails.env.production?
   config.js_options = {
     accessToken: "105ccafa0c4745ae8cc7a21e55273f6d",
     captureUncaught: true,
