@@ -20,4 +20,4 @@ test:
   facebook:
     report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
-      - EAAIUKbXn8xsBAPsYb2xKl4fcrpDnJKQZCrZB2EuLjHyg4GrXrlqnd1xHROqV3DFFbPRuzILTEwtoXLr5fo8PTxvvyN68uPUpbvCwnoIPrdJLmmKkuJXd2dMGekT8THoc2eZBuftIVXaLTN656NYzpxOu9FtG10ZD
+      - EAAIUKbXn8xsBAPsYb2xKl4fcrpDnJKQZCrZB2EuLjHyg4GrXrlqnd1xHROqV3DFFbPRuzILTEwtoXLr5fo8PTxvvyN68uPUpbvCwnoIPrdJLmmKkuJXd2dMGekT8THoc2eZBuftIVXaLTN656NYzpxOu9FtG10ZD # test token, do not change
