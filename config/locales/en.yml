@@ -29,6 +29,8 @@ en:
   link_to_product_screenshot: Link to screenshot of purchase page
   download_as_csv: Download as CSV
   users: Users
+  delete: Delete
+  add_new: Add new
   activerecord:
     attributes:
       facebook_post:

@@ -23,7 +23,7 @@ class Brand < ApplicationRecord
   include PublicActivity::Common
 
   belongs_to :licensor, optional: true
-  has_many :logos, class_name: "BrandLogo"
+  has_many :logos, class_name: "BrandLogo", dependent: :destroy
   has_many :facebook_page_brands
   has_many :facebook_pages, through: :facebook_page_brands
 
@@ -33,6 +33,8 @@ class Brand < ApplicationRecord
   before_validation :remove_blank_values
   after_commit :start_pages_importer, on: :create
   after_commit :update_facebook_pages
+
+  accepts_nested_attributes_for :logos, allow_destroy: true, reject_if: :all_blank
 
   scope :of_licensor, -> (licensor) { where(licensor_id: licensor.id) }
 

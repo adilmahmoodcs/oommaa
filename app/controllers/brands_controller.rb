@@ -17,10 +17,12 @@ class BrandsController < ApplicationController
   def new
     authorize Brand
     @brand = Brand.new
+    @brand.logos.new
   end
 
   def edit
     authorize @brand
+    @brand.logos.new
   end
 
   def create
@@ -75,6 +77,9 @@ class BrandsController < ApplicationController
   end
 
   def brand_params
-    params.require(:brand).permit(:name, :logo, :licensor_id, { nicknames: [] })
+    params.require(:brand).permit(
+      :name, :licensor_id, { nicknames: [] },
+      { logos_attributes: [:image, :id, :_destroy] }
+    )
   end
 end
