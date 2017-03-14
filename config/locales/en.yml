@@ -31,6 +31,7 @@ en:
   users: Users
   delete: Delete
   add_new: Add new
+  team_production: Team Production
   activerecord:
     attributes:
       facebook_post:
