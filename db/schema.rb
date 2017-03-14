@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314134546) do
+ActiveRecord::Schema.define(version: 20170314145526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,15 +43,11 @@ ActiveRecord::Schema.define(version: 20170314134546) do
   end
 
   create_table "brands", force: :cascade do |t|
-    t.string   "name",                           null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
+    t.string   "name",                     null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "licensor_id"
-    t.string   "nicknames",         default: [],              array: true
+    t.string   "nicknames",   default: [],              array: true
     t.index ["licensor_id"], name: "index_brands_on_licensor_id", using: :btree
     t.index ["nicknames"], name: "index_brands_on_nicknames", using: :gin
   end
