@@ -59,9 +59,7 @@
     <% @brands.each do |brand| %>
       <tr>
         <td>
-          <% if logo = brand.logos.first || BrandLogo.new %>
-            <%= image_tag logo.image.url(:thumb), width: "100px" %>
-          <% end %>
+          <%= image_tag brand.logo.image.url(:thumb), width: "100px" %>
         </td>
         <td>
           <%= brand.name %>

@@ -51,6 +51,10 @@ class Brand < ApplicationRecord
     licensor&.name
   end
 
+  def logo
+    logos.first || logos.new
+  end
+
   private
 
   def start_pages_importer
