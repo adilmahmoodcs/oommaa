@@ -33,6 +33,7 @@ en:
   add_new: Add new
   team_production: Team Production
   reference_number: Reference Number
+  facebook_report_number: Facebook report number
   activerecord:
     attributes:
       facebook_post:

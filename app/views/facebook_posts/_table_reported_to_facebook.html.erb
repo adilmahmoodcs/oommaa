@@ -10,6 +10,7 @@
       <th><%= sort_link(@q, :reported_to_facebook_at, "Reported to Facebook at") %></th>
       <th><%= sort_link(@q, :reported_to_facebook_by, "Reported to Facebook by") %></th>
       <th><%= sort_link(@q, :shut_down_by_facebook_at, "Shut down by Facebook at") %></th>
+      <th><%= t(:facebook_report_number) %></th>
       <th><%= t(:link_to_ad_screenshot) %></th>
       <th><%= t(:link_to_product_screenshot) %></th>
       <th>Actions</th>
@@ -57,6 +58,12 @@
             <%= l(post.shut_down_by_facebook_at, format: :compact)  %>
           <% else %>
             Pending
+          <% end %>
+        </td>
+        <td>
+          <%= form_for post do |f| %>
+            <%= f.text_field :facebook_report_number, class: "form-control form-control-sm quick-form" %>
+            <%= f.button t(:update), class: "btn btn-primary-outline btn-sm" %>
           <% end %>
         </td>
         <td>

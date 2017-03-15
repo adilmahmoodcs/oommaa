@@ -26,7 +26,8 @@ class FacebookPostsController < ApplicationController
     authorize @facebook_post
     if @facebook_post.update(facebook_post_params)
       @facebook_post.create_activity(:update, owner: current_user, parameters: { name: @facebook_post.permalink })
-      redirect_to edit_facebook_post_path(@facebook_post), notice: 'Post was successfully updated.'
+      flash[:notice] = 'Ad was successfully updated.'
+      redirect_back(fallback_location: root_path)
     else
       render :edit
     end
@@ -108,7 +109,7 @@ class FacebookPostsController < ApplicationController
   end
 
   def facebook_post_params
-    params.require(:facebook_post).permit(brand_ids: [])
+    params.require(:facebook_post).permit({ brand_ids: [] }, :facebook_report_number)
   end
 
   def after_reported_to_facebook
