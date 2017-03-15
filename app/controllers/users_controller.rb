@@ -36,6 +36,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :licensor_id, :role)
+    params.require(:user).permit(:name, :email, :licensor_id, :role, { widgets: [] })
   end
 end

@@ -1,0 +1,16 @@
+<%= form_for(user) do |f| %>
+  <div class="form-group">
+    <% all_widgets.each do |widget_name| %>
+      <div class="widget-check-box">
+        <%= label_tag do %>
+          <%= f.check_box :widgets, { multiple: true }, widget_name, nil %>
+          <%= "\"#{t(widget_name, scope: :widgets)}\" widget" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update widgets", class: "btn btn-primary" %>
+  </div>
+<% end %>
