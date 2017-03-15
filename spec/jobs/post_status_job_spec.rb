@@ -9,6 +9,10 @@ RSpec.describe PostStatusJob, type: :job do
   let(:post) { create(:facebook_post) }
   let(:post_with_keyword) { create(:facebook_post, message: keyword.name) }
 
+  before do
+    allow_any_instance_of(FacebookPost).to receive(:parse_all_links!)
+  end
+
   describe "#perform" do
     it "calls #parse_all_links! on post" do
       expect_any_instance_of(FacebookPost).to receive(:parse_all_links!)

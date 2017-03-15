@@ -7,10 +7,12 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      User-Agent:
-      - Ruby
   response:
     status:
       code: 301
@@ -19,7 +21,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 24 Feb 2017 07:50:36 GMT
+      - Wed, 15 Mar 2017 15:10:57 GMT
       Content-Type:
       - text/html; charset=utf-8
       Content-Length:
@@ -30,11 +32,91 @@ http_interactions:
       - private, max-age=90
       Location:
       - https://www.fanprint.com/products/clemson-tigers-champion-play-2016-champions?variant=30176149069&utm_source=facebook&utm_medium=cpc&utm_campaign=clemson
+      Set-Cookie:
+      - _bit=h2ffaV-0625fb2f25c1af6e68-007; Domain=bit.ly; Expires=Mon, 11 Sep 2017
+        15:10:57 GMT
     body:
       encoding: UTF-8
-      string: ''
+      string: |-
+        <html>
+        <head><title>Bitly</title></head>
+        <body><a href="https://www.fanprint.com/products/clemson-tigers-champion-play-2016-champions?variant=30176149069&amp;utm_source=facebook&amp;utm_medium=cpc&amp;utm_campaign=clemson">moved here</a></body>
+        </html>
     http_version:
-  recorded_at: Fri, 24 Feb 2017 07:50:36 GMT
+  recorded_at: Wed, 15 Mar 2017 15:10:57 GMT
+- request:
+    method: get
+    uri: https://www.fanprint.com/products/clemson-tigers-champion-play-2016-champions?utm_campaign=clemson&utm_medium=cpc&utm_source=facebook&variant=30176149069
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 15 Mar 2017 15:10:58 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Shopid:
+      - '7547601'
+      X-Shardid:
+      - '12'
+      Content-Language:
+      - en
+      Etag:
+      - cacheable:5a82c9bd557a5c3dbe28341108e25bb5
+      X-Alternate-Cache-Key:
+      - cacheable:c62d3e22360f470171b802bf94c7a7c3
+      X-Cache:
+      - miss
+      Set-Cookie:
+      - _landing_page=%2Fproducts%2Fclemson-tigers-champion-play-2016-champions%3Fvariant%3D30176149069%26utm_source%3Dfacebook%26utm_medium%3Dcpc%26utm_campaign%3Dclemson;
+        Expires=Wed, 29-Mar-17 15:10:58 GMT; Path=/; HttpOnly
+      - _orig_referrer=; Expires=Wed, 29-Mar-17 15:10:58 GMT; Path=/; HttpOnly
+      - _secure_session_id=4ffd6a909fb1a3cfb801f63b1303f2ff; path=/; secure; HttpOnly
+      - cart_sig=; path=/; expires=Wed, 29 Mar 2017 15:10:58 -0000; HttpOnly
+      - secure_customer_sig=; path=/; expires=Sun, 15 Mar 2037 15:10:58 -0000; secure;
+        HttpOnly
+      Content-Security-Policy:
+      - block-all-mixed-content; upgrade-insecure-requests; report-uri /csp-report?source%5Baction%5D=products&source%5Bapp%5D=Shopify&source%5Bcontroller%5D=storefront_section%2Fshop&source%5Bsection%5D=storefront&source%5Buuid%5D=9b8566ce-0201-4286-9046-389538f0a7e2
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report?source%5Baction%5D=products&source%5Bapp%5D=Shopify&source%5Bcontroller%5D=storefront_section%2Fshop&source%5Bsection%5D=storefront&source%5Buuid%5D=9b8566ce-0201-4286-9046-389538f0a7e2
+      P3p:
+      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
+      X-Dc:
+      - ash,chi2
+      X-Request-Id:
+      - 9b8566ce-0201-4286-9046-389538f0a7e2
+    body:
+      encoding: ASCII-8BIT
+      string: "some content"
+    http_version:
+  recorded_at: Wed, 15 Mar 2017 15:10:59 GMT
 - request:
     method: get
     uri: https://bit.ly/2kHJRz3
@@ -42,10 +124,12 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      User-Agent:
-      - Ruby
   response:
     status:
       code: 301
@@ -54,7 +138,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 24 Feb 2017 07:50:36 GMT
+      - Wed, 15 Mar 2017 15:10:59 GMT
       Content-Type:
       - text/html; charset=utf-8
       Content-Length:
@@ -69,9 +153,162 @@ http_interactions:
       - https://www.fanprint.com/products/julian-edelman-believe-in-incredelman?variant=31495827789&fb=629774080537580&rfsn=283615.efd82
       Referrer-Policy:
       - unsafe-url
+      Set-Cookie:
+      - _bit=h2ffaX-5db48bc9bf7d5483e1-00n; Domain=bit.ly; Expires=Mon, 11 Sep 2017
+        15:10:59 GMT
     body:
       encoding: UTF-8
-      string: ''
+      string: |-
+        <html>
+        <head><title>Bitly</title></head>
+        <body><a href="https://www.fanprint.com/products/julian-edelman-believe-in-incredelman?variant=31495827789&amp;fb=629774080537580&amp;rfsn=283615.efd82">moved here</a></body>
+        </html>
     http_version:
-  recorded_at: Fri, 24 Feb 2017 07:50:36 GMT
+  recorded_at: Wed, 15 Mar 2017 15:10:59 GMT
+- request:
+    method: get
+    uri: https://www.fanprint.com/products/julian-edelman-believe-in-incredelman?fb=629774080537580&rfsn=283615.efd82&variant=31495827789
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 15 Mar 2017 15:11:00 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Shopid:
+      - '7547601'
+      X-Shardid:
+      - '12'
+      Content-Language:
+      - en
+      Etag:
+      - cacheable:45415266ceea47e043d53e6b7606ca37
+      X-Alternate-Cache-Key:
+      - cacheable:b2b83ebfc0de31c9fa97de32079a9461
+      X-Cache:
+      - miss
+      Set-Cookie:
+      - _landing_page=%2Fproducts%2Fjulian-edelman-believe-in-incredelman%3Fvariant%3D31495827789%26fb%3D629774080537580%26rfsn%3D283615.efd82;
+        Expires=Wed, 29-Mar-17 15:11:00 GMT; Path=/; HttpOnly
+      - _orig_referrer=; Expires=Wed, 29-Mar-17 15:11:00 GMT; Path=/; HttpOnly
+      - _secure_session_id=bbd71137153560a717ecdddda52ad8e9; path=/; secure; HttpOnly
+      - cart_sig=; path=/; expires=Wed, 29 Mar 2017 15:11:00 -0000; HttpOnly
+      - secure_customer_sig=; path=/; expires=Sun, 15 Mar 2037 15:11:00 -0000; secure;
+        HttpOnly
+      Content-Security-Policy:
+      - block-all-mixed-content; upgrade-insecure-requests; report-uri /csp-report?source%5Baction%5D=products&source%5Bapp%5D=Shopify&source%5Bcontroller%5D=storefront_section%2Fshop&source%5Bsection%5D=storefront&source%5Buuid%5D=6bee5b8e-c979-43fd-95b0-f52e337e3205
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report?source%5Baction%5D=products&source%5Bapp%5D=Shopify&source%5Bcontroller%5D=storefront_section%2Fshop&source%5Bsection%5D=storefront&source%5Buuid%5D=6bee5b8e-c979-43fd-95b0-f52e337e3205
+      P3p:
+      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
+      X-Dc:
+      - ash,chi2
+      X-Request-Id:
+      - 6bee5b8e-c979-43fd-95b0-f52e337e3205
+    body:
+      encoding: ASCII-8BIT
+      string: "some content"
+    http_version:
+  recorded_at: Wed, 15 Mar 2017 15:11:01 GMT
+- request:
+    method: get
+    uri: https://www.fanprint.com/products/tom-brady-goat-stats
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 15 Mar 2017 15:11:02 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Shopid:
+      - '7547601'
+      X-Shardid:
+      - '12'
+      Content-Language:
+      - en
+      Etag:
+      - cacheable:2b13f251884551c2fa5699deea5cf926
+      X-Alternate-Cache-Key:
+      - cacheable:6323c7ba17f376780a89cf9d2433d2ff
+      X-Cache:
+      - miss
+      Set-Cookie:
+      - _landing_page=%2Fproducts%2Ftom-brady-goat-stats; Expires=Wed, 29-Mar-17 15:11:02
+        GMT; Path=/; HttpOnly
+      - _orig_referrer=; Expires=Wed, 29-Mar-17 15:11:02 GMT; Path=/; HttpOnly
+      - _secure_session_id=7e494f62edb72c366acc6449cc0e4279; path=/; secure; HttpOnly
+      - cart_sig=; path=/; expires=Wed, 29 Mar 2017 15:11:02 -0000; HttpOnly
+      - secure_customer_sig=; path=/; expires=Sun, 15 Mar 2037 15:11:02 -0000; secure;
+        HttpOnly
+      Content-Security-Policy:
+      - block-all-mixed-content; upgrade-insecure-requests; report-uri /csp-report?source%5Baction%5D=products&source%5Bapp%5D=Shopify&source%5Bcontroller%5D=storefront_section%2Fshop&source%5Bsection%5D=storefront&source%5Buuid%5D=de339796-878a-43d4-804b-10671c348a22
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report?source%5Baction%5D=products&source%5Bapp%5D=Shopify&source%5Bcontroller%5D=storefront_section%2Fshop&source%5Bsection%5D=storefront&source%5Buuid%5D=de339796-878a-43d4-804b-10671c348a22
+      P3p:
+      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
+      X-Dc:
+      - ash,chi2
+      X-Request-Id:
+      - de339796-878a-43d4-804b-10671c348a22
+    body:
+      encoding: ASCII-8BIT
+      string: "some content"
+    http_version:
+  recorded_at: Wed, 15 Mar 2017 15:11:02 GMT
 recorded_with: VCR 3.0.3

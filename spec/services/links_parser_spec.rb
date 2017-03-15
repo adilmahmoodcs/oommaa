@@ -4,7 +4,7 @@ RSpec.describe LinksParser do
   subject { LinksParser }
 
   let(:sample_data) { [
-    "https://developers.facebook.com/tools/explorer/145634995501895/?method=GET&path=1856177961336149%2Ffeed", # complex url
+    "https://github.com/", # no redirect
     "http://buff.ly/2kJE5fx", # short url
     "    http://buff.ly/2kJE5fx     ", # duplicated, useless spaces
     "",
@@ -12,7 +12,7 @@ RSpec.describe LinksParser do
   ] }
 
   let(:correct_result) { [
-    "https://developers.facebook.com/tools/explorer/145634995501895/?method=GET&path=1856177961336149/feed",
+    "https://github.com/",
     "https://www.destroyallsoftware.com/blog/2017/the-biggest-and-weirdest-commits-in-linux-kernel-git-history?utm_content=bufferbed64&utm_medium=social&utm_source=plus.google.com&utm_campaign=buffer"
   ] }
 

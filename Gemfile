@@ -30,7 +30,6 @@ gem "sidekiq", "~> 4.2.9"
 gem "kaminari", "~> 1.0.1"
 gem "public_activity", "~> 1.5.0"
 gem "ransack", github: "activerecord-hackery/ransack"
-gem "embiggen", "~> 1.2.4"
 gem "public_suffix", "~> 2.0"
 gem "rinku", "~> 2.0.2"
 gem "paperclip", "~> 5.0.0"
@@ -41,6 +40,8 @@ gem "phantomjs", require: "phantomjs/poltergeist"
 gem "rollbar", "~> 2.14"
 gem "pundit", "~> 1.1.0"
 gem "newrelic_rpm"
+gem "faraday", "~> 0.11.0"
+gem "faraday_middleware", "~> 0.10.1"
 
 group :development, :test do
   gem "byebug", platform: :mri
