@@ -21,8 +21,9 @@ RSpec.describe LinksParser do
   end
 
   it "works as expected" do
-    VCR.use_cassette("links_parser") do
-      expect(subject.new(sample_data).call).to eq(correct_result)
-    end
+    # TODO find a way to use a VCR cassette
+    WebMock.disable!
+    expect(subject.new(sample_data).call).to eq(correct_result)
+    WebMock.enable!
   end
 end

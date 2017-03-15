@@ -40,8 +40,7 @@ gem "phantomjs", require: "phantomjs/poltergeist"
 gem "rollbar", "~> 2.14"
 gem "pundit", "~> 1.1.0"
 gem "newrelic_rpm"
-gem "faraday", "~> 0.11.0"
-gem "faraday_middleware", "~> 0.10.1"
+gem "typhoeus", "~> 1.1.2"
 
 group :development, :test do
   gem "byebug", platform: :mri
