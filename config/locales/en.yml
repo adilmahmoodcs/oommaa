@@ -32,6 +32,7 @@ en:
   delete: Delete
   add_new: Add new
   team_production: Team Production
+  reference_number: Ref. Number
   activerecord:
     attributes:
       facebook_post:

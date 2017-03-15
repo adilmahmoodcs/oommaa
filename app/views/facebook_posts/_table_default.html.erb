@@ -19,6 +19,9 @@
         <th><%= t(:link_to_ad_screenshot) %></th>
         <th><%= t(:link_to_product_screenshot) %></th>
       <% end %>
+      <% if @status.in? ["suspect", "blacklisted", "whitelisted"] %>
+        <th><%= t(:reference_number) %></th>
+      <% end %>
       <th>Actions</th>
     </tr>
   </thead>
@@ -72,7 +75,9 @@
             <%= product_screenshot_links(post) %>
           </td>
         <% end %>
-
+        <% if @status.in? ["suspect", "blacklisted", "whitelisted"] %>
+          <td><%= post.id %></td>
+        <% end %>
         <td class="index-actions text-right">
           <%= render 'actions', post: post %>
         </td>
