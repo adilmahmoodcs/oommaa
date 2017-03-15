@@ -93,6 +93,11 @@
           </div>
         <% end %>
 
+        <div class="col-md-3 form-group">
+          <%= f.label :id_eq, t(:reference_number) %>
+          <%= f.text_field :id_eq, class: "form-control" %>
+        </div>
+
         <div class="col-md-12 form-group">
           <%= button_tag class: "btn btn-primary" do %>
             <%= icon("search") %>
