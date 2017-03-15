@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315170746) do
+ActiveRecord::Schema.define(version: 20170315182905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,15 +139,6 @@ ActiveRecord::Schema.define(version: 20170315170746) do
     t.index ["facebook_post_id"], name: "index_screenshots_on_facebook_post_id", using: :btree
   end
 
-  create_table "user_widgets", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "widget_name",             null: false
-    t.integer  "position",    default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.index ["user_id"], name: "index_user_widgets_on_user_id", using: :btree
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -179,6 +170,5 @@ ActiveRecord::Schema.define(version: 20170315170746) do
   add_foreign_key "facebook_page_brands", "facebook_pages"
   add_foreign_key "facebook_posts", "facebook_pages"
   add_foreign_key "screenshots", "facebook_posts"
-  add_foreign_key "user_widgets", "users"
   add_foreign_key "users", "licensors"
 end

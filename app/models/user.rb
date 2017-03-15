@@ -39,15 +39,10 @@ class User < ApplicationRecord
          :trackable, :validatable, :confirmable
 
   belongs_to :licensor, optional: true
-  has_many :user_widgets
 
   validates :name, presence: true
 
   before_save :remove_licensor_for_admins
-
-  def widgets
-    user_widgets.order(:position).pluck(:widget_name).uniq
-  end
 
   private
 
