@@ -13,7 +13,7 @@ en:
   blacklist_export: Blacklist Export
   brand_name: Brand
   licensor_name: Licensor
-  platform_or_company: Platform/Company
+  platform_or_company: Platform / Company
   published_at: Published at
   blacklisted_at: Discovered at
   blacklisted_by: Discovered by
@@ -32,7 +32,7 @@ en:
   delete: Delete
   add_new: Add new
   team_production: Team Production
-  reference_number: Ref. Number
+  reference_number: Reference Number
   activerecord:
     attributes:
       facebook_post:
