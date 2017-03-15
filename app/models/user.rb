@@ -21,6 +21,7 @@
 #  role                   :integer          default("0"), not null
 #  licensor_id            :integer
 #  name                   :string
+#  widgets                :string           default("{}"), is an Array
 #
 # Indexes
 #
@@ -28,6 +29,7 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_licensor_id           (licensor_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_widgets               (widgets)
 #
 
 class User < ApplicationRecord

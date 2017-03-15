@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315182905) do
+ActiveRecord::Schema.define(version: 20170315183030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,10 +158,12 @@ ActiveRecord::Schema.define(version: 20170315182905) do
     t.integer  "role",                   default: 0,  null: false
     t.integer  "licensor_id"
     t.string   "name"
+    t.string   "widgets",                default: [],              array: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["licensor_id"], name: "index_users_on_licensor_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["widgets"], name: "index_users_on_widgets", using: :gin
   end
 
   add_foreign_key "brand_logos", "brands"
