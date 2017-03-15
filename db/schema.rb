@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314145526) do
+ActiveRecord::Schema.define(version: 20170315154558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20170314145526) do
     t.datetime "shut_down_by_facebook_at"
     t.string   "all_domains",              default: [],              array: true
     t.string   "added_by"
+    t.string   "facebook_report_number"
     t.index ["all_domains"], name: "index_facebook_posts_on_all_domains", using: :gin
     t.index ["all_links"], name: "index_facebook_posts_on_all_links", using: :gin
     t.index ["facebook_page_id"], name: "index_facebook_posts_on_facebook_page_id", using: :btree
