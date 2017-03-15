@@ -23,7 +23,7 @@ class FacebookPage < ApplicationRecord
   include PublicActivity::Common
 
   has_many :facebook_posts, dependent: :destroy
-  has_many :facebook_page_brands
+  has_many :facebook_page_brands, dependent: :destroy
   has_many :brands, through: :facebook_page_brands
   has_many :licensors, through: :brands
 

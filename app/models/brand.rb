@@ -20,7 +20,7 @@ class Brand < ApplicationRecord
 
   belongs_to :licensor, optional: true
   has_many :logos, class_name: "BrandLogo", dependent: :destroy
-  has_many :facebook_page_brands
+  has_many :facebook_page_brands, dependent: :destroy
   has_many :facebook_pages, through: :facebook_page_brands
 
   validates :name, presence: true
