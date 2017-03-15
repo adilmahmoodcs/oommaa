@@ -1,0 +1,25 @@
+<div class="col-xl-4">
+  <section class="card">
+    <header class="card-header card-header-lg">
+      Most Egregious Violators
+    </header>
+    <div class="card-block">
+      <div class="row">
+        <% @violators.each do |domain, count| %>
+          <% perc = (count / @total_violations.to_f * 100).round %>
+          <div class="col-xl-4">
+            <%= domain %>
+          </div>
+          <div class="col-xl-8">
+            <div class="progress-with-amount">
+              <progress class="progress progress-success" value="<%= perc %>" max="100"></progress>
+              <div class="progress-with-amount-number">
+                <%= perc %>%
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</div>

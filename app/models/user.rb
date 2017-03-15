@@ -44,6 +44,10 @@ class User < ApplicationRecord
 
   before_save :remove_licensor_for_admins
 
+  def widgets
+    []
+  end
+
   private
 
   def remove_licensor_for_admins

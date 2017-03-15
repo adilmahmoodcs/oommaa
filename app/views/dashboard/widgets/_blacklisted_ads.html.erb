@@ -1,0 +1,14 @@
+<div class="col-xl-3">
+  <article class="statistic-box yellow">
+      <div>
+        <div class="number">
+          <%= policy_scope(FacebookPost).blacklisted.size %>
+        </div>
+        <div class="caption">
+          <div>
+            <%= t(name, scope: :widgets) %>
+          </div>
+        </div>
+      </div>
+  </article>
+</div>

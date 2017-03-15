@@ -1,0 +1,14 @@
+<div class="col-xl-3">
+  <article class="statistic-box green">
+      <div>
+        <div class="number">
+          <%= policy_scope(FacebookPost).reported_to_facebook.size %>
+        </div>
+        <div class="caption">
+          <div>
+            <%= t(name, scope: :widgets) %>
+          </div>
+        </div>
+      </div>
+  </article>
+</div>
