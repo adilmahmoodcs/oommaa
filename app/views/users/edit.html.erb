@@ -11,17 +11,19 @@
   </div>
 </section>
 
-<div class="col-xl-1"></div>
+<% unless @user.admin? %>
+  <div class="col-xl-1"></div>
 
-<section class="box-typical box-panel col-xl-5">
-  <header class="box-typical-header">
-    <div class="tbl-row">
-      <div class="tbl-cell tbl-cell-title">
-        <h3>User Dashboard Widgets</h3>
+  <section class="box-typical box-panel col-xl-5">
+    <header class="box-typical-header">
+      <div class="tbl-row">
+        <div class="tbl-cell tbl-cell-title">
+          <h3>User Dashboard Widgets</h3>
+        </div>
       </div>
+    </header>
+    <div class="box-typical-body">
+      <%= render 'dashboard_form', user: @user %>
     </div>
-  </header>
-  <div class="box-typical-body">
-    <%= render 'dashboard_form', user: @user %>
-  </div>
-</section>
+  </section>
+<% end %>
