@@ -28,7 +28,7 @@ class Brand < ApplicationRecord
 
   before_validation :remove_blank_values
   after_commit :start_pages_importer, on: :create
-  after_commit :update_facebook_pages
+  after_commit :update_facebook_pages, if: 'previous_changes["licensor_id"]'
 
   accepts_nested_attributes_for :logos, allow_destroy: true, reject_if: :all_blank
 

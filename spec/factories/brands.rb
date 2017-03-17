@@ -19,5 +19,9 @@ FactoryGirl.define do
   factory :brand do
     name { Faker::Team.name }
     nicknames []
+
+    factory :brand_with_page do
+      facebook_pages { [create(:facebook_page)] }
+    end
   end
 end
