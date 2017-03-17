@@ -48,7 +48,7 @@ class PagesImporterJob
         logger.info "PagesImporterJob: new FacebookPage #{page.id} created for Brands #{matching_brand_ids.join(', ')}"
       else
         page = FacebookPage.find_by(facebook_id: data["id"])
-        if !brand.id.in?(page.brand_ids)
+        unless brand.id.in?(page.brand_ids)
           page.brands << brand
           page.save!
           logger.info "PagesImporterJob: new Brand #{brand.id} added to FacebookPage #{page.id}"
