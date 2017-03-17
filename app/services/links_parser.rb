@@ -9,7 +9,10 @@ class LinksParser
 
   def call
     clean_links.map do |link|
-      response = Typhoeus.get(link, followlocation: true)
+      response = Typhoeus.get(link,
+                              followlocation: true,
+                              timeout: 60,
+                              maxredirs: 6)
 
       if response.success?
         response.effective_url
