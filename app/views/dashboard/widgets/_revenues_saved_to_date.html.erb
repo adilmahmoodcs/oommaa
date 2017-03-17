@@ -1,8 +1,10 @@
-<div class="col-xl-4">
+<% value = policy_scope(FacebookPost).reported_to_facebook.size * FacebookPost::ESTIMATED_VALUE %>
+
+<div class="col-xl-3">
   <article class="statistic-box grey">
       <div>
         <div class="number">
-          ?$
+          $<%= value %>
         </div>
         <div class="caption">
           <div>
