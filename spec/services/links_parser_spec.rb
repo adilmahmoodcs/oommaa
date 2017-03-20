@@ -7,13 +7,15 @@ RSpec.describe LinksParser do
     "https://github.com/", # no redirect
     "http://buff.ly/2kJE5fx", # short url
     "    http://buff.ly/2kJE5fx     ", # duplicated, useless spaces
+    "https://www.wattpad.com/385894833-yenilmezler-mutant-çağı-dominic", # non ascii
     "",
     nil
   ] }
 
   let(:correct_result) { [
     "https://github.com/",
-    "https://www.destroyallsoftware.com/blog/2017/the-biggest-and-weirdest-commits-in-linux-kernel-git-history?utm_content=bufferbed64&utm_medium=social&utm_source=plus.google.com&utm_campaign=buffer"
+    "https://www.destroyallsoftware.com/blog/2017/the-biggest-and-weirdest-commits-in-linux-kernel-git-history?utm_content=bufferbed64&utm_medium=social&utm_source=plus.google.com&utm_campaign=buffer",
+    "https://www.wattpad.com/385894833-yenilmezler-mutant-%C3%A7a%C4%9F%C4%B1-dominic"
   ] }
 
   it "raise ArgumentError with missing arguments" do

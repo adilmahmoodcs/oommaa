@@ -13,7 +13,6 @@ class LinksParser
                               followlocation: true,
                               timeout: 60,
                               maxredirs: 6)
-
       if response.success?
         response.effective_url
       else
@@ -26,6 +25,9 @@ class LinksParser
   private
 
   def clean_links
-    links.delete_if(&:blank?).map(&:strip).uniq
+    links.delete_if(&:blank?).
+          map(&:strip).
+          map { |link| URI.escape(link) }.
+          uniq
   end
 end
