@@ -13,7 +13,7 @@ class LinksParser
                               followlocation: true,
                               timeout: 60,
                               maxredirs: 6)
-      if response.success?
+      if response.return_code == :ok
         response.effective_url
       else
         puts "Bad short url '#{link}'"
