@@ -67,7 +67,7 @@ class FacebookPost < ApplicationRecord
 
   ransacker :status, formatter: proc { |status_name| statuses[status_name] }
 
-  ESTIMATED_VALUE = 60
+  ESTIMATED_VALUE = 120 # $
 
   def self.ransackable_scopes(auth_object = nil)
     [:with_any_domain]
