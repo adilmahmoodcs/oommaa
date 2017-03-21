@@ -51,6 +51,24 @@ RSpec.describe FacebookPost, type: :model do
       post.change_status_to!(:not_suspect, "user@example.com")
       expect(post.status).to eq("not_suspect")
     end
+
+    it "can set ignored status" do
+      post.change_status_to!(:ignored, "user@example.com")
+      expect(post.status).to eq("ignored")
+    end
+
+    it "can set reported_to_facebook status" do
+      post.change_status_to!(:reported_to_facebook, "user@example.com")
+      expect(post.status).to eq("reported_to_facebook")
+      expect(post.reported_to_facebook_at.to_s).to eq(Time.current.to_s)
+      expect(post.reported_to_facebook_by).to eq("user@example.com")
+    end
+
+    it "cannot change status form reported_to_facebook" do
+      post.change_status_to!(:reported_to_facebook, "user@example.com")
+      post.change_status_to!(:blacklisted, "user@example.com")
+      expect(post.status).to eq("reported_to_facebook")
+    end
   end
 
   describe "#raw_links" do
@@ -78,6 +96,18 @@ RSpec.describe FacebookPost, type: :model do
 
       expect(post_with_links.all_links).to be_any
       expect(post_with_links.all_domains).to be_any
+    end
+  end
+
+  describe "#final_status?" do
+    it "only true for reported_to_facebook status" do
+      expect(build(:facebook_post, status: :not_suspect).final_status?).to be(false)
+      expect(build(:facebook_post, status: :suspect).final_status?).to be(false)
+      expect(build(:facebook_post, status: :whitelisted).final_status?).to be(false)
+      expect(build(:facebook_post, status: :blacklisted).final_status?).to be(false)
+      expect(build(:facebook_post, status: :ignored).final_status?).to be(false)
+
+      expect(build(:facebook_post, status: :reported_to_facebook).final_status?).to be(true)
     end
   end
 end

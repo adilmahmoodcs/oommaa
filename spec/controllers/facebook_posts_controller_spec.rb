@@ -21,10 +21,8 @@ RSpec.describe FacebookPostsController, type: :controller do
       facebook_post = FacebookPost.create! valid_attributes
       expect(statuses).to be_many
 
-      statuses.each do |status|
-        post :change_status, params: { post_id: facebook_post.id, status: status }
-        expect(assigns(:post).status).to eq(status)
-      end
+      expect_any_instance_of(FacebookPost).to receive(:change_status_to!)
+      post :change_status, params: { post_id: facebook_post.id, status: :blacklisted }
     end
 
     it "calls ShutDownCheckerJob on reported_to_facebook status change" do

@@ -4,6 +4,8 @@ class PostStatusJob
 
   def perform(post_id)
     post = FacebookPost.find(post_id)
+    return if post.final_status?
+
     post.parse_all_links! # ensure posts have #all_links and #all_domains
     set_status!(post)
   end

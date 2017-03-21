@@ -8,6 +8,7 @@ RSpec.describe PostStatusJob, type: :job do
   let(:keyword) { create(:keyword) }
   let(:post) { create(:facebook_post) }
   let(:post_with_keyword) { create(:facebook_post, message: keyword.name) }
+  let(:reported_to_facebook_post) { create(:facebook_post, status: :reported_to_facebook) }
 
   before do
     allow_any_instance_of(FacebookPost).to receive(:parse_all_links!)
@@ -23,6 +24,12 @@ RSpec.describe PostStatusJob, type: :job do
       allow_any_instance_of(FacebookPost).to receive(:all_domains) { [domain.name] }
       subject.new.perform(post.id)
       expect(post.reload.blacklisted?).to be true
+    end
+
+    it "does not change reported to facebook post status" do
+      allow_any_instance_of(FacebookPost).to receive(:all_domains) { [domain.name] }
+      subject.new.perform(reported_to_facebook_post.id)
+      expect(reported_to_facebook_post.reload.status).to eq("reported_to_facebook")
     end
 
     it "sets keyword-matching post as suspect if any keyword matches" do

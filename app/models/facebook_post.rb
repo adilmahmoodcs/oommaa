@@ -74,6 +74,8 @@ class FacebookPost < ApplicationRecord
   end
 
   def change_status_to!(new_status, by)
+    return if final_status?
+
     self.status = new_status
     if respond_to?(status_changed_at_writer, true)
       self.send(status_changed_at_writer, Time.now)
@@ -108,6 +110,11 @@ class FacebookPost < ApplicationRecord
 
   def status_changed_by
     send(status_changed_by_reader) if respond_to?(status_changed_by_reader, true)
+  end
+
+  # some statuses are final and can't be changed
+  def final_status?
+    status.in? ["reported_to_facebook"]
   end
 
   private
