@@ -1,7 +1,7 @@
 # import a single FB "post" (may be post, image or video) and its page
 class PostImporterJob
   include Sidekiq::Worker
-  sidekiq_options queue: "posts"
+  sidekiq_options queue: "priority"
 
   def perform(url, user_email = "user@example.com", brand_ids = [])
     object_id, type = FbURLParser.new(url).call

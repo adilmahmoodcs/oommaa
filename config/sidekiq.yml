@@ -2,6 +2,7 @@
 :concurrency: 1
 :timeout: 240
 :queues:
+  - [priority, 5]
   - default
   - pages
   - posts
