@@ -4,5 +4,6 @@
 :queues:
   - [priority, 5]
   - default
+  - not_facebook
   - pages
   - posts

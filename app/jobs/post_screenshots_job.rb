@@ -1,7 +1,7 @@
 # saves screenshots of a Facebook Post
 class PostScreenshotsJob
   include Sidekiq::Worker
-  sidekiq_options queue: "posts"
+  sidekiq_options queue: "not_facebook"
 
   def perform(post_id)
     post = FacebookPost.find(post_id)
