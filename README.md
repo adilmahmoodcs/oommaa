@@ -27,6 +27,11 @@ WARNING: This will start processing hundreds of ads.
 Token configuration is on `config/counterfind.yml`
 The sidekiq interface is at http://localhost:3000/sidekiq
 
+### Production database
+
+A daily Postgres dump of the production database is available on the S3 bucket
+"counterfind-production-backups"
+
 ## Running tests
 
     bin/rails db:test:prepare # only first time
