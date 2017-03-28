@@ -18,7 +18,7 @@ set :sidekiq_role, -> { :sidekiq }
 set :sidekiq_timeout, 60
 set :sidekiq_processes, 2
 set :sidekiq_options_per_process, [
-  "--concurrency 4 --queue default --queue not_facebook",
+  "--queue default --queue not_facebook",
   "--tag facebook --concurrency 1 --queue priority,5 --queue posts --queue pages"
 ]
 
