@@ -2,17 +2,34 @@
 
 ## Development setup
 
-Requirements: PostgreSQL, Redis (only for sidekiq)
+### Frontend app
 
+Install PostgreSQL (see `config/database.yml`)
 Install ruby 2.4.0
+Run:
 
     bundle
     bin/rake db:setup
     guard
 
-## Run tests
+Visit http://localhost:3000/
+Log in as admin@example.com / password
 
-    bin/rails db:test:prepare # first time
+### Background jobs
+
+Install Redis
+To start background processing:
+
+    sidekiq -C config/sidekiq.yml
+
+WARNING: This will start processing hundreds of ads.
+
+Token configuration is on `config/counterfind.yml`
+The sidekiq interface is at http://localhost:3000/sidekiq
+
+## Running tests
+
+    bin/rails db:test:prepare # only first time
     bin/rspec spec
 
 ## Deploy
@@ -21,6 +38,6 @@ Note: you must have a valid ssh key for the server's `deployer` user.
 
     cap <stage> deploy
 
-### Open a console on the server
+## Open a console on the server
 
     cap <stage> rails:console
