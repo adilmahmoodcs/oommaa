@@ -1,6 +1,6 @@
 set :puma_tag, "Counterfind Production"
 set :puma_threads, [0, 4]
-set :puma_workers, 2
+set :puma_workers, 8
 
 server "dev.counterfind.com",
   user: "deployer",
