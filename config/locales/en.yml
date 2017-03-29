@@ -34,6 +34,7 @@ en:
   team_production: Team Production
   reference_number: Reference Number
   facebook_report_number: Facebook report number
+  likes: Number of Likes
   activerecord:
     attributes:
       facebook_post:

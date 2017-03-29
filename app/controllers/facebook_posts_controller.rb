@@ -109,7 +109,9 @@ class FacebookPostsController < ApplicationController
   end
 
   def facebook_post_params
-    params.require(:facebook_post).permit({ brand_ids: [] }, :facebook_report_number)
+    params.require(:facebook_post).permit(
+      { brand_ids: [] }, :facebook_report_number, :likes
+    )
   end
 
   def after_reported_to_facebook

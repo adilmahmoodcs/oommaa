@@ -9,6 +9,7 @@
       <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
       <th><%= sort_link(@q, :published_at, "Published at") %></th>
       <% if @status == "blacklisted" %>
+        <th><%= sort_link(@q, :likes, t(:likes)) %></th>
         <th><%= sort_link(@q, :blacklisted_at, t(:blacklisted_at)) %></th>
         <th><%= sort_link(@q, :blacklisted_by, t(:blacklisted_by)) %></th>
       <% elsif @status == "whitelisted" %>
@@ -59,6 +60,14 @@
         <td>
           <%= l(post.published_at, format: :compact) %>
         </td>
+        <% if @status == "blacklisted" %>
+          <td>
+            <%= form_for post do |f| %>
+              <%= f.text_field :likes, class: "form-control form-control-sm quick-form" %>
+              <%= f.button t(:update), class: "btn btn-primary-outline btn-sm" %>
+            <% end %>
+          </td>
+        <% end %>
         <% if @status.in? ["blacklisted", "whitelisted"] %>
           <td>
             <%= l(post.status_changed_at, format: :compact) if post.status_changed_at %>
