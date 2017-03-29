@@ -21,6 +21,9 @@ class FBPostReader
   end
 
   def fields
-    ["id", "created_time", "from", "link", "message", "permalink_url", "picture"]
+    [
+      "id", "created_time", "from", "link", "message", "permalink_url",
+      "picture", "likes.limit(0).summary(true)"
+    ]
   end
 end

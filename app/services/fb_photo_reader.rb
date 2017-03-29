@@ -21,6 +21,9 @@ class FBPhotoReader
   end
 
   def fields
-    ["id", "created_time", "from", "link", "name", "picture"]
+    [
+      "id", "created_time", "from", "link", "name", "picture",
+      "likes.limit(0).summary(true)"
+    ]
   end
 end

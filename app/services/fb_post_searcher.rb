@@ -43,6 +43,9 @@ class FBPostSearcher
   end
 
   def fields
-    ["id", "message", "created_time", "permalink_url", "full_picture", "link"]
+    [
+      "id", "message", "created_time", "permalink_url", "full_picture", "link",
+      "likes.limit(0).summary(true)"
+    ]
   end
 end

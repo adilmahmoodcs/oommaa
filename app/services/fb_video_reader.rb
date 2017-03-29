@@ -21,6 +21,9 @@ class FBVideoReader
   end
 
   def fields
-    ["id", "created_time", "from", "permalink_url", "title", "picture"]
+    [
+      "id", "created_time", "from", "permalink_url", "title", "picture",
+      "likes.limit(0).summary(true)"
+    ]
   end
 end
