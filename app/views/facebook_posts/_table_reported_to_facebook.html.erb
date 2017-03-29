@@ -1,16 +1,20 @@
 <table class="table table-hover table-bordered">
   <thead>
     <tr>
+      <th><%= sort_link(@q, :published_at, t(:published_at)) %></th>
+      <th><%= sort_link(@q, :blacklisted_at, t(:blacklisted_at)) %></th>
+      <th><%= sort_link(@q, :blacklisted_by, t(:blacklisted_by)) %></th>
       <th>Image</th>
       <th>Message</th>
       <th><%= sort_link(@q, :facebook_page_brands_name, t(:brand_name)) %></th>
       <th><%= sort_link(@q, :facebook_page_brands_licensor_name, t(:licensor_name)) %></th>
       <th><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></th>
-      <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
-      <th><%= sort_link(@q, :reported_to_facebook_at, "Reported to Facebook at") %></th>
-      <th><%= sort_link(@q, :reported_to_facebook_by, "Reported to Facebook by") %></th>
-      <th><%= sort_link(@q, :shut_down_by_facebook_at, "Shut down by Facebook at") %></th>
+      <th><%= sort_link(@q, :facebook_page_name, t(:facebook_page_name)) %></th>
+      <th><%= sort_link(@q, :reported_to_facebook_at, t(:reported_to_facebook_at)) %></th>
+      <th><%= sort_link(@q, :reported_to_facebook_by, t(:reported_to_facebook_by)) %></th>
+      <th><%= sort_link(@q, :shut_down_by_facebook_at, t(:shut_down_by_facebook_at)) %></th>
       <th><%= t(:facebook_report_number) %></th>
+      <th><%= t(:link_to_product) %></th>
       <th><%= t(:link_to_ad_screenshot) %></th>
       <th><%= t(:link_to_product_screenshot) %></th>
       <th>Actions</th>
@@ -20,6 +24,15 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
+        <td>
+          <%= l(post.published_at, format: :compact) %>
+        </td>
+        <td>
+          <%= l(post.blacklisted_at, format: :compact) if post.blacklisted_at %>
+        </td>
+        <td>
+          <%= post.blacklisted_by %>
+        </td>
         <td>
           <%= link_to image_tag(post.image_url, width: "150px"),
                       post.permalink,
@@ -64,6 +77,11 @@
           <%= form_for post do |f| %>
             <%= f.text_field :facebook_report_number, class: "form-control form-control-sm quick-form" %>
             <%= f.button t(:update), class: "btn btn-primary-outline btn-sm" %>
+          <% end %>
+        </td>
+        <td>
+          <% if link = post.all_links.last %>
+            <%= link_to "Link", link, target: "_blank" %>
           <% end %>
         </td>
         <td>
