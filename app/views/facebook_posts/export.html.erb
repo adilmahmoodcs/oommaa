@@ -52,15 +52,17 @@
       <th><%= sort_link(@q, :published_at, t(:published_at)) %></th>
       <th><%= sort_link(@q, :blacklisted_at, t(:blacklisted_at)) %></th>
       <th><%= sort_link(@q, :blacklisted_by, t(:blacklisted_by)) %></th>
-      <th><%= sort_link(@q, :reported_to_facebook_at, t(:reported_to_facebook_at)) %></th>
-      <th><%= sort_link(@q, :reported_to_facebook_by, t(:reported_to_facebook_by)) %></th>
+      <th><%= t(:link_to_ad_screenshot) %></th>
+      <th><%= t(:message) %></th>
       <th><%= sort_link(@q, :facebook_page_brands_name, t(:brand_name)) %></th>
       <th><%= sort_link(@q, :facebook_page_brands_licensor_name, t(:licensor_name)) %></th>
       <th><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></th>
       <th><%= sort_link(@q, :facebook_page_name, t(:facebook_page_name)) %></th>
-      <th><%= t(:message) %></th>
+      <th><%= sort_link(@q, :reported_to_facebook_at, t(:reported_to_facebook_at)) %></th>
+      <th><%= sort_link(@q, :reported_to_facebook_by, t(:reported_to_facebook_by)) %></th>
+      <th><%= sort_link(@q, :shut_down_by_facebook_at, t(:shut_down_by_facebook_at)) %></th>
+      <th><%= t(:facebook_report_number) %></th>
       <th><%= t(:link_to_product) %></th>
-      <th><%= t(:link_to_ad_screenshot) %></th>
       <th><%= t(:link_to_product_screenshot) %></th>
     </tr>
   </thead>
@@ -78,10 +80,10 @@
           <%= post.blacklisted_by %>
         </td>
         <td>
-          <%= l(post.reported_to_facebook_at, format: :compact) if post.reported_to_facebook_at %>
+          <%= ad_screenshot_links(post) %>
         </td>
         <td>
-          <%= post.reported_to_facebook_by %>
+          <%= link_to truncate(post.message, length: 20), post.permalink, target: "_blank" %>
         </td>
         <td>
           <%= post.brand_names %>
@@ -96,13 +98,23 @@
           <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
         </td>
         <td>
-          <%= link_to truncate(post.message, length: 20), post.permalink, target: "_blank" %>
+          <%= l(post.reported_to_facebook_at, format: :compact) if post.reported_to_facebook_at %>
+        </td>
+        <td>
+          <%= post.reported_to_facebook_by %>
+        </td>
+        <td>
+          <% if post.shut_down_by_facebook_at %>
+            <%= l(post.shut_down_by_facebook_at, format: :compact)  %>
+          <% else %>
+            Pending
+          <% end %>
+        </td>
+        <td>
+          <%= post.facebook_report_number %>
         </td>
         <td>
           <%= link_to "Link", post.all_links.last, target: "_blank" %>
-        </td>
-        <td>
-          <%= ad_screenshot_links(post) %>
         </td>
         <td>
           <%= product_screenshot_links(post) %>
