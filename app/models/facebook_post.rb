@@ -24,6 +24,7 @@
 #  all_domains              :string           default("{}"), is an Array
 #  added_by                 :string
 #  facebook_report_number   :string
+#  likes                    :integer
 #
 # Indexes
 #

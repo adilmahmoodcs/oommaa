@@ -24,6 +24,7 @@
 #  all_domains              :string           default("{}"), is an Array
 #  added_by                 :string
 #  facebook_report_number   :string
+#  likes                    :integer
 #
 # Indexes
 #
@@ -41,6 +42,7 @@ FactoryGirl.define do
     permalink { Faker::Internet.url }
     image_url { Faker::LoremPixel.image("150x150") }
     facebook_page
+    likes { Faker::Number.between(1, 10000) }
 
     factory :blacklisted_post do
       status "blacklisted"
