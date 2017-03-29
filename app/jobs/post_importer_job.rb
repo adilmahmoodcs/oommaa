@@ -52,14 +52,14 @@ class PostImporterJob
 
     return if FacebookPost.exists?(facebook_id: data["id"])
 
-    page = find_or_create_page(data["from"]["id"], brand_ids, likes)
+    page = find_or_create_page(data["from"]["id"], brand_ids)
     # create a post from the submitted URL
-    create_post(data, page, user_email)
+    create_post(data, page, user_email, likes)
   end
 
   private
 
-  def find_or_create_page(object_id, brand_ids, likes)
+  def find_or_create_page(object_id, brand_ids)
     data = FBPageReader.new(object_id: object_id, token: token).call
 
     if page = FacebookPage.find_by(facebook_id: data["id"])
@@ -82,15 +82,14 @@ class PostImporterJob
       name: data["name"],
       url: data["link"],
       image_url: data.dig("picture", "data", "url"),
-      brand_ids: all_brand_ids,
-      likes: likes
+      brand_ids: all_brand_ids
     )
 
     logger.info "PostImporterJob: created new FacebookPage #{page.id}"
     page
   end
 
-  def create_post(data, page, user_email)
+  def create_post(data, page, user_email, likes)
     post = page.facebook_posts.create!(
       facebook_id: data["id"],
       message: (data["name"].presence || "<BLANK MESSAGE>"),
@@ -102,7 +101,8 @@ class PostImporterJob
       status: "blacklisted",
       blacklisted_at: Time.now,
       blacklisted_by: user_email,
-      added_by: user_email
+      added_by: user_email,
+      likes: likes
     )
 
     post.parse_all_links!
