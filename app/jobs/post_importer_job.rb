@@ -3,7 +3,7 @@ class PostImporterJob
   include Sidekiq::Worker
   sidekiq_options queue: "priority"
 
-  def perform(url, user_email = "user@example.com", brand_ids = [])
+  def perform(url, user_email = "user@example.com", brand_ids = [], likes = 0)
     object_id, type = FbURLParser.new(url).call
     return unless object_id
 
@@ -52,14 +52,14 @@ class PostImporterJob
 
     return if FacebookPost.exists?(facebook_id: data["id"])
 
-    page = find_or_create_page(data["from"]["id"], brand_ids)
+    page = find_or_create_page(data["from"]["id"], brand_ids, likes)
     # create a post from the submitted URL
     create_post(data, page, user_email)
   end
 
   private
 
-  def find_or_create_page(object_id, brand_ids)
+  def find_or_create_page(object_id, brand_ids, likes)
     data = FBPageReader.new(object_id: object_id, token: token).call
 
     if page = FacebookPage.find_by(facebook_id: data["id"])
@@ -82,7 +82,8 @@ class PostImporterJob
       name: data["name"],
       url: data["link"],
       image_url: data.dig("picture", "data", "url"),
-      brand_ids: all_brand_ids
+      brand_ids: all_brand_ids,
+      likes: likes
     )
 
     logger.info "PostImporterJob: created new FacebookPage #{page.id}"

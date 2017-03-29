@@ -27,6 +27,13 @@
                            class: "form-control select2" %>
           </div>
         </div>
+
+        <div class="col-md-2">
+          <div class="form-group">
+            <%= label_tag :likes, "Number of Likes" %>
+            <%= number_field_tag :likes, nil, class: "form-control", required: true %>
+          </div>
+        </div>
       </div>
 
       <div class="actions">
