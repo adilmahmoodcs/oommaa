@@ -60,7 +60,8 @@ class PostsImporterJob
         published_at: data["created_time"],
         permalink: data["permalink_url"],
         image_url: data["full_picture"],
-        link: data["link"]
+        link: data["link"],
+        likes: data.dig("likes", "summary", "total_count")
       )
 
       next if post.raw_links.none? # skip posts with no external links
