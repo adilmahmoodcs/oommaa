@@ -18,13 +18,15 @@ class PostsCSVExporter
           I18n.l(post.published_at, format: :compact),
           (I18n.l(post.blacklisted_at, format: :compact) if post.blacklisted_at),
           post.blacklisted_by,
-          (I18n.l(post.reported_to_facebook_at, format: :compact) if post.reported_to_facebook_at),
-          post.reported_to_facebook_by,
+          post.message,
           post.brand_names,
           post.licensor_names,
           post.all_domains.join(", "),
           post.facebook_page.name,
-          post.message,
+          (I18n.l(post.reported_to_facebook_at, format: :compact) if post.reported_to_facebook_at),
+          post.reported_to_facebook_by,
+          (I18n.l(post.shut_down_by_facebook_at, format: :compact) if post.shut_down_by_facebook_at),
+          post.facebook_report_number,
           post.all_links.last
         ]
       end
@@ -38,8 +40,20 @@ class PostsCSVExporter
   end
 
   def fields
-    %w[published_at blacklisted_at blacklisted_by reported_to_facebook_at
-       reported_to_facebook_by brand_name licensor_name platform_or_company
-       facebook_page_name message link_to_product]
+    %w[
+      published_at
+      blacklisted_at
+      blacklisted_by
+      message
+      brand_name
+      licensor_name
+      platform_or_company
+      facebook_page_name
+      reported_to_facebook_at
+      reported_to_facebook_by
+      shut_down_by_facebook_at
+      facebook_report_number
+      link_to_product
+    ]
   end
 end
