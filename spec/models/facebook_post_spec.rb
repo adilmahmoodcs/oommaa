@@ -90,9 +90,10 @@ RSpec.describe FacebookPost, type: :model do
       expect(post_with_links.all_links).to be_none
       expect(post_with_links.all_domains).to be_none
 
-      VCR.use_cassette(:post_with_links_parser) do
-        post_with_links.parse_all_links!
-      end
+      # TODO find a way to use a VCR cassette
+      WebMock.disable!
+      post_with_links.parse_all_links!
+      WebMock.enable!
 
       expect(post_with_links.all_links).to be_any
       expect(post_with_links.all_domains).to be_any
