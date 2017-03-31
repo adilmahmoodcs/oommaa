@@ -25,12 +25,14 @@ To start background processing:
 WARNING: This will start processing hundreds of ads.
 
 Token configuration is on `config/counterfind.yml`
+NOTE: make sure there's a VALID facebook token for the development environment
+
 The sidekiq interface is at http://localhost:3000/sidekiq
 
 ### Production database
 
-A daily Postgres dump of the production database is available on the S3 bucket
-"counterfind-production-backups"
+A daily Postgres backup dump of the production database is available on the S3
+bucket "counterfind-production-backups"
 
 ## Running tests
 

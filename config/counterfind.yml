@@ -2,8 +2,7 @@ development:
   facebook:
     report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
-      - EAAO0ZCIHKn24BAI8FriRBLaIHCDElXAR2rbM5PRwJ179h2YZADDwvSQo6QI8cBu27Yqc0iIdKXWAAuiy5ru6DbwPUXmp4xiXPgtATqqr8kuMzh1ZAiZCbnZCuPL0EeFXqi2QIwjNPvL0SaW9YzZCSKPecS0yWjB34ZD # alessandro
-      - EAAO0ZCIHKn24BAIhwJfzl7sYMDTmVlWiMw6RBfJhXlyT99p4tYvlPHp43CBgDAsVmqz3vkxwc4V2ixpaWFH38X0Tz1m9sLDO1NGz8RZAyqzZCEczN8rIZBmXHzk2GXI64brzQcQoVAZCugWUFDNDwRQXpc33ZAgHEZD # Arthur Eisenberg
+      - PUT_A_REAL_TOKEN_HERE
 
 production:
   facebook:
@@ -16,8 +15,7 @@ demo:
   facebook:
     report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
-      - EAAO0ZCIHKn24BAI8FriRBLaIHCDElXAR2rbM5PRwJ179h2YZADDwvSQo6QI8cBu27Yqc0iIdKXWAAuiy5ru6DbwPUXmp4xiXPgtATqqr8kuMzh1ZAiZCbnZCuPL0EeFXqi2QIwjNPvL0SaW9YzZCSKPecS0yWjB34ZD # alessandro
-      - EAAO0ZCIHKn24BAIhwJfzl7sYMDTmVlWiMw6RBfJhXlyT99p4tYvlPHp43CBgDAsVmqz3vkxwc4V2ixpaWFH38X0Tz1m9sLDO1NGz8RZAyqzZCEczN8rIZBmXHzk2GXI64brzQcQoVAZCugWUFDNDwRQXpc33ZAgHEZD # Arthur Eisenberg
+      - PUT_A_REAL_TOKEN_HERE
 
 test:
   facebook:
