@@ -23,6 +23,7 @@ class PostsCSVExporter
           post.licensor_names,
           post.all_domains.join(", "),
           post.facebook_page.name,
+          post.likes,
           (I18n.l(post.reported_to_facebook_at, format: :compact) if post.reported_to_facebook_at),
           post.reported_to_facebook_by,
           (I18n.l(post.shut_down_by_facebook_at, format: :compact) if post.shut_down_by_facebook_at),
@@ -49,6 +50,7 @@ class PostsCSVExporter
       licensor_name
       platform_or_company
       facebook_page_name
+      likes
       reported_to_facebook_at
       reported_to_facebook_by
       shut_down_by_facebook_at

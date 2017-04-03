@@ -58,6 +58,7 @@
       <th><%= sort_link(@q, :facebook_page_brands_licensor_name, t(:licensor_name)) %></th>
       <th><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></th>
       <th><%= sort_link(@q, :facebook_page_name, t(:facebook_page_name)) %></th>
+      <th><%= sort_link(@q, :likes, t(:likes)) %></th>
       <th><%= sort_link(@q, :reported_to_facebook_at, t(:reported_to_facebook_at)) %></th>
       <th><%= sort_link(@q, :reported_to_facebook_by, t(:reported_to_facebook_by)) %></th>
       <th><%= sort_link(@q, :shut_down_by_facebook_at, t(:shut_down_by_facebook_at)) %></th>
@@ -96,6 +97,9 @@
         </td>
         <td>
           <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
+        </td>
+        <td>
+          <%= post.likes %>
         </td>
         <td>
           <%= l(post.reported_to_facebook_at, format: :compact) if post.reported_to_facebook_at %>

@@ -91,7 +91,7 @@ class FacebookPost < ApplicationRecord
   def raw_links
     raw_links = URI.extract(message, ["http", "https"])
     raw_links << link if link.present?
-    raw_links.delete_if { |l| l.match?(/https\:\/\/www\.facebook\.com\//) }
+    raw_links.delete_if { |l| l.match? (/https\:\/\/www\.facebook\.com\//) }
     raw_links.delete_if { |l| !(Addressable::URI.parse(l) rescue nil) }
     raw_links.compact
   end
