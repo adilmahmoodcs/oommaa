@@ -5,7 +5,7 @@ class PostImporterJob
 
   def perform(url, user_email = "user@example.com", brand_ids = [], likes = 0)
     object_id, type = FbURLParser.new(url).call
-    return unless object_id
+    return unless object_id # can't parse this URL
 
     brand_ids = brand_ids.map(&:to_i)
 
@@ -21,8 +21,9 @@ class PostImporterJob
         return
       end
     rescue Koala::Facebook::ClientError => e
+      # try to understand the problem from facebook error codes and messages...
       case e.fb_error_code
-      when 4
+      when 4 # API Too Many Calls
         logger.info "PostImporterJob: rate limiting, re-enqueued"
         self.class.perform_in(rand(10..60).minutes, url, user_email, brand_ids)
         return
@@ -48,10 +49,13 @@ class PostImporterJob
       end
     end
 
+    # sometimes facebook IDs are like `page-id_post-id`...
     data["id"] = data["id"].split("_").last
 
+    # we already have this post
     return if FacebookPost.exists?(facebook_id: data["id"])
 
+    # create page if doesn't exists
     page = find_or_create_page(data["from"]["id"], brand_ids)
     # create a post from the submitted URL
     create_post(data, page, user_email, likes)
@@ -62,6 +66,7 @@ class PostImporterJob
   def find_or_create_page(object_id, brand_ids)
     data = FBPageReader.new(object_id: object_id, token: token).call
 
+    # if we already have the page, just update page brands
     if page = FacebookPage.find_by(facebook_id: data["id"])
       brand_ids.each do |brand_id|
         unless brand_id.in?(page.brand_ids)
@@ -74,7 +79,9 @@ class PostImporterJob
       return page
     end
 
+    # find brands that matches the page name
     matching_brand_ids = BrandMatcher.new(data["name"]).call
+    # also add submitted brands
     all_brand_ids = (brand_ids + matching_brand_ids).uniq.compact
 
     page = FacebookPage.create!(
@@ -97,8 +104,7 @@ class PostImporterJob
       permalink: data["permalink_url"],
       image_url: data["picture"],
       link: data["link"],
-      # we start as blacklisted, but PostStatusJob will also run
-      status: "blacklisted",
+      status: "blacklisted", # we start blacklisted, but PostStatusJob will also run
       blacklisted_at: Time.now,
       blacklisted_by: user_email,
       added_by: user_email,
