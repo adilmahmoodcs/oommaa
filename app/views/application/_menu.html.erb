@@ -66,7 +66,7 @@
 
         <%= link_to domains_path(status: :greylisted),
                     class: "dropdown-item #{'active' if current_page?(domains_path) && @status == 'greylisted'}" do %>
-          <%= icon("exclamation-triangle", class: "fa-fw") %>
+          <%= icon("binoculars", class: "fa-fw") %>
           <%= "#{t(:greylisted)} (#{policy_scope(Domain).greylisted.count})" %>
         <% end %>
       </div>
@@ -130,7 +130,7 @@
         <% if policy(FacebookPost).index_blacklisted? %>
           <%= link_to facebook_posts_path(q: { status_eq: :greylisted }),
                       class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'greylisted'}" do %>
-            <%= icon("exclamation-triangle", class: "fa-fw") %>
+            <%= icon("binoculars", class: "fa-fw") %>
             <%= "#{t(:greylisted)} (#{policy_scope(FacebookPost).greylisted.size})" %>
           <% end %>
         <% end %>

@@ -23,6 +23,8 @@ class DomainsController < ApplicationController
       @domain.create_activity(:create, owner: current_user, parameters: { name: @domain.name })
       @domain.update_posts!
       flash[:notice] = "Domain was successfully created."
+    else
+      flash[:alert] = @domain.errors.full_messages.to_sentence
     end
 
     redirect_back(fallback_location: domains_path)
