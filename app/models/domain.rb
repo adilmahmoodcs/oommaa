@@ -12,7 +12,7 @@
 class Domain < ApplicationRecord
   include PublicActivity::Common
 
-  enum status: [:blacklisted, :whitelisted]
+  enum status: [:blacklisted, :whitelisted, :greylisted]
 
   validates :name, presence: true
   validates :name, uniqueness: true

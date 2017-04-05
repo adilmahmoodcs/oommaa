@@ -22,6 +22,9 @@ class PostStatusJob
     elsif whitelist_domain_matcher.match_all?(domains)
       "whitelisted"
     # if some suspect keyword match
+    elsif greylisted_domain_matcher.match?(domains)
+      "greylisted"
+    # if all domains are greylisted
     elsif keyword_matcher.match?(post.message)
       "suspect"
     end
@@ -45,6 +48,10 @@ class PostStatusJob
 
   def whitelist_domain_matcher
     @whitelist_domain_matcher ||= DomainMatcher.new(status: "whitelisted")
+  end
+
+  def greylisted_domain_matcher
+    @greylisted_domain_matcher ||= DomainMatcher.new(status: "greylisted")
   end
 
   def logger

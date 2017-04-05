@@ -9,6 +9,7 @@ en:
   not_suspect: Needs Review
   whitelisted: Whitelisted
   blacklisted: Blacklisted
+  greylisted: Greylisted
   user_activities: User Activities
   blacklist_export: Blacklist Export
   brand_name: Brand
