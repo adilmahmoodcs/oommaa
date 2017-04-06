@@ -1,9 +1,14 @@
 class FacebookPagesController < ApplicationController
   def index
     authorize FacebookPage
-    FacebookPage::statuses.include?(params[:status]) ? @status = params[:status]
-                                                     : @status = "brand_page"
-    @status = params[:q][:status] if params[:q].present?
+    @status = if params[:q].present?
+      params[:q][:status]
+    elsif FacebookPage::statuses.include?(params[:status])
+      params[:status]
+    else
+     "brand_page"
+    end
+
     if @status == "affiliate_page"
       @q = policy_scope(FacebookPage).affiliate_page.ransack(params[:q])
     else

@@ -56,6 +56,6 @@ class AffiliatePageImporterJob
     )
     AffiliatePagePostImporterJob.perform_async(page.id)
     logger.info "AffiliatePageImporter: new affiliate FacebookPage #{page.id} created}"
-    page #return page
+    page
   end
 end

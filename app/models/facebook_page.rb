@@ -39,14 +39,10 @@ class FacebookPage < ApplicationRecord
 
   enum status: [
     :brand_page, :affiliate_page
-  ]
+  ].freeze
 
   ransacker :name_case_insensitive, type: :string do
     arel_table[:name].lower
-  end
-
-  ransacker :status do
-  Arel.sql("to_char(status, '1')")
   end
 
   def brand_names
