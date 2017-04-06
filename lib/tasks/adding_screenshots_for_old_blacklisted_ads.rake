@@ -1,8 +1,8 @@
 namespace :adding_screenshots_for_old_blacklisted_ads do
   desc "TODO"
   task add_screenshots: :environment do
-    FacebookPost.includes(:screenshots).where(status: 3).select { |fp| fp.screenshots.empty? }.try(:each) do |post|
-      PostScreenshotsJob.perform_async(post.id)
+    FacebookPost.where(status: [3, 4]).find_each do |post|
+      PostScreenshotsJob.perform_async(post.id) if post.screenshots.none?
     end
   end
 
