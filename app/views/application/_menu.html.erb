@@ -30,6 +30,16 @@
     </li>
   <% end %>
 
+  <% if policy(FacebookPage).index? %>
+    <li class="nav-item">
+      <%= link_to facebook_pages_path(status: "affiliate_page"),
+                  class: "nav-link #{'active' if current_page?(facebook_pages_path(status: "affiliate_page"))}" do %>
+        <%= icon("users", class: "fa-fw") %>
+        <%= "#{t(:affiliate_page)} (#{policy_scope(FacebookPage).affiliate_page.count})" %>
+      <% end %>
+    </li>
+  <% end %>
+
   <% if policy(Licensor).index? %>
     <li class="nav-item">
       <%= link_to licensors_path,

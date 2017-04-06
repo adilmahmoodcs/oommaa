@@ -12,6 +12,7 @@
 #  old_brand_ids            :integer          default("{}"), is an Array
 #  shut_down_by_facebook_at :datetime
 #  cached_licensor_ids      :integer          default("{}"), is an Array
+#  status                   :integer          default("0")
 #
 # Indexes
 #
@@ -36,8 +37,16 @@ class FacebookPage < ApplicationRecord
     where("? = ANY(cached_licensor_ids)", licensor.id)
   }
 
+  enum status: [
+    :brand_page, :affiliate_page
+  ]
+
   ransacker :name_case_insensitive, type: :string do
     arel_table[:name].lower
+  end
+
+  ransacker :status do
+  Arel.sql("to_char(status, '1')")
   end
 
   def brand_names
