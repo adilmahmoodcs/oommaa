@@ -19,6 +19,7 @@ class PostsCSVExporter
           (I18n.l(post.blacklisted_at, format: :compact) if post.blacklisted_at),
           post.blacklisted_by,
           post.message,
+          post.permalink,
           post.brand_names,
           post.licensor_names,
           post.all_domains.join(", "),
@@ -46,6 +47,7 @@ class PostsCSVExporter
       blacklisted_at
       blacklisted_by
       message
+      link_to_ad_on_facebook
       brand_name
       licensor_name
       platform_or_company

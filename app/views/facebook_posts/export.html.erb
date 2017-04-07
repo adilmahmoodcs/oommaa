@@ -54,6 +54,7 @@
       <th><%= sort_link(@q, :blacklisted_by, t(:blacklisted_by)) %></th>
       <th><%= t(:link_to_ad_screenshot) %></th>
       <th><%= t(:message) %></th>
+      <th><%= t(:link_to_ad_on_facebook) %></th>
       <th><%= sort_link(@q, :facebook_page_brands_name, t(:brand_name)) %></th>
       <th><%= sort_link(@q, :facebook_page_brands_licensor_name, t(:licensor_name)) %></th>
       <th><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></th>
@@ -84,7 +85,10 @@
           <%= ad_screenshot_links(post) %>
         </td>
         <td>
-          <%= link_to truncate(post.message, length: 20), post.permalink, target: "_blank" %>
+          <%= truncate(post.message, length: 40) %>
+        </td>
+        <td>
+          <%= link_to "Link", post.permalink, target: "_blank" %>
         </td>
         <td>
           <%= post.brand_names %>

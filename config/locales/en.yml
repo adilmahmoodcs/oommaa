@@ -28,6 +28,7 @@ en:
   link_to_product: Link to product
   link_to_ad_screenshot: Link to Screenshot of AD
   link_to_product_screenshot: Link to screenshot of purchase page
+  link_to_ad_on_facebook: Link to AD on Facebook
   download_as_csv: Download as CSV
   users: Users
   delete: Delete
