@@ -1,5 +1,8 @@
 # Counterfind
 
+Production address: http://dev.counterfind.com/
+Staging address: http://demo.counterfind.com/
+
 ## Development setup
 
 ### Frontend app
@@ -44,6 +47,9 @@ bucket "counterfind-production-backups"
 Note: you must have a valid ssh key for the server's `deployer` user.
 
     cap <stage> deploy
+
+The `master` branch is deployed on staging, the `production` branch is deployed
+on production.
 
 ## Open a console on the server
 
