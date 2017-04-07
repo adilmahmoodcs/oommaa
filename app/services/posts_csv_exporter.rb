@@ -18,7 +18,7 @@ class PostsCSVExporter
           I18n.l(post.published_at, format: :compact),
           (I18n.l(post.blacklisted_at, format: :compact) if post.blacklisted_at),
           post.blacklisted_by,
-          post.ad_screenshots.map { |s| s.image.url }.join(" , "),
+          post.ad_screenshots.map { |s| s.image.url }.join(" / "),
           post.message,
           post.permalink,
           post.brand_names,
@@ -31,7 +31,7 @@ class PostsCSVExporter
           (I18n.l(post.shut_down_by_facebook_at, format: :compact) if post.shut_down_by_facebook_at),
           post.facebook_report_number,
           post.all_links.last,
-          post.product_screenshots.map { |s| s.image.url }.join(" , ")
+          post.product_screenshots.map { |s| s.image.url }.join(" / ")
         ]
       end
     end
