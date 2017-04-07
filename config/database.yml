@@ -19,7 +19,7 @@ production:
   password: rAIkCKD2dMatvz3SGiM
   pool: 15
 
-demo:
+staging:
   <<: *default
   database: counterfind_demo
   username: counterfind
