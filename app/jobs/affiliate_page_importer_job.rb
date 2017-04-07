@@ -24,12 +24,12 @@ class AffiliatePageImporterJob
     pages_data.each do |data|
       # create new Affiliate page only if its not present
       unless FacebookPage.exists?(facebook_id: data["id"])
-        # only keep results with matching name and url if url is present because Facebook returns
-        # lots of "similar" pages with other names
-        if @affiliate_page_url == data["link"] || (@affiliate_page_url.include?(data["link"]) rescue false)
+        # If url is given then only creates the page with matching url
+        if @affiliate_page_url.present? && (@affiliate_page_url == data["link"] || @affiliate_page_url.start_with?(data["link"]))
           page = create_page(data)
           break
-        elsif @affiliate_page_name.include?(data['name'])
+        elsif  (@affiliate_page_name == data['name'] || data['name'].start_with?(@affiliate_page_name)) && !@affiliate_page_url.present?
+          # else create the page that starts with or matches the exact given name
           page = create_page(data)
         else
           logger.info "AffiliatePageImporter: skipping non-matching page '#{data['name']}' with given url"

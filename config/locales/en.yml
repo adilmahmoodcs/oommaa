@@ -10,6 +10,7 @@ en:
   whitelisted: Whitelisted
   blacklisted: Blacklisted
   greylisted: Greylisted
+  affiliate_greylisted: Affiliate Greylisted
   user_activities: User Activities
   blacklist_export: Blacklist Export
   brand_name: Brand

@@ -30,7 +30,7 @@ class FacebookPagesController < ApplicationController
       flash[:alert] = "URL is not valid Please enter valid url or try adding complete url."
       valid_url_if_present = false
     end
-    AffiliatePageImporterJob.perform_async(params[:facebook_page][:name], params[:facebook_page][:url]) if valid_url_if_present
+    AffiliatePageImporterJob.new.perform(params[:facebook_page][:name], params[:facebook_page][:url]) if valid_url_if_present
     redirect_back(fallback_location: facebook_pages_path(status: 'affiliate_page'))
   end
 

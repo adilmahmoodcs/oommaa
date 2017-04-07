@@ -54,7 +54,7 @@ class FacebookPostPolicy < ApplicationPolicy
     user.admin? || user.confirmed_client?
   end
 
-  def index_affiliate_page_post?
+  def index_affiliate_greylisted?
     user.admin?
   end
 
@@ -92,7 +92,7 @@ class FacebookPostPolicy < ApplicationPolicy
     user.admin?
   end
 
-  def change_status_affiliate_page_post?
+  def change_status_affiliate_greylisted?
     user.admin?
   end
 
@@ -126,7 +126,7 @@ class FacebookPostPolicy < ApplicationPolicy
     user.admin?
   end
 
-  def mass_change_status_affiliate_page_post?
+  def mass_change_status_affiliate_greylisted?
     user.admin?
   end
 end

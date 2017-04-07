@@ -152,6 +152,14 @@
             <%= "#{t(:reported_to_facebook)} (#{policy_scope(FacebookPost).reported_to_facebook.size})" %>
           <% end %>
         <% end %>
+
+        <% if policy(FacebookPost).index_affiliate_greylisted? %>
+          <%= link_to facebook_posts_path(q: { status_eq: :affiliate_greylisted }),
+                      class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'affiliate_greylisted'}" do %>
+            <%= icon("ban", class: "fa-fw") %>
+            <%= "#{t(:affiliate_greylisted)} (#{policy_scope(FacebookPost).affiliate_greylisted.size})" %>
+          <% end %>
+        <% end %>
       </div>
     </li>
   <% end %>
