@@ -50,7 +50,9 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :edit, :update, :destroy]
   end
 
-  mount Sidekiq::Web => "/sidekiq"
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => "/sidekiq"
+  end
 
   root to: "dashboard#index"
 end
