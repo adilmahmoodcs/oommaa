@@ -5,6 +5,8 @@ RSpec.describe PostStatusJob, type: :job do
   let!(:domain) { create(:domain) }
   let!(:whitelisted_domain) { create(:domain, status: :whitelisted) }
   let!(:whitelisted_domain2) { create(:domain, status: :whitelisted) }
+  let!(:greylisted_domain) { create(:domain, status: :greylisted) }
+  let!(:greylisted_domain2) { create(:domain, status: :greylisted) }
   let(:keyword) { create(:keyword) }
   let(:post) { create(:facebook_post) }
   let(:post_with_keyword) { create(:facebook_post, message: keyword.name) }
@@ -53,6 +55,18 @@ RSpec.describe PostStatusJob, type: :job do
       expect(post).to_not receive(:update_attributes!)
       subject.new.perform(post.id)
       expect(post.not_suspect?).to be true
+    end
+
+    it "sets keyword-matching post as greylisted if all domains matches greylisted" do
+      allow_any_instance_of(FacebookPost).to receive(:all_domains) { [greylisted_domain.name, greylisted_domain2.name] }
+      subject.new.perform(post_with_keyword.id)
+      expect(post_with_keyword.reload.greylisted?).to be true
+    end
+
+    it "does not set keyword-matching post as greylisted if all domains doesn't matches greylisted" do
+      allow_any_instance_of(FacebookPost).to receive(:all_domains) { [whitelisted_domain.name, domain.name] }
+      subject.new.perform(post_with_keyword.id)
+      expect(post_with_keyword.reload.greylisted?).to be false
     end
   end
 end

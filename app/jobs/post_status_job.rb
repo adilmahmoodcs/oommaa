@@ -21,10 +21,10 @@ class PostStatusJob
     # if all domains are whitelisted
     elsif whitelist_domain_matcher.match_all?(domains)
       "whitelisted"
-    # if some suspect keyword match
+    # if all domains are greylisted
     elsif greylisted_domain_matcher.match?(domains)
       "greylisted"
-    # if all domains are greylisted
+    # if some suspect keyword match
     elsif keyword_matcher.match?(post.message)
       "suspect"
     end
