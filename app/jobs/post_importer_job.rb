@@ -3,7 +3,7 @@ class PostImporterJob
   include Sidekiq::Worker
   sidekiq_options queue: "priority"
 
-  def perform(url, user_email = "user@example.com", brand_ids = [], likes = 0)
+  def perform(url, user_email = "user@example.com", brand_ids = [])
     object_id, type = FbURLParser.new(url).call
     return unless object_id # can't parse this URL
 
@@ -58,7 +58,7 @@ class PostImporterJob
     # create page if doesn't exists
     page = find_or_create_page(data["from"]["id"], brand_ids)
     # create a post from the submitted URL
-    create_post(data, page, user_email, likes)
+    create_post(data, page, user_email)
   end
 
   private
@@ -96,7 +96,7 @@ class PostImporterJob
     page
   end
 
-  def create_post(data, page, user_email, likes)
+  def create_post(data, page, user_email)
     post = page.facebook_posts.create!(
       facebook_id: data["id"],
       message: (data["name"].presence || "<BLANK MESSAGE>"),
@@ -108,7 +108,7 @@ class PostImporterJob
       blacklisted_at: Time.now,
       blacklisted_by: user_email,
       added_by: user_email,
-      likes: likes
+      likes: data.dig("likes", "summary", "total_count")
     )
 
     post.parse_all_links!
