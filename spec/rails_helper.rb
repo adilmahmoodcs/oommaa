@@ -74,6 +74,7 @@ RSpec.configure do |config|
     @facebook_page_id = "961278360606211" # a page with few posts
     @facebook_page_term = "Dallas Cowboys"
     @facebook_page_term_alternative = "Other Term"
+    @facebook_page_url ="https://www.facebook.com/DallasCowboysFansNow/"
   end
 
   config.before(:suite) do

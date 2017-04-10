@@ -7,7 +7,7 @@
 <% end %>
 
 <% if policy(post).public_send("change_status_#{@status}?") %>
-  <% if !post.whitelisted? && !post.reported_to_facebook? %>
+  <% if !post.whitelisted? && !post.reported_to_facebook? && !post.affiliate_greylisted? %>
     <%= link_to post_change_status_path(post, :whitelisted),
                 method: :post,
                 class: "btn btn-success" do %>
@@ -16,7 +16,7 @@
     <% end %>
   <% end %>
 
-  <% if !post.blacklisted? && !post.reported_to_facebook? %>
+  <% if !post.blacklisted? && !post.reported_to_facebook? && !post.affiliate_greylisted? %>
     <%= link_to post_change_status_path(post, :blacklisted),
               method: :post,
               class: "btn btn-danger" do %>

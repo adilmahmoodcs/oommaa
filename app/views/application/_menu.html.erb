@@ -30,6 +30,16 @@
     </li>
   <% end %>
 
+  <% if policy(FacebookPage).index? %>
+    <li class="nav-item">
+      <%= link_to facebook_pages_path(status: "affiliate_page"),
+                  class: "nav-link #{'active' if current_page?(facebook_pages_path(status: "affiliate_page"))}" do %>
+        <%= icon("users", class: "fa-fw") %>
+        <%= "#{t(:affiliate_page)} (#{policy_scope(FacebookPage).affiliate_page.count})" %>
+      <% end %>
+    </li>
+  <% end %>
+
   <% if policy(Licensor).index? %>
     <li class="nav-item">
       <%= link_to licensors_path,
@@ -140,6 +150,14 @@
                       class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'reported_to_facebook'}" do %>
             <%= icon("facebook", class: "fa-fw") %>
             <%= "#{t(:reported_to_facebook)} (#{policy_scope(FacebookPost).reported_to_facebook.size})" %>
+          <% end %>
+        <% end %>
+
+        <% if policy(FacebookPost).index_affiliate_greylisted? %>
+          <%= link_to facebook_posts_path(q: { status_eq: :affiliate_greylisted }),
+                      class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'affiliate_greylisted'}" do %>
+            <%= icon("ban", class: "fa-fw") %>
+            <%= "#{t(:affiliate_greylisted)} (#{policy_scope(FacebookPost).affiliate_greylisted.size})" %>
           <% end %>
         <% end %>
       </div>

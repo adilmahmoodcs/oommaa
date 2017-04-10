@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :facebook_pages, only: [:index, :destroy] do
+  resources :facebook_pages, only: [:index, :destroy, :create] do
     collection do
       get :search
     end

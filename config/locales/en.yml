@@ -10,6 +10,7 @@ en:
   whitelisted: Whitelisted
   blacklisted: Blacklisted
   greylisted: Greylisted
+  affiliate_greylisted: Affiliate Greylisted
   user_activities: User Activities
   blacklist_export: Blacklist Export
   brand_name: Brand
@@ -38,6 +39,8 @@ en:
   reference_number: Reference Number
   facebook_report_number: Facebook report number
   likes: Number of Likes
+  brand_page: Brand Pages
+  affiliate_page: Affiliate Pages
   activerecord:
     attributes:
       facebook_post:

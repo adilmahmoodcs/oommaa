@@ -39,7 +39,7 @@ class FacebookPost < ApplicationRecord
 
   enum status: [
     :not_suspect, :suspect, :whitelisted, :blacklisted, :reported_to_facebook,
-    :ignored, :greylisted
+    :ignored, :greylisted, :affiliate_greylisted
   ]
 
   belongs_to :facebook_page
