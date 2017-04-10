@@ -50,6 +50,9 @@ class FacebookPostPolicy < ApplicationPolicy
     user.admin? || user.confirmed_client?
   end
 
+  def index_greylisted?
+    user.admin? || user.confirmed_client?
+  end
   ### change_status
 
   def change_status_not_suspect?
@@ -80,6 +83,10 @@ class FacebookPostPolicy < ApplicationPolicy
     user.admin?
   end
 
+  def change_status_greylisted?
+    user.admin?
+  end
+
   ### mass_change_status
 
   def mass_change_status_not_suspect?
@@ -103,6 +110,10 @@ class FacebookPostPolicy < ApplicationPolicy
   end
 
   def mass_change_status_ignored?
+    user.admin?
+  end
+
+  def mass_change_status_greylisted?
     user.admin?
   end
 end
