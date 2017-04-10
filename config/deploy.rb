@@ -16,11 +16,6 @@ set :bundle_jobs, 3
 
 set :sidekiq_role, -> { :sidekiq }
 set :sidekiq_timeout, 60
-set :sidekiq_processes, 2
-set :sidekiq_options_per_process, [
-  "--queue default --queue not_facebook",
-  "--tag facebook --concurrency 1 --queue priority,5 --queue posts --queue pages"
-]
 
 set :rollbar_token, "dd1b969fcd9d41bfa12e891423abf01a"
 set :rollbar_env, Proc.new { fetch :stage }

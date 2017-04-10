@@ -10,3 +10,9 @@ server "dev.counterfind.com",
   ssh_options: {
     forward_agent: true
   }
+
+set :sidekiq_processes, 2
+set :sidekiq_options_per_process, [
+  "--queue default --queue not_facebook",
+  "--tag facebook --concurrency 1 --queue priority,5 --queue posts --queue pages"
+]
