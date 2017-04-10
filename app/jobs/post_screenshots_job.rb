@@ -1,7 +1,7 @@
 # saves screenshots of a Facebook Post
 class PostScreenshotsJob
   include Sidekiq::Worker
-  sidekiq_options queue: "not_facebook"
+  sidekiq_options queue: "not_facebook", retry: 5
 
   def perform(post_id)
     post = FacebookPost.find(post_id)
@@ -37,6 +37,7 @@ class PostScreenshotsJob
            Capybara::Poltergeist::TimeoutError,
            Errno::EPIPE => e
       logger.error "PostScreenshotsJob: Capybara error for url #{url}: #{e.message.inspect}"
+      raise "Error occurred in job please review the (log/jobs.log) file for details"
     end
   end
 
