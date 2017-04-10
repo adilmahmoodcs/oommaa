@@ -15,7 +15,7 @@ staging:
   facebook:
     report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
-      - PUT_A_REAL_TOKEN_HERE
+      - EAAC2MKnLHGMBAHtqfRwGWsMMcDyaTTbQXV5SROskNe5F8Vhjr2G0CkwVVYHQVOf3fZBQC7TkcVX3PyPOhpSh5zP30TaxSZCIScxpyLUP4hTypZAAfe4mL2YQsfH6H9TTj95mPe9YgpZCvZCUBtNSA # Syed @ SanDev
 
 test:
   facebook:
