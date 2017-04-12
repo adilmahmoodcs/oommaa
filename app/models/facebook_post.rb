@@ -25,6 +25,7 @@
 #  added_by                 :string
 #  facebook_report_number   :string
 #  likes                    :integer
+#  mass_job_status          :integer          default("0")
 #
 # Indexes
 #
@@ -42,6 +43,11 @@ class FacebookPost < ApplicationRecord
     :ignored, :greylisted, :affiliate_greylisted
   ]
 
+  enum mass_job_status: [
+    :no_status, :to_be_not_suspect, :to_be_suspect, :to_be_whitelisted, :to_be_blacklisted, :to_be_reported_to_facebook,
+    :to_be_ignored, :to_be_greylisted, :to_be_affiliate_greylisted
+  ].freeze
+
   belongs_to :facebook_page
   has_many :screenshots, dependent: :destroy
   has_many :ad_screenshots
@@ -53,6 +59,7 @@ class FacebookPost < ApplicationRecord
   delegate :brands, :brand_ids, :brand_ids=, :brand_names, :licensors, :licensor_names,
     to: :facebook_page
 
+  default_scope { where(mass_job_status: :no_status) }
   scope :with_any_domain, -> (name) { where("? = ANY (all_domains)", name) }
   scope :date_yesterday, -> { where() }
   scope :blacklisted_or_reported_to_facebook, -> {
