@@ -4,6 +4,9 @@ RSpec.describe FacebookPostsController, type: :controller do
   let(:page) { create(:facebook_page) }
   let(:valid_attributes) { FactoryGirl.attributes_for(:facebook_post, facebook_page_id: page.id) }
   let!(:statuses) { FacebookPost.statuses.keys }
+  let!(:reported_to_facebook) { create(:facebook_post, status: :reported_to_facebook) }
+  let!(:blacklisted) { create(:facebook_post, status: :blacklisted, blacklisted_at: Date.today,
+                              facebook_page_id: page.id, blacklisted_by: 'test@test.com') }
 
   before(:each) do
     login_user
@@ -70,6 +73,45 @@ RSpec.describe FacebookPostsController, type: :controller do
       (statuses - ["blacklisted"]).each do |status|
         expect(Domain).to_not receive(:blacklist_new_domains!)
         post :change_status, params: { post_id: facebook_post.id, status: status }
+      end
+    end
+
+    describe "GET #blacklisted_export" do
+      it "returns http success" do
+        get :export
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe "GET #blacklisted_export should give posts with status blacklisted or reported_to_facebook" do
+      it "returns http success" do
+        get :export
+        expect(response).to have_http_status(:success)
+        expect(FacebookPost.blacklisted_or_reported_to_facebook.count).to eq(assigns(:posts).count)
+      end
+    end
+
+    describe "GET #blacklisted_export with date filter should give posts within specified range" do
+      it "returns http success" do
+        get :export, params: { from: Date.today, to: Date.today }
+        expect(response).to have_http_status(:success)
+        expect(FacebookPost.blacklisted_or_reported_to_facebook.where("blacklisted_at >= ?", Date.today.beginning_of_day).count).to eq(assigns(:posts).count)
+      end
+    end
+
+    describe "GET #blacklisted_export with FacebookPage filter should give posts within specified Page" do
+      it "returns http success" do
+        get :export, params: { :q => {facebook_page_id_eq: page.id}}
+        expect(response).to have_http_status(:success)
+        expect(FacebookPage.find(page.id).facebook_posts.count).to eq(assigns(:posts).count)
+      end
+    end
+
+    describe "GET #blacklisted_export with Discovered by filter should give posts  discovered by specified user" do
+      it "returns http success" do
+        get :export, params: { :q => {blacklisted_by_eq: 'test@test.com'}}
+        expect(response).to have_http_status(:success)
+        expect(FacebookPost.where(blacklisted_by: "test@test.com").count).to eq(assigns(:posts).count)
       end
     end
   end

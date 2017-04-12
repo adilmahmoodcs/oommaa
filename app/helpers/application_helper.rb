@@ -40,4 +40,8 @@ module ApplicationHelper
       "counterfind-logo.png"
     end
   end
+
+  def csv_export_params(params)
+    params.to_hash if params
+  end
 end
