@@ -46,6 +46,10 @@ class User < ApplicationRecord
 
   before_save :remove_licensor_for_admins
 
+  def display_name
+    self.name || self.email.split('@').try(:first)
+  end
+
   private
 
   def remove_licensor_for_admins
