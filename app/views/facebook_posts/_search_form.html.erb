@@ -74,6 +74,14 @@
                          { include_blank: true },
                          class: "form-control select2" %>
           </div>
+
+          <div class="col-md-3 form-group">
+            <%= f.label :blacklisted_by_eq, "#{t(:blacklisted_by)}" %>
+            <%= f.select :blacklisted_by_eq,
+                         User.all.collect {|user| [ user.name, user.email ]},
+                         { include_blank: true },
+                         class: "form-control select2" %>
+          </div>
         <% end %>
 
         <% if @status == "reported_to_facebook" %>
