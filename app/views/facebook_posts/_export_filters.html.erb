@@ -56,6 +56,12 @@
             <%= icon("filter") %>
             Filter
           <% end %>
+          &nbsp;
+          <%= link_to url_for(q: []),
+                      class: "btn btn-secondary" do %>
+            <%= icon("eraser") %>
+            Clear filters
+          <% end %>
         </div>
       </div>
     <% end %>
