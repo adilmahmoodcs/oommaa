@@ -46,7 +46,7 @@ class AffiliatePagePostImporterJob
         image_url: data["full_picture"],
         link: data["link"],
         likes: data.dig("likes", "summary", "total_count"),
-        status: 'affiliate_page_post'
+        status: 'affiliate_greylisted'
       )
       post.save!
       PostScreenshotsJob.perform_async(post.id)
