@@ -38,33 +38,22 @@ class FacebookPostsController < ApplicationController
     respond_to do |format|
       @q = policy_scope(FacebookPost).ransack(params[:q])
       @q.sorts = "blacklisted_at desc" if @q.sorts.empty?
+      @posts = @q.result.
+                  blacklisted_or_reported_to_facebook.
+                  includes({ facebook_page: { brands: :licensor } }, :ad_screenshots, :product_screenshots)
+      if params[:from].present?
+        @posts = @posts.where("blacklisted_at >= ?", Date.parse(params[:from]).beginning_of_day)
+      end
+      if params[:to].present?
+        @posts = @posts.where("blacklisted_at <= ?", Date.parse(params[:to]).end_of_day)
+      end
 
       format.html do
-        @posts = @q.result.
-                    blacklisted_or_reported_to_facebook.
-                    includes({ facebook_page: { brands: :licensor } }, :ad_screenshots, :product_screenshots).
-                    page(params[:page])
-
-        if params[:from].present?
-          @posts = @posts.where("blacklisted_at >= ?", Date.parse(params[:from]).beginning_of_day)
-        end
-        if params[:to].present?
-          @posts = @posts.where("blacklisted_at <= ?", Date.parse(params[:to]).end_of_day)
-        end
+        @posts = @posts.page(params[:page])
       end
 
       format.csv do
-        posts = policy_scope(FacebookPost).blacklisted_or_reported_to_facebook.
-                             includes({ facebook_page: { brands: :licensor } }, :ad_screenshots, :product_screenshots).
-                             order("blacklisted_at desc")
-        if params[:from].present?
-          posts = posts.where("blacklisted_at >= ?", Date.parse(params[:from]).beginning_of_day)
-        end
-        if params[:to].present?
-          posts = posts.where("blacklisted_at <= ?", Date.parse(params[:to]).end_of_day)
-        end
-
-        send_data PostsCSVExporter.new(posts).call,
+        send_data PostsCSVExporter.new(@posts).call,
                   filename: "blacklist_export_#{Time.now.to_i}.csv"
       end
     end
