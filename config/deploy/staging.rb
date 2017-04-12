@@ -4,7 +4,7 @@ set :puma_workers, 2
 
 set :branch, :master
 
-server "demo.counterfind.com",
+server "staging.counterfind.com",
   user: "deployer",
   roles: [:app, :web, :db, :sidekiq],
   ssh_options: {
