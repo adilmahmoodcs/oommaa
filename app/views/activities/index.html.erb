@@ -1,7 +1,12 @@
 <h3>
   <%= t(:user_activities) %>
+  <% if term = params.dig(:activity, :owner_id).presence %>
+    For (<%= User.find(term).display_name %>)
+  <% else %>
+    (all)
+  <% end %>
 </h3>
-
+<%= render 'search_form' %>
 <table class="table table-sm table-hover table-bordered activities">
   <thead>
     <tr>
