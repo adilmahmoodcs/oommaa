@@ -1,7 +1,7 @@
 # Counterfind
 
-Production address: http://dev.counterfind.com/
-Staging address: http://demo.counterfind.com/
+Production: http://dashboard.counterfind.com/
+Staging: http://staging.counterfind.com/
 
 ## Development setup
 
@@ -25,10 +25,11 @@ To start background processing:
 
     sidekiq -C config/sidekiq.yml
 
-WARNING: This will start processing hundreds of ads.
+WARNING: This may start processing hundreds of ads.
 
 Token configuration is on `config/counterfind.yml`
-NOTE: make sure there's a VALID facebook token for the development environment
+NOTE: make sure there's a VALID facebook user token on the development
+environment.
 
 The sidekiq interface is at http://localhost:3000/sidekiq
 
@@ -44,7 +45,8 @@ bucket "counterfind-production-backups"
 
 ## Deploy
 
-Note: you must have a valid ssh key for the server's `deployer` user.
+NOTE: you must have a ssh key, valid for server's `deployer` user and for
+Github repo access. You probably also need to run `ssh-add` to load the key.
 
     cap <stage> deploy
 
