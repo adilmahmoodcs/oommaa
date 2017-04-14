@@ -11,11 +11,25 @@ var Selects = {
     $("select.remote-select2").each(function() {
       var element = $(this)
       element.select2({
-        minimumInputLength: 3,
         ajax: {
           url: element.data("source"),
           dataType: 'json',
           delay: 250,
+          data: function(params) {
+            return {
+              term: params.term,
+              page: params.page,
+            }
+          },
+          processResults: function (data, params) {
+            params.page = params.page || 1;
+            return {
+              results: data.results,
+              pagination: {
+              more: (params.page * 25) < data.size
+              }
+            };
+          },
           cache: true
         }
       })
