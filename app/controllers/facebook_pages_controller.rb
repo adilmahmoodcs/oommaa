@@ -49,17 +49,7 @@ class FacebookPagesController < ApplicationController
 
   def search
     authorize FacebookPage
-    data = policy_scope(FacebookPage).select(:id, :name).
-                                      order("LOWER(name)").
-                                      ransack(name_cont: params[:term]).
-                                      result.
-                                      map do |item|
-                                        {
-                                          id: item.id,
-                                          text: item.name
-                                        }
-                                      end
-
-    render json: { results: data }
+    data = DefaultSearchFilter.new(term: params[:term], page: params[:page], per_page: params[:page_limit] ).call('FacebookPage',current_user)
+    render json: { results: data[:results], size: data[:size] }
   end
 end
