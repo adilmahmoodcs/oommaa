@@ -1,0 +1,30 @@
+<div class="card search-filters">
+  <div class="card-block">
+    <h4 class="card-title">Filters</h4>
+    <%= form_for 'activity', url: activities_path, method: :get do |f| %>
+
+      <div class = 'row'>
+        <div class="col-md-3 form-group">
+          <%= f.label :owner, "#{t(:users)}" %>
+          <%= f.select :owner_id,
+                       User.all.collect {|user| [ user.display_name, user.id ]},
+                       { include_blank: true },
+                       class: "form-control select2" %>
+        </div>
+
+        <div class="col-md-12 form-group">
+          <%= button_tag class: "btn btn-primary" do %>
+            <%= icon("search") %>
+            Filter
+          <% end %>
+          &nbsp;
+          <%= link_to activities_path,
+                      class: "btn btn-secondary" do %>
+            <%= icon("eraser") %>
+            Clear filters
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
