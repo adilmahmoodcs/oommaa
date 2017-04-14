@@ -79,13 +79,10 @@ class FacebookPostsController < ApplicationController
       authorize FacebookPost, "mass_change_status_#{params[:new_status]}?"
 
       posts = policy_scope(FacebookPost).ransack(params[:q]).result
-      posts.each do |post|
-        post.change_status_to!(params[:new_status], current_user.email)
-      end
 
-      current_user.create_activity("mass_#{params[:new_status]}",
-                                   owner: current_user,
-                                   parameters: { name: "#{posts.size} posts" })
+      posts.update_all(mass_job_status: "to_be_#{params[:new_status]}")
+      MassChangeStatusForPostsJob.perform_async(params[:new_status], current_user.id)
+      flash[:notice] = 'Job is enqueued to update the Status, changed will be reflected soon.'
     end
 
     redirect_back(fallback_location: root_path)

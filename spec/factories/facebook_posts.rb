@@ -25,6 +25,7 @@
 #  added_by                 :string
 #  facebook_report_number   :string
 #  likes                    :integer
+#  mass_job_status          :integer          default("0")
 #
 # Indexes
 #
