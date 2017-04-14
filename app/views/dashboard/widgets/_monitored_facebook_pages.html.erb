@@ -1,14 +1,12 @@
 <div class="col-xl-3">
-  <article class="statistic-box purple">
-      <div>
-        <div class="number">
-          <%= policy_scope(FacebookPage).count %>
-        </div>
-        <div class="caption">
-          <div>
-            <%= t(name, scope: :widgets) %>
-          </div>
-        </div>
-      </div>
-  </article>
+  <section class="card">
+    <header class="card-header card-header-lg">
+      <%= t(name, scope: :widgets) %>
+    </header>
+    <div class="card-block">
+      <h2>
+        <%= policy_scope(FacebookPage).count %>
+      </h2>
+    </div>
+  </section>
 </div>
