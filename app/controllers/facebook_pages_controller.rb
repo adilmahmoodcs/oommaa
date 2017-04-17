@@ -49,7 +49,7 @@ class FacebookPagesController < ApplicationController
 
   def search
     authorize FacebookPage
-    data = DefaultSearchFilter.new(term: params[:term], page: params[:page], per_page: params[:page_limit] ).call('FacebookPage',current_user)
+    data = DefaultSearchFilter.new(term: params[:term], page: params[:page]).call('FacebookPage',current_user)
     render json: { results: data[:results], size: data[:size] }
   end
 end

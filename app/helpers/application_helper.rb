@@ -46,6 +46,6 @@ module ApplicationHelper
   end
 
   def filter_results data
-    data.present? ? data.map {|page| [page[:text], page[:id]]} : []
+    data.present? ? data.map {|data| [data[:text], data[:id]]} : []
   end
 end
