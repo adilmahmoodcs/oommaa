@@ -17,11 +17,6 @@ class FacebookPostsController < ApplicationController
                 includes({ facebook_page: { brands: :licensor } }, :ad_screenshots, :product_screenshots).
                 page(params[:page])
     @status = params[:q][:status_eq]
-
-    @fb_page = DefaultSearchFilter.new(term: { id: @q.facebook_page_id_eq} ).call('FacebookPage', current_user)[:results]
-    @brand = DefaultSearchFilter.new(term: { id: @q.facebook_page_brands_id_eq} ).call('Brand', current_user)[:results]
-    @licensor = DefaultSearchFilter.new(term: { id: @q.facebook_page_brands_licensor_id_eq} ).call('Licensor', current_user)[:results]
-
   end
 
   def edit
