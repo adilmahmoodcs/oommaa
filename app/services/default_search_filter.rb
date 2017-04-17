@@ -1,7 +1,7 @@
 class DefaultSearchFilter
   attr_reader :term, :page, :per_page
 
-  def initialize(term: '', page: 1, per_page: '')
+  def initialize(term: , page: 1, per_page: 25)
     @term = term
     @page = page
     @per_page = per_page
