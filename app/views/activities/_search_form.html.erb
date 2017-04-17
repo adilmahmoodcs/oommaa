@@ -1,7 +1,7 @@
 <div class="card search-filters">
   <div class="card-block">
     <h4 class="card-title">Filters</h4>
-    <%= form_for 'activity', url: activities_path, method: :get do |f| %>
+    <%= form_for 'activity', url: activities_path, method: :get, html:{id: 'activity_search'} do |f| %>
 
       <div class = 'row'>
         <div class="col-md-3 form-group">

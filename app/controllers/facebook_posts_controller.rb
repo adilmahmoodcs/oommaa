@@ -1,6 +1,7 @@
 class FacebookPostsController < ApplicationController
   before_action :set_facebook_post, only: [:edit, :update]
   after_action :verify_policy_scoped, only: [:index, :export, :mass_change_status]
+  before_action :set_filter_data, only: [:index, :export]
 
   def index
     params[:q] ||= {}
@@ -16,11 +17,6 @@ class FacebookPostsController < ApplicationController
                 includes({ facebook_page: { brands: :licensor } }, :ad_screenshots, :product_screenshots).
                 page(params[:page])
     @status = params[:q][:status_eq]
-
-    @fb_page = DefaultSearchFilter.new(term: { id: @q.facebook_page_id_eq} ).call('FacebookPage', current_user)[:results]
-    @brand = DefaultSearchFilter.new(term: { id: @q.facebook_page_brands_id_eq} ).call('Brand', current_user)[:results]
-    @licensor = DefaultSearchFilter.new(term: { id: @q.facebook_page_brands_licensor_id_eq} ).call('Licensor', current_user)[:results]
-
   end
 
   def edit
@@ -112,5 +108,13 @@ class FacebookPostsController < ApplicationController
   def after_blacklisted
     Domain.blacklist_new_domains!(@post.all_domains)
     PostScreenshotsJob.perform_async(@post.id)
+  end
+
+  def set_filter_data
+    if params[:q].present?
+      @fb_page = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_id_eq]} ).call('FacebookPage', current_user)[:results]
+      @brand = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_brands_id_eq]} ).call('Brand', current_user)[:results]
+      @licensor = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_brands_licensor_id_eq]} ).call('Licensor', current_user)[:results]
+    end
   end
 end
