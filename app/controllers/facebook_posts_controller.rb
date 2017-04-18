@@ -112,9 +112,14 @@ class FacebookPostsController < ApplicationController
 
   def set_filter_data
     if params[:q].present?
-      @fb_page = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_id_eq]} ).call('FacebookPage', current_user)[:results]
-      @brand = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_brands_id_eq]} ).call('Brand', current_user)[:results]
-      @licensor = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_brands_licensor_id_eq]} ).call('Licensor', current_user)[:results]
+      @fb_page = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_id_eq]})
+                                    .call('FacebookPage', current_user)[:results] if params[:q][:facebook_page_id_eq].present?
+
+      @brand = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_brands_id_eq]})
+                                  .call('Brand', current_user)[:results] if params[:q][:facebook_page_brands_id_eq].present?
+
+      @licensor = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_brands_licensor_id_eq]})
+                                     .call('Licensor', current_user)[:results] if params[:q][:facebook_page_brands_licensor_id_eq].present?
     end
   end
 end

@@ -28,8 +28,7 @@
           <%= f.label :facebook_page_name_eq, "Page" %>
           <%= f.select :facebook_page_id_eq,
                        filter_results(@fb_page),
-                       {},
-                       include_blank: true,
+                       {include_blank: true},
                        class: "form-control remote-select2",
                        "data-source": search_facebook_pages_path(format: :js)  %>
         </div>
