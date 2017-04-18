@@ -60,18 +60,8 @@ class BrandsController < ApplicationController
 
   def search
     authorize Brand
-    data = policy_scope(Brand).select(:id, :name).
-                               order("LOWER(name)").
-                               ransack(name_cont: params[:term]).
-                               result.
-                               map do |item|
-                                 {
-                                   id: item.id,
-                                   text: item.name
-                                 }
-                               end
-
-    render json: { results: data }
+    data = DefaultSearchFilter.new(term: params[:term], page: params[:page] ).call('Brand', current_user)
+    render json: { results: data[:results], size: data[:size] }
   end
 
   private

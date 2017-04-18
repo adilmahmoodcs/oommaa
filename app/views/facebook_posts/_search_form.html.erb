@@ -21,7 +21,7 @@
           <div class="col-md-3 form-group">
             <%= f.label :with_any_brand, t(:brand_name) %>
             <%= f.select :facebook_page_brands_id_eq,
-                          [],
+                          filter_results(@brand),
                           { include_blank: true },
                           class: "form-control remote-select2",
                           "data-source": search_brands_path(format: :js)  %>
@@ -30,9 +30,8 @@
         <div class="col-md-3 form-group">
           <%= f.label :facebook_page_name_eq, "Page" %>
           <%= f.select :facebook_page_id_eq,
-                       [],
-                       {},
-                       include_blank: true,
+                       filter_results(@fb_page),
+                       { include_blank: true },
                        class: "form-control remote-select2",
                        "data-source": search_facebook_pages_path(format: :js)  %>
         </div>
@@ -41,7 +40,7 @@
           <div class="col-md-3 form-group">
             <%= f.label :with_licensor_name, "Licensor" %>
             <%= f.select :facebook_page_brands_licensor_id_eq,
-                         [],
+                         filter_results(@licensor),
                          { include_blank: true },
                          class: "form-control remote-select2",
                          "data-source": search_licensors_path(format: :js)  %>

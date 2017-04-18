@@ -44,4 +44,8 @@ module ApplicationHelper
   def csv_export_params(params)
     params.to_hash if params
   end
+
+  def filter_results data
+    data.present? ? data.map {|data| [data[:text], data[:id]]} : []
+  end
 end
