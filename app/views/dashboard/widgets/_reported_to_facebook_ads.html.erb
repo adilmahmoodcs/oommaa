@@ -5,7 +5,7 @@
     </header>
     <div class="card-block">
       <h2>
-        <%= number_with_precision(policy_scope(FacebookPost).reported_to_facebook.size, :precision => 0, :delimiter => ',') %>
+        <%= number_with_delimiter(policy_scope(FacebookPost).reported_to_facebook.size, :delimiter => ',') %>
       </h2>
     </div>
   </section>
