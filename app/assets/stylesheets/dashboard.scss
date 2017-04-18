@@ -13,11 +13,14 @@
       min-height: 192px;
       display: flex;
       align-items: center;
+      .row{
+        width: 100%;
+      }
       h2 {
         margin: 0 auto;
         font-weight: bold;
         font-size: 40px;
-        color: #00a8ff;
+        color: #545556;
       }
     }
   }

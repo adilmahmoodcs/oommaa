@@ -5,7 +5,7 @@
     </header>
     <div class="card-block">
       <h2>
-        <%= policy_scope(FacebookPost).blacklisted.size %>
+        <%= number_with_precision(policy_scope(FacebookPost).blacklisted.size, :precision => 0, :delimiter => ',') %>
       </h2>
     </div>
   </section>

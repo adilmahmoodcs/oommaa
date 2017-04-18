@@ -7,7 +7,7 @@
     <div class="card-block">
       <h2>
         $
-        <%= value %>
+        <%= number_with_precision(value, :precision => 0, :delimiter => ',') %>
       </h2>
     </div>
   </section>
