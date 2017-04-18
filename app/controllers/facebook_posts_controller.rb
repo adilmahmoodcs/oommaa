@@ -14,9 +14,21 @@ class FacebookPostsController < ApplicationController
     @q.sorts = "published_at desc" if @q.sorts.empty?
 
     @posts = @q.result.
-                includes({ facebook_page: { brands: :licensor } }, :ad_screenshots, :product_screenshots).
-                page(params[:page])
+                includes({ facebook_page: { brands: :licensor } },
+                         :ad_screenshots,
+                         :product_screenshots)
     @status = params[:q][:status_eq]
+
+    respond_to do |format|
+      format.html do
+        @posts = @posts.page(params[:page])
+      end
+
+      format.csv do
+        send_data PostsCSVExporter.new(@posts).call,
+                  filename: "#{@status}_export_#{Time.now.to_i}.csv"
+      end
+    end
   end
 
   def edit
