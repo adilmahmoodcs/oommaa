@@ -5,7 +5,7 @@
     </header>
     <div class="card-block">
       <h2>
-        <%= @shutdown_count %>
+        <%= number_with_precision(@shutdown_count, :precision => 0, :delimiter => ',') %>
       </h2>
     </div>
   </section>
