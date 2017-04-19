@@ -55,19 +55,19 @@
         <%= link_to domains_path(status: :whitelisted),
                     class: "dropdown-item #{'active' if current_page?(domains_path) && @status == 'whitelisted'}" do %>
           <%= icon("check", class: "fa-fw") %>
-          <%= "#{t(:whitelisted)} (#{policy_scope(Domain).whitelisted.count})" %>
+          <%= "#{t(:whitelisted)} (#{policy_scope(Domain).whitelisted.user_domains(current_user.id).count})" %>
         <% end %>
 
         <%= link_to domains_path(status: :blacklisted),
                     class: "dropdown-item #{'active' if current_page?(domains_path) && @status == 'blacklisted'}" do %>
           <%= icon("ban", class: "fa-fw") %>
-          <%= "#{t(:blacklisted)} (#{policy_scope(Domain).blacklisted.count})" %>
+          <%= "#{t(:blacklisted)} (#{policy_scope(Domain).blacklisted.user_domains(current_user.id).count})" %>
         <% end %>
 
         <%= link_to domains_path(status: :greylisted),
                     class: "dropdown-item #{'active' if current_page?(domains_path) && @status == 'greylisted'}" do %>
           <%= icon("binoculars", class: "fa-fw") %>
-          <%= "#{t(:greylisted)} (#{policy_scope(Domain).greylisted.count})" %>
+          <%= "#{t(:greylisted)} (#{policy_scope(Domain).greylisted.user_domains(current_user.id).count})" %>
         <% end %>
       </div>
     </li>

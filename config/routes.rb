@@ -46,6 +46,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :assigned_domains, only: [:create, :destroy] do
+  end
+
   scope :admin do
     resources :users, only: [:index, :edit, :update, :destroy]
   end

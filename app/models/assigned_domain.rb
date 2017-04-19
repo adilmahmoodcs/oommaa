@@ -20,4 +20,10 @@ class AssignedDomain < ApplicationRecord
 
   validates :user, :domain, presence: true
   validates_uniqueness_of :domain, scope: [:user]
+
+  before_create :validate_user
+
+  def validate_user
+    false if User.find(self.user_id).admin?
+  end
 end
