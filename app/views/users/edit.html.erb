@@ -37,6 +37,11 @@
     </header>
     <div class="box-typical-body">
       <div class="row">
+        <div class="col-sm-12">
+          <p class= "note">
+            Domains added here will not be visible to <%= @user.name%>.
+          </p>
+        </div>
         <% Domain::statuses.each do |value, key| %>
           <%= render 'dashboard_domains', user: @user, status: value %>
         <% end %>
