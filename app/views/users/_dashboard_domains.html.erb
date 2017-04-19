@@ -1,0 +1,20 @@
+<%= form_for(user) do |f| %>
+  <div class="form-group">
+    <div class='col-sm-4' >
+      <div class="col-sm-12 row">
+        <%= label_tag :brand_ids, "#{status.titleize} Domains" %>
+        <%= select_tag :assigned_domain_id,
+                       options_from_collection_for_select(Domain.where(status: status).order("LOWER(name)"), :id, :name),
+                       include_blank: true,
+                       required: true,
+                       data: {remote: true, url: user_path, method: :patch},
+                       class: "form-control select2" %>
+      </div>
+      <div class="col-sm-12 row">
+        <ul class="assigned_domains_<%= status %>">
+
+        </ul>
+      </div>
+    </div>
+  </div>
+<% end %>

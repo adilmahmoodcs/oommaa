@@ -40,6 +40,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable
 
+  has_many :assigned_domains
+  has_many :domains, through: :assigned_domains
   belongs_to :licensor, optional: true
 
   validates :name, presence: true
