@@ -8,6 +8,16 @@ class FacebookPostsController < ApplicationController
     params[:q][:status_eq] ||= "not_suspect"
     params[:q].delete(:status_eq) unless params[:q][:status_eq].in?(FacebookPost.statuses.keys)
 
+    if params[:q][:blacklisted_at_gteq].present?
+      params[:q][:blacklisted_at_gteq] = Date.parse(params[:q][:blacklisted_at_gteq]).
+                                              beginning_of_day
+    end
+
+    if params[:q][:blacklisted_at_lteq].present?
+      params[:q][:blacklisted_at_lteq] = Date.parse(params[:q][:blacklisted_at_lteq]).
+                                              end_of_day
+    end
+
     authorize FacebookPost, "index_#{params[:q][:status_eq]}?"
 
     @q = policy_scope(FacebookPost).ransack(params[:q])

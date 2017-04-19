@@ -106,6 +106,18 @@
           <%= f.text_field :id_eq, class: "form-control" %>
         </div>
 
+        <% if @status == "reported_to_facebook" %>
+          <div class="col-md-3 form-group">
+            <%= f.label :blacklisted_at_gteq, t(:blacklisted_at) + ", from date:" %>
+            <%= f.date_field :blacklisted_at_gteq, class: "form-control" %>
+          </div>
+
+          <div class="col-md-3 form-group">
+            <%= f.label :blacklisted_at_lteq, t(:blacklisted_at) + ", to date:" %>
+            <%= f.date_field :blacklisted_at_lteq, class: "form-control" %>
+          </div>
+        <% end %>
+
         <div class="col-md-12 form-group">
           <%= button_tag class: "btn btn-primary" do %>
             <%= icon("search") %>
