@@ -10,9 +10,9 @@
                        data: {remote: true, url: user_path, method: :patch},
                        class: "form-control select2" %>
       </div>
-      <div class="col-sm-12 row">
-        <ul class="assigned_domains_<%= status %>">
-
+      <div class="row">
+        <ul class="assigned_domains_<%= status %> col-sm-12">
+        <%= render 'user_assigned_domains', domains: @user.domains.where(status: status) %>
         </ul>
       </div>
     </div>
