@@ -43,3 +43,37 @@ form#export-date label {
 .widget-check-box {
   padding: 5px;
 }
+.truncate{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 90%;
+  display: inline-block;
+}
+.note{
+  background: rgba(243, 247, 55, 0.55);
+  padding: 6px;
+}
+#assigned_domains{
+  ul{
+    li{
+      padding: 6px;
+      margin: 5px 0;
+      line-height: 18px;
+      background: #f5f6f7;
+      &:nth-child(even){
+        background: #eceeef;
+      }
+      a{
+        float: right;
+        color: #fff;
+        background: #e65353;
+        border-radius: 100%;
+        font-size: 14px;
+        i{
+          line-height: 21px;
+        }
+      }
+    }
+  }
+}
