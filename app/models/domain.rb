@@ -12,6 +12,9 @@
 class Domain < ApplicationRecord
   include PublicActivity::Common
 
+  has_many :users, through: :assigned_domains
+  has_many :assigned_domains
+
   enum status: [:blacklisted, :whitelisted, :greylisted]
 
   validates :name, presence: true
