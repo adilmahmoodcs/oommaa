@@ -71,17 +71,21 @@
           <%= brand.licensor&.name %>
         </td>
         <td class="text-right">
-          <%= link_to edit_brand_path(brand),
-                      class: "btn btn-secondary btn-sm" do %>
-            <%= icon("pencil") %>
-            Edit
+          <% if policy(Brand).update? %>
+            <%= link_to edit_brand_path(brand),
+                        class: "btn btn-secondary btn-sm" do %>
+              <%= icon("pencil") %>
+              Edit
+            <% end %>
           <% end %>
-          <%= link_to brand,
-                      method: :delete,
-                      data: { confirm: 'Are you sure?' },
-                      class: "btn btn-danger btn-sm" do %>
-            <%= icon("trash") %>
-            Delete
+          <% if policy(Brand).destroy? %>
+            <%= link_to brand,
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' },
+                        class: "btn btn-danger btn-sm" do %>
+              <%= icon("trash") %>
+              Delete
+            <% end %>
           <% end %>
         </td>
       </tr>
