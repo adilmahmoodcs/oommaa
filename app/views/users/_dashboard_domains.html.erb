@@ -8,9 +8,11 @@
                        include_blank: true,
                        required: true,
                        data: {remote: true, url: assigned_domains_path(user_id: @user), method: :post},
-                       class: "form-control select2" %>
+                       class: "form-control select2 select_#{status}" %>
         <ul class="assigned_domains_<%= status %>">
-        <%= render 'user_assigned_domains', domains: @user.domains.where(status: status) %>
+          <% @user.domains.where(status: status).each do |domain| %>
+            <%= render 'user_assigned_domains', domain: domain %>
+          <% end %>
         </ul>
       </div>
     </div>
