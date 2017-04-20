@@ -20,9 +20,10 @@ class AssignedDomain < ApplicationRecord
 
   validates :user, :domain, presence: true
   validates_uniqueness_of :domain, scope: [:user]
-  validate :validate_user
+
+  before_create :validate_user
 
   def validate_user
-    errors.add(:error, "Cannot Assign to Admin User") if User.find(self.user_id).admin?
+    false if User.find(self.user_id).admin?
   end
 end
