@@ -15,7 +15,7 @@
 #
 FactoryGirl.define do
   factory :assigned_domain, :class => 'AssignedDomains' do
-    user_id { [create(:user).id] }
+    user_id { [create(:user, email: Faker::Internet.email, role: :confirmed_client ).id] }
     domain_id { [create(:domain).id] }
   end
 
