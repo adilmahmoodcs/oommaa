@@ -26,6 +26,8 @@
 #  facebook_report_number   :string
 #  likes                    :integer
 #  mass_job_status          :integer          default("0")
+#  greylisted_at            :datetime
+#  greylisted_by            :string
 #
 # Indexes
 #
@@ -76,6 +78,7 @@ class FacebookPost < ApplicationRecord
   ransacker :status, formatter: proc { |status_name| statuses[status_name] }
 
   ESTIMATED_VALUE = 120 # $
+  IGNORE_POST_FOR = [nil, "PostStatusJob"]
 
   def self.ransackable_scopes(auth_object = nil)
     [:with_any_domain]
