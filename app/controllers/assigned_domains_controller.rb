@@ -7,12 +7,14 @@ class AssignedDomainsController < ApplicationController
     assigned_domains = @user.assigned_domains.build(domain_id: params[:assigned_domain_id])
     if assigned_domains.save
       @response = true
+      @domain = assigned_domains.domain
+      @status = @domain.status
     else
       @response = assigned_domains.errors.full_messages.to_sentence
     end
 
     respond_to do |format|
-      format.js {@response}
+      format.js {}
     end
   end
 

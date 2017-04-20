@@ -13,16 +13,10 @@
 #  index_assigned_domains_on_domain_id  (domain_id)
 #  index_assigned_domains_on_user_id    (user_id)
 #
-
-class AssignedDomain < ApplicationRecord
-  belongs_to :user
-  belongs_to :domain
-
-  validates :user, :domain, presence: true
-  validates_uniqueness_of :domain, scope: [:user]
-  validate :validate_user
-
-  def validate_user
-    errors.add(:error, "Cannot Assign to Admin User") if User.find(self.user_id).admin?
+FactoryGirl.define do
+  factory :assigned_domain, :class => 'AssignedDomains' do
+    user_id { [create(:user).id] }
+    domain_id { [create(:domain).id] }
   end
+
 end
