@@ -16,23 +16,10 @@ class UsersController < ApplicationController
 
   def update
     authorize @user
-    if request.format == 'html'
-      if @user.update(user_params)
-        redirect_to users_path, notice: 'User was successfully updated.'
-      else
-        render :edit
-      end
-    elsif request.format == 'js' && params[:assigned_domain_id].present?
-      assigned_domains = @user.assigned_domains.build(domain_id: params[:assigned_domain_id])
-      if assigned_domains.save
-        @response = true
-      else
-        @response = assigned_domains.errors.full_messages.to_sentence
-      end
-    end
-    respond_to do |format|
-      format.html {}
-      format.js {@response}
+    if @user.update(user_params)
+      redirect_to users_path, notice: 'User was successfully updated.'
+    else
+      render :edit
     end
   end
 

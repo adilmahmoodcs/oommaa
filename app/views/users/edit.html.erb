@@ -26,21 +26,4 @@
       <%= render 'dashboard_form', user: @user %>
     </div>
   </section>
-
-  <section class="box-typical box-panel col-xl-12">
-    <header class="box-typical-header">
-      <div class="tbl-row">
-        <div class="tbl-cell tbl-cell-title">
-          <h3>User Domains</h3>
-        </div>
-      </div>
-    </header>
-    <div class="box-typical-body">
-      <div class="row">
-        <% Domain::statuses.each do |value, key| %>
-          <%= render 'dashboard_domains', user: @user, status: value %>
-        <% end %>
-      </div>
-    </div>
-  </section>
 <% end %>

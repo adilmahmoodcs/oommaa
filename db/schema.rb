@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419071559) do
+ActiveRecord::Schema.define(version: 20170412112110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,15 +29,6 @@ ActiveRecord::Schema.define(version: 20170419071559) do
     t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
     t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
-  end
-
-  create_table "assigned_domains", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "domain_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["domain_id"], name: "index_assigned_domains_on_domain_id", using: :btree
-    t.index ["user_id"], name: "index_assigned_domains_on_user_id", using: :btree
   end
 
   create_table "brand_logos", force: :cascade do |t|
