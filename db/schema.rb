@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419071559) do
+ActiveRecord::Schema.define(version: 20170420131349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,8 @@ ActiveRecord::Schema.define(version: 20170419071559) do
     t.string   "facebook_report_number"
     t.integer  "likes"
     t.integer  "mass_job_status",          default: 0
+    t.datetime "greylisted_at"
+    t.string   "greylisted_by"
     t.index ["all_domains"], name: "index_facebook_posts_on_all_domains", using: :gin
     t.index ["all_links"], name: "index_facebook_posts_on_all_links", using: :gin
     t.index ["facebook_page_id"], name: "index_facebook_posts_on_facebook_page_id", using: :btree
