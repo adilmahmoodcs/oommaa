@@ -3,7 +3,7 @@ class DomainsController < ApplicationController
 
   def index
     authorize Domain
-    @q = policy_scope(Domain).user_domains(current_user.id).ransack(params[:q])
+    @q = policy_scope(Domain).ransack(params[:q])
     @q.sorts = "name_case_insensitive asc" if @q.sorts.empty?
     @domains = @q.result
 
@@ -17,22 +17,16 @@ class DomainsController < ApplicationController
 
   def create
     authorize Domain
-    user_domain = current_user.domains.find_by(name: domain_params[:name])
-    if user_domain.present? and user_domain.status == domain_params[:status]
-      assigned_domain = current_user.assigned_domains.find_by(domain_id: user_domain.id)
-      assigned_domain.destroy ? flash[:notice] = "Domain was successfully created." : flash[:alert] = "Domain was not Created"
+    @domain = Domain.new(domain_params)
+
+    if @domain.save
+      @domain.create_activity(:create, owner: current_user, parameters: { name: @domain.name })
+      @domain.update_posts!
+      flash[:notice] = "Domain was successfully created."
     else
-
-      @domain = Domain.new(domain_params)
-
-      if @domain.save
-        @domain.create_activity(:create, owner: current_user, parameters: { name: @domain.name })
-        @domain.update_posts!
-        flash[:notice] = "Domain was successfully created."
-      else
-        flash[:alert] = @domain.errors.full_messages.to_sentence
-      end
+      flash[:alert] = @domain.errors.full_messages.to_sentence
     end
+
     redirect_back(fallback_location: domains_path)
   end
 

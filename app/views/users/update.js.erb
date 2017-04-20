@@ -1,0 +1,4 @@
+alert('<%= @user.name%>')
+$("ul.assigned_domains_blacklisted").html("<%= j render(:partial => 'user_assigned_domains', :locals => {domains: @user.domains.blacklisted}) %>")
+$("ul.assigned_domains_whitelisted").html("<%= j render(:partial => 'user_assigned_domains', :locals => {domains: @user.domains.whitelisted}) %>")
+$("ul.assigned_domains_greylisted").html("<%= j render(:partial => 'user_assigned_domains', :locals => {domains: @user.domains.greylisted}) %>")
