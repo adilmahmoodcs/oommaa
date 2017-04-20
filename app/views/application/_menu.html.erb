@@ -10,12 +10,12 @@
     </li>
   <% end %>
 
-  <% if policy(Keyword).index? %>
+  <% if policy(Licensor).index? %>
     <li class="nav-item">
-      <%= link_to keywords_path,
-                  class: "nav-link #{'active' if current_page?(keywords_path)}" do %>
-        <%= icon("quote-right", class: "fa-fw") %>
-        <%= "#{t(:keywords)} (#{policy_scope(Keyword).count})" %>
+      <%= link_to licensors_path,
+                  class: "nav-link #{'active' if current_page?(licensors_path)}" do %>
+        <%= icon("handshake-o", class: "fa-fw") %>
+        <%= "#{t(:licensors)} (#{policy_scope(Licensor).count})" %>
       <% end %>
     </li>
   <% end %>
@@ -30,22 +30,12 @@
     </li>
   <% end %>
 
-  <% if policy(FacebookPage).index? %>
+  <% if policy(Keyword).index? %>
     <li class="nav-item">
-      <%= link_to facebook_pages_path(status: "affiliate_page"),
-                  class: "nav-link #{'active' if current_page?(facebook_pages_path(status: "affiliate_page"))}" do %>
-        <%= icon("users", class: "fa-fw") %>
-        <%= "#{t(:affiliate_page)} (#{policy_scope(FacebookPage).affiliate_page.count})" %>
-      <% end %>
-    </li>
-  <% end %>
-
-  <% if policy(Licensor).index? %>
-    <li class="nav-item">
-      <%= link_to licensors_path,
-                  class: "nav-link #{'active' if current_page?(licensors_path)}" do %>
-        <%= icon("handshake-o", class: "fa-fw") %>
-        <%= "#{t(:licensors)} (#{policy_scope(Licensor).count})" %>
+      <%= link_to keywords_path,
+                  class: "nav-link #{'active' if current_page?(keywords_path)}" do %>
+        <%= icon("quote-right", class: "fa-fw") %>
+        <%= "#{t(:keywords)} (#{policy_scope(Keyword).count})" %>
       <% end %>
     </li>
   <% end %>
@@ -156,7 +146,7 @@
         <% if policy(FacebookPost).index_affiliate_greylisted? %>
           <%= link_to facebook_posts_path(q: { status_eq: :affiliate_greylisted }),
                       class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'affiliate_greylisted'}" do %>
-            <%= icon("ban", class: "fa-fw") %>
+            <%= icon("user-plus", class: "fa-fw") %>
             <%= "#{t(:affiliate_greylisted)} (#{policy_scope(FacebookPost).affiliate_greylisted.size})" %>
           <% end %>
         <% end %>
@@ -183,6 +173,20 @@
       <% end %>
     </li>
   <% end %>
+
+  <% if policy(FacebookPage).index? %>
+    <li class="nav-item">
+      <%= link_to facebook_pages_path(status: "affiliate_page"),
+                  class: "nav-link #{'active' if current_page?(facebook_pages_path(status: "affiliate_page"))}" do %>
+        <%= icon("user-plus", class: "fa-fw") %>
+        <%= "#{t(:affiliate_page)} (#{policy_scope(FacebookPage).affiliate_page.count})" %>
+      <% end %>
+    </li>
+  <% end %>
+
+
+
+
 
   <% if policy(PublicActivity::Activity).index? || policy(:report).any? %>
     <li class="nav-item dropdown">

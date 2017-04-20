@@ -14,4 +14,12 @@ class BrandPolicy < ApplicationPolicy
   def index?
     user.admin? || user.confirmed_client?
   end
+
+  def update?
+    user.admin? || user.confirmed_client?
+  end
+
+  def destroy?
+    user.admin?
+  end
 end
