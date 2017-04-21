@@ -102,7 +102,7 @@ class FacebookPostsController < ApplicationController
       authorize FacebookPost, "mass_change_status_#{params[:new_status]}?"
 
       posts = policy_scope(FacebookPost).ransack(params[:q]).result
-
+      posts = posts.where(added_by: nil) if params[:new_status] == 'ignored'
       posts.update_all(mass_job_status: "to_be_#{params[:new_status]}")
       MassChangeStatusForPostsJob.perform_async(params[:new_status], current_user.id)
       flash[:notice] = 'Job is enqueued to update the Status, changed will be reflected soon.'
