@@ -30,6 +30,6 @@ class DomainPolicy < ApplicationPolicy
   end
 
   def change_status?
-    user.admin?
+    user.admin? || user.confirmed_client?
   end
 end
