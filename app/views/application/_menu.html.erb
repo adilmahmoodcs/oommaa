@@ -1,5 +1,22 @@
 <div class="mobile-menu-left-overlay"></div>
 <ul class="main-nav nav nav-inline">
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle <%= 'active' if current_page?(domains_path) %>"
+         data-toggle="dropdown"
+         href="#"
+         role="button"
+         aria-haspopup="true"
+         aria-expanded="false">
+        <%= icon("globe", class: "fa-fw") %>
+        Switch Dashboards
+      </a>
+      <div class="dropdown-menu">
+        <%= switch_user_select class: 'select2 form-control'%>
+        <div class="dropdown-item">
+        </div>
+      </div>
+  </li>
+
   <% if policy(:dashboard).index? %>
     <li class="nav-item">
       <%= link_to dashboard_index_path,

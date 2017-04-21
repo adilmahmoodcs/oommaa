@@ -8,13 +8,17 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :devise_permitted_parameters, if: :devise_controller?
   # pundit checks
-  after_action :verify_authorized, unless: :devise_controller?
+  after_action :verify_authorized, unless: :skip_autharization
   after_action :verify_policy_scoped, only: :index, unless: :devise_controller?
 
   private
 
   def devise_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :licensor_id])
+  end
+
+  def skip_autharization
+    controller_name == 'switch_user' or :devise_controller?
   end
 
   def user_not_authorized
