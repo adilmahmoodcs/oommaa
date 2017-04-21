@@ -1,6 +1,6 @@
 class MassChangeStatusForPostsJob
   include Sidekiq::Worker
-  sidekiq_options queue: "posts"
+  sidekiq_options queue: "priority"
 
   def perform(new_status, current_user_id)
     begin
