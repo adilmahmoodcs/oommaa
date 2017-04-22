@@ -38,8 +38,12 @@ class DomainsController < ApplicationController
 
   def destroy
     authorize @domain
-    @domain.create_activity(:destroy, owner: current_user, parameters: { name: @domain.name })
-    @domain.destroy
+    if current_user.confirmed_client?
+      current_user.assigned_domains.create(domain_id: @domain.id)
+    elsif current_user.admin?
+      @domain.create_activity(:destroy, owner: current_user, parameters: { name: @domain.name })
+      @domain.destroy
+    end
     flash[:notice] = "Domain was successfully destroyed."
     redirect_back(fallback_location: domains_path)
   end
