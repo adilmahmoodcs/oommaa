@@ -11,11 +11,17 @@ RSpec.describe PostBrand, type: :model do
       expect(facebook_post.manual_added_brands.count).to eq(1)
     end
 
-    it "should only create one record against same user and same domain" do
+    it "should only create one record against post user and same brand" do
       facebook_post.post_brands.create(brand_id: brand.id)
       facebook_post.post_brands.create(brand_id: brand.id)
       facebook_post.post_brands.create(brand_id: brand.id)
       expect(PostBrand.count).to eq(1)
+    end
+
+    it "should not create for empty brand" do
+      facebook_post.post_brands.create(brand_id: "")
+      expect(facebook_post.manual_added_brands.count).to eq(0)
+      expect(PostBrand.count).to eq(0)
     end
   end
 end

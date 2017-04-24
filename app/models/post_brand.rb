@@ -20,9 +20,4 @@ class PostBrand < ApplicationRecord
 
   validates :brand, :facebook_post, presence: true
   validates :brand, uniqueness: { scope: :facebook_post}
-
-  def assign_brand_to_post(post,brand)
-    post_brand = PostBrand.build(facebook_post: post, brand: brand)
-    post_brand.save ? true : post_brand.errors.full_messages.to_sentence
-  end
 end

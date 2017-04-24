@@ -133,7 +133,7 @@ class FacebookPost < ApplicationRecord
 
   def get_brand_names
     if manual_added_brands.present?
-      manual_added_brands.map(&:name).join(", ")
+      manual_added_brands.pluck(:name).join(", ")
     else
       brand_names
     end
