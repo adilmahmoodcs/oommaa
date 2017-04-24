@@ -6,7 +6,6 @@ class MassChangeStatusForPostsJob
     begin
       posts = FacebookPost.unscoped.where(mass_job_status: "to_be_#{new_status}")
       current_user = User.find(current_user_id)
-      ignore_array = FacebookPost::IGNORE_POST_FOR
     rescue
       raise "Records or User Not Found."
     end
