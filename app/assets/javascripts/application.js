@@ -23,6 +23,8 @@
 //= require turbolinks
 //= require select2
 //= require jquery.tablesorter
+//= require jquery.floatThead.min
+//= require fixed_table_header
 //= require facebook_report
 //= require search_form
 //= require selects
@@ -34,6 +36,7 @@ document.addEventListener("turbolinks:load", function() {
   SearchForm.init()
   Selects.init()
   Forms.init()
+  FixedHeadTable.init()
 
   $(".panel").lobiPanel({
     sortable: true

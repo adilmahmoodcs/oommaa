@@ -26,6 +26,8 @@
 #  facebook_report_number   :string
 #  likes                    :integer
 #  mass_job_status          :integer          default("0")
+#  greylisted_at            :datetime
+#  greylisted_by            :string
 #
 # Indexes
 #

@@ -1,0 +1,6 @@
+<% if @response == true %>
+  $("ul.assigned_domains_<%= @status %>").append("<%= j render(:partial => 'users/user_assigned_domains', :locals => {domain: @domain}) %>")
+  $(".select_<%= @status %>").select2('open');
+<% else  %>
+  alert('<%=@response%>')
+<% end %>

@@ -1,0 +1,10 @@
+<li>
+  <div class="truncate">
+    <%= domain.name%>
+  </div>
+  <%= link_to assigned_domain_path(id: domain.id, user_id: @user),
+                                   method: :delete,
+                                   data: { confirm: 'Are you sure?' } do %>
+    <%= icon("remove", class: "fa-fw") %>
+  <% end %>
+</li>
