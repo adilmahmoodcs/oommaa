@@ -58,7 +58,7 @@ class PostImporterJob
     # create page if doesn't exists
     page = find_or_create_page(data["from"]["id"], brand_ids)
     # create a post from the submitted URL
-    create_post(data, page, user_email)
+    create_post(data, page, user_email, brand_ids)
   end
 
   private
@@ -96,7 +96,7 @@ class PostImporterJob
     page
   end
 
-  def create_post(data, page, user_email)
+  def create_post(data, page, user_email, brand_ids)
     post = page.facebook_posts.create!(
       facebook_id: data["id"],
       message: (data["name"].presence || "<BLANK MESSAGE>"),
@@ -119,6 +119,11 @@ class PostImporterJob
     # import screenshots
     PostScreenshotsJob.perform_async(post.id)
     logger.info "PostImporterJob: created new FacebookPost #{post.id}"
+
+    brand_ids.each do |brand_id|
+      brand = Brand.find(brand_id)
+      post.manual_added_brands << brand if brand
+    end
 
     post
   end
