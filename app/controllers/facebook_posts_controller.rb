@@ -35,7 +35,7 @@ class FacebookPostsController < ApplicationController
       end
 
       format.csv do
-        send_data PostsCSVExporter.new(@posts).call,
+        send_data PostsCSVExporter.new(@posts.uniq).call,
                   filename: "#{@status}_export_#{Time.now.to_i}.csv"
       end
     end
@@ -76,7 +76,7 @@ class FacebookPostsController < ApplicationController
       end
 
       format.csv do
-        send_data PostsCSVExporter.new(@posts).call,
+        send_data PostsCSVExporter.new(@posts.uniq).call,
                   filename: "blacklist_export_#{Time.now.to_i}.csv"
       end
     end

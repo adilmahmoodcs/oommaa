@@ -3,7 +3,7 @@
     <h3>
       <%= t(@status || :all) %>
       <%= t(:posts) %>
-      (<%= @posts.total_count %>)
+      (<%= @posts.distinct.total_count %>)
     </h3>
   </div>
   <% if @status == "reported_to_facebook" %>
@@ -23,6 +23,6 @@
   <%= render_if_exists "mass_actions_#{@status}", posts: @posts %>
 <% end %>
 
-<%= paginate @posts %>
+<%= paginate @posts.distinct %>
 <%= render_if_exists "table_#{@status}", fallback: "table_default" %>
-<%= paginate @posts %>
+<%= paginate @posts.distinct %>
