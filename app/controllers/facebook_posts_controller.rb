@@ -35,7 +35,7 @@ class FacebookPostsController < ApplicationController
       end
 
       format.csv do
-        send_data PostsCSVExporter.new(@posts).call,
+        send_data PostsCSVExporter.new(@posts.uniq).call,
                   filename: "#{@status}_export_#{Time.now.to_i}.csv"
       end
     end
@@ -76,7 +76,7 @@ class FacebookPostsController < ApplicationController
       end
 
       format.csv do
-        send_data PostsCSVExporter.new(@posts).call,
+        send_data PostsCSVExporter.new(@posts.uniq).call,
                   filename: "blacklist_export_#{Time.now.to_i}.csv"
       end
     end
@@ -102,7 +102,12 @@ class FacebookPostsController < ApplicationController
       authorize FacebookPost, "mass_change_status_#{params[:new_status]}?"
 
       posts = policy_scope(FacebookPost).ransack(params[:q]).result
-      posts = posts.where(added_by: nil) if params[:new_status] == 'ignored'
+      ignore_status_arr = FacebookPost::IGNORE_POST_FOR
+      posts = posts.where(added_by: nil).
+                    where(blacklisted_by: ignore_status_arr).
+                    where(whitelisted_by: ignore_status_arr).
+                    where(greylisted_by: ignore_status_arr).
+                    where(reported_to_facebook_by: ignore_status_arr) if params[:new_status] == 'ignored'
       posts.update_all(mass_job_status: "to_be_#{params[:new_status]}")
       MassChangeStatusForPostsJob.perform_async(params[:new_status], current_user.id)
       flash[:notice] = 'Job is enqueued to update the Status, changed will be reflected soon.'

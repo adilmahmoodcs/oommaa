@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420131349) do
+ActiveRecord::Schema.define(version: 20170424084221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,6 +139,15 @@ ActiveRecord::Schema.define(version: 20170420131349) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+  end
+
+  create_table "post_brands", force: :cascade do |t|
+    t.integer  "facebook_post_id"
+    t.integer  "brand_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["brand_id"], name: "index_post_brands_on_brand_id", using: :btree
+    t.index ["facebook_post_id"], name: "index_post_brands_on_facebook_post_id", using: :btree
   end
 
   create_table "screenshots", force: :cascade do |t|
