@@ -26,6 +26,7 @@ class AffiliatePagePostImporterJob
       end
       raise e
     end
+    self.class.perform_in(2.days, page_id)
   end
 
   private
