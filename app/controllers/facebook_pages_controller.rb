@@ -24,12 +24,17 @@ class FacebookPagesController < ApplicationController
     authorize FacebookPage
     valid_url_if_present = true
     url = params[:facebook_page][:url]
-    if url =~ /\A#{URI::regexp}\z/ || !url.present?
+
+    if FacebookPage.find_by(url: url).present?
+      flash[:alert] = "Page is already in system, Please try another one."
+      valid_url_if_present = false
+    elsif url =~ /\A#{URI::regexp}\z/ || !url.present?
       flash[:notice] = "Requested Page is added to enqueued job."
     else
       flash[:alert] = "URL is not valid Please enter valid url or try adding complete url."
       valid_url_if_present = false
     end
+
     AffiliatePageImporterJob.perform_async(params[:facebook_page][:name], params[:facebook_page][:url]) if valid_url_if_present
     redirect_back(fallback_location: facebook_pages_path(status: 'affiliate_page'))
   end

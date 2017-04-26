@@ -65,6 +65,6 @@ class AffiliatePageImporterJob
 
   def get_facebook_page_name_from_url url
     page_name = url.split('facebook.com/')
-    page_name = page_name.last.split('?').first.try(:gsub, '/', '')
+    page_name = page_name.last.split('?').first.gsub(/[^a-z]/i, '')
   end
 end
