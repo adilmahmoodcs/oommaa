@@ -1,7 +1,7 @@
 class FacebookPagesController < ApplicationController
   def index
     authorize FacebookPage
-    @status = if params[:q].present?
+    @status = if params[:q].present? and params[:q][:status].present?
       params[:q][:status]
     elsif FacebookPage::statuses.include?(params[:status])
       params[:status]
