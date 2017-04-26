@@ -25,10 +25,10 @@ class AffiliatePageImporterJob
       # create new Affiliate page only if its not present
       unless FacebookPage.exists?(facebook_id: data["id"])
         # If url is given then only creates the page with matching url
-        if @affiliate_page_url.present? && (@affiliate_page_url == data["link"] || @affiliate_page_url.start_with?(data["link"]))
+        if @affiliate_page_url.present? && (@affiliate_page_url.downcase == data["link"].downcase || @affiliate_page_url.start_with?(data["link"]))
           page = create_page(data)
           break
-        elsif  (@affiliate_page_name == data['name'] || data['name'].start_with?(@affiliate_page_name)) && !@affiliate_page_url.present?
+        elsif  (@affiliate_page_name.downcase == data['name'].downcase || data['name'].downcase.start_with?(@affiliate_page_name.downcase)) && !@affiliate_page_url.present?
           # else create the page that starts with or matches the exact given name
           page = create_page(data)
         else
