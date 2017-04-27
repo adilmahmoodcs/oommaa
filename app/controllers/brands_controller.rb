@@ -25,6 +25,7 @@ class BrandsController < ApplicationController
 
   def create
     authorize Brand
+    params[:brand][:licensor_id] = current_user.licensor.id if current_user.confirmed_client?
     @brand = Brand.new(brand_params)
 
     if @brand.save

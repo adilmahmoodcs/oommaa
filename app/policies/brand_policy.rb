@@ -19,6 +19,13 @@ class BrandPolicy < ApplicationPolicy
     user.admin? || user.confirmed_client?
   end
 
+  def new?
+    user.admin? || user.confirmed_client?
+  end
+
+  def create?
+    user.admin? || user.confirmed_client?
+  end
   def destroy?
     user.admin?
   end
