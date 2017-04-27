@@ -20,7 +20,8 @@
           <div class="form-group">
             <%= label_tag :brand_ids, "Brands" %>
             <%= select_tag :brand_ids,
-                           options_from_collection_for_select(Brand.all.order("LOWER(name)"), :id, :name),
+                           options_from_collection_for_select(
+                            @brands.present? ? @brands : Brand.all.order("LOWER(name)"), :id, :name),
                            include_blank: true,
                            required: true,
                            multiple: true,
