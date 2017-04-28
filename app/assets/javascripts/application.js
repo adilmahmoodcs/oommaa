@@ -24,6 +24,7 @@
 //= require select2
 //= require jquery.tablesorter
 //= require jquery.floatThead.min
+//= require jquery.infinitescroll
 //= require fixed_table_header
 //= require facebook_report
 //= require search_form

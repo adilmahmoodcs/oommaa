@@ -23,7 +23,7 @@
 
 <%= paginate @domains %>
 
-<table class="table table-hover table-bordered">
+<table class="table table-hover table-bordered" id="posts">
   <thead>
     <tr>
       <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
@@ -31,9 +31,9 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="page">
     <% @domains.each do |domain| %>
-      <tr>
+      <tr class="post">
         <td>
           <%= domain.name %>
         </td>
