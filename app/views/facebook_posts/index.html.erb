@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-6">
     <h3>
       <%= t(@status || :all) %>
       <%= t(:posts) %>
@@ -7,7 +7,7 @@
     </h3>
   </div>
   <% if @status == "reported_to_facebook" %>
-    <div class="col-md-4 text-right">
+    <div class="col-md-3 text-right">
       <%= link_to url_for(q: csv_export_params(params[:q]), format: :csv),
                   class: "btn btn-primary" do %>
         <%= icon("download") %>
@@ -15,6 +15,9 @@
       <% end %>
     </div>
   <% end %>
+  <div class="col-md-3 pagination_holder">
+    <%= paginate @posts.distinct %>
+  </div>
 </div>
 
 <%= render 'search_form' %>
@@ -23,6 +26,5 @@
   <%= render_if_exists "mass_actions_#{@status}", posts: @posts %>
 <% end %>
 
-<%= paginate @posts.distinct %>
 <%= render_if_exists "table_#{@status}", fallback: "table_default" %>
 <%= paginate @posts.distinct %>

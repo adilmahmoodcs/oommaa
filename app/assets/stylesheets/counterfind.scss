@@ -43,17 +43,6 @@ form#export-date label {
 .widget-check-box {
   padding: 5px;
 }
-.truncate{
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  width: 90%;
-  display: inline-block;
-}
-.note{
-  background: rgba(243, 247, 55, 0.55);
-  padding: 6px;
-}
 #assigned_domains{
   ul{
     li{
@@ -76,7 +65,4 @@ form#export-date label {
       }
     }
   }
-}
-.floatThead-container{
-  z-index: 9 !important;
 }

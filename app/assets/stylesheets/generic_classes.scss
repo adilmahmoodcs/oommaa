@@ -1,0 +1,20 @@
+.truncate{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 90%;
+  display: inline-block;
+}
+.note{
+  background: rgba(243, 247, 55, 0.55);
+  padding: 6px;
+}
+.floatThead-container{
+  z-index: 9 !important;
+}
+.pagination_holder{
+  float: right;
+  .pagination{
+    margin: 0px !important;
+  }
+}
