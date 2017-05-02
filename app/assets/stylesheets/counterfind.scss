@@ -9,7 +9,7 @@
 @media (min-width: 1057px) {
   ul.main-nav.nav-inline .nav-item + .nav-item,
   ul.main-nav.nav-inline .nav-link + .nav-link {
-    margin-left: 2rem;
+    margin-left: 1rem;
   }
 }
 
@@ -43,17 +43,6 @@ form#export-date label {
 .widget-check-box {
   padding: 5px;
 }
-.truncate{
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  width: 90%;
-  display: inline-block;
-}
-.note{
-  background: rgba(243, 247, 55, 0.55);
-  padding: 6px;
-}
 #assigned_domains{
   ul{
     li{
@@ -77,6 +66,14 @@ form#export-date label {
     }
   }
 }
-.floatThead-container{
-  z-index: 9 !important;
+.table a,
+.bootstrap-table .table a,
+.fixed-table-body .table a {
+  border-bottom-color: transparent;
+}
+
+.table a:hover,
+.bootstrap-table .table a:hover,
+.fixed-table-body .table a:hover {
+  border-bottom: solid 1px rgba(0, 130, 198, 0.5);
 }

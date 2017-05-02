@@ -193,6 +193,13 @@
       <% end %>
     </li>
   <% end %>
+  <li class="nav-item">
+      <%= link_to "#",
+                  class: "nav-link #{'active' if current_page?(licensors_path)}" do %>
+        <%= icon("play", class: "fa-fw") %>
+        <%= "#{t(:getting_started)}" %>
+      <% end %>
+    </li>
 
   <% if policy(User).index? %>
     <li class="nav-item">
