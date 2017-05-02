@@ -2,10 +2,12 @@ class AffiliatePageImporterJob
   include Sidekiq::Worker
   sidekiq_options queue: "pages", retry: 5
 
-  def perform(affiliate_page_name, affiliate_page_url = nil)
+  def perform(affiliate_page_name, affiliate_page_url = nil, affiliate_page_logo = nil)
     @affiliate_page_name = affiliate_page_name
     @affiliate_page_url = affiliate_page_url
-    @name_from_url = get_facebook_page_name_from_url @affiliate_page_url if @affiliate_page_url
+    @affiliate_page_logo = affiliate_page_logo
+    @name_from_url = get_facebook_page_name_from_url @affiliate_page_url if @affiliate_page_url.present?
+    @page_counter = 0
 
     return unless @affiliate_page_name
 
@@ -22,8 +24,35 @@ class AffiliatePageImporterJob
   private
 
   def import_pages
-    pages_data = FBPageSearcher.new(term: @name_from_url.present? ? @name_from_url : @affiliate_page_name, token: token).call
+    if @affiliate_page_logo.present?
+      object_id, type = FbURLParser.new(@affiliate_page_logo).call
+      data = FBPhotoReader.new(object_id: object_id, token: token).call if type == :photo
+      page_data = FBPageReader.new(object_id: data["from"]["id"], token: token).call if data.present?
+      create_page page_data if page_data.present? and !FacebookPage.exists?(facebook_id: page_data["id"])
+    end
 
+    if @page_counter == 0
+      pages_data = FBPageSearcher.new(term: @name_from_url, token: token, limit: 5000).call if @name_from_url.present?
+      pages_data = FBPageSearcher.new(term: @affiliate_page_name, token: token, limit: 5000).call if (pages_data.blank? || pages_data == [])
+
+      find_page_to_create pages_data
+    end
+
+    if !@name_from_url.present? and @page_counter == 0
+      pages_data = FBPageSearcher.new(term: @affiliate_page_name, token: token, limit: 5000).call
+      find_page_to_create pages_data
+    end
+  end
+
+  def token
+    Rails.configuration.counterfind["facebook"]["tokens"].sample
+  end
+
+  def logger
+    @logger ||= Logger.new(Rails.root.join('log/jobs.log'))
+  end
+
+  def find_page_to_create pages_data
     pages_data.each do |data|
       # create new Affiliate page only if its not present
       unless FacebookPage.exists?(facebook_id: data["id"])
@@ -42,15 +71,7 @@ class AffiliatePageImporterJob
     end
   end
 
-  def token
-    Rails.configuration.counterfind["facebook"]["tokens"].sample
-  end
-
-  def logger
-    @logger ||= Logger.new(Rails.root.join('log/jobs.log'))
-  end
-
-  def create_page(data)
+  def create_page data
     page = FacebookPage.create!(
       facebook_id: data["id"],
       name: data["name"],
@@ -58,6 +79,7 @@ class AffiliatePageImporterJob
       image_url: data.dig("picture", "data", "url"),
       status: 'affiliate_page'
     )
+    @page_counter += 1
     AffiliatePagePostImporterJob.perform_async(page.id)
     logger.info "AffiliatePageImporter: new affiliate FacebookPage #{page.id} created}"
     page
