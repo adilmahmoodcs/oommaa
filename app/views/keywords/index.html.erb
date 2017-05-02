@@ -9,9 +9,7 @@
 
 <%= render "shared/resource_top_forms", resource: Keyword.new %>
 
-<%= paginate @keywords %>
-
-<table class="table table-hover table-bordered">
+<table class="table table-hover table-bordered", id="scroll_table">
   <thead>
     <tr>
       <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
@@ -19,9 +17,9 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="scroll_table_body">
     <% @keywords.each do |keyword| %>
-      <tr>
+      <tr class="scroll_table_data">
         <td><%= keyword.name %></td>
         <td class="text-right">
           <%= link_to edit_keyword_path(keyword),
@@ -42,4 +40,6 @@
   </tbody>
 </table>
 
-<%= paginate @keywords %>
+<div class="hide">
+  <%= paginate @keywords %>
+</div>

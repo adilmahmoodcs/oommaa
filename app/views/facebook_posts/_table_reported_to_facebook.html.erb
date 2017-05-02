@@ -25,10 +25,10 @@
     <% @posts.to_a.uniq.each do |post| %>
       <tr>
         <td>
-          <%= l(post.published_at, format: :compact) %>
+          <%= l(post.published_at.try(:to_date), format: :compact) %>
         </td>
         <td>
-          <%= l(post.blacklisted_at, format: :compact) if post.blacklisted_at %>
+          <%= l(post.blacklisted_at.try(:to_date), format: :compact) if post.blacklisted_at %>
         </td>
         <td>
           <%= post.blacklisted_by %>
@@ -61,14 +61,14 @@
           <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
         </td>
         <td>
-          <%= l(post.reported_to_facebook_at, format: :compact) if post.reported_to_facebook_at %>
+          <%= l(post.reported_to_facebook_at.try(:to_date), format: :compact) if post.reported_to_facebook_at %>
         </td>
         <td>
           <%= post.reported_to_facebook_by %>
         </td>
         <td>
           <% if post.shut_down_by_facebook_at %>
-            <%= l(post.shut_down_by_facebook_at, format: :compact)  %>
+            <%= l(post.shut_down_by_facebook_at.try(:to_date), format: :compact)  %>
           <% else %>
             Pending
           <% end %>

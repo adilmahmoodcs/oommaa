@@ -66,3 +66,14 @@ form#export-date label {
     }
   }
 }
+.table a,
+.bootstrap-table .table a,
+.fixed-table-body .table a {
+  border-bottom-color: transparent;
+}
+
+.table a:hover,
+.bootstrap-table .table a:hover,
+.fixed-table-body .table a:hover {
+  border-bottom: solid 1px rgba(0, 130, 198, 0.5);
+}
