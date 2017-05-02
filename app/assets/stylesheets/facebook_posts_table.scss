@@ -3,3 +3,15 @@
     width: 100px;
   }
 }
+.col-msg{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 150px !important;
+}
+.col-p-company{
+ min-width: 160px;
+}
+.col-date{
+  min-width: 120px;
+}

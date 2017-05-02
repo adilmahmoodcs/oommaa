@@ -24,21 +24,21 @@
   <tbody>
     <% @posts.to_a.uniq.each do |post| %>
       <tr>
-        <td>
+        <td class = "col-date">
           <%= l(post.published_at.try(:to_date), format: :compact) %>
         </td>
-        <td>
+        <td class = "col-date">
           <%= l(post.blacklisted_at.try(:to_date), format: :compact) if post.blacklisted_at %>
         </td>
         <td>
           <%= post.blacklisted_by %>
         </td>
-        <td>
+        <td class="col-img">
           <%= link_to image_tag(post.image_url, width: "150px"),
                       post.permalink,
                       target: "_blank" if post.image_url.present? %>
         </td>
-        <td>
+        <td class="col-msg">
           <%= auto_link(post.message) %>
           <br>
           <%= link_to post.permalink,
@@ -54,7 +54,7 @@
         <td>
           <%= post.licensor_names %>
         </td>
-        <td>
+        <td class="col-p-company">
           <%= post.all_domains.join(", ") %>
         </td>
         <td>
