@@ -7,7 +7,7 @@ class AffiliatePageImporterJob
     @affiliate_page_url = affiliate_page_url
     @affiliate_page_logo = affiliate_page_logo
     @name_from_url = get_facebook_page_name_from_url @affiliate_page_url if @affiliate_page_url.present?
-    @page_counter = 0
+    @page_created = false
 
     return unless @affiliate_page_name
 
@@ -31,14 +31,14 @@ class AffiliatePageImporterJob
       create_page page_data if page_data.present? and !FacebookPage.exists?(facebook_id: page_data["id"])
     end
 
-    if @page_counter == 0
+    unless @page_created
       pages_data = FBPageSearcher.new(term: @name_from_url, token: token, limit: 5000).call if @name_from_url.present?
       pages_data = FBPageSearcher.new(term: @affiliate_page_name, token: token, limit: 5000).call if (pages_data.blank? || pages_data == [])
 
       find_page_to_create pages_data
     end
 
-    if !@name_from_url.present? and @page_counter == 0
+    if !@name_from_url.present? and @page_created == false
       pages_data = FBPageSearcher.new(term: @affiliate_page_name, token: token, limit: 5000).call
       find_page_to_create pages_data
     end
@@ -79,7 +79,7 @@ class AffiliatePageImporterJob
       image_url: data.dig("picture", "data", "url"),
       status: 'affiliate_page'
     )
-    @page_counter += 1
+    @page_created = true
     AffiliatePagePostImporterJob.perform_async(page.id)
     logger.info "AffiliatePageImporter: new affiliate FacebookPage #{page.id} created}"
     page
