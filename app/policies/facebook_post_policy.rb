@@ -27,7 +27,6 @@ class FacebookPostPolicy < ApplicationPolicy
   end
 
   def index_not_suspect?
-    user.admin? || user.confirmed_client?
   end
 
   def index_suspect?

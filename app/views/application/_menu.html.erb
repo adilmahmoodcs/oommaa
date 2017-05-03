@@ -125,14 +125,6 @@
           <div class="dropdown-divider"></div>
         <% end %>
 
-        <% if policy(FacebookPost).index_not_suspect? %>
-          <%= link_to facebook_posts_path(q: { status_eq: :not_suspect }),
-                      class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'not_suspect'}" do %>
-            <%= icon("circle-thin", class: "fa-fw") %>
-            <%= "#{t(:not_suspect)} (#{policy_scope(FacebookPost).not_suspect.size})" %>
-          <% end %>
-        <% end %>
-
         <% if policy(FacebookPost).index_suspect? %>
           <%= link_to facebook_posts_path(q: { status_eq: :suspect }),
                       class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'suspect'}" do %>
