@@ -5,7 +5,7 @@ class FacebookPostsController < ApplicationController
 
   def index
     params[:q] ||= {}
-    params[:q][:status_eq] ||= "not_suspect"
+    params[:q][:status_eq] ||= "suspect"
     params[:q].delete(:status_eq) unless params[:q][:status_eq].in?(FacebookPost.statuses.keys)
 
     if params[:q][:blacklisted_at_gteq].present?
