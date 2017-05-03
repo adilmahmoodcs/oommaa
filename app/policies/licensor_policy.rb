@@ -4,4 +4,8 @@ class LicensorPolicy < ApplicationPolicy
       scope
     end
   end
+
+  def search?
+    user.admin?
+  end
 end

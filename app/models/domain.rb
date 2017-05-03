@@ -15,12 +15,14 @@ class Domain < ApplicationRecord
   has_many :users, through: :assigned_domains
   has_many :assigned_domains
 
-  scope :user_domains, -> (id) { where.not(id: User.find(id).assigned_domains.pluck(:domain_id)) }
-
   enum status: [:blacklisted, :whitelisted, :greylisted]
 
   validates :name, presence: true
   validates :name, uniqueness: true
+
+  scope :of_confirmed_client, -> (user){
+    user.domains
+  }
 
   ransacker :name_case_insensitive, type: :string do
     arel_table[:name].lower

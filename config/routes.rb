@@ -49,7 +49,11 @@ Rails.application.routes.draw do
   resources :assigned_domains, only: [:create, :destroy]
 
   scope :admin do
-    resources :users, only: [:index, :edit, :update, :destroy]
+    resources :users, only: [:index, :edit, :update, :destroy] do
+      member do
+        get :client_domain_request
+      end
+    end
   end
 
   authenticate :user, lambda { |u| u.admin? } do
