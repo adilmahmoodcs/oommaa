@@ -4,7 +4,7 @@ class FacebookPostPolicy < ApplicationPolicy
       if user.admin?
         scope.all
       elsif user.confirmed_client?
-        scope.of_licensor(user.licensor)
+        scope.of_licensor(user.licensor, user)
       else
         scope.none
       end

@@ -2,7 +2,7 @@ development:
   facebook:
     report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
-      - EAACEdEose0cBAAuYoLNdOD5RX7LzvKIFYk4XZBshG3LZCoUilBghvD0VefvjPP8knPB781PDOGEis49fI8osWAr6s0lY6Ma6f3ZCFTlQzthQaC06EmhFeZCzTPQdmzNdIZBmbFkQYB5cu1r4lanASqzbo2E9lJGZBIHlHoj9Ed8viTzPDd4nIU3ppGn7Mafc8ZD
+      - PUT_A_REAL_TOKEN_HERE
 
 production:
   facebook:

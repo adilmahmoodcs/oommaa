@@ -3,11 +3,7 @@ class DomainsController < ApplicationController
 
   def index
     authorize Domain
-    @q = if current_user.admin?
-        policy_scope(Domain).ransack(params[:q])
-      else
-        policy_scope(current_user).domains.ransack(params[:q])
-      end
+    @q = policy_scope(Domain).ransack(params[:q])
     @q.sorts = "name_case_insensitive asc" if @q.sorts.empty?
     @domains = @q.result
 

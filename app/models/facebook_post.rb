@@ -70,9 +70,10 @@ class FacebookPost < ApplicationRecord
   scope :blacklisted_or_reported_to_facebook, -> {
     where(status: [statuses[:blacklisted], statuses[:reported_to_facebook]])
   }
-  scope :of_licensor, -> (licensor) {
+  scope :of_licensor, -> (licensor, user) {
     joins(:facebook_page).
-    where("? = ANY(cached_licensor_ids)", licensor.id)
+    where("? = ANY(cached_licensor_ids)", licensor.id).
+    where('ARRAY[?]::varchar[] @> facebook_posts.all_domains', user.domains.pluck(:name))
   }
   scope :shut_down, -> { where.not(shut_down_by_facebook_at: nil) }
   scope :reported_to_facebook_by, -> (user) { where(reported_to_facebook_by: user.email) }

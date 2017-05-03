@@ -20,6 +20,10 @@ class Domain < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: true
 
+  scope :of_confirmed_client, -> (user){
+    user.domains
+  }
+
   ransacker :name_case_insensitive, type: :string do
     arel_table[:name].lower
   end
