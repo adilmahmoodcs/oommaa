@@ -1,7 +1,13 @@
 class DomainPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      if user.admin?
+        scope.all
+      elsif user.confirmed_client?
+        scope.of_confirmed_client(user)
+      else
+        scope.none
+      end
     end
   end
 
