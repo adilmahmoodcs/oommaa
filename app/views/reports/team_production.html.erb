@@ -63,10 +63,10 @@
           <%= user.name %>
         </td>
         <td>
-          <%= FacebookPost.added_by(user).size %>
+          <%= FacebookPost.added_by(user).ransack(created_at_gteq: @from, created_at_lteq: @to).result.size %>
         </td>
         <td>
-          <%= FacebookPost.reported_to_facebook_by(user).size %>
+          <%= FacebookPost.reported_to_facebook_by(user).ransack(created_at_gteq: @from, created_at_lteq: @to).result.size %>
         </td>
         <td>
 

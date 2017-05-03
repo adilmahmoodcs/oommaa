@@ -1,6 +1,7 @@
 class ImportsController < ApplicationController
   def url
     authorize :import, :url?
+    @brands = current_user.licensor.try(:brands) if current_user.confirmed_client?
   end
 
   def create_from_url

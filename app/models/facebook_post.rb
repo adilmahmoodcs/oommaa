@@ -26,6 +26,8 @@
 #  facebook_report_number   :string
 #  likes                    :integer
 #  mass_job_status          :integer          default("0")
+#  greylisted_at            :datetime
+#  greylisted_by            :string
 #
 # Indexes
 #
@@ -53,6 +55,9 @@ class FacebookPost < ApplicationRecord
   has_many :ad_screenshots
   has_many :product_screenshots
 
+  has_many :post_brands, foreign_key: :facebook_post_id
+  has_many :manual_added_brands, through: :post_brands, source: :brand
+
   validates :facebook_id, :message, :facebook_page, presence: true
   validates :facebook_id, uniqueness: true
 
@@ -76,6 +81,7 @@ class FacebookPost < ApplicationRecord
   ransacker :status, formatter: proc { |status_name| statuses[status_name] }
 
   ESTIMATED_VALUE = 120 # $
+  IGNORE_POST_FOR = [nil, "PostStatusJob"]
 
   def self.ransackable_scopes(auth_object = nil)
     [:with_any_domain]
@@ -123,6 +129,14 @@ class FacebookPost < ApplicationRecord
   # some statuses are final and can't be changed
   def final_status?
     status.in? ["reported_to_facebook"]
+  end
+
+  def get_brand_names
+    if manual_added_brands.present?
+      manual_added_brands.pluck(:name).join(", ")
+    else
+      brand_names
+    end
   end
 
   private

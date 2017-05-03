@@ -41,6 +41,7 @@ gem "rollbar", "~> 2.14"
 gem "pundit", "~> 1.1.0"
 gem "newrelic_rpm"
 gem "typhoeus", "~> 1.1.2"
+gem "switch_user"
 
 group :development, :test do
   gem "byebug", platform: :mri

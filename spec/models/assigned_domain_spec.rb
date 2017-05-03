@@ -23,7 +23,7 @@ RSpec.describe AssignedDomain, type: :model do
       expect(AssignedDomain.count).to eq(1)
     end
 
-    it "should only create one record against same user and same domain" do
+    it "should only create one record against same post and same brand" do
       unconfirmed_user.assigned_domains.create(domain_id: domain.id)
       unconfirmed_user.assigned_domains.create(domain_id: domain.id)
       unconfirmed_user.assigned_domains.create(domain_id: domain.id)

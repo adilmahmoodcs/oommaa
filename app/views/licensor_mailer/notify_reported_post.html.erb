@@ -51,7 +51,7 @@
                                             <div class="mj-content" style="cursor:auto;color:#000000;font-family:Proxima Nova, Arial, Arial, Helvetica, sans-serif;font-size:15px;line-height:22px;">
                                               <p>
                                                 <strong>Brand:</strong>
-                                                <%= @post.brand_names %>
+                                                <%= @post.get_brand_names %>
                                               </p>
 
                                               <% if @post.all_domains.any? %>
