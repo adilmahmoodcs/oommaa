@@ -29,6 +29,12 @@ class UsersController < ApplicationController
     redirect_to users_path, notice: 'User was successfully destroyed.'
   end
 
+  def client_domain_request
+    domain = Domain.find params[:domain_id]
+    UserMailer.user_domain_request(user: current_user, domain: domain).deliver_later
+    redirect_back(fallback_location: domains_path, notice: "Request was successfully sent to all admins.")
+  end
+
   private
 
   def set_user

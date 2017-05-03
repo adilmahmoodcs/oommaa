@@ -3,7 +3,11 @@ class DomainsController < ApplicationController
 
   def index
     authorize Domain
-    @q = policy_scope(Domain).user_domains(current_user.id).ransack(params[:q])
+    @q = if current_user.admin?
+        policy_scope(Domain).ransack(params[:q])
+      else
+        policy_scope(current_user).domains.ransack(params[:q])
+      end
     @q.sorts = "name_case_insensitive asc" if @q.sorts.empty?
     @domains = @q.result
 
@@ -17,14 +21,17 @@ class DomainsController < ApplicationController
 
   def create
     authorize Domain
-    user_domain = current_user.domains.find_by(name: domain_params[:name])
-    if user_domain.present? and user_domain.status == domain_params[:status]
-      assigned_domain = current_user.assigned_domains.find_by(domain_id: user_domain.id)
-      assigned_domain.destroy ? flash[:notice] = "Domain was successfully created." : flash[:alert] = "Domain was not Created"
+
+    requested_domain = Domain.find_by(name: domain_params[:name])
+
+    if current_user.confirmed_client? and requested_domain.present? and requested_domain.status == domain_params[:status]
+      assigned_domain = current_user.assigned_domains.build(domain: requested_domain)
+      assigned_domain.save ? flash[:notice] = "Domain was successfully created." : flash[:alert] = assigned_domain.errors.full_messages.to_sentence
+    elsif current_user.confirmed_client? and requested_domain.present? and requested_domain.status != domain_params[:status]
+      flash[:alert] = "Domain is already present with #{requested_domain.status} please request admin for this domain here:
+                #{view_context.link_to(" Request Domain", client_domain_request_user_path(current_user, domain_id: requested_domain.id)).html_safe}."
     else
-
       @domain = Domain.new(domain_params)
-
       if @domain.save
         @domain.create_activity(:create, owner: current_user, parameters: { name: @domain.name })
         @domain.update_posts!
@@ -39,7 +46,7 @@ class DomainsController < ApplicationController
   def destroy
     authorize @domain
     if current_user.confirmed_client?
-      current_user.assigned_domains.create(domain_id: @domain.id)
+      current_user.assigned_domains.find_by(domain_id: @domain.id).destroy
     elsif current_user.admin?
       @domain.create_activity(:destroy, owner: current_user, parameters: { name: @domain.name })
       @domain.destroy
