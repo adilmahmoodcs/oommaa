@@ -32,9 +32,9 @@ class DomainsController < ApplicationController
       if @domain.save
         @domain.create_activity(:create, owner: current_user, parameters: { name: @domain.name })
         @domain.update_posts!
-        flash[:notice] = "#{valid_domain_name} was successfully created with given url."
+        flash[:notice] = "<strong>#{valid_domain_name} </strong> was successfully created with given url.".html_safe
       else
-        flash[:alert] = @domain.errors.full_messages.to_sentence
+        flash[:alert] = "<strong>#{valid_domain_name} </strong> is already taken".html_safe
       end
     else
       flash[:alert] = "Invalid Domain (#{domain_params[:name]})"
