@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe DomainsController, type: :controller do
   let(:valid_attributes) {
     {
-      name: Faker::Internet.domain_name
+      name: Faker::Internet.domain_name,
+      status: "blacklisted"
     }
   }
 
@@ -58,7 +59,7 @@ RSpec.describe DomainsController, type: :controller do
     context "with invalid params" do
       it "assigns a newly created but unsaved domain as @domain" do
           post :create, params: {domain: invalid_attributes}
-        expect(assigns(:domain)).to be_a_new(Domain)
+        expect(assigns(:domain)).to be nil
       end
     end
   end

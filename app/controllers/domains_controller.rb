@@ -18,7 +18,8 @@ class DomainsController < ApplicationController
   def create
     authorize Domain
 
-    requested_domain = Domain.find_by(name: domain_params[:name])
+    valid_domain_name = validate_domain_name domain_params[:name]
+    requested_domain = Domain.find_by(name: valid_domain_name)
 
     if current_user.confirmed_client? and requested_domain.present? and requested_domain.status == domain_params[:status]
       assigned_domain = current_user.assigned_domains.build(domain: requested_domain)
@@ -26,15 +27,17 @@ class DomainsController < ApplicationController
     elsif current_user.confirmed_client? and requested_domain.present? and requested_domain.status != domain_params[:status]
       flash[:alert] = "Domain is already present with #{requested_domain.status} please request admin for this domain here:
                 #{view_context.link_to(" Request Domain", client_domain_request_user_path(current_user, domain_id: requested_domain.id)).html_safe}."
-    else
-      @domain = Domain.new(domain_params)
+    elsif valid_domain_name
+      @domain = Domain.new(name: valid_domain_name, status: domain_params[:status])
       if @domain.save
         @domain.create_activity(:create, owner: current_user, parameters: { name: @domain.name })
         @domain.update_posts!
-        flash[:notice] = "Domain was successfully created."
+        flash[:notice] = "<strong>#{valid_domain_name} </strong> was successfully created with given url.".html_safe
       else
-        flash[:alert] = @domain.errors.full_messages.to_sentence
+        flash[:alert] = "<strong>#{valid_domain_name} </strong> is already taken".html_safe
       end
+    else
+      flash[:alert] = "Invalid Domain (#{domain_params[:name]})"
     end
     redirect_back(fallback_location: domains_path)
   end
@@ -72,5 +75,20 @@ class DomainsController < ApplicationController
 
   def domain_params
     params.require(:domain).permit(:name, :status)
+  end
+
+  def validate_domain_name url
+    url_regex = (/^(http|https):\/\/+[\www]+[a-z0-9]+([\_\.\-]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix)
+    domain_regex = (/^[a-z0-9]+([\-\.\_]{1}[a-z0-9]+)*\.[a-z]{2,5}$/ix)
+    if url.match? url_regex
+      uri = URI.parse(url)
+      begin
+        return PublicSuffix.parse(uri.host).domain
+      rescue PublicSuffix::DomainInvalid
+        return false
+      end
+    elsif url.match? domain_regex
+      url.sub(/^www./,'')
+    end
   end
 end
