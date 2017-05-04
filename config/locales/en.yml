@@ -5,8 +5,8 @@ en:
   domains: Domains
   licensors: Licensors
   all: All
-  suspect: Suspect
-  not_suspect: Needs Review
+  suspect: Needs Review
+  not_suspect: Irrelevant Results
   whitelisted: Whitelisted
   blacklisted: Blacklisted
   greylisted: Greylisted
