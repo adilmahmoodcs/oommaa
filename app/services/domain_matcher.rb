@@ -7,23 +7,19 @@ class DomainMatcher
 
   def match?(terms)
     terms.any? do |term|
-      term.to_s.match?(regexp)
+      names.include? term
     end
   end
 
   def match_all?(terms)
     terms.any? && terms.all? do |term|
-      term.to_s.match?(regexp)
+      names.include? term
     end
   end
 
   private
 
   def names
-    Domain.public_send(status).pluck(:name)
-  end
-
-  def regexp
-    @regexp ||= Regexp.union(names)
+    Domain.public_send(status).pluck(:name).map(&:downcase)
   end
 end

@@ -9,7 +9,7 @@
           <div class="col-md-3 form-group">
             <%= f.label :with_any_domain, t(:platform_or_company) %>
             <%= f.select :with_any_domain,
-                         policy_scope(Domain).sort.pluck(:name, :id),
+                         policy_scope(Domain).sort.pluck(:name, :name),
                          { include_blank: true },
                          class: "form-control select2" %>
           </div>
