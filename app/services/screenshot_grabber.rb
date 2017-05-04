@@ -17,8 +17,6 @@ class ScreenshotGrabber
     }
 
     visit url
-    puts "00000000000000000000000000000000000000000000000000000000000000000000"
-    puts page.status_code.to_i
     return false unless valid_status_code?(page.status_code.to_i)
     sleep timeout
 

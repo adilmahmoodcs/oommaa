@@ -22,11 +22,7 @@ class PostScreenshotsJob
   def save_screenshot!(post, url, klass)
     begin
       tmp_file_name = ScreenshotGrabber.new(url).call
-      # Try again if any issue proceed
-      unless tmp_file_name
-        tmp_file_name = ScreenshotGrabber.new(url).call
-      end
-      return unless tmp_file_name
+      raise "Error in grabbing screenshot" unless tmp_file_name
 
       screenshot = klass.new
       screenshot.facebook_post = post
