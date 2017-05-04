@@ -61,7 +61,7 @@
           <%= l(post.published_at.to_date, format: :compact) %>
         </td>
         <% if @status == "blacklisted" %>
-          <td>
+          <td class="col-like">
             <%= form_for post do |f| %>
               <%= f.text_field :likes, class: "form-control form-control-sm quick-form" %>
               <%= f.button t(:update), class: "btn btn-primary-outline btn-sm" %>

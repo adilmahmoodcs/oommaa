@@ -19,6 +19,14 @@
     <%= render 'js_variables' %>
     <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
     <%= favicon_link_tag "favicon.ico" %>
+    <style>
+      .primary_background_color{
+        background: <%= primary_color %> !important;
+      }
+      .secondary_text_color{
+        color: <%= secondary_color %> !important;
+      }
+    </style>
   </head>
 
   <body class="horizontal-navigation">

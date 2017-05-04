@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424084221) do
+ActiveRecord::Schema.define(version: 20170504130650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,6 +182,8 @@ ActiveRecord::Schema.define(version: 20170424084221) do
     t.integer  "licensor_id"
     t.string   "name"
     t.string   "widgets",                default: [],              array: true
+    t.string   "primary_color"
+    t.string   "secondary_color"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["licensor_id"], name: "index_users_on_licensor_id", using: :btree
