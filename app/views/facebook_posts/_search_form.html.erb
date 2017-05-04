@@ -119,13 +119,13 @@
         <% end %>
 
         <div class="col-md-12 form-group">
-          <%= button_tag class: "btn btn-primary" do %>
+          <%= button_tag class: "btn btn-primary btn-sm" do %>
             <%= icon("search") %>
             Filter
           <% end %>
           &nbsp;
           <%= link_to url_for(q: { status_eq: params[:q][:status_eq] }),
-                      class: "btn btn-secondary" do %>
+                      class: "btn btn-secondary btn-sm" do %>
             <%= icon("eraser") %>
             Clear filters
           <% end %>
