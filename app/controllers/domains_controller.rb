@@ -18,6 +18,7 @@ class DomainsController < ApplicationController
   def create
     authorize Domain
 
+    domain_regex = (/^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}$/ix)
     requested_domain = Domain.find_by(name: domain_params[:name])
 
     if current_user.confirmed_client? and requested_domain.present? and requested_domain.status == domain_params[:status]
@@ -26,7 +27,7 @@ class DomainsController < ApplicationController
     elsif current_user.confirmed_client? and requested_domain.present? and requested_domain.status != domain_params[:status]
       flash[:alert] = "Domain is already present with #{requested_domain.status} please request admin for this domain here:
                 #{view_context.link_to(" Request Domain", client_domain_request_user_path(current_user, domain_id: requested_domain.id)).html_safe}."
-    else
+    elsif domain_params[:name].match? domain_regex
       @domain = Domain.new(domain_params)
       if @domain.save
         @domain.create_activity(:create, owner: current_user, parameters: { name: @domain.name })
@@ -35,6 +36,8 @@ class DomainsController < ApplicationController
       else
         flash[:alert] = @domain.errors.full_messages.to_sentence
       end
+    else
+      flash[:alert] = "Please Enter Correct Domain eg. abc.com"
     end
     redirect_back(fallback_location: domains_path)
   end
