@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe DomainsController, type: :controller do
   let(:valid_attributes) {
     {
-      name: Faker::Internet.domain_name
+      name: Faker::Internet.domain_name,
+      status: "blacklisted"
     }
   }
 
