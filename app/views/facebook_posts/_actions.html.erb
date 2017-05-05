@@ -34,6 +34,16 @@
   <% if post.blacklisted? %>
     <%= link_to post_change_status_path(post, :shutdown_queue),
                 method: :post,
+                data:{confirm: "Your report has been added to the queue for shutdown."},
+                class: "btn btn-info" do %>
+      <%= icon("facebook") %>
+      Report to Facebook
+    <% end %>
+  <% end %>
+
+  <% if post.shutdown_queue? %>
+    <%= link_to post_change_status_path(post, :reported_to_facebook),
+                method: :post,
                 class: "btn btn-info" do %>
       <%= icon("facebook") %>
       Report to Facebook
