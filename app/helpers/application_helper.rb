@@ -64,4 +64,13 @@ module ApplicationHelper
       "#797272"
     end
   end
+
+  def post_logo_url url
+    if Faraday.head(url).status == 200
+      url
+    else
+      'startui/file-img.png'
+    end
+  end
+
 end
