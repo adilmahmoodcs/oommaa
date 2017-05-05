@@ -39,7 +39,9 @@
                       target: "_blank" if post.image_url.present? %>
         </td>
         <td class="col-msg">
-          <%= auto_link(post.message) %>
+          <p class="msg-txt-open">
+            <%= auto_link(post.message) %>
+          </p>
           <br>
           <%= link_to post.permalink,
                       target: "_blank",

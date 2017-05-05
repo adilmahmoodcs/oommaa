@@ -1,4 +1,4 @@
-<table class="table table-hover table-bordered", id="fixed_head">
+<table class="table table-hover table-bordered fb-post-table", id="fixed_head">
   <thead>
     <tr>
       <th>Image</th>
@@ -36,7 +36,9 @@
                       target: "_blank" if post.image_url.present? %>
         </td>
         <td class="col-msg">
-          <%= auto_link(post.message) %>
+          <p class="msg-txt-close">
+            <%= auto_link(post.message) %>
+          </p>
           <br>
           <%= link_to post.permalink,
                       target: "_blank",
