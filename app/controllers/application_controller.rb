@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_orignal_user
-    if controller_name == "sessions" and action_name == "create" and current_user.admin?
+    if controller_name == "sessions" and action_name == "create" and current_user.present? and current_user.admin?
       session[:orignal_user_id] = current_user.id
     elsif action_name == "destroy"
       session.delete(:orignal_user_id)
