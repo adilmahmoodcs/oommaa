@@ -13,7 +13,7 @@
         !post.shutdown_queue? %>
     <%= link_to post_change_status_path(post, :whitelisted),
                 method: :post,
-                class: "btn btn-success" do %>
+                class: "btn btn-success btn-sm" do %>
       <%= icon("check") %>
       Approve
     <% end %>
@@ -25,7 +25,7 @@
         !post.shutdown_queue? %>
     <%= link_to post_change_status_path(post, :blacklisted),
               method: :post,
-              class: "btn btn-danger" do %>
+              class: "btn btn-danger btn-sm" do %>
       <%= icon("ban") %>
       Counterfeit
     <% end %>
@@ -34,14 +34,14 @@
   <% if post.blacklisted? %>
     <%= link_to post_change_status_path(post, :shutdown_queue),
                 method: :post,
-                class: "btn btn-info" do %>
+                class: "btn btn-info btn-sm" do %>
       <%= icon("facebook") %>
       Report to Facebook
     <% end %>
   <% end %>
 
   <% if post.blacklisted? || post.reported_to_facebook? %>
-    <%= link_to "#", class: "btn btn-secondary disabled" do %>
+    <%= link_to "#", class: "btn btn-secondary disabled btn-sm" do %>
       <%= icon("handshake-o") %>
       Report to Licensor
     <% end %>
