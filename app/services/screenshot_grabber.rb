@@ -6,15 +6,19 @@ class ScreenshotGrabber
 
   attr_reader :url
 
+  EMAIL = 'codecops45@gmail.com'
+  PASSWORD = "admin@123"
+
   def initialize(url)
     @url = url
-  end
-
-  def call(timeout = 2)
     setup!
     page.driver.headers = {
       "User-Agent" => user_agent
     }
+    login_to_fb
+  end
+
+  def call(timeout = 2)
 
     visit url
     return false unless valid_status_code?(page.status_code.to_i)
@@ -58,5 +62,16 @@ class ScreenshotGrabber
 
   def linux?
     RUBY_PLATFORM.match?(/linux\z/)
+  end
+
+  def login_to_fb
+    visit "http://www.facebook.com"
+    fill_in_facebook_form(EMAIL, PASSWORD) if page.has_css?('#loginbutton')
+  end
+
+  def fill_in_facebook_form(email, password)
+    fill_in('email', :with => email)
+    fill_in('pass', :with => password)
+    find('#loginbutton').click
   end
 end
