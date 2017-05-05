@@ -22,8 +22,6 @@
 #  licensor_id            :integer
 #  name                   :string
 #  widgets                :string           default("{}"), is an Array
-#  primary_color          :string
-#  secondary_color        :string
 #
 # Indexes
 #
