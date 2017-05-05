@@ -1,9 +1,17 @@
 <header class="site-header">
   <div class="container-fluid">
-    <%= link_to image_tag(logo_path, height: "40px", class: "d-inline-block"),
-                root_path,
-                class: "site-logo" %>
-
+    <div class="logo-holder">
+      <%= link_to image_tag(logo_path, height: "40px", class: "d-inline-block"),
+                  root_path,
+                  class: "site-logo" %>
+      <% if current_user.present? and current_user.confirmed_client?%>
+        <h4><%= current_user.licensor.name %></h4>
+        <div class="sub-logo">
+          <span>Powered By CounterFind</span>
+          <%= image_tag("counterfind-logo-sm.png") %>
+        </div>
+      <% end %>
+    </div>
     <button class="hamburger hamburger--htla">
       <span>toggle menu</span>
     </button>

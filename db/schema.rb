@@ -184,6 +184,8 @@ ActiveRecord::Schema.define(version: 20170505103833) do
     t.integer  "licensor_id"
     t.string   "name"
     t.string   "widgets",                default: [],              array: true
+    t.string   "primary_color"
+    t.string   "secondary_color"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["licensor_id"], name: "index_users_on_licensor_id", using: :btree
