@@ -7,7 +7,10 @@
 <% end %>
 
 <% if policy(post).public_send("change_status_#{@status}?") %>
-  <% if !post.whitelisted? && !post.reported_to_facebook? && !post.affiliate_greylisted? %>
+  <% if !post.whitelisted? and
+        !post.reported_to_facebook? and
+        !post.affiliate_greylisted? and
+        !post.shutdown_queue? %>
     <%= link_to post_change_status_path(post, :whitelisted),
                 method: :post,
                 class: "btn btn-success btn-sm" do %>
@@ -16,7 +19,10 @@
     <% end %>
   <% end %>
 
-  <% if !post.blacklisted? && !post.reported_to_facebook? && !post.affiliate_greylisted? %>
+  <% if !post.blacklisted? and
+        !post.reported_to_facebook? and
+        !post.affiliate_greylisted? and
+        !post.shutdown_queue? %>
     <%= link_to post_change_status_path(post, :blacklisted),
               method: :post,
               class: "btn btn-danger btn-sm" do %>
@@ -25,12 +31,22 @@
     <% end %>
   <% end %>
 
-  <% if post.blacklisted? %>
-    <%= link_to post_change_status_path(post, :reported_to_facebook),
+   <% if post.blacklisted? %>
+    <%= link_to post_change_status_path(post, :shutdown_queue),
                 method: :post,
-                class: "btn btn-info report-to-facebook-button btn-sm" do %>
+                data:{confirm: "Your report has been added to the queue for shutdown."},
+                class: "btn btn-info btn-sm" do %>
       <%= icon("facebook") %>
       Report to Facebook
+    <% end %>
+  <% end %>
+
+  <% if post.shutdown_queue? %>
+    <%= link_to post_change_status_path(post, :reported_to_facebook),
+                method: :post,
+                class: "btn btn-info btn-sm" do %>
+      <%= icon("facebook") %>
+      Reported to Facebook
     <% end %>
   <% end %>
 
