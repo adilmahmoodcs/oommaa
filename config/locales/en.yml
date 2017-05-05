@@ -41,6 +41,7 @@ en:
   likes: Number of Likes
   brand_page: Brand Pages
   affiliate_page: Affiliate Pages
+  getting_started: Getting Started
   activerecord:
     attributes:
       facebook_post:

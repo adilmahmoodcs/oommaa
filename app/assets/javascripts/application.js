@@ -24,11 +24,14 @@
 //= require select2
 //= require jquery.tablesorter
 //= require jquery.floatThead.min
+//= require jquery.infinitescroll
 //= require fixed_table_header
+//= require infinite_scroll
 //= require facebook_report
 //= require search_form
 //= require selects
 //= require forms
+//= require post_msg_expand
 //= require_self
 
 document.addEventListener("turbolinks:load", function() {
@@ -37,6 +40,8 @@ document.addEventListener("turbolinks:load", function() {
   Selects.init()
   Forms.init()
   FixedHeadTable.init()
+  InfiniteScroll.init()
+  OpenPostMsg.init()
 
   $(".panel").lobiPanel({
     sortable: true

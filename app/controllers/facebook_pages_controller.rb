@@ -35,7 +35,7 @@ class FacebookPagesController < ApplicationController
       valid_url_if_present = false
     end
 
-    AffiliatePageImporterJob.perform_async(params[:facebook_page][:name], params[:facebook_page][:url]) if valid_url_if_present
+    AffiliatePageImporterJob.perform_async(params[:facebook_page][:name], params[:facebook_page][:url], params[:facebook_page][:image_url]) if valid_url_if_present
     redirect_back(fallback_location: facebook_pages_path(status: 'affiliate_page'))
   end
 

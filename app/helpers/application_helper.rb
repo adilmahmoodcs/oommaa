@@ -48,4 +48,29 @@ module ApplicationHelper
   def filter_results data
     data.present? ? data.map {|data| [data[:text], data[:id]]} : []
   end
+
+  def primary_color
+    if current_user and current_user.primary_color.present?
+      current_user.primary_color
+    else
+      "#ffffff"
+    end
+  end
+
+  def secondary_color
+    if current_user and current_user.secondary_color.present?
+      current_user.secondary_color
+    else
+      "#797272"
+    end
+  end
+
+  def post_logo_url url
+    if Faraday.head(url).status == 200
+      url
+    else
+      'startui/file-img.png'
+    end
+  end
+
 end

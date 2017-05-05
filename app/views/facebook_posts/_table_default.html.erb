@@ -1,4 +1,4 @@
-<table class="table table-hover table-bordered", id="fixed_head">
+<table class="table table-hover table-bordered fb-post-table", id="fixed_head">
   <thead>
     <tr>
       <th>Image</th>
@@ -30,13 +30,15 @@
   <tbody>
     <% @posts.to_a.uniq.each do |post| %>
       <tr>
-        <td>
+        <td class="col-img">
           <%= link_to image_tag(post.image_url, width: "150px"),
                       post.permalink,
                       target: "_blank" if post.image_url.present? %>
         </td>
-        <td>
-          <%= auto_link(post.message) %>
+        <td class="col-msg">
+          <p class="msg-txt-close">
+            <%= auto_link(post.message) %>
+          </p>
           <br>
           <%= link_to post.permalink,
                       target: "_blank",
@@ -51,17 +53,17 @@
         <td>
           <%= post.licensor_names %>
         </td>
-        <td>
+        <td class="col-p-company">
           <%= post.all_domains.join(", ") %>
         </td>
         <td>
           <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
         </td>
-        <td>
-          <%= l(post.published_at, format: :compact) %>
+        <td class="col-date">
+          <%= l(post.published_at.to_date, format: :compact) %>
         </td>
         <% if @status == "blacklisted" %>
-          <td>
+          <td class="col-like">
             <%= form_for post do |f| %>
               <%= f.text_field :likes, class: "form-control form-control-sm quick-form" %>
               <%= f.button t(:update), class: "btn btn-primary-outline btn-sm" %>
@@ -69,8 +71,8 @@
           </td>
         <% end %>
         <% if @status.in? ["blacklisted", "whitelisted"] %>
-          <td>
-            <%= l(post.status_changed_at, format: :compact) if post.status_changed_at %>
+          <td class="col-date">
+            <%= l(post.status_changed_at.to_date, format: :compact) if post.status_changed_at %>
           </td>
           <td>
             <%= post.status_changed_by if post.status_changed_by %>

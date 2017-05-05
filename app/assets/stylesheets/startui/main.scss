@@ -10979,6 +10979,7 @@ body {
   *zoom: 1;
   color: #343434;
   line-height: 40px;
+  padding-right: 5px;
 }
 .site-header .site-logo:before,
 .site-header .site-logo:after {
@@ -11013,7 +11014,7 @@ body {
   float: right;
   height: 40px;
   padding: 5px 0;
-  width: 100%;
+  width: auto;
   margin-left: -210px;
 }
 .site-header .site-header-content .site-header-content-in {

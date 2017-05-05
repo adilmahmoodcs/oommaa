@@ -21,9 +21,7 @@
 
 <br>
 
-<%= paginate @domains %>
-
-<table class="table table-hover table-bordered">
+<table class="table table-hover table-bordered domains-table" id="scroll_table">
   <thead>
     <tr>
       <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
@@ -31,11 +29,11 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="scroll_table_body">
     <% @domains.each do |domain| %>
-      <tr>
+      <tr class="scroll_table_data">
         <td>
-          <%= domain.name %>
+          <%= link_to domain.name, "http://#{domain.name}", target: "_blank"  %>
         </td>
         <td class="text-right">
           <% unless domain.whitelisted? %>
@@ -45,7 +43,6 @@
               <%= icon("check") %>
               Move to Whitelist
             <% end %>
-            <br><br>
           <% end %>
 
           <% unless domain.blacklisted? %>
@@ -53,9 +50,8 @@
                         method: :post,
                         class: "btn btn-danger btn-sm" do %>
               <%= icon("ban") %>
-              move to Blacklist
+              Move to Blacklist
             <% end %>
-            <br><br>
           <% end %>
 
           <%= link_to domain,
@@ -71,4 +67,6 @@
   </tbody>
 </table>
 
-<%= paginate @domains %>
+<div class="hide">
+  <%= paginate @domains %>
+</div>

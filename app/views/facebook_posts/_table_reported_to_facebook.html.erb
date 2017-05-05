@@ -24,22 +24,24 @@
   <tbody>
     <% @posts.to_a.uniq.each do |post| %>
       <tr>
-        <td>
-          <%= l(post.published_at, format: :compact) %>
+        <td class = "col-date">
+          <%= l(post.published_at.try(:to_date), format: :compact) %>
         </td>
-        <td>
-          <%= l(post.blacklisted_at, format: :compact) if post.blacklisted_at %>
+        <td class = "col-date">
+          <%= l(post.blacklisted_at.try(:to_date), format: :compact) if post.blacklisted_at %>
         </td>
         <td>
           <%= post.blacklisted_by %>
         </td>
-        <td>
-          <%= link_to image_tag(post.image_url, width: "150px"),
+        <td class="col-img">
+          <%= link_to image_tag(post_logo_url(post.image_url), width: "150px"),
                       post.permalink,
                       target: "_blank" if post.image_url.present? %>
         </td>
-        <td>
-          <%= auto_link(post.message) %>
+        <td class="col-msg">
+          <p class="msg-txt-open">
+            <%= auto_link(post.message) %>
+          </p>
           <br>
           <%= link_to post.permalink,
                       target: "_blank",
@@ -54,21 +56,21 @@
         <td>
           <%= post.licensor_names %>
         </td>
-        <td>
+        <td class="col-p-company">
           <%= post.all_domains.join(", ") %>
         </td>
         <td>
           <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
         </td>
         <td>
-          <%= l(post.reported_to_facebook_at, format: :compact) if post.reported_to_facebook_at %>
+          <%= l(post.reported_to_facebook_at.try(:to_date), format: :compact) if post.reported_to_facebook_at %>
         </td>
         <td>
           <%= post.reported_to_facebook_by %>
         </td>
         <td>
           <% if post.shut_down_by_facebook_at %>
-            <%= l(post.shut_down_by_facebook_at, format: :compact)  %>
+            <%= l(post.shut_down_by_facebook_at.try(:to_date), format: :compact)  %>
           <% else %>
             Pending
           <% end %>

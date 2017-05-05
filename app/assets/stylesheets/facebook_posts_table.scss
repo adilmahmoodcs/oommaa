@@ -1,0 +1,26 @@
+.col-img{
+  img{
+    width: 100px;
+  }
+}
+.col-msg{
+  max-width: 150px !important;
+  overflow: hidden;
+  .msg-txt-close{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .msg-txt-open{
+    word-break: break-word;
+  }
+}
+.col-p-company{
+ min-width: 160px;
+}
+.col-date{
+  min-width: 120px;
+}
+.col-like{
+  min-width: 150px;
+}

@@ -29,7 +29,7 @@ class PostScreenshotsJob
       screenshot.image = File.open(tmp_file_name)
       screenshot.save!
 
-      # File.unlink(tmp_file_name)
+      File.unlink(tmp_file_name)
       logger.info "PostScreenshotsJob: saved #{screenshot.image.url}"
     rescue Capybara::Poltergeist::StatusFailError,
            Capybara::Poltergeist::BrowserError,
