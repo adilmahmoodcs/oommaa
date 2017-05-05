@@ -11,6 +11,7 @@ en:
   blacklisted: Blacklisted
   greylisted: Greylisted
   affiliate_greylisted: Affiliate Greylisted
+  shutdown_queue: Shutdown Queue
   user_activities: User Activities
   blacklist_export: Blacklist Export
   brand_name: Brand

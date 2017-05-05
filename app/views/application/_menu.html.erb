@@ -157,6 +157,15 @@
           <% end %>
         <% end %>
 
+        <% if policy(FacebookPost).index_shutdown_queue? %>
+          <%= link_to facebook_posts_path(q: { status_eq: :shutdown_queue }),
+                      class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'shutdown_queue'}" do %>
+            <%= icon("power-off", class: "fa-fw") %>
+            <%= "#{t(:shutdown_queue)} (#{policy_scope(FacebookPost).shutdown_queue.size})" %>
+          <% end %>
+        <% end %>
+
+
         <% if policy(FacebookPost).index_reported_to_facebook? %>
           <%= link_to facebook_posts_path(q: { status_eq: :reported_to_facebook }),
                       class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'reported_to_facebook'}" do %>

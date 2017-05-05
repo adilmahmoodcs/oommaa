@@ -28,6 +28,8 @@
 #  mass_job_status          :integer          default("0")
 #  greylisted_at            :datetime
 #  greylisted_by            :string
+#  shutdown_queue_at        :datetime
+#  shutdown_queue_by        :string
 #
 # Indexes
 #
@@ -42,12 +44,12 @@ class FacebookPost < ApplicationRecord
 
   enum status: [
     :not_suspect, :suspect, :whitelisted, :blacklisted, :reported_to_facebook,
-    :ignored, :greylisted, :affiliate_greylisted
+    :ignored, :greylisted, :affiliate_greylisted, :shutdown_queue
   ]
 
   enum mass_job_status: [
     :no_status, :to_be_not_suspect, :to_be_suspect, :to_be_whitelisted, :to_be_blacklisted, :to_be_reported_to_facebook,
-    :to_be_ignored, :to_be_greylisted, :to_be_affiliate_greylisted
+    :to_be_ignored, :to_be_greylisted, :to_be_affiliate_greylisted, :to_be_shutdown_queue
   ].freeze
 
   belongs_to :facebook_page

@@ -57,6 +57,10 @@ class FacebookPostPolicy < ApplicationPolicy
     user.admin?
   end
 
+  def index_shutdown_queue?
+    user.admin?
+  end
+
   ### change_status
 
   def change_status_not_suspect?
@@ -95,6 +99,10 @@ class FacebookPostPolicy < ApplicationPolicy
     user.admin?
   end
 
+  def change_status_shutdown_queue?
+    user.admin?
+  end
+
   ### mass_change_status
 
   def mass_change_status_not_suspect?
@@ -126,6 +134,10 @@ class FacebookPostPolicy < ApplicationPolicy
   end
 
   def mass_change_status_affiliate_greylisted?
+    user.admin?
+  end
+
+  def mass_change_status_shutdown_queue?
     user.admin?
   end
 end

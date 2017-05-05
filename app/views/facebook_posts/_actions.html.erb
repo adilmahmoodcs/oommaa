@@ -7,7 +7,10 @@
 <% end %>
 
 <% if policy(post).public_send("change_status_#{@status}?") %>
-  <% if !post.whitelisted? && !post.reported_to_facebook? && !post.affiliate_greylisted? %>
+  <% if !post.whitelisted? and
+        !post.reported_to_facebook? and
+        !post.affiliate_greylisted? and
+        !post.shutdown_queue? %>
     <%= link_to post_change_status_path(post, :whitelisted),
                 method: :post,
                 class: "btn btn-success" do %>
@@ -16,7 +19,10 @@
     <% end %>
   <% end %>
 
-  <% if !post.blacklisted? && !post.reported_to_facebook? && !post.affiliate_greylisted? %>
+  <% if !post.blacklisted? and
+        !post.reported_to_facebook? and
+        !post.affiliate_greylisted? and
+        !post.shutdown_queue? %>
     <%= link_to post_change_status_path(post, :blacklisted),
               method: :post,
               class: "btn btn-danger" do %>
@@ -26,9 +32,9 @@
   <% end %>
 
   <% if post.blacklisted? %>
-    <%= link_to post_change_status_path(post, :reported_to_facebook),
+    <%= link_to post_change_status_path(post, :shutdown_queue),
                 method: :post,
-                class: "btn btn-info report-to-facebook-button" do %>
+                class: "btn btn-info" do %>
       <%= icon("facebook") %>
       Report to Facebook
     <% end %>
