@@ -100,7 +100,8 @@ class FacebookPostPolicy < ApplicationPolicy
   end
 
   def change_status_shutdown_queue?
-    user.admin?
+    user.admin? ||
+    (user.confirmed_client? && user.licensor.in?(record.licensors))
   end
 
   ### mass_change_status
