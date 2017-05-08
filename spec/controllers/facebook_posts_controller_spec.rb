@@ -4,9 +4,9 @@ RSpec.describe FacebookPostsController, type: :controller do
   let(:page) { create(:facebook_page) }
   let(:valid_attributes) { FactoryGirl.attributes_for(:facebook_post, facebook_page_id: page.id) }
   let!(:statuses) { FacebookPost.statuses.keys }
-  let!(:reported_to_facebook) { create(:facebook_post, status: :reported_to_facebook) }
-  let!(:blacklisted) { create(:facebook_post, status: :blacklisted, blacklisted_at: Date.today,
-                              facebook_page_id: page.id, blacklisted_by: 'test@test.com') }
+  # let!(:reported_to_facebook) { create(:facebook_post, status: :reported_to_facebook) }
+  # let!(:blacklisted) { create(:facebook_post, status: :blacklisted, blacklisted_at: Date.today,
+  #                             facebook_page_id: page.id, blacklisted_by: 'test@test.com') }
 
   before(:each) do
     login_user
@@ -35,10 +35,17 @@ RSpec.describe FacebookPostsController, type: :controller do
       expect(ShutDownCheckerJob.jobs.size).to eq(1)
     end
 
+    it "calls ShutDownCheckerJob on blacklisted status change" do
+      facebook_post = FacebookPost.create! valid_attributes
+
+      post :change_status, params: { post_id: facebook_post.id, status: :blacklisted }
+      expect(ShutDownCheckerJob.jobs.size).to eq(1)
+    end
+
     it "does not call ShutDownCheckerJob on other status change" do
       facebook_post = FacebookPost.create! valid_attributes
 
-      (statuses - ["reported_to_facebook"]).each do |status|
+      (statuses - [ "blacklisted", "reported_to_facebook" ]).each do |status|
         post :change_status, params: { post_id: facebook_post.id, status: status }
         expect(ShutDownCheckerJob.jobs.size).to eq(0)
       end
