@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170505103833) do
+ActiveRecord::Schema.define(version: 20170509061906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20170505103833) do
     t.datetime "shut_down_by_facebook_at"
     t.integer  "cached_licensor_ids",      default: [],              array: true
     t.integer  "status",                   default: 0
+    t.string   "affiliate_name"
     t.index ["cached_licensor_ids"], name: "index_facebook_pages_on_cached_licensor_ids", using: :gin
     t.index ["old_brand_ids"], name: "index_facebook_pages_on_old_brand_ids", using: :gin
   end
