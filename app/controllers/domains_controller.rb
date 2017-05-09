@@ -45,7 +45,7 @@ class DomainsController < ApplicationController
   end
 
   def update
-    if @domain.update_email(params[:domain][:owner_email])
+    if params[:domain][:owner_email].present? and @domain.update_email(params[:domain][:owner_email])
       flash[:notice] = "Email successfully added for #{@domain.name}"
     else
       flash[:alert] = @domain.errors.full_messages.to_sentence
