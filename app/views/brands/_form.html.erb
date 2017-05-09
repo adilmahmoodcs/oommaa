@@ -1,4 +1,4 @@
-<%= form_for brand, html: { multipart: true } do |f| %>
+<%= nested_form_for brand, html: { multipart: true } do |f| %>
   <% if brand.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(brand.errors.count, "error") %> prohibited this brand from being saved:</h2>
@@ -41,22 +41,8 @@
     <%= f.label :logos %>
     <br>
     <div class="row">
-      <%= f.fields_for :logos do |img_form| %>
-        <div class="col-xl-3">
-          <%= image_tag img_form.object.image.url(:thumb), width: "100px" %>
-          <div class="form-check">
-            <%= img_form.label :_destroy do %>
-              <%= img_form.check_box :_destroy %>
-              <%= t(:delete) %>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-      <div class="col-xl-12">
-        <br>
-        <%= label_tag "multiple_logos[]", t(:add_new) %>
-        <%= file_field_tag "multiple_logos[]", multiple: true, class: "form-control" %>
-      </div>
+      <%= render "logos_form", {f: f, logo: :logos} %>
+      <%= f.link_to_add "Add Logo", :logos , class: "btn btn-sm btn-primary"%>
     </div>
   </div>
 

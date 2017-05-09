@@ -1,0 +1,37 @@
+<%= f.fields_for logo do |img_form| %>
+  <div class="row">
+    <div class="col-xl-12 divider">
+      <div class="col-xl-3">
+        <%= image_tag img_form.object.try(:image).url(:thumb), width: "100px" %>
+      </div>
+      <div class="col-xl-9 row">
+        <div class="col-xl-6">
+          <div class="form-group">
+            <%= f.label t(:trademark_registration_number) %>
+            <%= img_form.text_field :trademark_registration_number, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label t(:trademark_registration_location) %>
+            <%= img_form.text_field :trademark_registration_location, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-xl-6">
+          <div class="form-group">
+            <%= f.label t(:trademark_registration_url) %>
+            <%= img_form.text_field :trademark_registration_url, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label t(:trademark_registration_category) %>
+            <%= img_form.text_field :trademark_registration_category, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+      <% if img_form.object.new_record? %>
+        <%= img_form.file_field :image, class: "form-control" %>
+      <% end %>
+      <div class="form-check pull-right">
+        <%= img_form.link_to_remove "Delete" %>
+      </div>
+    </div>
+  </div>
+<% end %>
