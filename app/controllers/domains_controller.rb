@@ -1,5 +1,5 @@
 class DomainsController < ApplicationController
-  before_action :set_domain, only: [:destroy]
+  before_action :set_domain, only: [:destroy, :update]
 
   def index
     authorize Domain
@@ -28,7 +28,9 @@ class DomainsController < ApplicationController
       flash[:alert] = "Domain is already present with #{requested_domain.status} please request admin for this domain here:
                 #{view_context.link_to(" Request Domain", client_domain_request_user_path(current_user, domain_id: requested_domain.id)).html_safe}."
     elsif valid_domain_name
-      @domain = Domain.new(name: valid_domain_name, status: domain_params[:status])
+      @domain = Domain.new(name: valid_domain_name,
+                           status: domain_params[:status],
+                           owner_email: domain_params[:owner_email])
       if @domain.save
         @domain.create_activity(:create, owner: current_user, parameters: { name: @domain.name })
         @domain.update_posts!
@@ -38,6 +40,15 @@ class DomainsController < ApplicationController
       end
     else
       flash[:alert] = "Invalid Domain (#{domain_params[:name]})"
+    end
+    redirect_back(fallback_location: domains_path)
+  end
+
+  def update
+    if @domain.update_email(params[:domain][:owner_email])
+      flash[:notice] = "Email successfully added for #{@domain.name}"
+    else
+      flash[:alert] = @domain.errors.full_messages.to_sentence
     end
     redirect_back(fallback_location: domains_path)
   end
