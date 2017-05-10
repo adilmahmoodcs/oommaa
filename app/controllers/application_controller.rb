@@ -39,6 +39,11 @@ class ApplicationController < ActionController::Base
   def validate_switched_user
     if controller_name == 'switch_user' and action_name == "set_current_user" and
                                             current_user.admin? and
+                                            !session[:orignal_user_id].present?
+      session[:orignal_user_id] = current_user.id
+    elsif controller_name == 'switch_user' and action_name == "set_current_user" and
+                                            current_user.admin? and
+                                            session[:orignal_user_id].present? and
                                             current_user.id != session[:orignal_user_id]
       session.delete(:orignal_user_id)
       sign_out(current_user)

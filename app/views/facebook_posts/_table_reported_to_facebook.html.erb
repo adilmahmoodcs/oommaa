@@ -1,102 +1,105 @@
-<table class="table table-hover table-bordered", id="fixed_head">
-  <thead>
-    <tr>
-      <th><%= sort_link(@q, :published_at, t(:published_at)) %></th>
-      <th><%= sort_link(@q, :blacklisted_at, t(:blacklisted_at)) %></th>
-      <th><%= sort_link(@q, :blacklisted_by, t(:blacklisted_by)) %></th>
-      <th>Image</th>
-      <th>Message</th>
-      <th><%= sort_link(@q, :facebook_page_brands_name, t(:brand_name)) %></th>
-      <th><%= sort_link(@q, :facebook_page_brands_licensor_name, t(:licensor_name)) %></th>
-      <th><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></th>
-      <th><%= sort_link(@q, :facebook_page_name, t(:facebook_page_name)) %></th>
-      <th><%= sort_link(@q, :reported_to_facebook_at, t(:reported_to_facebook_at)) %></th>
-      <th><%= sort_link(@q, :reported_to_facebook_by, t(:reported_to_facebook_by)) %></th>
-      <th><%= sort_link(@q, :shut_down_by_facebook_at, t(:shut_down_by_facebook_at)) %></th>
-      <th><%= t(:facebook_report_number) %></th>
-      <th><%= t(:link_to_product) %></th>
-      <th><%= t(:link_to_ad_screenshot) %></th>
-      <th><%= t(:link_to_product_screenshot) %></th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.to_a.uniq.each do |post| %>
+<div class="container-table">
+  <table class="table table-hover table-bordered fb-post-table", id="fixed_head" style="width: 100%">
+    <thead>
       <tr>
-        <td class = "col-date">
-          <%= l(post.published_at.try(:to_date), format: :compact) %>
-        </td>
-        <td class = "col-date">
-          <%= l(post.blacklisted_at.try(:to_date), format: :compact) if post.blacklisted_at %>
-        </td>
-        <td>
-          <%= post.blacklisted_by %>
-        </td>
-        <td class="col-img">
-          <%= link_to image_tag(post_logo_url(post.image_url), width: "150px"),
-                      post.permalink,
-                      target: "_blank" if post.image_url.present? %>
-        </td>
-        <td class="col-msg">
-          <p class="msg-txt-open">
-            <%= auto_link(post.message) %>
-          </p>
-          <br>
-          <%= link_to post.permalink,
-                      target: "_blank",
-                      class: "btn btn-sm btn-outline-primary go-to-post" do %>
-            <%= icon("external-link") %>
-            &nbsp;Go to ad
-          <% end %>
-        </td>
-        <td>
-          <%= post.get_brand_names %>
-        </td>
-        <td>
-          <%= post.licensor_names %>
-        </td>
-        <td class="col-p-company">
-          <%= post.all_domains.join(", ") %>
-        </td>
-        <td>
-          <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
-        </td>
-        <td>
-          <%= l(post.reported_to_facebook_at.try(:to_date), format: :compact) if post.reported_to_facebook_at %>
-        </td>
-        <td>
-          <%= post.reported_to_facebook_by %>
-        </td>
-        <td>
-          <% if post.shut_down_by_facebook_at %>
-            <%= l(post.shut_down_by_facebook_at.try(:to_date), format: :compact)  %>
-          <% else %>
-            Pending
-          <% end %>
-        </td>
-        <td>
-          <%= form_for post do |f| %>
-            <%= f.text_field :facebook_report_number, class: "form-control form-control-sm quick-form" %>
-            <%= f.button t(:update), class: "btn btn-primary-outline btn-sm" %>
-          <% end %>
-        </td>
-        <td>
-          <% if link = post.all_links.last %>
-            <%= link_to "Link", link, target: "_blank" %>
-          <% end %>
-        </td>
-        <td>
-          <%= ad_screenshot_links(post) %>
-        </td>
-        <td>
-          <%= product_screenshot_links(post) %>
-        </td>
-
-        <td class="index-actions">
-          <%= render 'actions', post: post %>
-        </td>
+        <th><%= sort_link(@q, :published_at, t(:published_at)) %></th>
+        <th><%= sort_link(@q, :blacklisted_at, t(:blacklisted_at)) %></th>
+        <th><%= sort_link(@q, :blacklisted_by, t(:blacklisted_by)) %></th>
+        <th>Image</th>
+        <th>Message</th>
+        <th><%= sort_link(@q, :facebook_page_brands_name, t(:brand_name)) %></th>
+        <th><%= sort_link(@q, :facebook_page_brands_licensor_name, t(:licensor_name)) %></th>
+        <th><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></th>
+        <th><%= sort_link(@q, :facebook_page_name, t(:facebook_page_name)) %></th>
+        <th><%= sort_link(@q, :reported_to_facebook_at, t(:reported_to_facebook_at)) %></th>
+        <th><%= sort_link(@q, :reported_to_facebook_by, t(:reported_to_facebook_by)) %></th>
+        <th><%= sort_link(@q, :shut_down_by_facebook_at, t(:shut_down_by_facebook_at)) %></th>
+        <th><%= t(:facebook_report_number) %></th>
+        <th><%= t(:link_to_product) %></th>
+        <th><%= t(:link_to_ad_screenshot) %></th>
+        <th><%= t(:link_to_product_screenshot) %></th>
+        <th>Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @posts.to_a.uniq.each do |post| %>
+        <tr>
+          <td class = "col-date">
+            <%= l(post.published_at.try(:to_date), format: :compact) %>
+          </td>
+          <td class = "col-date">
+            <%= l(post.blacklisted_at.try(:to_date), format: :compact) if post.blacklisted_at %>
+          </td>
+          <td>
+            <%= post.blacklisted_by %>
+          </td>
+          <td class="col-img">
+            <%= link_to image_tag(post_logo_url(post.image_url), width: "150px"),
+                        post.permalink,
+                        target: "_blank" if post.image_url.present? %>
+          </td>
+          <td class="col-msg">
+            <p class="msg-txt-close">
+              <%= auto_link(post.message) %>
+            </p>
+            <br>
+            <%= link_to post.permalink,
+                        target: "_blank",
+                        class: "btn btn-sm btn-outline-primary go-to-post" do %>
+              <%= icon("external-link") %>
+              &nbsp;Go to ad
+            <% end %>
+          </td>
+          <td>
+            <%= post.get_brand_names %>
+          </td>
+          <td>
+            <%= post.licensor_names %>
+          </td>
+          <td class="col-p-company">
+            <%= post.all_domains.join(", ") %>
+          </td>
+          <td>
+            <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
+          </td>
+          <td>
+            <%= l(post.reported_to_facebook_at.try(:to_date), format: :compact) if post.reported_to_facebook_at %>
+          </td>
+          <td>
+            <%= post.reported_to_facebook_by %>
+          </td>
+          <td>
+            <% if post.shut_down_by_facebook_at %>
+              <%= l(post.shut_down_by_facebook_at.try(:to_date), format: :compact)  %>
+            <% else %>
+              Pending
+            <% end %>
+          </td>
+          <td>
+            <%= form_for post do |f| %>
+              <%= f.text_field :facebook_report_number, class: "form-control form-control-sm quick-form" %>
+              <%= f.button t(:update), class: "btn btn-primary-outline btn-sm" %>
+            <% end %>
+          </td>
+          <td>
+            <% if link = post.all_links.last %>
+              <%= link_to "Link", link, target: "_blank" %>
+            <% end %>
+          </td>
+          <td>
+            <%= ad_screenshot_links(post) %>
+          </td>
+          <td>
+            <%= product_screenshot_links(post) %>
+          </td>
+
+          <td class="index-actions">
+            <%= render 'actions', post: post %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
