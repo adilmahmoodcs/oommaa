@@ -15,32 +15,20 @@
     <div class="row">
       <div class="col-md-6">
         <% if @status == 'affiliate_page'%>
-          <%= form_for FacebookPage.new, html: { class: "form-inline" } do |f| %>
-            <%= f.hidden_field :status, value: @status if @status %>
-            <%= f.text_field :name,
-                             class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
-                             placeholder: "Name", required: true %>
-            <%= f.text_field :url,
-                             class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
-                             placeholder: "URL(optional)" %>
-            <%= f.text_field :image_url,
-                             class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
-                             placeholder: "Logo URL(optional)" %>
-            <%= f.button class: "btn btn-primary" do %>
-              <%= icon("plus") %>
-              Add New
-            <% end %>
+          <%= link_to url_for(action: 'new'), class: "btn btn-primary pull-left" do %>
+            <%= icon("plus") %>
+            Add New
           <% end %>
         <% end %>
       </div>
 
       <div class="col-md-6 text-right">
         <%= search_form_for @q, class: "form-inline" do |f| %>
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group">
             <div class="input-group-addon"><%= icon("search") %></div>
             <%= f.hidden_field :status, value: @status if @status %>
             <%= f.text_field :name_cont,
-                             class: "form-control mb-2 mr-sm-2 mb-sm-0",
+                             class: "form-control",
                              placeholder: "Search term" %>
           </div>
           <%= button_tag class: "btn btn-primary" do %>
