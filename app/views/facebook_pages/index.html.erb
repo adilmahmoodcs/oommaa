@@ -91,8 +91,30 @@
             <% end %>
           </td>
         <% else %>
-          <td>
-            <%= page.affiliate_name %>
+          <td class="affiliate_page_name">
+            <span> <%= page.affiliate_name %> </span>
+            <% if policy(FacebookPage).update? %>
+              <%= form_for page, html:{class: "#{!page.affiliate_name ? 'show' : 'hide'}"} do |p| %>
+                <div class="row">
+                  <div class="col-sm-8">
+                    <%= p.text_field :affiliate_name, required: true,
+                             class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
+                             placeholder: "Affiliate Name" %>
+                  </div>
+                  <div class="col-sm-4">
+                    <%= p.button class: "btn btn-primary btn-sm" do %>
+                      <%= icon("plus") %>
+                      Add Affiliate Name
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+              <%= button_tag class: "btn btn-primary btn-sm pull-right update_name_btn #{page.affiliate_name ? 'show' : 'hide' }" do %>
+                <%= icon("edit") %>
+                Edit Name
+              <% end %>
+              &nbsp;
+            <% end %>
           </td>
         <% end %>
         <td class="text-right">

@@ -64,4 +64,8 @@ class FacebookPage < ApplicationRecord
   def update_cached_licensor_ids
     self.cached_licensor_ids = brands.pluck(:licensor_id).compact.uniq
   end
+
+  def update_affiliate_name affiliate_name
+    update(affiliate_name: affiliate_name)
+  end
 end

@@ -1,4 +1,5 @@
 class FacebookPagesController < ApplicationController
+  before_action :set_page, only: [:update]
   def index
     authorize FacebookPage
     @status = if params[:q].present? and params[:q][:status].present?
@@ -47,6 +48,16 @@ class FacebookPagesController < ApplicationController
     redirect_to facebook_pages_path(status: 'affiliate_page')
   end
 
+  def update
+    authorize FacebookPage
+    if @page.update_affiliate_name params[:facebook_page][:affiliate_name]
+      flash[:notice] = "Affiliate Name was successfully updated"
+    else
+      flash[:alert] = "There was errors during update #{@page.errors.full_messages.to_sentence}"
+    end
+    redirect_to facebook_pages_path(status: 'affiliate_page')
+  end
+
   def destroy
     authorize FacebookPage
     facebook_page = FacebookPage.find(params[:id])
@@ -65,4 +76,10 @@ class FacebookPagesController < ApplicationController
     data = DefaultSearchFilter.new(term: params[:term], page: params[:page]).call('FacebookPage',current_user)
     render json: { results: data[:results], size: data[:size] }
   end
+
+  private
+
+    def set_page
+      @page = FacebookPage.find(params[:id])
+    end
 end
