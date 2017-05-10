@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   resources :keywords
   resources :brands do
+    resources :brand_logos, only: [:show]
     collection do
       get :search
     end

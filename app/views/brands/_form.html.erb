@@ -11,30 +11,33 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
-
-  <% if current_user.admin? %>
-    <div class="form-group">
-      <%= f.label :licensor_id %>
-      <%= f.collection_select :licensor_id,
-                              Licensor.order(:name),
-                              :id,
-                              :name,
-                              { include_blank: true },
-                              class: "form-control select2" %>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
     </div>
-  <% end %>
+
+    <% if current_user.admin? %>
+      <div class="form-group col-sm-6 pull-right">
+        <%= f.label :licensor_id %>
+        <%= f.collection_select :licensor_id,
+                                Licensor.order(:name),
+                                :id,
+                                :name,
+                                { include_blank: true },
+                                class: "form-control select2" %>
+      </div>
+    <% end %>
+
+  </div>
 
   <div class="form-group">
     <%= f.label :nicknames %>
     <% f.object.nicknames.each do |nickname| %>
       <%= text_field_tag "brand[nicknames][]", nickname, class: "form-control" %>
     <% end %>
-    <%= text_field_tag "brand[nicknames][]", nil, class: "form-control multiple-field" %>
-    <%= link_to "Add another nickname", "#", class: "btn btn-sm btn-secondary add-another-field" %>
+    <%= text_field_tag "brand[nicknames][]", nil, class: "form-control multiple-field nicknames_field" %>
+    <%= link_to "Add another nickname", "#", class: "btn btn-sm btn-secondary add-another-field pull-right" %>
   </div>
 
   <div class="form-group">
@@ -42,11 +45,11 @@
     <br>
     <div class="row">
       <%= render "logos_form", {f: f, logo: :logos} %>
-      <%= f.link_to_add "Add Logo", :logos , class: "btn btn-sm btn-primary"%>
     </div>
   </div>
 
   <div class="actions">
-    <%= f.submit class: "btn btn-primary" %>
+    <%= f.link_to_add "Add Logo", :logos , class: "btn btn-sm btn-primary pull-right"%>
+    <%= f.submit class: "btn btn-primary btn-sm " %>
   </div>
 <% end %>
