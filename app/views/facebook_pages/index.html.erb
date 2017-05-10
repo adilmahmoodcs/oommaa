@@ -52,13 +52,15 @@
   <thead>
     <tr>
       <th>Image</th>
-      <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
-      <th><%= t(:ads) %></th>
+      <th><%= sort_link(@q, :name_case_insensitive, "Page Name") %></th>
       <% unless @status == "affiliate_page" %>
+        <th><%= t(:ads) %></th>
         <th>Brands</th>
         <th><%= sort_link(@q, :licensor_id, "Licensor") %></th>
-      <%end%>
-      <th><%= sort_link(@q, :shut_down_by_facebook_at, "Shut down by Facebook at") %></th>
+        <th><%= sort_link(@q, :shut_down_by_facebook_at, "Shut down by Facebook at") %></th>
+      <% else %>
+        <th><%= sort_link(@q, :affiliate_name, "Affiliate Name")%></th>
+      <% end %>
       <th>Actions</th>
     </tr>
   </thead>
@@ -73,22 +75,26 @@
         <td>
           <%= link_to page.name, page.url, target: "_blank" %>
         </td>
-        <td>
-          <%= posts_count %>
-        </td>
         <% unless @status == "affiliate_page" %>
+          <td>
+            <%= posts_count %>
+          </td>
           <td>
             <%= page.brand_names %>
           </td>
           <td>
             <%= page.licensor_names %>
           </td>
-        <%end%>
-        <td>
-          <% if page.shut_down_by_facebook_at %>
-            <%= l(page.shut_down_by_facebook_at, format: :compact) %>
-          <% end %>
-        </td>
+          <td>
+            <% if page.shut_down_by_facebook_at %>
+              <%= l(page.shut_down_by_facebook_at, format: :compact) %>
+            <% end %>
+          </td>
+        <% else %>
+          <td>
+            <%= page.affiliate_name %>
+          </td>
+        <% end %>
         <td class="text-right">
           <%= link_to page,
                       method: :delete,
