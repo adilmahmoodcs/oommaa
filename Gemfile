@@ -72,4 +72,5 @@ group :development do
   gem "capistrano-rails-console"
   gem "capistrano-sidekiq", github: "seuros/capistrano-sidekiq"
   gem "letter_opener"
+  gem "better_errors"
 end
