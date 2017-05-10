@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :devise_permitted_parameters, if: :devise_controller?
   before_action :set_orignal_user, if: :devise_controller?
+  before_action :check_user_email_verification
   # pundit checks
   after_action :verify_authorized, unless: :skip_autharization
   after_action :verify_policy_scoped, only: :index, unless: :devise_controller?
@@ -36,9 +37,20 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_user_email_verification
+    if controller_name == 'switch_user' and action_name == "set_current_user" and params[:scope_identifier].present?
+      user = User.find(params[:scope_identifier].split('_').try(:last).try(:to_i))
+      unless user.confirmed?
+        flash[:alert] = "User has not confirmed the email yet"
+        redirect_back(fallback_location: root_path) and return
+      end
+    end
+  end
+
   def validate_switched_user
     if controller_name == 'switch_user' and action_name == "set_current_user" and
                                             current_user.admin? and
+                                            session[:orignal_user_id].present? and
                                             current_user.id != session[:orignal_user_id]
       session.delete(:orignal_user_id)
       sign_out(current_user)

@@ -43,5 +43,10 @@ RSpec.describe Domain, type: :model do
       whitelisted_domain.update_posts!
       expect(PostStatusJob.jobs.first["args"]).to eq ([blacklisted_domain_post.id])
     end
+
+    it "update email for blacklisted domains" do
+      blacklisted_domain.update_email "test@test.com"
+      expect(blacklisted_domain.owner_email).to eq("test@test.com")
+    end
   end
 end

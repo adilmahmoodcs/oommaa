@@ -1,8 +1,19 @@
-#infscr-loading
-{
-  text-align: center;
-  width: 148%;
+#infscr-loading {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    bottom: 0;
   img{
     width: 50px;
+    margin: 0 auto;
   }
+}
+.container-table {
+  width: 100%;
+  overflow: scroll;
+  max-height: 1000px;
+}
+#scroll_table{
+  margin-bottom: 60px;
 }

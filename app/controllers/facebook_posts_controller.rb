@@ -128,10 +128,6 @@ class FacebookPostsController < ApplicationController
     )
   end
 
-  def after_reported_to_facebook
-    ShutDownCheckerJob.perform_async(@post.id)
-  end
-
   def after_blacklisted
     Domain.blacklist_new_domains!(@post.all_domains)
     PostScreenshotsJob.perform_async(@post.id)

@@ -64,6 +64,14 @@ RSpec.describe DomainsController, type: :controller do
     end
   end
 
+  describe "POST #update" do
+    it "should update the owner's email for the domain" do
+      domain = Domain.create! valid_attributes
+      post :update, params: {id: domain.id, :domain => {owner_email: "test@test.com"}}
+      expect(assigns(:domain).owner_email).to eq("test@test.com")
+    end
+  end
+
   describe "DELETE #destroy" do
     it "destroys the requested domain" do
       domain = Domain.create! valid_attributes
