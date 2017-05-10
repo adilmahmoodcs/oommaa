@@ -111,4 +111,36 @@ RSpec.describe FacebookPost, type: :model do
       expect(build(:facebook_post, status: :reported_to_facebook).final_status?).to be(true)
     end
   end
+
+  describe "call backs should work for blacklisted and reported_to_facebook" do
+    it "ShutdownCheckerJob Should be triggered if status changed to blacklisted" do
+      post.status = "blacklisted"
+      post.save
+      expect(ShutDownCheckerJob.jobs.size).to eq(1)
+    end
+
+    it "ShutdownCheckerJob Should be triggered if status changed to reported_to_facebook" do
+      post.status = "reported_to_facebook"
+      post.save
+      expect(ShutDownCheckerJob.jobs.size).to eq(1)
+    end
+
+    it "ShutdownCheckerJob Should not be triggered if status changed to whitelisted" do
+      post.status = "whitelisted"
+      post.save
+      expect(ShutDownCheckerJob.jobs.size).to eq(0)
+    end
+
+    it "ShutdownCheckerJob Should not be triggered if status changed to suspect" do
+      post.status = "suspect"
+      post.save
+      expect(ShutDownCheckerJob.jobs.size).to eq(0)
+    end
+
+    it "ShutdownCheckerJob Should not be triggered if status changed to not_suspect" do
+      post.status = "not_suspect"
+      post.save
+      expect(ShutDownCheckerJob.jobs.size).to eq(0)
+    end
+  end
 end
