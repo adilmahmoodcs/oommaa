@@ -47,3 +47,29 @@
     }
   }
 }
+
+.brand-logo-holder{
+  text-align: center;
+}
+.user-details{
+  padding: 0;
+  margin: 25px 0 0;
+  list-style: none;
+  .holder{
+      display: inline-block;
+      border: 1px solid #eee;
+      padding: 6px;
+      margin-bottom: 10px;
+      width: 100%;
+    h4{
+      font-size: 18px;
+      color: #0e2240;
+      margin:0 0 3px;
+    }
+    h5{
+    font-size: 16px;
+    color: #5f5c5c;
+    margin:0 0 3px;
+    }
+  }
+}

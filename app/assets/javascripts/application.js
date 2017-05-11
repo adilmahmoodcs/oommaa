@@ -32,6 +32,7 @@
 //= require selects
 //= require forms
 //= require post_msg_expand
+//= require jquery_nested_form
 //= require_self
 
 document.addEventListener("turbolinks:load", function() {
