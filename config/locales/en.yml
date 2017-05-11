@@ -103,3 +103,11 @@ en:
     reported_to_facebook_ads: Reported to Facebook Ads
     revenues_saved_to_date: Licensor Revenue Saved
     shutdowns_to_date: Shutdowns to Date
+  ckeditor:
+    page_title: 'Files Manager'
+    confirm_delete: 'Delete file?'
+    buttons:
+      cancel: 'Cancel'
+      upload: 'Upload'
+      delete: 'Delete'
+      next: 'Next'
