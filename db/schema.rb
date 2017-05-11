@@ -66,10 +66,11 @@ ActiveRecord::Schema.define(version: 20170509103159) do
   end
 
   create_table "domains", force: :cascade do |t|
-    t.string   "name",                   null: false
-    t.integer  "status",     default: 0, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",                    null: false
+    t.integer  "status",      default: 0, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "owner_email"
   end
 
   create_table "facebook_page_brands", force: :cascade do |t|
@@ -92,6 +93,7 @@ ActiveRecord::Schema.define(version: 20170509103159) do
     t.datetime "shut_down_by_facebook_at"
     t.integer  "cached_licensor_ids",      default: [],              array: true
     t.integer  "status",                   default: 0
+    t.string   "affiliate_name"
     t.index ["cached_licensor_ids"], name: "index_facebook_pages_on_cached_licensor_ids", using: :gin
     t.index ["old_brand_ids"], name: "index_facebook_pages_on_old_brand_ids", using: :gin
   end

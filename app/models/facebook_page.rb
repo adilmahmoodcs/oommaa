@@ -13,6 +13,7 @@
 #  shut_down_by_facebook_at :datetime
 #  cached_licensor_ids      :integer          default("{}"), is an Array
 #  status                   :integer          default("0")
+#  affiliate_name           :string
 #
 # Indexes
 #
@@ -62,5 +63,9 @@ class FacebookPage < ApplicationRecord
 
   def update_cached_licensor_ids
     self.cached_licensor_ids = brands.pluck(:licensor_id).compact.uniq
+  end
+
+  def update_affiliate_name affiliate_name
+    update(affiliate_name: affiliate_name)
   end
 end

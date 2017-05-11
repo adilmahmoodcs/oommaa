@@ -11,6 +11,11 @@
       <%= f.text_field :name,
                        class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
                        placeholder: "Name" %>
+      <% if @status == "blacklisted" %>
+        <%= f.email_field :owner_email,
+                         class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
+                         placeholder: "Owner's Email" %>
+      <% end %>
       <%= f.button class: "btn btn-primary" do %>
         <%= icon("plus") %>
         Add New
@@ -25,6 +30,9 @@
   <thead>
     <tr>
       <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
+      <% if @status == "blacklisted"%>
+        <th><%= sort_link(@q, :owner_email, "Owner's Email") %></th>
+      <% end %>
       <th>Actions</th>
     </tr>
   </thead>
@@ -35,6 +43,26 @@
         <td>
           <%= link_to domain.name, "http://#{domain.name}", target: "_blank"  %>
         </td>
+        <% if @status == "blacklisted"%>
+          <td>
+            <%= domain.owner_email %>
+            <% unless domain.owner_email %>
+              <%= form_for domain do |d| %>
+                <div class="col-sm-8">
+                  <%= d.email_field :owner_email, required: true,
+                           class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
+                           placeholder: "Owner's Email" %>
+                </div>
+                <div class="col-sm-4">
+                  <%= d.button class: "btn btn-primary btn-sm" do %>
+                    <%= icon("plus") %>
+                    Add Email
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          </td>
+        <% end %>
         <td class="text-right">
           <% unless domain.whitelisted? %>
             <%= link_to domain_change_status_path(domain, :whitelisted),
