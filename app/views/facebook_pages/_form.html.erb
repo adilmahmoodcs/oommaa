@@ -1,0 +1,40 @@
+<%= form_for page do |f| %>
+  <%= f.hidden_field :status, value: "affiliate_page" %>
+  <div class="row col-sm-12">
+    <div class="form-group col-sm-6 p0">
+      <%= f.label :affiliate_name %>
+      <%= f.text_field :affiliate_name,
+                       class: "form-control",
+                       placeholder: "Affiliate Name" %>
+    </div>
+
+    <div class="form-group col-sm-6 m0 pl10 pr0">
+      <%= f.label "Page Name" %>
+      <%= f.text_field :name,
+                       class: "form-control",
+                       placeholder: "Page Name", required: true %>
+    </div>
+  </div>
+
+  <div class="row col-sm-12">
+    <div class="form-group">
+      <%= f.label :url %>
+      <%= f.text_field :url,
+                       class: "form-control",
+                       placeholder: "URL(optional)" %>
+    </div>
+  </div>
+
+  <div class="row col-sm-12">
+    <div class="form-group">
+      <%= f.label "Page Logo Url" %>
+      <%= f.text_field :image_url,
+                       class: "form-control",
+                       placeholder: "Logo URL(optional)" %>
+    </div>
+  </div>
+  <%= f.button class: "btn btn-primary" do %>
+    <%= icon("plus") %>
+    Add New
+  <% end %>
+<% end %>

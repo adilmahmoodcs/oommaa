@@ -62,6 +62,9 @@ class FacebookPost < ApplicationRecord
 
   validates :facebook_id, :message, :facebook_page, presence: true
   validates :facebook_id, uniqueness: true
+  after_save :check_facebook_shutdown_status, if: Proc.new {|p| p.status_changed? and (
+                                                   p.status == "blacklisted" or
+                                                   p.status == "reported_to_facebook")}
 
   delegate :brands, :brand_ids, :brand_ids=, :brand_names, :licensors, :licensor_names,
     to: :facebook_page
@@ -139,6 +142,10 @@ class FacebookPost < ApplicationRecord
     else
       brand_names
     end
+  end
+
+  def check_facebook_shutdown_status
+    ShutDownCheckerJob.perform_async(id)
   end
 
   private
