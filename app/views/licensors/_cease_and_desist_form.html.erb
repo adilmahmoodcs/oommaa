@@ -37,10 +37,19 @@
         <%= l.label :Subject_line %>
         <%= l.text_field :cease_and_desist_subject, required: true, class: "form-control select2"  %>
       </div>
+      <div class= "note form-group">
+        <span>Use these tags to fill Brand's Logo related information in the below template</span>
+        <br></br>
+        <ul>
+          <li>[TRADEMARK_REGISTRATION_NUMBER]</li>
+          <li>[TRADEMARK_REGISTRATION_LOCATION]</li>
+          <li>[TRADEMARK_REGISTRATION_CATEGORY]</li>
+          <li>[TRADEMARK_REGISTRATION_URL]</li>
+        </ul>
+        <br>
+        <span>* Only these fields will be used for automated population of data.</span>
+      </div>
       <div class="form-group">
-        <p class= "note">
-          give assign values here in [CAPITAL LETTERS] .
-        </p>
         <%= l.label :cease_and_desist_template %>
         <%= l.cktext_area :cease_and_desist_template, ckeditor: {toolbar: 'mini' }, required: true  %>
       </div>
