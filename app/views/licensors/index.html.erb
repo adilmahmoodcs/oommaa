@@ -37,6 +37,11 @@
             <%= icon("pencil") %>
             Edit
           <% end %>
+          <%= link_to cease_and_desist_email_licensor_path(licensor),
+                      class: "btn btn-success btn-sm" do %>
+            <%= icon("send") %>
+            Cease Email
+          <% end %>
           <%= link_to licensor,
                       method: :delete,
                       data: { confirm: 'Are you sure?' },

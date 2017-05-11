@@ -8,4 +8,12 @@ class LicensorPolicy < ApplicationPolicy
   def search?
     user.admin?
   end
+
+  def cease_and_desist_email?
+    user.admin?
+  end
+
+  def send_cease_and_desist_email?
+    user.admin?
+  end
 end

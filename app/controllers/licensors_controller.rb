@@ -1,5 +1,7 @@
 class LicensorsController < ApplicationController
-  before_action :set_licensor, only: [:show, :edit, :update, :destroy]
+  before_action :set_licensor, only: [:show, :edit, :update, :destroy,
+                                      :cease_and_desist_email,
+                                      :send_cease_and_desist_email, :get_licensors_brands_info]
 
   def index
     authorize Licensor
@@ -53,6 +55,30 @@ class LicensorsController < ApplicationController
     render json: { results: data[:results], size: data[:size] }
   end
 
+  def cease_and_desist_email
+    authorize @licensor
+    @brands = @licensor.brands
+    @domains = policy_scope(Domain).blacklisted.where.not("owner_email = ?", 'NULL')
+  end
+
+  def get_licensors_brands_info
+    @brand = @licensor.try(:brands).find(params[:licensor][:brands])
+    @logos = @brand.logos if @brand
+
+    respond_to do |format|
+      format.js { }
+    end
+  end
+
+  def send_cease_and_desist_email
+    authorize @licensor
+    @licensor.update(licensor_params)
+    if params[:commit] == 'send_email'
+    elsif params[:commit] == 'save'
+    end
+
+  end
+
   private
 
   def set_licensor
@@ -60,6 +86,6 @@ class LicensorsController < ApplicationController
   end
 
   def licensor_params
-    params.require(:licensor).permit(:name, :main_contact, :logo)
+    params.require(:licensor).permit(:name, :main_contact, :logo, :cease_and_desist_template, :cease_and_desist_subject)
   end
 end

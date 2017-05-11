@@ -1,11 +1,17 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
   resources :dashboard, only: :index
   resources :licensors do
     collection do
       get :search
+    end
+    member do
+      get :cease_and_desist_email
+      get :get_licensors_brands_info
+      post :send_cease_and_desist_email
     end
   end
   resources :keywords

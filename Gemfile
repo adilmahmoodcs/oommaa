@@ -43,6 +43,7 @@ gem "newrelic_rpm"
 gem "typhoeus", "~> 1.1.2"
 gem "switch_user"
 gem "nested_form"
+gem 'ckeditor'
 
 group :development, :test do
   gem "byebug", platform: :mri
