@@ -1,4 +1,5 @@
 class FacebookPagesController < ApplicationController
+  before_action :set_page, only: [:update]
   def index
     authorize FacebookPage
     @status = if params[:q].present? and params[:q][:status].present?
@@ -20,6 +21,11 @@ class FacebookPagesController < ApplicationController
                          page(params[:page])
   end
 
+  def new
+    authorize FacebookPage
+    @facebook_page = FacebookPage.new
+  end
+
   def create
     authorize FacebookPage
     valid_url_if_present = true
@@ -35,8 +41,21 @@ class FacebookPagesController < ApplicationController
       valid_url_if_present = false
     end
 
-    AffiliatePageImporterJob.perform_async(params[:facebook_page][:name], params[:facebook_page][:url], params[:facebook_page][:image_url]) if valid_url_if_present
-    redirect_back(fallback_location: facebook_pages_path(status: 'affiliate_page'))
+    AffiliatePageImporterJob.perform_async(params[:facebook_page][:name],
+                                           params[:facebook_page][:url],
+                                           params[:facebook_page][:image_url],
+                                           params[:facebook_page][:affiliate_name]) if valid_url_if_present
+    redirect_to facebook_pages_path(status: 'affiliate_page')
+  end
+
+  def update
+    authorize FacebookPage
+    if @page.update_affiliate_name params[:facebook_page][:affiliate_name]
+      flash[:notice] = "Affiliate Name was successfully updated"
+    else
+      flash[:alert] = "There was errors during update #{@page.errors.full_messages.to_sentence}"
+    end
+    redirect_to facebook_pages_path(status: 'affiliate_page')
   end
 
   def destroy
@@ -57,4 +76,10 @@ class FacebookPagesController < ApplicationController
     data = DefaultSearchFilter.new(term: params[:term], page: params[:page]).call('FacebookPage',current_user)
     render json: { results: data[:results], size: data[:size] }
   end
+
+  private
+
+    def set_page
+      @page = FacebookPage.find(params[:id])
+    end
 end
