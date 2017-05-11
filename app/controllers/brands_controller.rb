@@ -73,7 +73,15 @@ class BrandsController < ApplicationController
 
   def brand_params
     params.require(:brand).permit(
-      :name, :licensor_id, { nicknames: [] }, { logos_attributes: [:id, :_destroy] }
+      :name, :licensor_id, { nicknames: [] },
+      { logos_attributes: [
+        :id,
+        :trademark_registration_number,
+        :trademark_registration_location,
+        :trademark_registration_category,
+        :trademark_registration_url,
+        :image,
+        :_destroy] }
     )
   end
 end

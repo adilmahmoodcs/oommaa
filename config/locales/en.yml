@@ -43,6 +43,10 @@ en:
   brand_page: Brand Pages
   affiliate_page: Affiliate Pages
   getting_started: Getting Started
+  trademark_registration_number: Registration Number
+  trademark_registration_location: Registration Location
+  trademark_registration_category: Registration Category
+  trademark_registration_url: Registration Url
   activerecord:
     attributes:
       facebook_post:

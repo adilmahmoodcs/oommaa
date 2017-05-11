@@ -1,4 +1,4 @@
-<%= form_for brand, html: { multipart: true } do |f| %>
+<%= nested_form_for brand, html: { multipart: true } do |f| %>
   <% if brand.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(brand.errors.count, "error") %> prohibited this brand from being saved:</h2>
@@ -11,56 +11,45 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
-
-  <% if current_user.admin? %>
-    <div class="form-group">
-      <%= f.label :licensor_id %>
-      <%= f.collection_select :licensor_id,
-                              Licensor.order(:name),
-                              :id,
-                              :name,
-                              { include_blank: true },
-                              class: "form-control select2" %>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
     </div>
-  <% end %>
+
+    <% if current_user.admin? %>
+      <div class="form-group col-sm-6 pull-right">
+        <%= f.label :licensor_id %>
+        <%= f.collection_select :licensor_id,
+                                Licensor.order(:name),
+                                :id,
+                                :name,
+                                { include_blank: true },
+                                class: "form-control select2" %>
+      </div>
+    <% end %>
+
+  </div>
 
   <div class="form-group">
     <%= f.label :nicknames %>
     <% f.object.nicknames.each do |nickname| %>
       <%= text_field_tag "brand[nicknames][]", nickname, class: "form-control" %>
     <% end %>
-    <%= text_field_tag "brand[nicknames][]", nil, class: "form-control multiple-field" %>
-    <%= link_to "Add another nickname", "#", class: "btn btn-sm btn-secondary add-another-field" %>
+    <%= text_field_tag "brand[nicknames][]", nil, class: "form-control multiple-field nicknames_field" %>
+    <%= link_to "Add another nickname", "#", class: "btn btn-sm btn-secondary add-another-field pull-right" %>
   </div>
 
   <div class="form-group">
     <%= f.label :logos %>
     <br>
     <div class="row">
-      <%= f.fields_for :logos do |img_form| %>
-        <div class="col-xl-3">
-          <%= image_tag img_form.object.image.url(:thumb), width: "100px" %>
-          <div class="form-check">
-            <%= img_form.label :_destroy do %>
-              <%= img_form.check_box :_destroy %>
-              <%= t(:delete) %>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-      <div class="col-xl-12">
-        <br>
-        <%= label_tag "multiple_logos[]", t(:add_new) %>
-        <%= file_field_tag "multiple_logos[]", multiple: true, class: "form-control" %>
-      </div>
+      <%= render "logos_form", {f: f, logo: :logos} %>
     </div>
   </div>
 
   <div class="actions">
-    <%= f.submit class: "btn btn-primary" %>
+    <%= f.link_to_add "Add Logo", :logos , class: "btn btn-sm btn-primary pull-right"%>
+    <%= f.submit class: "btn btn-primary btn-sm " %>
   </div>
 <% end %>
