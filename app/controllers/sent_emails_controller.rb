@@ -1,6 +1,6 @@
 class SentEmailsController < ApplicationController
   before_action :set_email_template, only: [:create, :preview]
-
+  before_action :update_params, only: [:create]
   def create
     @email = @email_template.sent_emails.new(email_params)
     if @email.save
@@ -30,6 +30,10 @@ class SentEmailsController < ApplicationController
       params.require(:sent_email).permit(:id, :email_template_id, :subject, :email,
                                          :cc_emails, :body, :brand_id, :brand_logo_id,
                                          :domain_id, :user_id)
+    end
+
+    def update_params
+      params[:sent_email][:email] = Domain.find(params[:sent_email][:domain_id]).try(:owner_email) if params[:sent_email][:domain_id].present?
     end
 
     def set_email_template
