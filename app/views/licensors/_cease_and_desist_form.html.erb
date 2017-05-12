@@ -45,6 +45,7 @@
         <%= f.label :domain_to_email %>
         <%= f.select :domain_id, options_from_collection_for_select(@domains, :id, :name),
                            {include_blank: true},
+                           required: true,
                            class: "form-control select2 domains_owner_email" %>
       </div>
     </div>
