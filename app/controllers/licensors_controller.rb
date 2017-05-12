@@ -72,9 +72,13 @@ class LicensorsController < ApplicationController
 
   def send_cease_and_desist_email
     authorize @licensor
-    @licensor.update(licensor_params)
     if params[:commit] == 'send_email'
+      flash[:notice] = "Email will be sent shortly."
     elsif params[:commit] == 'save'
+      @brand = @licensor.brands.find([:licensor][:brands])
+      params[:licensor][:cease_and_desist_template] = fill_in_cease_template params[:licensor][:cease_and_desist_template]
+      flash[:notice] = "Template Was Successfully Saved."
+      @licensor.update(licensor_params)
     end
 
   end
@@ -87,5 +91,11 @@ class LicensorsController < ApplicationController
 
   def licensor_params
     params.require(:licensor).permit(:name, :main_contact, :logo, :cease_and_desist_template, :cease_and_desist_subject)
+  end
+
+  def fill_in_cease_template template
+    template.gsub('[TRADEMARK_REGISTRATION_NUMBER]', '32132132132132132132132132131')
+            .gsub('[TRADEMARK_REGISTRATION_LOCATION]', 'asdasd21321354')
+            .gsub('[BRAND_NAME]', @brand.name)
   end
 end
