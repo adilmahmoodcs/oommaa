@@ -58,11 +58,14 @@ class LicensorsController < ApplicationController
   def cease_and_desist_email
     authorize @licensor
     @brands = @licensor.brands
+    @email_templates = @licensor.email_templates.any? ?
+                                 @licensor.email_templates.take :
+                                 @licensor.email_templates.new
     @domains = policy_scope(Domain).blacklisted.where.not("owner_email = ?", 'NULL')
   end
 
   def get_licensors_brands_info
-    @brand = @licensor.try(:brands).find(params[:licensor][:brands])
+    @brand = @licensor.try(:brands).find(params[:brand_id])
     @logos = @brand.logos if @brand
 
     respond_to do |format|

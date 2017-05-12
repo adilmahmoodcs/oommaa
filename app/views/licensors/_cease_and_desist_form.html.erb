@@ -1,42 +1,11 @@
-<%= form_for @licensor, url: send_cease_and_desist_email_licensor_path(@licensor), method: :post, html: {id: 'cease_and_desist_form'} do |l| %>
+<%= nested_form_for @email_templates, url: send_cease_and_desist_email_licensor_path(@licensor), method: :post, html: {id: 'cease_and_desist_form'} do |f| %>
 
   <div class="row">
-    <div class="col-md-4">
-        <div class="form-group">
-          <%= l.label :brands %>
-          <%= l.select :brands,
-                               @brands.collect {|b| [ b.name, b.id ]},
-                               { include_blank: true },
-                               data:{remote: true, url: get_licensors_brands_info_licensor_path(@licensor)},
-                               required: true,
-                               class: "form-control select2" %>
-        </div>
-    </div>
-    <div class="col-md-4">
-      <div class="form-group">
-        <%= l.label :brand_logo %>
-        <%= select_tag :brand_logo,"",
-                           include_blank: true,
-                           class: "form-control select2 brand_logos" %>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="form-group">
-        <%= l.label :domain %>
-        <%= select_tag :brand_logo, options_from_collection_for_select(@domains, :owner_email, :name),
-                           include_blank: true,
-                           class: "form-control select2 domains_owner_email" %>
-      </div>
-    </div>
+    <%= render "email_form", {f: f} %>
   </div>
 
   <div class="row">
     <div class="col-md-12">
-      <div class="form-group">
-        <%= l.label :Subject_line %>
-        <%= l.text_field :cease_and_desist_subject, required: true, class: "form-control select2"  %>
-      </div>
       <div class= "note form-group">
         <span>Use these tags to fill Brand's Logo related information in the below template</span>
         <br></br>
@@ -50,8 +19,8 @@
         <span>* Only these fields will be used for automated population of data.</span>
       </div>
       <div class="form-group">
-        <%= l.label :cease_and_desist_template %>
-        <%= l.cktext_area :cease_and_desist_template, ckeditor: {toolbar: 'mini' }, required: true  %>
+        <%= f.label :text %>
+        <%= f.cktext_area :text, ckeditor: {toolbar: 'mini' }, required: true  %>
       </div>
     </div>
   </div>

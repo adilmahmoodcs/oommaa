@@ -15,6 +15,7 @@
 
 class Licensor < ApplicationRecord
   has_many :brands, dependent: :nullify
+  has_many :email_templates, as: :parent, dependent: :destroy
 
   validates :name, presence: true
   validates :name, uniqueness: true
@@ -23,6 +24,8 @@ class Licensor < ApplicationRecord
                     styles: { thumb: "200x200>" },
                     default_url: "/images/missing.png"
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\z/
+
+  accepts_nested_attributes_for :email_templates, allow_destroy: true, reject_if: :all_blank
 
   ransacker :name_case_insensitive, type: :string do
     arel_table[:name].lower
