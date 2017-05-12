@@ -5,10 +5,11 @@ function formatState (data) {
 
   return $data;
 };
-$(".brand_logos").html("<%= escape_javascript options_from_collection_for_select(@logos, :trademark_registration_number, :image) %>");
+$(".brand_logos").html("<%= escape_javascript options_from_collection_for_select(@logos, :id, :image) %>");
 
 
 $(".brand_logos").select2({
   templateResult: formatState,
   templateSelection: formatState
 });
+$("input[name='email_template[sent_emails_attributes][0][brand_id]']").val("<%= @brand.id %>")

@@ -1,7 +1,7 @@
 class LicensorsController < ApplicationController
   before_action :set_licensor, only: [:show, :edit, :update, :destroy,
                                       :cease_and_desist_email,
-                                      :send_cease_and_desist_email, :get_licensors_brands_info]
+                                      :get_licensors_brands_info]
 
   def index
     authorize Licensor
@@ -21,6 +21,7 @@ class LicensorsController < ApplicationController
 
   def edit
     authorize @licensor
+    @email_template = @licensor.email_templates.any? ? @licensor.email_templates.take : @licensor.email_templates.new
   end
 
   def create
@@ -58,9 +59,7 @@ class LicensorsController < ApplicationController
   def cease_and_desist_email
     authorize @licensor
     @brands = @licensor.brands
-    @email_templates = @licensor.email_templates.any? ?
-                                 @licensor.email_templates.take :
-                                 @licensor.email_templates.new
+    @email_templates = @licensor.email_templates.new
     @domains = policy_scope(Domain).blacklisted.where.not("owner_email = ?", 'NULL')
   end
 
@@ -73,19 +72,6 @@ class LicensorsController < ApplicationController
     end
   end
 
-  def send_cease_and_desist_email
-    authorize @licensor
-    if params[:commit] == 'send_email'
-      flash[:notice] = "Email will be sent shortly."
-    elsif params[:commit] == 'save'
-      @brand = @licensor.brands.find([:licensor][:brands])
-      params[:licensor][:cease_and_desist_template] = fill_in_cease_template params[:licensor][:cease_and_desist_template]
-      flash[:notice] = "Template Was Successfully Saved."
-      @licensor.update(licensor_params)
-    end
-
-  end
-
   private
 
   def set_licensor
@@ -94,11 +80,5 @@ class LicensorsController < ApplicationController
 
   def licensor_params
     params.require(:licensor).permit(:name, :main_contact, :logo, :cease_and_desist_template, :cease_and_desist_subject)
-  end
-
-  def fill_in_cease_template template
-    template.gsub('[TRADEMARK_REGISTRATION_NUMBER]', '32132132132132132132132132131')
-            .gsub('[TRADEMARK_REGISTRATION_LOCATION]', 'asdasd21321354')
-            .gsub('[BRAND_NAME]', @brand.name)
   end
 end

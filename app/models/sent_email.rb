@@ -4,7 +4,7 @@
 #
 #  id                :integer          not null, primary key
 #  subject           :string
-#  emails            :string           default("{}"), is an Array
+#  email             :string
 #  cc_emails         :string           default("{}"), is an Array
 #  body              :string
 #  brand_id          :integer
@@ -23,4 +23,11 @@
 
 class SentEmail < ApplicationRecord
   belongs_to :email_template
+
+  after_create :send_email
+
+
+  def send_email
+    CeaseAndDesistMailer.sent_email(self).deliver_now
+  end
 end

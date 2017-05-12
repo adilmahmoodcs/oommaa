@@ -2,7 +2,7 @@ class CreateSentEmails < ActiveRecord::Migration[5.0]
   def change
     create_table :sent_emails do |t|
       t.string :subject
-      t.string :emails, array: true, default: []
+      t.string :email
       t.string :cc_emails, array: true, default: []
       t.string :body
       t.integer :brand_id

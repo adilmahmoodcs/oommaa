@@ -87,11 +87,13 @@ ActiveRecord::Schema.define(version: 20170512062726) do
   end
 
   create_table "email_templates", force: :cascade do |t|
-    t.string   "text",        null: false
+    t.string   "text"
+    t.string   "default_subject"
+    t.integer  "template_type"
     t.string   "parent_type"
     t.integer  "parent_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.index ["parent_type", "parent_id"], name: "index_email_templates_on_parent_type_and_parent_id", using: :btree
   end
 
@@ -193,7 +195,7 @@ ActiveRecord::Schema.define(version: 20170512062726) do
 
   create_table "sent_emails", force: :cascade do |t|
     t.string   "subject"
-    t.string   "emails",            default: [],              array: true
+    t.string   "email"
     t.string   "cc_emails",         default: [],              array: true
     t.string   "body"
     t.integer  "brand_id"

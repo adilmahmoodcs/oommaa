@@ -2,12 +2,14 @@
 #
 # Table name: email_templates
 #
-#  id          :integer          not null, primary key
-#  text        :string           not null
-#  parent_type :string
-#  parent_id   :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id              :integer          not null, primary key
+#  text            :string
+#  default_subject :string
+#  template_type   :integer
+#  parent_type     :string
+#  parent_id       :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 # Indexes
 #

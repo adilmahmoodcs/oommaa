@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     end
     member do
       get :cease_and_desist_email
+      post :create_email_template
       get :get_licensors_brands_info
-      post :send_cease_and_desist_email
     end
   end
   resources :keywords
@@ -60,6 +60,11 @@ Rails.application.routes.draw do
       member do
         get :client_domain_request
       end
+    end
+  end
+
+  resources :email_templates, only: [:create, :update] do
+    resources :sent_emails, shallow: true do
     end
   end
 

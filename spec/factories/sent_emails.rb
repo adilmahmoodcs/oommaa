@@ -4,7 +4,7 @@
 #
 #  id                :integer          not null, primary key
 #  subject           :string
-#  emails            :string           default("{}"), is an Array
+#  email             :string
 #  cc_emails         :string           default("{}"), is an Array
 #  body              :string
 #  brand_id          :integer

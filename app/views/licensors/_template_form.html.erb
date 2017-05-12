@@ -1,12 +1,23 @@
-<%= nested_form_for @email_templates, url: email_templates_path, remote: true, method: :post, html: {id: 'cease_and_desist_form', url: email_templates_path} do |f| %>
+<%= form_for @email_template, html: { id: 'cease_and_desist_form' } do |f| %>
   <%= f.hidden_field :parent_id %>
   <%= f.hidden_field :parent_type %>
 
   <div class="row">
-    <%= render "email_form", {f: f} %>
-  </div>
-
-  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :default_subject %>
+        <%= f.text_field :default_subject, class: "form-control select2"  %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :template_type %>
+        <%= f.select :template_type, EmailTemplate::template_types.map{|key,value|[key.humanize, key] },
+                           {include_blank: true},
+                           required: true,
+                           class: "form-control select2 domains_owner_email" %>
+      </div>
+    </div>
     <div class="col-md-12">
       <div class= "note form-group">
         <span>Use these tags to fill Brand's Logo related information in the below template</span>
@@ -32,20 +43,7 @@
 
   <div class="row">
     <div class="col-md-4 pull-right">
-      <%= button_tag(type: 'submit', name: 'commit', value: 'send_email', class: 'btn btn-success') do %>
-        <%= icon("send") %>
-        Send Email
-      <% end %>
-
-      <%= button_tag(type: 'submit', name: 'commit', value: 'preview', class: 'btn btn-primary pull-right') do %>
-        <%= icon("save") %>
-        Preview
-      <% end %>
-
-      <%= button_tag(type: 'submit', name: 'commit', value: 'save', class: 'btn btn-primary pull-right') do %>
-        <%= icon("save") %>
-        Draft This Template
-      <% end %>
+      <%= f.submit class: "btn btn-primary btn-sm"%>
     </div>
   </div>
 

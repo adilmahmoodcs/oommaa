@@ -1,4 +1,6 @@
-<%= f.fields_for f.object.sent_emails.new do |e| %>
+<%= fields_for 'email_template[sent_emails_attributes][0]' do |e| %>
+  <%= e.hidden_field :brand_id %>
+
   <div class="row">
 
     <div class="col-md-6">
@@ -29,8 +31,8 @@
 
     <div class="col-md-12">
       <div class="form-group">
-        <%= e.label :subject %>
-        <%= e.text_field :subject,
+        <%= f.label :subject %>
+        <%= f.text_field :default_subject,
                           class: "form-control domains_owner_email" %>
       </div>
     </div>
