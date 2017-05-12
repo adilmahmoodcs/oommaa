@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511132259) do
+ActiveRecord::Schema.define(version: 20170512062726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,17 @@ ActiveRecord::Schema.define(version: 20170511132259) do
     t.string   "owner_email"
   end
 
+  create_table "email_templates", force: :cascade do |t|
+    t.string   "text"
+    t.string   "default_subject"
+    t.integer  "template_type"
+    t.string   "parent_type"
+    t.integer  "parent_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["parent_type", "parent_id"], name: "index_email_templates_on_parent_type_and_parent_id", using: :btree
+  end
+
   create_table "facebook_page_brands", force: :cascade do |t|
     t.integer  "facebook_page_id"
     t.integer  "brand_id"
@@ -106,7 +117,6 @@ ActiveRecord::Schema.define(version: 20170511132259) do
     t.datetime "shut_down_by_facebook_at"
     t.integer  "cached_licensor_ids",      default: [],              array: true
     t.integer  "status",                   default: 0
-    t.string   "affiliate_name"
     t.index ["cached_licensor_ids"], name: "index_facebook_pages_on_cached_licensor_ids", using: :gin
     t.index ["old_brand_ids"], name: "index_facebook_pages_on_old_brand_ids", using: :gin
   end
@@ -152,16 +162,14 @@ ActiveRecord::Schema.define(version: 20170511132259) do
   end
 
   create_table "licensors", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",              null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "main_contact"
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
-    t.string   "cease_and_desist_template"
-    t.string   "cease_and_desist_subject"
   end
 
   create_table "post_brands", force: :cascade do |t|
@@ -183,6 +191,22 @@ ActiveRecord::Schema.define(version: 20170511132259) do
     t.datetime "image_updated_at"
     t.string   "type"
     t.index ["facebook_post_id"], name: "index_screenshots_on_facebook_post_id", using: :btree
+  end
+
+  create_table "sent_emails", force: :cascade do |t|
+    t.string   "subject"
+    t.string   "email"
+    t.string   "cc_emails",         default: [],              array: true
+    t.string   "body"
+    t.integer  "brand_id"
+    t.integer  "brand_logo_id"
+    t.integer  "domain_id"
+    t.integer  "user_id"
+    t.integer  "email_template_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["email_template_id"], name: "index_sent_emails_on_email_template_id", using: :btree
+    t.index ["user_id"], name: "index_sent_emails_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -220,5 +244,7 @@ ActiveRecord::Schema.define(version: 20170511132259) do
   add_foreign_key "facebook_page_brands", "facebook_pages"
   add_foreign_key "facebook_posts", "facebook_pages"
   add_foreign_key "screenshots", "facebook_posts"
+  add_foreign_key "sent_emails", "email_templates"
+  add_foreign_key "sent_emails", "users"
   add_foreign_key "users", "licensors"
 end

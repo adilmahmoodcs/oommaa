@@ -1,7 +1,7 @@
 class LicensorsController < ApplicationController
   before_action :set_licensor, only: [:show, :edit, :update, :destroy,
                                       :cease_and_desist_email,
-                                      :send_cease_and_desist_email, :get_licensors_brands_info]
+                                      :get_licensors_brands_info]
 
   def index
     authorize Licensor
@@ -21,6 +21,7 @@ class LicensorsController < ApplicationController
 
   def edit
     authorize @licensor
+    @email_template = @licensor.email_templates.any? ? @licensor.email_templates.take : @licensor.email_templates.new
   end
 
   def create
@@ -57,26 +58,23 @@ class LicensorsController < ApplicationController
 
   def cease_and_desist_email
     authorize @licensor
-    @brands = @licensor.brands
-    @domains = policy_scope(Domain).blacklisted.where.not("owner_email = ?", 'NULL')
+    if  @licensor.email_templates.any?
+      @brands = @licensor.brands
+      @email_template = @licensor.email_templates.take
+      @sent_email = @email_template.sent_emails.new
+      @domains = policy_scope(Domain).blacklisted.where.not("owner_email = ?", 'NULL')
+    else
+      redirect_to edit_licensor_path(@licensor)+"?send_email=true", alert: 'Add Template First.'
+    end
   end
 
   def get_licensors_brands_info
-    @brand = @licensor.try(:brands).find(params[:licensor][:brands])
+    @brand = @licensor.try(:brands).find(params[:brand_id])
     @logos = @brand.logos if @brand
 
     respond_to do |format|
       format.js { }
     end
-  end
-
-  def send_cease_and_desist_email
-    authorize @licensor
-    @licensor.update(licensor_params)
-    if params[:commit] == 'send_email'
-    elsif params[:commit] == 'save'
-    end
-
   end
 
   private
