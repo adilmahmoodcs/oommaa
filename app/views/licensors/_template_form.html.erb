@@ -1,18 +1,19 @@
 <%= form_for @email_template, html: { id: 'cease_and_desist_form' } do |f| %>
   <%= f.hidden_field :parent_id %>
   <%= f.hidden_field :parent_type %>
-
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div class="form-group">
         <%= f.label :default_subject %>
         <%= f.text_field :default_subject, class: "form-control select2"  %>
       </div>
     </div>
-    <div class="col-md-6">
+
+    <%= hidden_field_tag :send_email, value = params[:send_email] || 'false' %>
+    <div class="col-md-6 hide">
       <div class="form-group">
-        <%= f.label :template_type %>
-        <%= f.select :template_type, EmailTemplate::template_types.map{|key,value|[key.humanize, key] },
+        <% f.label :template_type %>
+        <% f.select :template_type, EmailTemplate::template_types.map{|key,value|[key.humanize, key] },
                            {include_blank: true},
                            required: true,
                            class: "form-control select2 domains_owner_email" %>
@@ -29,7 +30,6 @@
           <li>[TRADEMARK_REGISTRATION_URL]</li>
           <li>[BRAND_NAME]</li>
           <li>[LICENSOR_NAME]</li>
-          <li>[DOMAIN_NAME]</li>
         </ul>
         <br>
         <span>* Only these fields will be used for automated population of data.</span>

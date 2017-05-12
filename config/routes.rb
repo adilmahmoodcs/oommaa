@@ -65,6 +65,9 @@ Rails.application.routes.draw do
 
   resources :email_templates, only: [:create, :update] do
     resources :sent_emails, shallow: true do
+      collection do
+        get :preview
+      end
     end
   end
 

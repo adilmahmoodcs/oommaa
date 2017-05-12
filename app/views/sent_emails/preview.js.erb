@@ -1,0 +1,6 @@
+<% if @record_found == true %>
+  CKEDITOR.instances.sent_email_body.setData('<%= escape_javascript @body.html_safe %>');
+  alert("Below Text Area is updated.");
+<% else %>
+  alert("Please Select Other Logo");
+<% end %>

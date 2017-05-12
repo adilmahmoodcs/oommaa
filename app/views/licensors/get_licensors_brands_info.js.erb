@@ -5,7 +5,7 @@ function formatState (data) {
 
   return $data;
 };
-$(".brand_logos").html("<%= escape_javascript options_from_collection_for_select(@logos, :id, :image) %>");
+$(".brand_logos").html("<option value=''></option>"+"<%= escape_javascript options_from_collection_for_select(@logos, :id, :image) %>");
 
 
 $(".brand_logos").select2({

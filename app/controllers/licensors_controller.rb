@@ -58,9 +58,14 @@ class LicensorsController < ApplicationController
 
   def cease_and_desist_email
     authorize @licensor
-    @brands = @licensor.brands
-    @email_templates = @licensor.email_templates.new
-    @domains = policy_scope(Domain).blacklisted.where.not("owner_email = ?", 'NULL')
+    if  @licensor.email_templates.any?
+      @brands = @licensor.brands
+      @email_template = @licensor.email_templates.take
+      @sent_email = @email_template.sent_emails.new
+      @domains = policy_scope(Domain).blacklisted.where.not("owner_email = ?", 'NULL')
+    else
+      redirect_to edit_licensor_path(@licensor)+"?send_email=true", alert: 'Add Template First.'
+    end
   end
 
   def get_licensors_brands_info
