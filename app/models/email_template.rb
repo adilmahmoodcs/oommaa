@@ -17,7 +17,7 @@
 #
 
 class EmailTemplate < ApplicationRecord
-  belongs_to :parent, polymorphic: true
+  belongs_to :parent, dependent: :destroy, polymorphic: true
   has_many :sent_emails, dependent: :destroy
 
   validates :text, presence: true

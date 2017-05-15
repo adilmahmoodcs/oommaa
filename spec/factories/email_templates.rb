@@ -18,7 +18,9 @@
 
 FactoryGirl.define do
   factory :email_template do
-
+    text {Faker::Lorem.paragraph}
+    default_subject {Faker::Lorem.sentence(3)}
+    association :parent, :factory => :licensor
   end
 
 end

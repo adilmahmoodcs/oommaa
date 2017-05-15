@@ -43,6 +43,8 @@ class User < ApplicationRecord
          :trackable, :validatable, :confirmable
 
   has_many :assigned_domains
+  has_many :sent_emails
+
   has_many :domains, through: :assigned_domains
   belongs_to :licensor, optional: true
 

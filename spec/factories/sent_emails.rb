@@ -23,7 +23,8 @@
 
 FactoryGirl.define do
   factory :sent_email do
-    
+    email {Faker::Internet.email}
+    body {Faker::Lorem.paragraph}
+    subject {Faker::Lorem.sentence(3)}
   end
-
 end
