@@ -8,6 +8,7 @@ class AffiliatePageImporterJob
     @affiliate_page_logo = affiliate_page_logo
     @name_from_url = get_facebook_page_name_from_url @affiliate_page_url if @affiliate_page_url.present?
     @page_created = false
+    @affiliate_name = affiliate_name
 
     return unless @affiliate_page_name
 
