@@ -1,7 +1,15 @@
 function formatState (data) {
-  var $data = $(
-    '<span><img src="'+ data.text +'" style="width: 21px; padding: 0px 2px 4px 0px;"/>'+ data.id +'</span>'
-  );
+  if (data.text != "")
+  {
+    var $data = $(
+      '<span><img src="'+ data.text +'" style="width: 21px; padding: 0px 2px 4px 0px;"/>'+ data.id +'</span>'
+    );
+  }
+  else{
+   var $data = $(
+      '<span>Select Logo</span>'
+    );
+  }
 
   return $data;
 };

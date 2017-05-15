@@ -6,7 +6,7 @@ class CeaseAndDesistMailer < ApplicationMailer
     email = email_data.email
     cc_emails = email_data.cc_emails
     @body = email_data.body
-    mail(to: email, cc: cc_emails, subject: subject )
+    mail(to: email, cc: cc_emails || '', subject: subject )
   end
 end
 

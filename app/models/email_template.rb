@@ -17,9 +17,10 @@
 #
 
 class EmailTemplate < ApplicationRecord
-  belongs_to :parent, polymorphic: true
-
+  belongs_to :parent, dependent: :destroy, polymorphic: true
   has_many :sent_emails, dependent: :destroy
+
+  validates :text, presence: true
 
   accepts_nested_attributes_for :sent_emails, allow_destroy: true, reject_if: :all_blank
 

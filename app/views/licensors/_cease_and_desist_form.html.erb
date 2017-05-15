@@ -58,11 +58,11 @@
 
 
     <div class="col-md-12">
-      <div class="form-group">
+      <div class="form-group" id="tagsinput_cc_emails">
         <%= f.label :cc_emails %>
-        <%= f.email_field :cc_emails,
-                          data:{role: "tagsinput"},
-                          class: " domains_owner_email" %>
+        <%= select_tag :'sent_email[cc_emails]',"",
+                          multiple: true,
+                          data:{role: "tagsinput"} %>
       </div>
     </div>
   </div>
