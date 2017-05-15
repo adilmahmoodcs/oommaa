@@ -28,8 +28,8 @@ class SentEmailsController < ApplicationController
   private
     def email_params
       params.require(:sent_email).permit(:id, :email_template_id, :subject, :email,
-                                         :cc_emails, :body, :brand_id, :brand_logo_id,
-                                         :domain_id, :user_id)
+                                         :body, :brand_id, :brand_logo_id,
+                                         :domain_id, :user_id, cc_emails: [])
     end
 
     def update_params
