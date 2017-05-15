@@ -44,22 +44,29 @@
           <%= link_to domain.name, "http://#{domain.name}", target: "_blank"  %>
         </td>
         <% if @status == "blacklisted"%>
-          <td>
-            <%= domain.owner_email %>
-            <% unless domain.owner_email %>
-              <%= form_for domain do |d| %>
-                <div class="col-sm-8">
-                  <%= d.email_field :owner_email, required: true,
-                           class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
-                           placeholder: "Owner's Email" %>
-                </div>
-                <div class="col-sm-4">
-                  <%= d.button class: "btn btn-primary btn-sm" do %>
-                    <%= icon("plus") %>
-                    Add Email
-                  <% end %>
+          <td class="affiliate_page_name">
+            <span> <%= domain.owner_email %> </span>
+            <% if policy(Domain).update? %>
+              <%= form_for domain, html:{class: "#{!domain.owner_email ? 'show' : 'hide'}"} do |d| %>
+                <div class="row">
+                  <div class="col-sm-8">
+                    <%= d.email_field :owner_email, required: true,
+                             class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
+                             placeholder: "Owner's Email" %>
+                  </div>
+                  <div class="col-sm-4">
+                    <%= d.button class: "btn btn-primary btn-sm pull-right" do %>
+                      <%= icon("plus") %>
+                      Edit
+                    <% end %>
+                  </div>
                 </div>
               <% end %>
+              <%= button_tag class: "btn btn-primary btn-sm pull-right update_name_btn #{domain.owner_email ? 'show' : 'hide' }" do %>
+                <%= icon("edit") %>
+                Edit
+              <% end %>
+              &nbsp;
             <% end %>
           </td>
         <% end %>
