@@ -96,6 +96,8 @@ form#export-date label {
 .nicknames_field{
   margin-bottom: 10px;
 }
-.bootstrap-tagsinput{
-  width: 100%;
+#tagsinput_cc_emails{
+  .bootstrap-tagsinput{
+    width: 100%;
+  }
 }

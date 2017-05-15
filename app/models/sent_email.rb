@@ -23,8 +23,8 @@
 
 class SentEmail < ApplicationRecord
   belongs_to :email_template
-
   after_create :send_email
+
   validates :email, presence: true
 
   def send_email

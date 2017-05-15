@@ -35,7 +35,7 @@
 //= require jquery_nested_form
 //= require ckeditor/init
 //= require init_ckeditor
-//= require bootstrap-tagsinput
+//= require tags-input
 //= require_self
 
 document.addEventListener("turbolinks:load", function() {
