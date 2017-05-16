@@ -2,12 +2,13 @@ class AffiliatePageImporterJob
   include Sidekiq::Worker
   sidekiq_options queue: "pages", retry: 5
 
-  def perform(affiliate_page_name, affiliate_page_url = nil, affiliate_page_logo = nil)
+  def perform(affiliate_page_name, affiliate_page_url = nil, affiliate_page_logo = nil, affiliate_name = nil)
     @affiliate_page_name = affiliate_page_name
     @affiliate_page_url = affiliate_page_url
     @affiliate_page_logo = affiliate_page_logo
     @name_from_url = get_facebook_page_name_from_url @affiliate_page_url if @affiliate_page_url.present?
     @page_created = false
+    @affiliate_name = affiliate_name
 
     return unless @affiliate_page_name
 
@@ -74,6 +75,7 @@ class AffiliatePageImporterJob
   def create_page data
     page = FacebookPage.create!(
       facebook_id: data["id"],
+      affiliate_name: @affiliate_name,
       name: data["name"],
       url: data["link"],
       image_url: data.dig("picture", "data", "url"),
