@@ -234,6 +234,7 @@ GEM
     multi_json (1.12.1)
     multipart-post (2.0.0)
     nenv (0.3.0)
+    nested_form (0.3.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.0.1)
@@ -432,6 +433,7 @@ DEPENDENCIES
   koala (~> 2.4.0)
   letter_opener
   listen (~> 3.0.5)
+  nested_form
   newrelic_rpm
   paperclip (~> 5.0.0)
   pg (~> 0.18)
