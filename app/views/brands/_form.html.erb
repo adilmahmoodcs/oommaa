@@ -34,7 +34,7 @@
   <div class="form-group">
     <%= f.label :nicknames %>
     <% f.object.nicknames.each do |nickname| %>
-      <%= text_field_tag "brand[nicknames][]", nickname, class: "form-control" %>
+      <%= text_field_tag "brand[nicknames][]", nickname, class: "form-control nicknames_field" %>
     <% end %>
     <%= text_field_tag "brand[nicknames][]", nil, class: "form-control multiple-field nicknames_field" %>
     <%= link_to "Add another nickname", "#", class: "btn btn-sm btn-secondary add-another-field pull-right" %>
