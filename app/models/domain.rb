@@ -2,11 +2,12 @@
 #
 # Table name: domains
 #
-#  id         :integer          not null, primary key
-#  name       :string           not null
-#  status     :integer          default("0"), not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  name        :string           not null
+#  status      :integer          default("0"), not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  owner_email :string
 #
 
 class Domain < ApplicationRecord
@@ -52,5 +53,9 @@ class Domain < ApplicationRecord
     posts.select(:id).public_send(post_scope).each do |post|
       PostStatusJob.perform_async(post.id)
     end
+  end
+
+  def update_email email
+    self.update(owner_email: email)
   end
 end
