@@ -8,9 +8,8 @@ production:
   facebook:
     report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
-      - EAAO0ZCIHKn24BAI8FriRBLaIHCDElXAR2rbM5PRwJ179h2YZADDwvSQo6QI8cBu27Yqc0iIdKXWAAuiy5ru6DbwPUXmp4xiXPgtATqqr8kuMzh1ZAiZCbnZCuPL0EeFXqi2QIwjNPvL0SaW9YzZCSKPecS0yWjB34ZD # alessandro
-      - EAAO0ZCIHKn24BAIhwJfzl7sYMDTmVlWiMw6RBfJhXlyT99p4tYvlPHp43CBgDAsVmqz3vkxwc4V2ixpaWFH38X0Tz1m9sLDO1NGz8RZAyqzZCEczN8rIZBmXHzk2GXI64brzQcQoVAZCugWUFDNDwRQXpc33ZAgHEZD # Arthur Eisenberg
-
+      - EAAO0ZCIHKn24BAGeYHZA9kTmCD7lTu00hK1gPUkYyEnPlwZAm6ChXOj4XXKboKOpZCxIy319NInZCTHrhXtZALXdAc17kPglt8UQKmSSe9d4TAx2sJfcV86uxwpoYRVP5n9yea8k1ixt0iZBCb1RxcvRJXew635il0ZD # syed
+      - EAAO0ZCIHKn24BAK2Hvye9nUXZC5iDLeyjhfvm8bqL5RXFqTwrJfFt63lmzZCD0VhQ0saGju2dtRwU2l6YZBYx7zI9SVSNoubNedQQ7Y9Rl2TizUBpHanWSpZBER0yxFNfhIwWOthUmAL4PnZBsIRF9Q57nsvV2ZCtE0GDQSjmaPgQZDZD # Arthur 
 staging:
   facebook:
     report_url: https://www.facebook.com/help/contact/1449082462070065
