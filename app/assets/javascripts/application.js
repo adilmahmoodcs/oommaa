@@ -33,6 +33,9 @@
 //= require forms
 //= require post_msg_expand
 //= require jquery_nested_form
+//= require ckeditor/init
+//= require init_ckeditor
+//= require tags-input
 //= require_self
 
 document.addEventListener("turbolinks:load", function() {

@@ -1,0 +1,23 @@
+function formatState (data) {
+  if (data.text != "")
+  {
+    var $data = $(
+      '<span><img src="'+ data.text +'" style="width: 21px; padding: 0px 2px 4px 0px;"/>'+ data.id +'</span>'
+    );
+  }
+  else{
+   var $data = $(
+      '<span>Select Logo</span>'
+    );
+  }
+
+  return $data;
+};
+$(".brand_logos").html("<option value=''></option>"+"<%= escape_javascript options_from_collection_for_select(@logos, :id, :image) %>");
+
+
+$(".brand_logos").select2({
+  templateResult: formatState,
+  templateSelection: formatState
+});
+$("input[name='email_template[sent_emails_attributes][0][brand_id]']").val("<%= @brand.id %>")

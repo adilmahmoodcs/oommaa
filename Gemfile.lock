@@ -86,6 +86,8 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    bootstrap-tagsinput-rails (0.4.2.1)
+      railties (>= 3.1)
     builder (3.2.3)
     byebug (9.0.6)
     capistrano (3.7.2)
@@ -117,6 +119,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    ckeditor (4.2.3)
+      cocaine
+      orm_adapter (~> 0.5.0)
     climate_control (0.1.0)
     cliver (0.3.2)
     cocaine (0.5.8)
@@ -409,6 +414,7 @@ DEPENDENCIES
   annotate
   aws-sdk (~> 2.7)
   better_errors
+  bootstrap-tagsinput-rails
   byebug
   capistrano (~> 3.7)
   capistrano-rails (~> 1.2)
@@ -417,6 +423,7 @@ DEPENDENCIES
   capistrano-sidekiq!
   capistrano3-puma
   capybara
+  ckeditor
   coffee-rails (~> 4.2)
   database_cleaner
   devise (~> 4.2.0)
