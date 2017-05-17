@@ -2,8 +2,8 @@ var Selects = {
   init: function() {
     $("select.select2").select2({
       theme: "bootstrap"
-    })
-
+    });
+    $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
     this.remoteSelect()
   },
 

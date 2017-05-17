@@ -13,7 +13,6 @@
 #  shut_down_by_facebook_at :datetime
 #  cached_licensor_ids      :integer          default("{}"), is an Array
 #  status                   :integer          default("0")
-#  affiliate_name           :string
 #
 # Indexes
 #
