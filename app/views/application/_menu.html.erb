@@ -1,5 +1,6 @@
 <div class="mobile-menu-left-overlay"></div>
-<ul class="main-nav nav nav-inline">
+<div id="top-nav-slider">
+    <ul class="main-nav slick_tabs">
   <% if switch_user_select %>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle"
@@ -34,7 +35,9 @@
     <li class="nav-item">
       <%= link_to dashboard_index_path,
                   class: "nav-link #{'active' if current_page?(dashboard_index_path)}" do %>
-        <%= icon("home", class: "fa-fw") %>
+        <div class="icon-holder">
+          <%= image_tag("counter_find_UX_v2/dashboard-home@3x.png")%>
+        </div>
         Home
       <% end %>
     </li>
@@ -54,7 +57,9 @@
     <li class="nav-item">
       <%= link_to brands_path,
                   class: "nav-link #{'active' if current_page?(brands_path)}" do %>
-        <%= icon("shield", class: "fa-fw") %>
+        <div class="icon-holder">
+          <%= image_tag("counter_find_UX_v2/dashboard-home_2@3x.png")%>
+        </div>
         <%= "#{t(:brands)} (#{policy_scope(Brand).count})" %>
       <% end %>
     </li>
@@ -64,7 +69,9 @@
     <li class="nav-item">
       <%= link_to keywords_path,
                   class: "nav-link #{'active' if current_page?(keywords_path)}" do %>
-        <%= icon("quote-right", class: "fa-fw") %>
+        <div class="icon-holder">
+          <%= image_tag("counter_find_UX_v2/dashboard-home_7@3x.png")%>
+        </div>
         <%= "#{t(:keywords)} (#{policy_scope(Keyword).count})" %>
       <% end %>
     </li>
@@ -78,7 +85,9 @@
          role="button"
          aria-haspopup="true"
          aria-expanded="false">
-        <%= icon("globe", class: "fa-fw") %>
+        <div class="icon-holder">
+          <%= image_tag("counter_find_UX_v2/dashboard-home_3@3x.png")%>
+        </div>
         Domains
       </a>
       <div class="dropdown-menu">
@@ -111,7 +120,9 @@
          role="button"
          aria-haspopup="true"
          aria-expanded="false">
-        <%= icon("facebook", class: "fa-fw") %>
+        <div class="icon-holder">
+          <%= image_tag("counter_find_UX_v2/dashboard-home_4@3x.png")%>
+        </div>
         <%= t(:posts) %>
       </a>
       <div class="dropdown-menu">
@@ -189,7 +200,9 @@
     <li class="nav-item">
       <%= link_to export_facebook_posts_path,
                   class: "nav-link #{'active' if current_page?(export_facebook_posts_path)}" do %>
-        <%= icon("download", class: "fa-fw") %>
+        <div class="icon-holder">
+          <%= image_tag("counter_find_UX_v2/dashboard-home_5@3x.png")%>
+        </div>
         <%= t(:blacklist_export) %>
       <% end %>
     </li>
@@ -197,7 +210,9 @@
   <li class="nav-item">
       <%= link_to "#",
                   class: "nav-link #{'active' if current_page?(licensors_path)}" do %>
-        <%= icon("play", class: "fa-fw") %>
+        <div class="icon-holder">
+          <%= image_tag("counter_find_UX_v2/dashboard-home_6@3x.png")%>
+        </div>
         <%= "#{t(:getting_started)}" %>
       <% end %>
     </li>
@@ -257,3 +272,5 @@
     </li>
   <% end %>
 </ul>
+</div>
+

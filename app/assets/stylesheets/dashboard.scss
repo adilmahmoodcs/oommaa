@@ -1,26 +1,42 @@
 .dashboard-card-holder {
   .card {
     border-radius: 0;
+    box-shadow: 0 1px 1px 0 #c2c3c7;
     .card-header {
       padding: 1.2rem 1.25rem;
       font-size: 18px;
       text-align: left;
       font-weight: 600;
       color: rgb(121, 114, 114);
+      text-transform: uppercase;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: normal;
     }
     .card-block {
-      text-align: center;
-      min-height: 192px;
-      display: flex;
-      align-items: center;
+        text-align: center;
+        min-height: 192px;
+        padding: 30px;
+        .widget-icon-holder{
+            width: 51px;
+            margin: 10px auto;
+            img{
+              width: 100%;
+            }
+        }
       .row{
         width: 100%;
       }
       h2 {
         margin: 0 auto;
-        font-weight: bold;
-        font-size: 40px;
-        color: #545556;
+        font-size: 38px;
+        line-height: 1.03;
+        text-align: center;
+        color: #4a4a4a;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: normal;
+      }
+      .progress {
+        margin-bottom: 10px;
       }
     }
   }
@@ -38,11 +54,14 @@
     margin: 0;
   }
   .sub-logo{
+    margin-top: 10px;
     span{
-      color: #aaa;
+    font-size: 13px;
+    text-align: left;
+    color: #4a4a4a;
     }
     img{
-    max-width: 100px;
+    width: 30px;
     display: inline-block;
     }
   }
@@ -70,6 +89,16 @@
     font-size: 16px;
     color: #5f5c5c;
     margin:0 0 3px;
+    }
+  }
+}
+@media (max-width: 1270px){
+  .dashboard-card-holder {
+    .card {
+      .card-header{
+        padding: 1.2rem 1rem;
+        font-size: 16px;
+      }
     }
   }
 }

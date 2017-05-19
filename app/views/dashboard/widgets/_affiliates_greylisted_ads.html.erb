@@ -1,9 +1,12 @@
-<div class="col-xl-3">
+<div class="col-xl-3 col-md-6">
   <section class="card">
     <header class="card-header card-header-lg primary_background_color secondary_text_color">
       <%= t(name, scope: :widgets) %>
     </header>
     <div class="card-block">
+      <div class="widget-icon-holder">
+        <%= image_tag("counter_find_UX_v2/dashboard-home_2@3x.png")%>
+      </div>
       <h2>
         <%= FacebookPost.includes(:facebook_page).where(:'facebook_pages.status' => "affiliate_page").count %>
       </h2>

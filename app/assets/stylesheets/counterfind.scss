@@ -6,12 +6,12 @@
   justify-content: flex-end;
 }
 
-@media (min-width: 1057px) {
-  ul.main-nav.nav-inline .nav-item + .nav-item,
-  ul.main-nav.nav-inline .nav-link + .nav-link {
-    margin-left: 1rem;
-  }
-}
+// @media (min-width: 1057px) {
+//   ul.main-nav.nav-inline .nav-item + .nav-item,
+//   ul.main-nav.nav-inline .nav-link + .nav-link {
+//     margin-left: 1rem;
+//   }
+// }
 
 .mass-actions form {
   display: inline;

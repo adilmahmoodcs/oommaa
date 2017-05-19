@@ -1,10 +1,13 @@
 <% value = policy_scope(FacebookPost).reported_to_facebook.size * FacebookPost::ESTIMATED_VALUE %>
-<div class="col-xl-3">
+<div class="col-xl-3 col-md-6">
   <section class="card">
     <header class="card-header card-header-lg primary_background_color secondary_text_color">
       <%= t(name, scope: :widgets) %>
     </header>
     <div class="card-block">
+      <div class="widget-icon-holder">
+        <%= image_tag("counter_find_UX_v2/dashboard-home_10@3x.png")%>
+      </div>
       <h2>
         $
         <%= number_with_delimiter(value, :delimiter => ',') %>

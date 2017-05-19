@@ -36,6 +36,8 @@
 //= require ckeditor/init
 //= require init_ckeditor
 //= require tags-input
+//= require slick.min
+//= require header_menu_slider
 //= require_self
 
 document.addEventListener("turbolinks:load", function() {
@@ -46,6 +48,7 @@ document.addEventListener("turbolinks:load", function() {
   FixedHeadTable.init()
   InfiniteScroll.init()
   OpenPostMsg.init()
+  SlickMenu.init()
 
   $(".panel").lobiPanel({
     sortable: true
