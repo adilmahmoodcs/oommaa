@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512062726) do
+ActiveRecord::Schema.define(version: 20170519120723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,15 @@ ActiveRecord::Schema.define(version: 20170512062726) do
     t.index ["facebook_page_id"], name: "index_facebook_page_brands_on_facebook_page_id", using: :btree
   end
 
+  create_table "facebook_page_post_brands", force: :cascade do |t|
+    t.integer  "facebook_post_id"
+    t.integer  "facebook_page_brand_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["facebook_page_brand_id"], name: "index_facebook_page_post_brands_on_facebook_page_brand_id", using: :btree
+    t.index ["facebook_post_id"], name: "index_facebook_page_post_brands_on_facebook_post_id", using: :btree
+  end
+
   create_table "facebook_pages", force: :cascade do |t|
     t.string   "name",                                  null: false
     t.string   "url",                                   null: false
@@ -117,6 +126,7 @@ ActiveRecord::Schema.define(version: 20170512062726) do
     t.datetime "shut_down_by_facebook_at"
     t.integer  "cached_licensor_ids",      default: [],              array: true
     t.integer  "status",                   default: 0
+    t.string   "affiliate_name"
     t.index ["cached_licensor_ids"], name: "index_facebook_pages_on_cached_licensor_ids", using: :gin
     t.index ["old_brand_ids"], name: "index_facebook_pages_on_old_brand_ids", using: :gin
   end
@@ -149,8 +159,10 @@ ActiveRecord::Schema.define(version: 20170512062726) do
     t.string   "greylisted_by"
     t.datetime "shutdown_queue_at"
     t.string   "shutdown_queue_by"
+    t.integer  "facebook_page_brands_id"
     t.index ["all_domains"], name: "index_facebook_posts_on_all_domains", using: :gin
     t.index ["all_links"], name: "index_facebook_posts_on_all_links", using: :gin
+    t.index ["facebook_page_brands_id"], name: "index_facebook_posts_on_facebook_page_brands_id", using: :btree
     t.index ["facebook_page_id"], name: "index_facebook_posts_on_facebook_page_id", using: :btree
     t.index ["status", "published_at"], name: "index_facebook_posts_on_status_and_published_at", using: :btree
   end
@@ -242,6 +254,7 @@ ActiveRecord::Schema.define(version: 20170512062726) do
   add_foreign_key "brands", "licensors"
   add_foreign_key "facebook_page_brands", "brands"
   add_foreign_key "facebook_page_brands", "facebook_pages"
+  add_foreign_key "facebook_posts", "facebook_page_brands", column: "facebook_page_brands_id"
   add_foreign_key "facebook_posts", "facebook_pages"
   add_foreign_key "screenshots", "facebook_posts"
   add_foreign_key "sent_emails", "email_templates"
