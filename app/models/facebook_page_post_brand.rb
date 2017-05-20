@@ -16,7 +16,7 @@
 
 class FacebookPagePostBrand < ApplicationRecord
 
-  belongs_to :facebook_posts
-  belongs_to :facebook_page_brands
+  belongs_to :facebook_post
+  belongs_to :facebook_page_brand
 
 end
