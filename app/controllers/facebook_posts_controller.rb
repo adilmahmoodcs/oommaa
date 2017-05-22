@@ -138,11 +138,11 @@ class FacebookPostsController < ApplicationController
       @fb_page = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_id_eq]})
                                     .call('FacebookPage', current_user)[:results] if params[:q][:facebook_page_id_eq].present?
 
-      @brand = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_brands_id_eq]})
-                                  .call('Brand', current_user)[:results] if params[:q][:facebook_page_brands_id_eq].present?
+      @brand = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_post_brands_facebook_page_brand_brand_id_eq]})
+                                  .call('Brand', current_user)[:results] if params[:q][:facebook_page_post_brands_facebook_page_brand_brand_id_eq].present?
 
-      @licensor = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_brands_licensor_id_eq]})
-                                     .call('Licensor', current_user)[:results] if params[:q][:facebook_page_brands_licensor_id_eq].present?
+      @licensor = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_post_brands_facebook_page_brand_brand_licensor_id_eq]})
+                                     .call('Licensor', current_user)[:results] if params[:q][:facebook_page_post_brands_facebook_page_brand_brand_licensor_id_eq].present?
     end
   end
 end

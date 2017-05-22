@@ -1,6 +1,7 @@
 class AddBrandsToFacebookPagePostBrands < ActiveRecord::Migration[5.0]
   def up
     populate_facebook_page_post_brands
+    drop_table :post_brands
   end
 
   def down

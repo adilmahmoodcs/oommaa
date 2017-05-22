@@ -67,6 +67,11 @@ class PostsImporterJob
       next if post.raw_links.none? # skip posts with no external links
 
       post.save!
+      #Create Page Post Brands For Posts
+      post.facebook_page.facebook_page_brands.find_each do |page_brand|
+        page_brand.facebook_page_post_brands.create(facebook_post: post)
+      end
+
       PostStatusJob.perform_async(post.id)
       logger.info "PostsImporterJob: new FacebookPost #{post.id} created for FacebookPage #{page.id}"
     end

@@ -172,25 +172,14 @@ ActiveRecord::Schema.define(version: 20170519220051) do
   end
 
   create_table "licensors", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",              null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "main_contact"
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
-    t.string   "cease_and_desist_template"
-    t.string   "cease_and_desist_subject"
-  end
-
-  create_table "post_brands", force: :cascade do |t|
-    t.integer  "facebook_post_id"
-    t.integer  "brand_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["brand_id"], name: "index_post_brands_on_brand_id", using: :btree
-    t.index ["facebook_post_id"], name: "index_post_brands_on_facebook_post_id", using: :btree
   end
 
   create_table "screenshots", force: :cascade do |t|

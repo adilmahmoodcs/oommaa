@@ -19,4 +19,15 @@ class FacebookPagePostBrand < ApplicationRecord
   belongs_to :facebook_post
   belongs_to :facebook_page_brand
 
+  delegate :brand,
+    to: :facebook_page_brand
+
+  delegate :name,
+    to: :brand, prefix: true
+
+  delegate :licensor,
+    to: :brand
+
+  delegate :name,
+    to: :licensor, prefix: true
 end
