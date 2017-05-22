@@ -11,9 +11,11 @@ class AddBrandsToFacebookPagePostBrands < ActiveRecord::Migration[5.0]
 
   private
     def populate_facebook_page_post_brands
+
       FacebookPost.unscoped.all.find_each do |post|
-        if post.manual_added_brands.any?
-          post.manual_added_brands.each do |brand|
+        post_brands = PostBrand.where(facebook_post_id: post.id).pluck(:brand_id)
+        if post_brands.any?
+          Brand.where(id: post_brands).each do |brand|
             facebook_page_brand = post.facebook_page.facebook_page_brands.find_or_initialize_by(brand_id: brand.id)
             facebook_page_brand.facebook_page_post_brands.new(facebook_post: post)
             facebook_page_brand.save
