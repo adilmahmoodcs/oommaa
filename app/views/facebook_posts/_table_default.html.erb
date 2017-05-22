@@ -48,10 +48,10 @@
           <% end %>
         </td>
         <td>
-          <%= post.brand_names %>
+          <%= post.brand_names rescue "" %>
         </td>
         <td>
-          <%= post.licensor_names %>
+          <%= post.licensor_names rescue "" %>
         </td>
         <td class="col-p-company">
           <%= post.all_domains.join(", ") %>
