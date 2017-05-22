@@ -135,8 +135,16 @@ class FacebookPost < ApplicationRecord
     self.facebook_page_post_brands.map(&:brand_name).uniq.join(",")
   end
 
+  def brand_ids
+    self.facebook_page_post_brands.map(&:brand_id).uniq
+  end
+
   def licensor_names
     self.facebook_page_post_brands.map(&:licensor_name).uniq.join(",")
+  end
+
+  def licensor_ids
+    self.facebook_page_post_brands.map(&:licensor_id).uniq
   end
 
   def check_facebook_shutdown_status

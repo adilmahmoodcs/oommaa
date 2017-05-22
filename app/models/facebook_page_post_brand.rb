@@ -22,12 +22,12 @@ class FacebookPagePostBrand < ApplicationRecord
   delegate :brand,
     to: :facebook_page_brand
 
-  delegate :name,
+  delegate :id, :name,
     to: :brand, prefix: true
 
   delegate :licensor,
     to: :brand
 
-  delegate :name,
+  delegate :id, :name,
     to: :licensor, prefix: true
 end

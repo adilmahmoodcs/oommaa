@@ -122,7 +122,8 @@ class PostImporterJob
 
     brand_ids.each do |brand_id|
       page_brand = post.facebook_page.facebook_page_brands.find_or_initialize_by(brand_id: brand_id)
-      page_brand.facebook_page_post_brands.create(facebook_post: post)
+      page_brand.facebook_page_post_brands.new(facebook_post: post)
+      page_brand.save
     end
     post
   end
