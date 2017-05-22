@@ -149,10 +149,11 @@ class FacebookPostsController < ApplicationController
   def update_brands_for_post
     brands = policy_scope(Brand).find(params[:brand_ids])
     @facebook_post.facebook_page_post_brands.destroy_all
+    updated = false
     brands.each do |brand|
       page_brand = @facebook_post.facebook_page.facebook_page_brands.find_or_initialize_by(brand_id: brand.id)
       page_brand.facebook_page_post_brands.new(facebook_post: @facebook_post)
-      page_brand.save ? updated = true :  updated = false
+      updated = true  if page_brand.save
     end
     return updated
   end
