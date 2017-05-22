@@ -1,6 +1,10 @@
 class AddBrandsToFacebookPagePostBrands < ActiveRecord::Migration[5.0]
-  def change
+  def up
     populate_facebook_page_post_brands
+  end
+
+  def down
+
   end
 
 

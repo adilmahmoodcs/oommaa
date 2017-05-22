@@ -159,10 +159,8 @@ ActiveRecord::Schema.define(version: 20170519220051) do
     t.string   "greylisted_by"
     t.datetime "shutdown_queue_at"
     t.string   "shutdown_queue_by"
-    t.integer  "facebook_page_brands_id"
     t.index ["all_domains"], name: "index_facebook_posts_on_all_domains", using: :gin
     t.index ["all_links"], name: "index_facebook_posts_on_all_links", using: :gin
-    t.index ["facebook_page_brands_id"], name: "index_facebook_posts_on_facebook_page_brands_id", using: :btree
     t.index ["facebook_page_id"], name: "index_facebook_posts_on_facebook_page_id", using: :btree
     t.index ["status", "published_at"], name: "index_facebook_posts_on_status_and_published_at", using: :btree
   end
@@ -174,14 +172,16 @@ ActiveRecord::Schema.define(version: 20170519220051) do
   end
 
   create_table "licensors", force: :cascade do |t|
-    t.string   "name",              null: false
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.string   "name",                      null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "main_contact"
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.string   "cease_and_desist_template"
+    t.string   "cease_and_desist_subject"
   end
 
   create_table "post_brands", force: :cascade do |t|
@@ -254,7 +254,6 @@ ActiveRecord::Schema.define(version: 20170519220051) do
   add_foreign_key "brands", "licensors"
   add_foreign_key "facebook_page_brands", "brands"
   add_foreign_key "facebook_page_brands", "facebook_pages"
-  add_foreign_key "facebook_posts", "facebook_page_brands", column: "facebook_page_brands_id"
   add_foreign_key "facebook_posts", "facebook_pages"
   add_foreign_key "screenshots", "facebook_posts"
   add_foreign_key "sent_emails", "email_templates"
