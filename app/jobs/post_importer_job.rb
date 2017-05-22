@@ -121,14 +121,8 @@ class PostImporterJob
     logger.info "PostImporterJob: created new FacebookPost #{post.id}"
 
     brand_ids.each do |brand_id|
-      page_brand = post.facebook_page.facebook_page_brands.where(brand_id: brand_id).try(:take)
-      if page_brand.present?
-        page_brand.facebook_page_post_brands.create(facebook_post: post)
-      else
-        facebook_page_brand = post.facebook_page.facebook_page_brands.new(brand: brand)
-        facebook_page_brand.facebook_page_post_brands.new(facebook_post: post)
-        facebook_page_brand.save
-      end
+      page_brand = post.facebook_page.facebook_page_brands.find_or_initialize_by(brand_id: brand_id)
+      page_brand.facebook_page_post_brands.create(facebook_post: post)
     end
     post
   end
