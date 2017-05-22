@@ -31,7 +31,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :brand_ids %>
+    <%= f.label :brands %>
     <%= select_tag :brand_ids,
                      options_from_collection_for_select(policy_scope(Brand).all.order("LOWER(name)"), :id, :name, f.object.brand_ids),
                      include_blank: true,
