@@ -5,16 +5,24 @@ var SlickMenu = {
       arrows: true,
       infinite: false,
       speed: 300,
-      slidesToShow: 7,
+      slidesToShow: 4,
       slidesToScroll: 1,
       responsive: [
         {
-          breakpoint: 768,
-          settings: {
-            unslick: true
-          }
+          breakpoint: 769,
+          settings: "unslick"
         }
       ]
+    });
+  }
+}
+
+var InitSlickOnResize = {
+  init: function(){
+    $( window ).resize(function() {
+      if ($( window ).width() >= 769 && !$(".slick_tabs").hasClass("slick-initialized")){
+        SlickMenu.init();
+      }
     });
   }
 }
