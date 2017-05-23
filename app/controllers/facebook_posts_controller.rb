@@ -147,13 +147,15 @@ class FacebookPostsController < ApplicationController
   end
 
   def update_brands_for_post
-    brands = policy_scope(Brand).find(params[:brand_ids])
-    @facebook_post.facebook_page_post_brands.destroy_all
     updated = false
-    brands.each do |brand|
-      page_brand = @facebook_post.facebook_page.facebook_page_brands.find_or_initialize_by(brand_id: brand.id)
-      page_brand.facebook_page_post_brands.new(facebook_post: @facebook_post)
-      updated = true  if page_brand.save
+    if params[:brand_ids].present?
+      brands = policy_scope(Brand).find(params[:brand_ids])
+      @facebook_post.facebook_page_post_brands.destroy_all
+      brands.each do |brand|
+        page_brand = @facebook_post.facebook_page.facebook_page_brands.find_or_initialize_by(brand_id: brand.id)
+        page_brand.facebook_page_post_brands.new(facebook_post: @facebook_post)
+        updated = true  if page_brand.save
+      end
     end
     return updated
   end
