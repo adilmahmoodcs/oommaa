@@ -9,7 +9,7 @@ production:
     report_url: https://www.facebook.com/help/contact/1449082462070065
     tokens:
       - EAAO0ZCIHKn24BAGeYHZA9kTmCD7lTu00hK1gPUkYyEnPlwZAm6ChXOj4XXKboKOpZCxIy319NInZCTHrhXtZALXdAc17kPglt8UQKmSSe9d4TAx2sJfcV86uxwpoYRVP5n9yea8k1ixt0iZBCb1RxcvRJXew635il0ZD # syed
-      - EAAO0ZCIHKn24BAK2Hvye9nUXZC5iDLeyjhfvm8bqL5RXFqTwrJfFt63lmzZCD0VhQ0saGju2dtRwU2l6YZBYx7zI9SVSNoubNedQQ7Y9Rl2TizUBpHanWSpZBER0yxFNfhIwWOthUmAL4PnZBsIRF9Q57nsvV2ZCtE0GDQSjmaPgQZDZD # Arthur 
+      - EAAO0ZCIHKn24BAK2Hvye9nUXZC5iDLeyjhfvm8bqL5RXFqTwrJfFt63lmzZCD0VhQ0saGju2dtRwU2l6YZBYx7zI9SVSNoubNedQQ7Y9Rl2TizUBpHanWSpZBER0yxFNfhIwWOthUmAL4PnZBsIRF9Q57nsvV2ZCtE0GDQSjmaPgQZDZD # Arthur
 staging:
   facebook:
     report_url: https://www.facebook.com/help/contact/1449082462070065

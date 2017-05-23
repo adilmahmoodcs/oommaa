@@ -3,8 +3,8 @@
     <tr>
       <th>Image</th>
       <th>Message</th>
-      <th><%= sort_link(@q, :facebook_page_brands_name, t(:brand_name)) %></th>
-      <th><%= sort_link(@q, :facebook_page_brands_licensor_name, t(:licensor_name)) %></th>
+      <th><%= sort_link(@q, :facebook_page_post_brands_facebook_page_brand_brand_name, t(:brand_name)) %></th>
+      <th><%= sort_link(@q, :facebook_page_post_brands_facebook_page_brand_brand_licensor_name, t(:licensor_name)) %></th>
       <th><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></th>
       <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
       <th><%= sort_link(@q, :published_at, "Published at") %></th>
@@ -48,10 +48,10 @@
           <% end %>
         </td>
         <td>
-          <%= post.get_brand_names %>
+          <%= post.brand_names rescue "" %>
         </td>
         <td>
-          <%= post.licensor_names %>
+          <%= post.licensor_names rescue "" %>
         </td>
         <td class="col-p-company">
           <%= post.all_domains.join(", ") %>

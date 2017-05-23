@@ -56,18 +56,13 @@ class FacebookPost < ApplicationRecord
   has_many :screenshots, dependent: :destroy
   has_many :ad_screenshots
   has_many :product_screenshots
-
-  has_many :post_brands, foreign_key: :facebook_post_id
-  has_many :manual_added_brands, through: :post_brands, source: :brand
+  has_many :facebook_page_post_brands
 
   validates :facebook_id, :message, :facebook_page, presence: true
   validates :facebook_id, uniqueness: true
   after_save :check_facebook_shutdown_status, if: Proc.new {|p| p.status_changed? and (
                                                    p.status == "blacklisted" or
                                                    p.status == "reported_to_facebook")}
-
-  delegate :brands, :brand_ids, :brand_ids=, :brand_names, :licensors, :licensor_names,
-    to: :facebook_page
 
   default_scope { where(mass_job_status: :no_status) }
   scope :with_any_domain, -> (name) { where("? = ANY (all_domains)", name) }
@@ -136,12 +131,20 @@ class FacebookPost < ApplicationRecord
     status.in? ["reported_to_facebook"]
   end
 
-  def get_brand_names
-    if manual_added_brands.present?
-      manual_added_brands.pluck(:name).join(", ")
-    else
-      brand_names
-    end
+  def brand_names
+    self.facebook_page_post_brands.map(&:brand_name).uniq.join(",")
+  end
+
+  def brand_ids
+    self.facebook_page_post_brands.map(&:brand_id).uniq
+  end
+
+  def licensor_names
+    self.facebook_page_post_brands.map(&:licensor_name).uniq.join(",")
+  end
+
+  def licensor_ids
+    self.facebook_page_post_brands.map(&:licensor_id).uniq
   end
 
   def check_facebook_shutdown_status

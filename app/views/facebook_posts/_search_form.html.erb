@@ -16,7 +16,7 @@
 
           <div class="col-md-3 form-group">
             <%= f.label :with_any_brand, t(:brand_name) %>
-            <%= f.select :facebook_page_brands_id_eq,
+            <%= f.select :facebook_page_post_brands_facebook_page_brand_brand_id_eq,
                           filter_results(@brand),
                           { include_blank: true },
                           class: "form-control remote-select2",
@@ -35,7 +35,7 @@
         <% if policy(Licensor).search? && @status != "affiliate_greylisted"%>
           <div class="col-md-3 form-group">
             <%= f.label :with_licensor_name, "Licensor" %>
-            <%= f.select :facebook_page_brands_licensor_id_eq,
+            <%= f.select :facebook_page_post_brands_facebook_page_brand_brand_licensor_id_eq,
                          filter_results(@licensor),
                          { include_blank: true },
                          class: "form-control remote-select2",
