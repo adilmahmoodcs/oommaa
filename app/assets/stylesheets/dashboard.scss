@@ -102,3 +102,141 @@
     }
   }
 }
+
+.inner-header{
+    margin: 0 0 30px;
+  .holder{
+    .heading-holder{
+      display: inline-block;
+      vertical-align: middle;
+      h3{
+        margin: 4px 0 0;
+        line-height: 38px;
+      }
+      .fillter-value{
+        max-width: 80px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 38px;
+      }
+    }
+    .search-form-holder{
+      display: inline-block;
+    }
+    .pagination-holder{
+      float: right;
+      margin-left: 30px;
+      nav{
+        line-height: 13px;
+        .pagination {
+          margin: 0;
+          li{
+            a{
+              padding: .4rem .75rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+#brand-table{
+    font-family: 'Source Sans Pro', sans-serif;
+    tr{
+      th{
+        color: #4a4a4a;
+        font-weight: 600;
+      }
+      td{
+        color: #4a4a4a;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: normal;
+        vertical-align: middle;
+        &:nth-child(1){
+          width: 8%;
+          img{
+            width: 80px;
+            margin: 0 auto;
+            display: block;
+          }
+        }
+      }
+      td{
+        &:nth-child(2){
+          width: 15%;
+        }
+      }
+      td{
+        &:nth-child(3){
+          width: 20%;
+        }
+      }
+      td{
+        &:nth-child(4){
+          width: 15%;
+        }
+      }
+    }
+}
+
+
+@media only screen and (max-width: 1200px) {
+  .inner-header{
+    .holder{
+      .add_new-btn {
+        float: right;
+      }
+      .search-form-holder{
+        float: left;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 870px) {
+  .inner-header{
+    .holder{
+      .search-form-holder{
+        margin: 0 auto 15px;
+        float: none;
+        width: 100%;
+        text-align: center;
+      }
+      .pagination-holder{
+        float: none;
+        margin: 0 auto;
+        text-align: center;
+        nav{
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .inner-header{
+      .holder{
+        .search-form-holder{
+          .form-inline{
+            .input-group{
+              margin-bottom: 10px;
+            }
+          }
+        }
+      }
+    }
+    .brand-table{
+    tr{
+      td{
+        .btn.btn-sm{
+          width: 100%;
+          margin: 0 0 5px;
+        }
+      }
+    }
+  }
+}

@@ -1,11 +1,11 @@
 <%= f.fields_for logo do |img_form| %>
   <div class="row">
-    <div class="col-xl-12 divider">
-      <div class="col-xl-3">
+    <div class="col-md-12 divider">
+      <div class="col-md-3">
         <%= link_to image_tag(img_form.object.try(:image).url(:thumb), width: "100px"), "#{img_form.object.new_record? ? "javascript:void(0);" : brand_brand_logo_path(f.object.id, id: img_form.object.id)}" %>
       </div>
-      <div class="col-xl-9 row">
-        <div class="col-xl-6">
+      <div class="col-md-9 row">
+        <div class="col-md-6">
           <div class="form-group">
             <%= f.label t(:trademark_registration_number) %>
             <%= img_form.text_field :trademark_registration_number, class: "form-control" %>
@@ -15,7 +15,7 @@
             <%= img_form.text_field :trademark_registration_location, class: "form-control" %>
           </div>
         </div>
-        <div class="col-xl-6">
+        <div class="col-md-6">
           <div class="form-group">
             <%= f.label t(:trademark_registration_url) %>
             <%= img_form.text_field :trademark_registration_url, class: "form-control" %>
@@ -27,7 +27,7 @@
         </div>
       </div>
       <% if img_form.object.new_record? %>
-        <div class="col-xl-12">
+        <div class="col-md-12">
           <%= img_form.file_field :image, class: "form-control" %>
         </div>
       <% end %>

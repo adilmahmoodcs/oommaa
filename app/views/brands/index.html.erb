@@ -1,50 +1,56 @@
-<h3>
-  Brands
-  <% if term = params.dig(:q, :name_cont).presence %>
-    (matching '<%= term %>')
-  <% else %>
-    (all)
-  <% end %>
-</h3>
 
-<div class="card">
-  <div class="card-block">
+<div class="inner-header">
+  <div class="holder">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12 col-lg-3">
+        <div class="heading-holder">
+          <h3>
+            Brands
+            <% if term = params.dig(:q, :name_cont).presence %>
+              ('<span class="fillter-value"><%= term %></span>')
+            <% else %>
+              (all)
+            <% end %>
+          </h3>
+        </div>
           <% if policy(Brand).new? %>
-            <%= link_to new_brand_path, class: "btn btn-primary" do %>
+            <%= link_to new_brand_path, class: "btn btn-primary add_new-btn" do %>
               <%= icon("plus") %>
               Add New
             <% end %>
           <% end %>
       </div>
 
-      <div class="col-md-6 text-right">
-        <%= search_form_for @q, class: "form-inline" do |f| %>
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            <div class="input-group-addon"><%= icon("search") %></div>
-            <%= f.text_field :name_cont,
-                               class: "form-control mb-2 mr-sm-2 mb-sm-0",
-                               placeholder: "Search term" %>
-          </div>
-          <%= button_tag class: "btn btn-primary" do %>
-            <%= icon("search") %>
-            Search
+      <div class="col-md-12 col-lg-9 text-right">
+        <div class="search-form-holder">
+          <%= search_form_for @q, class: "form-inline" do |f| %>
+            <div class="input-group">
+              <div class="input-group-addon"><%= icon("search") %></div>
+              <%= f.text_field :name_cont,
+                                 class: "form-control",
+                                 placeholder: "Search term" %>
+            </div>
+            <%= button_tag class: "btn btn-primary" do %>
+              <%= icon("search") %>
+              Search
+            <% end %>
+            &nbsp;
+            <%= link_to url_for, class: "btn btn-secondary" do %>
+              <%= icon("eraser") %>
+              Clear search
+            <% end %>
           <% end %>
-          &nbsp;
-          <%= link_to url_for, class: "btn btn-secondary" do %>
-            <%= icon("eraser") %>
-            Clear search
-          <% end %>
-        <% end %>
+        </div>
+        <div class="pagination-holder">
+          <%= paginate @brands %>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<%= paginate @brands %>
 
-<table class="table table-hover table-bordered">
+<table class=" table table-hover table-bordered" id="brand-table">
   <thead>
     <tr>
       <th>Logos</th>
@@ -70,7 +76,7 @@
         <td>
           <%= brand.licensor&.name %>
         </td>
-        <td class="text-right">
+        <td class="text-left">
           <% if policy(Brand).update? %>
             <%= link_to edit_brand_path(brand),
                         class: "btn btn-secondary btn-sm" do %>

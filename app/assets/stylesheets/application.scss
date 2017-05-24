@@ -2,8 +2,9 @@
 /*= require bootstrap-tagsinput */
 @import "startui/vendor/lobipanel";
 @import "jquery-ui";
+@import "dashboard";
 @import "startui/pages/widgets";
-@import "startui/vendor/bootstrap";
+// @import "startui/vendor/bootstrap";
 @import "select2-bootstrap";
 @import "startui/main";
 @import "font-awesome-sprockets";
@@ -13,11 +14,11 @@
 @import "counterfind";
 @import "activities";
 @import "devise";
-@import "dashboard";
 @import "generic_classes";
 @import "main_menu_tabs";
 @import "infinite_scroll";
 @import "facebook_posts_table";
 @import "slick";
 @import "slick-theme";
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700');
