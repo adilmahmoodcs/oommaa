@@ -25,7 +25,9 @@
                role="button"
                aria-haspopup="true"
                aria-expanded="false">
-              <%= icon("desktop", class: "fa-fw") %>
+              <div class="icon-holder">
+                <%= image_tag("counter_find_UX_v2/switch_dashboard_icon.png")%>
+              </div>
               Switch Dashboards
             </a>
             <div class="dropdown-menu">
@@ -53,7 +55,7 @@
         <%= link_to dashboard_index_path,
                     class: "nav-link #{'active' if current_page?(dashboard_index_path)}" do %>
           <div class="icon-holder">
-            <%= image_tag("counter_find_UX_v2/dashboard-home@3x.png")%>
+            <%= image_tag("counter_find_UX_v2/home_icon.png")%>
           </div>
           Home
         <% end %>
@@ -64,7 +66,9 @@
       <li class="nav-item">
         <%= link_to licensors_path,
                     class: "nav-link #{'active' if current_page?(licensors_path)}" do %>
-          <%= icon("handshake-o", class: "fa-fw") %>
+          <div class="icon-holder">
+            <%= image_tag("counter_find_UX_v2/licensors_icon.png")%>
+          </div>
           <%= "#{t(:licensors)} (#{policy_scope(Licensor).count})" %>
         <% end %>
       </li>
@@ -75,7 +79,7 @@
         <%= link_to brands_path,
                     class: "nav-link #{'active' if current_page?(brands_path)}" do %>
           <div class="icon-holder">
-            <%= image_tag("counter_find_UX_v2/dashboard-home_2@3x.png")%>
+            <%= image_tag("counter_find_UX_v2/brands_icon.png")%>
           </div>
           <%= "#{t(:brands)} (#{policy_scope(Brand).count})" %>
         <% end %>
@@ -87,7 +91,7 @@
         <%= link_to keywords_path,
                     class: "nav-link #{'active' if current_page?(keywords_path)}" do %>
           <div class="icon-holder">
-            <%= image_tag("counter_find_UX_v2/dashboard-home_7@3x.png")%>
+            <%= image_tag("counter_find_UX_v2/keywords_icon.png")%>
           </div>
           <%= "#{t(:keywords)} (#{policy_scope(Keyword).count})" %>
         <% end %>
@@ -103,7 +107,7 @@
            aria-haspopup="true"
            aria-expanded="false">
           <div class="icon-holder">
-            <%= image_tag("counter_find_UX_v2/dashboard-home_3@3x.png")%>
+            <%= image_tag("counter_find_UX_v2/domains_icon.png")%>
           </div>
           Domains
         </a>
@@ -138,7 +142,7 @@
            aria-haspopup="true"
            aria-expanded="false">
           <div class="icon-holder">
-            <%= image_tag("counter_find_UX_v2/dashboard-home_4@3x.png")%>
+            <%= image_tag("counter_find_UX_v2/facebook_posts_icon.png")%>
           </div>
           <%= t(:posts) %>
         </a>
@@ -218,7 +222,7 @@
         <%= link_to export_facebook_posts_path,
                     class: "nav-link #{'active' if current_page?(export_facebook_posts_path)}" do %>
           <div class="icon-holder">
-            <%= image_tag("counter_find_UX_v2/dashboard-home_5@3x.png")%>
+            <%= image_tag("counter_find_UX_v2/export_icon.png")%>
           </div>
           <%= t(:blacklist_export) %>
         <% end %>
@@ -228,7 +232,7 @@
         <%= link_to "#",
                     class: "nav-link #{'active' if current_page?(licensors_path)}" do %>
           <div class="icon-holder">
-            <%= image_tag("counter_find_UX_v2/dashboard-home_6@3x.png")%>
+            <%= image_tag("counter_find_UX_v2/getting_started_icon.png")%>
           </div>
           <%= "#{t(:getting_started)}" %>
         <% end %>
@@ -238,7 +242,9 @@
       <li class="nav-item">
         <%= link_to users_path,
                     class: "nav-link #{'active' if current_page?(users_path)}" do %>
-          <%= icon("users", class: "fa-fw") %>
+          <div class="icon-holder">
+            <%= image_tag("counter_find_UX_v2/users_icon.png")%>
+          </div>
           <%= t(:users) %>
         <% end %>
       </li>
@@ -248,7 +254,9 @@
       <li class="nav-item">
         <%= link_to facebook_pages_path(status: "affiliate_page"),
                     class: "nav-link #{'active' if current_page?(facebook_pages_path(status: "affiliate_page"))}" do %>
-          <%= icon("user-plus", class: "fa-fw") %>
+          <div class="icon-holder">
+            <%= image_tag("counter_find_UX_v2/affiliate_pages_icon.png")%>
+          </div>
           <%= "#{t(:affiliate_page)} (#{policy_scope(FacebookPage).affiliate_page.count})" %>
         <% end %>
       </li>
@@ -266,7 +274,9 @@
            role="button"
            aria-haspopup="true"
            aria-expanded="false">
-          <%= icon("table", class: "fa-fw") %>
+          <div class="icon-holder">
+            <%= image_tag("counter_find_UX_v2/export_icon.png")%>
+          </div>
           Reports
         </a>
         <div class="dropdown-menu">
