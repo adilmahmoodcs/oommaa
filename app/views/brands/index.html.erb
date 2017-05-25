@@ -1,102 +1,104 @@
+<dir class="counterfind_ux_v2">
 
-<div class="inner-header">
-  <div class="holder">
-    <div class="row">
-      <div class="col-md-12 col-lg-3">
-        <div class="heading-holder">
-          <h3>
-            Brands
-            <% if term = params.dig(:q, :name_cont).presence %>
-              ('<span class="fillter-value"><%= term %></span>')
-            <% else %>
-              (all)
+  <div class="inner-header">
+    <div class="holder">
+      <div class="row">
+        <div class="col-md-12 col-lg-3">
+          <div class="heading-holder">
+            <h3>
+              Brands
+              <% if term = params.dig(:q, :name_cont).presence %>
+                ('<span class="fillter-value"><%= term %></span>')
+              <% else %>
+                (all)
+              <% end %>
+            </h3>
+          </div>
+            <% if policy(Brand).new? %>
+              <%= link_to new_brand_path, class: "btn btn-primary add_new-btn" do %>
+                <%= icon("plus") %>
+                Add New
+              <% end %>
             <% end %>
-          </h3>
         </div>
-          <% if policy(Brand).new? %>
-            <%= link_to new_brand_path, class: "btn btn-primary add_new-btn" do %>
-              <%= icon("plus") %>
-              Add New
-            <% end %>
-          <% end %>
-      </div>
 
-      <div class="col-md-12 col-lg-9 text-right">
-        <div class="search-form-holder">
-          <%= search_form_for @q, class: "form-inline" do |f| %>
-            <div class="input-group">
-              <div class="input-group-addon"><%= icon("search") %></div>
-              <%= f.text_field :name_cont,
-                                 class: "form-control",
-                                 placeholder: "Search term" %>
-            </div>
-            <%= button_tag class: "btn btn-primary" do %>
-              <%= icon("search") %>
-              Search
+        <div class="col-md-12 col-lg-9 text-right">
+          <div class="search-form-holder">
+            <%= search_form_for @q, class: "form-inline" do |f| %>
+              <div class="input-group">
+                <div class="input-group-addon"><%= icon("search") %></div>
+                <%= f.text_field :name_cont,
+                                   class: "form-control",
+                                   placeholder: "Search term" %>
+              </div>
+              <%= button_tag class: "btn btn-primary" do %>
+                <%= icon("search") %>
+                Search
+              <% end %>
+              &nbsp;
+              <%= link_to url_for, class: "btn btn-secondary" do %>
+                <%= icon("eraser") %>
+                Clear search
+              <% end %>
             <% end %>
-            &nbsp;
-            <%= link_to url_for, class: "btn btn-secondary" do %>
-              <%= icon("eraser") %>
-              Clear search
-            <% end %>
-          <% end %>
-        </div>
-        <div class="pagination-holder">
-          <%= paginate @brands %>
+          </div>
+          <div class="pagination-holder">
+            <%= paginate @brands %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-
-<table class=" table table-hover table-bordered" id="brand-table">
-  <thead>
-    <tr>
-      <th>Logos</th>
-      <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
-      <th>Nicknames</th>
-      <th><%= sort_link(@q, :licensor_id, "Licensor") %></th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @brands.each do |brand| %>
+  <table class=" table table-hover table-bordered" id="brand-table">
+    <thead>
       <tr>
-        <td>
-          <%= image_tag brand.logo.image.url(:thumb), width: "100px" %>
-        </td>
-        <td>
-          <%= brand.name %>
-        </td>
-        <td>
-          <%= brand.nicknames.join(", ") %>
-        </td>
-        <td>
-          <%= brand.licensor&.name %>
-        </td>
-        <td class="text-left">
-          <% if policy(Brand).update? %>
-            <%= link_to edit_brand_path(brand),
-                        class: "btn btn-secondary btn-sm" do %>
-              <%= icon("pencil") %>
-              Edit
-            <% end %>
-          <% end %>
-          <% if policy(Brand).destroy? %>
-            <%= link_to brand,
-                        method: :delete,
-                        data: { confirm: 'Are you sure?' },
-                        class: "btn btn-danger btn-sm" do %>
-              <%= icon("trash") %>
-              Delete
-            <% end %>
-          <% end %>
-        </td>
+        <th>Logos</th>
+        <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
+        <th>Nicknames</th>
+        <th><%= sort_link(@q, :licensor_id, "Licensor") %></th>
+        <th>Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<%= paginate @brands %>
+    <tbody>
+      <% @brands.each do |brand| %>
+        <tr>
+          <td>
+            <%= image_tag brand.logo.image.url(:thumb), width: "100px" %>
+          </td>
+          <td>
+            <%= brand.name %>
+          </td>
+          <td>
+            <%= brand.nicknames.join(", ") %>
+          </td>
+          <td>
+            <%= brand.licensor&.name %>
+          </td>
+          <td class="text-left">
+            <% if policy(Brand).update? %>
+              <%= link_to edit_brand_path(brand),
+                          class: "btn btn-secondary btn-sm" do %>
+                <%= icon("pencil") %>
+                Edit
+              <% end %>
+            <% end %>
+            <% if policy(Brand).destroy? %>
+              <%= link_to brand,
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' },
+                          class: "btn btn-danger btn-sm" do %>
+                <%= icon("trash") %>
+                Delete
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @brands %>
+
+</dir>

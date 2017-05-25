@@ -1,6 +1,21 @@
 <div class="mobile-menu-left-overlay"></div>
 <div id="top-nav-slider">
   <ul class="main-nav slick_tabs">
+    <li class="nav-item mobile-email-tab ">
+      <a href="#" class="nav-link">
+        <%= current_user.email %>
+      </a>
+    </li>
+    <li class="nav-item mobile-logout-tab ">
+      <% if user_signed_in? %>
+        <%= link_to destroy_user_session_path,
+                    method: :delete,
+                    class: "nav-link user-action" do %>
+          <span class="font-icon glyphicon glyphicon-log-out"></span>
+          Logout
+        <% end %>
+      <% end %>
+    </li>
     <% if switch_user_select %>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle"

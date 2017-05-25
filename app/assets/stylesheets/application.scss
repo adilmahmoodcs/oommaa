@@ -4,7 +4,7 @@
 @import "jquery-ui";
 @import "dashboard";
 @import "startui/pages/widgets";
-// @import "startui/vendor/bootstrap";
+@import "startui/vendor/bootstrap";
 @import "select2-bootstrap";
 @import "startui/main";
 @import "font-awesome-sprockets";
@@ -20,5 +20,5 @@
 @import "facebook_posts_table";
 @import "slick";
 @import "slick-theme";
-@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+@import "bootstarp-new";
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700');

@@ -1,16 +1,18 @@
-<div class="col-xl-6">
+<div class="col-md-12 col-lg-6">
   <section class="card">
     <header class="card-header card-header-lg primary_background_color secondary_text_color">
       Most Egregious Violators
     </header>
     <div class="card-block">
-      <div class="row">
+      <div class="row counterfind_ux_v2">
         <% @violators.each do |domain, count| %>
           <% perc = (count / @total_violations.to_f * 100).round %>
-          <div class="col-xl-4">
-            <%= domain %>
+          <div class="col-xs-12 col-sm-4 ">
+            <div class="domain_name">
+              <%= domain %>
+            </div>
           </div>
-          <div class="col-xl-8">
+          <div class="col-xs-12 col-sm-8 ">
             <div class="progress-with-amount">
               <progress class="progress progress-success" value="<%= perc %>" max="100"></progress>
               <div class="progress-with-amount-number">

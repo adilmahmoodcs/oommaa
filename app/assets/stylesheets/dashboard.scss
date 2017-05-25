@@ -1,3 +1,7 @@
+.mobile-email-tab,
+.mobile-logout-tab{
+  display: none !important;
+}
 .dashboard-card-holder {
   .card {
     border-radius: 0;
@@ -144,6 +148,7 @@
   }
 }
 #brand-table{
+    background: #fff;
     font-family: 'Source Sans Pro', sans-serif;
     tr{
       th{
@@ -181,7 +186,6 @@
       }
     }
 }
-
 
 @media only screen and (max-width: 1200px) {
   .inner-header{
@@ -238,5 +242,20 @@
         }
       }
     }
+  }
+  .mobile-email-tab,
+  .mobile-logout-tab{
+    display: block !important;
+  }
+  .mobile-email-tab{
+    a{
+      font-size: smaller !important;
+    }
+  }
+  .mobile-tab-none{
+    display: none !important;
+  }
+  .domain_name{
+    text-align: left !important;
   }
 }
