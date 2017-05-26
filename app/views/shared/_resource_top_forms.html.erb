@@ -1,40 +1,32 @@
-<div class="card">
-  <div class="card-block">
-    <div class="row">
-      <div class="col-md-6">
-        <%= form_for resource, html: { class: "form-inline" } do |f| %>
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            <div class="input-group-addon"><%= icon("plus") %></div>
-            <%= f.text_field :name,
-                             class: "form-control mb-2 mr-sm-2 mb-sm-0",
-                             placeholder: "Name" %>
-          </div>
-          <%= f.button class: "btn btn-primary" do %>
-            <%= icon("plus") %>
-            Add New
-          <% end %>
-        <% end %>
-      </div>
-
-      <div class="col-md-6 text-right">
-        <%= search_form_for @q, class: "form-inline" do |f| %>
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            <div class="input-group-addon"><%= icon("search") %></div>
-            <%= f.text_field :name_cont,
-                               class: "form-control mb-2 mr-sm-2 mb-sm-0",
-                               placeholder: "Search term" %>
-          </div>
-          <%= button_tag class: "btn btn-primary" do %>
-            <%= icon("search") %>
-            Search
-          <% end %>
-          &nbsp;
-          <%= link_to url_for, class: "btn btn-secondary" do %>
-            <%= icon("eraser") %>
-            Clear search
-          <% end %>
-        <% end %>
-      </div>
+<div class="new_form_holder pull-left">
+  <%= form_for resource, html: { class: "form-inline" } do |f| %>
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+      <div class="input-group-addon"><%= icon("plus") %></div>
+      <%= f.text_field :name,
+                       class: "form-control mb-2 mr-sm-2 mb-sm-0",
+                       placeholder: "Name" %>
     </div>
-  </div>
+    <%= f.button class: "btn btn-primary" do %>
+      <%= icon("plus") %>
+      Add New
+    <% end %>
+  <% end %>
+</div>
+
+<div class="search-form-holder pull-right">
+  <%= search_form_for @q, class: "form-inline" do |f| %>
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+      <div class="input-group-addon"><%= icon("search") %></div>
+      <%= f.text_field :name_cont,
+                         class: "form-control mb-2 mr-sm-2 mb-sm-0",
+                         placeholder: "Search term" %>
+    </div>
+    <%= button_tag class: "btn btn-primary" do %>
+      <%= icon("search") %>
+    <% end %>
+    &nbsp;
+    <%= link_to url_for, class: "btn btn-secondary" do %>
+      <%= icon("eraser") %>
+    <% end %>
+  <% end %>
 </div>

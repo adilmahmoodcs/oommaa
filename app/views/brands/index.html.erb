@@ -47,79 +47,77 @@
       </div>
     </div>
   </div>
+
   <div id="brand-table">
-      <div class="new-table">
-<div class="new_app_Table">
-  <div class="new_app_TableRow mobile-none">
-    <div class="new_app_TableHead">Logos</div>
-    <div class="new_app_TableHead"><%= sort_link(@q, :name_case_insensitive, "Name") %></div>
-    <div class="new_app_TableHead">Nicknames</div>
-    <div class="new_app_TableHead"><%= sort_link(@q, :licensor_id, "Licensor") %></div>
-    <div class="new_app_TableHead">Actions</div>
-
-  </div>
-  <% @brands.each do |brand| %>
-
-    <div class="new_app_TableRow">
-      <div class="new_app_TableCell">
-        <div class="mobile_table_head desktop-none">
-          <h4>Logos</h4>
+    <div class="new-table">
+      <div class="div_Table">
+        <div class="div_TableRow mobile-none">
+          <div class="div_TableHead">Logos</div>
+          <div class="div_TableHead"><%= sort_link(@q, :name_case_insensitive, "Name") %></div>
+          <div class="div_TableHead">Nicknames</div>
+          <div class="div_TableHead"><%= sort_link(@q, :licensor_id, "Licensor") %></div>
+          <div class="div_TableHead">Actions</div>
         </div>
-        <div class="mobile_content">
-          <%= image_tag brand.logo.image.url(:thumb), width: "100px" %>
-        </div>
-      </div>
-      <div class="new_app_TableCell">
-        <div class="mobile_table_head desktop-none">
-          <h4>Name</h4>
-        </div>
-        <div class="mobile_content">
-          <%= brand.name %></div>
-        </div>
-      <div class="new_app_TableCell">
-        <div class="mobile_table_head desktop-none">
-          <h4>Nicknames</h4>
-        </div>
-        <div class="mobile_content">
-          <%= brand.nicknames.join(", ") %>
-        </div>
-      </div>
-      <div class="new_app_TableCell">
-        <div class="mobile_table_head desktop-none">
-          <h4>Licensor</h4>
-        </div>
-        <div class="mobile_content">
-          <%= brand.licensor&.name %>
-        </div>
-      </div>
-      <div class="new_app_TableCell">
-        <div class="mobile_table_head desktop-none">
-          <h4>Actions</h4>
-        </div>
-        <div class="mobile_content">
-          <% if policy(Brand).update? %>
-            <%= link_to edit_brand_path(brand),
-                        class: "btn btn-secondary btn-sm" do %>
-              <%= icon("pencil") %>
-              Edit
-            <% end %>
-          <% end %>
-          <% if policy(Brand).destroy? %>
-            <%= link_to brand,
-                        method: :delete,
-                        data: { confirm: 'Are you sure?' },
-                        class: "btn btn-danger btn-sm" do %>
-              <%= icon("trash") %>
-              Delete
-            <% end %>
-          <% end %>
-        </div>
+        <% @brands.each do |brand| %>
+          <div class="div_TableRow">
+            <div class="div_TableCell">
+              <div class="mobile_table_head desktop-none">
+                <h4>Logos</h4>
+              </div>
+              <div class="mobile_content">
+                <%= image_tag brand.logo.image.url(:thumb), width: "100px" %>
+              </div>
+            </div>
+            <div class="div_TableCell">
+              <div class="mobile_table_head desktop-none">
+                <h4>Name</h4>
+              </div>
+              <div class="mobile_content">
+                <%= brand.name %></div>
+              </div>
+            <div class="div_TableCell">
+              <div class="mobile_table_head desktop-none">
+                <h4>Nicknames</h4>
+              </div>
+              <div class="mobile_content">
+                <%= brand.nicknames.join(", ") %>
+              </div>
+            </div>
+            <div class="div_TableCell">
+              <div class="mobile_table_head desktop-none">
+                <h4>Licensor</h4>
+              </div>
+              <div class="mobile_content">
+                <%= brand.licensor&.name %>
+              </div>
+            </div>
+            <div class="div_TableCell">
+              <div class="mobile_table_head desktop-none">
+                <h4>Actions</h4>
+              </div>
+              <div class="mobile_content">
+                <% if policy(Brand).update? %>
+                  <%= link_to edit_brand_path(brand),
+                              class: "btn btn-secondary btn-sm" do %>
+                    <%= icon("pencil") %>
+                    Edit
+                  <% end %>
+                <% end %>
+                <% if policy(Brand).destroy? %>
+                  <%= link_to brand,
+                              method: :delete,
+                              data: { confirm: 'Are you sure?' },
+                              class: "btn btn-danger btn-sm" do %>
+                    <%= icon("trash") %>
+                    Delete
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
-  <% end %>
+    <%= paginate @brands %>
+  </dir>
 </div>
-
-  </div>
-  <%= paginate @brands %>
-
-</dir>
