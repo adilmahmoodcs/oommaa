@@ -48,9 +48,9 @@
     </div>
   </div>
 
-  <div id="brand-table">
-    <div class="new-table">
-      <div class="div_Table">
+  <div id="div-table">
+    <div class="custom_table">
+      <div class="div_Table brand_table">
         <div class="div_TableRow mobile-none">
           <div class="div_TableHead">Logos</div>
           <div class="div_TableHead"><%= sort_link(@q, :name_case_insensitive, "Name") %></div>
@@ -60,7 +60,7 @@
         </div>
         <% @brands.each do |brand| %>
           <div class="div_TableRow">
-            <div class="div_TableCell">
+            <div class="div_TableCell width_8">
               <div class="mobile_table_head desktop-none">
                 <h4>Logos</h4>
               </div>
@@ -68,14 +68,14 @@
                 <%= image_tag brand.logo.image.url(:thumb), width: "100px" %>
               </div>
             </div>
-            <div class="div_TableCell">
+            <div class="div_TableCell width_15">
               <div class="mobile_table_head desktop-none">
                 <h4>Name</h4>
               </div>
               <div class="mobile_content">
                 <%= brand.name %></div>
               </div>
-            <div class="div_TableCell">
+            <div class="div_TableCell width_20">
               <div class="mobile_table_head desktop-none">
                 <h4>Nicknames</h4>
               </div>
@@ -83,7 +83,7 @@
                 <%= brand.nicknames.join(", ") %>
               </div>
             </div>
-            <div class="div_TableCell">
+            <div class="div_TableCell width_15">
               <div class="mobile_table_head desktop-none">
                 <h4>Licensor</h4>
               </div>

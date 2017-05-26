@@ -22,12 +22,53 @@
       </div>
     </div>
   </div>
+  <div id="div-table ">
+    <div class="custom_table">
+      <div class="div_Table" id="scroll_table">
+        <div class="div_TableRow mobile-none">
+          <div class="div_TableHead width_50"><%= sort_link(@q, :name_case_insensitive, "Name") %></div>
+          <div class="div_TableHead width_50">Actions</div>
+        </div>
+        <% @keywords.each do |keyword| %>
+          <div class="div_TableRow">
+            <div class="div_TableCell">
+              <div class="mobile_table_head desktop-none">
+                <h4>Name</h4>
+              </div>
+              <div class="mobile_content">
+                <%= keyword.name %>
+              </div>
+            </div>
+            <div class="div_TableCell">
+              <div class="mobile_table_head desktop-none">
+                <h4>Actions</h4>
+              </div>
+              <div class="mobile_content">
+                <%= link_to edit_keyword_path(keyword),
+                      class: "btn btn-secondary btn-sm" do %>
+                  <%= icon("pencil") %>
+                  Edit
+                <% end %>
+                <%= link_to keyword,
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' },
+                            class: "btn btn-danger btn-sm" do %>
+                  <%= icon("trash") %>
+                  Delete
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </dir>
 </dir>
 
 
 
 
-<table class="table table-hover table-bordered", id="scroll_table">
+<!-- <table class="table table-hover table-bordered hide", id="scroll_table">
   <thead>
     <tr>
       <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
@@ -56,50 +97,8 @@
       </tr>
     <% end %>
   </tbody>
-</table>
+</table> -->
 
-<div id="brand-table hide">
-  <div class="new-table hide">
-    <div class="div_Table " id="scroll_table">
-      <div class="div_TableRow mobile-none">
-        <div class="div_TableHead"><%= sort_link(@q, :name_case_insensitive, "Name") %></div>
-        <div class="div_TableHead">Actions</div>
-      </div>
-      <div class="scroll_table_body">
-        <% @keywords.each do |keyword| %>
-          <div class="div_TableRow">
-            <div class="div_TableCell">
-              <div class="mobile_table_head desktop-none">
-                <h4>Name</h4>
-              </div>
-              <div class="mobile_content">
-                <%= keyword.name %></div>
-              </div>
-            <div class="div_TableCell">
-              <div class="mobile_table_head desktop-none">
-                <h4>Actions</h4>
-              </div>
-              <div class="mobile_content">
-                <%= link_to edit_keyword_path(keyword),
-                      class: "btn btn-secondary btn-sm" do %>
-                  <%= icon("pencil") %>
-                  Edit
-                <% end %>
-                <%= link_to keyword,
-                            method: :delete,
-                            data: { confirm: 'Are you sure?' },
-                            class: "btn btn-danger btn-sm" do %>
-                  <%= icon("trash") %>
-                  Delete
-                <% end %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</dir>
 
 
 
