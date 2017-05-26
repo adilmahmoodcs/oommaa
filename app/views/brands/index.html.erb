@@ -31,74 +31,95 @@
                                    class: "form-control",
                                    placeholder: "Search term" %>
               </div>
-              <%= button_tag class: "btn btn-primary" do %>
+              <%= button_tag class: "btn btn-primary", title: "Search" do %>
                 <%= icon("search") %>
-                Search
               <% end %>
               &nbsp;
-              <%= link_to url_for, class: "btn btn-secondary" do %>
+              <%= link_to url_for, class: "btn btn-secondary", title: "Clear Search" do %>
                 <%= icon("eraser") %>
-                Clear search
               <% end %>
             <% end %>
           </div>
-          <div class="pagination-holder">
+          <div class="pagination-holder mobile-none">
             <%= paginate @brands %>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div id="brand-table">
+      <div class="new-table">
+<div class="new_app_Table">
+  <div class="new_app_TableRow mobile-none">
+    <div class="new_app_TableHead">Logos</div>
+    <div class="new_app_TableHead"><%= sort_link(@q, :name_case_insensitive, "Name") %></div>
+    <div class="new_app_TableHead">Nicknames</div>
+    <div class="new_app_TableHead"><%= sort_link(@q, :licensor_id, "Licensor") %></div>
+    <div class="new_app_TableHead">Actions</div>
 
-  <table class=" table table-hover table-bordered" id="brand-table">
-    <thead>
-      <tr>
-        <th>Logos</th>
-        <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
-        <th>Nicknames</th>
-        <th><%= sort_link(@q, :licensor_id, "Licensor") %></th>
-        <th>Actions</th>
-      </tr>
-    </thead>
+  </div>
+  <% @brands.each do |brand| %>
 
-    <tbody>
-      <% @brands.each do |brand| %>
-        <tr>
-          <td>
-            <%= image_tag brand.logo.image.url(:thumb), width: "100px" %>
-          </td>
-          <td>
-            <%= brand.name %>
-          </td>
-          <td>
-            <%= brand.nicknames.join(", ") %>
-          </td>
-          <td>
-            <%= brand.licensor&.name %>
-          </td>
-          <td class="text-left">
-            <% if policy(Brand).update? %>
-              <%= link_to edit_brand_path(brand),
-                          class: "btn btn-secondary btn-sm" do %>
-                <%= icon("pencil") %>
-                Edit
-              <% end %>
+    <div class="new_app_TableRow">
+      <div class="new_app_TableCell">
+        <div class="mobile_table_head desktop-none">
+          <h4>Logos</h4>
+        </div>
+        <div class="mobile_content">
+          <%= image_tag brand.logo.image.url(:thumb), width: "100px" %>
+        </div>
+      </div>
+      <div class="new_app_TableCell">
+        <div class="mobile_table_head desktop-none">
+          <h4>Name</h4>
+        </div>
+        <div class="mobile_content">
+          <%= brand.name %></div>
+        </div>
+      <div class="new_app_TableCell">
+        <div class="mobile_table_head desktop-none">
+          <h4>Nicknames</h4>
+        </div>
+        <div class="mobile_content">
+          <%= brand.nicknames.join(", ") %>
+        </div>
+      </div>
+      <div class="new_app_TableCell">
+        <div class="mobile_table_head desktop-none">
+          <h4>Licensor</h4>
+        </div>
+        <div class="mobile_content">
+          <%= brand.licensor&.name %>
+        </div>
+      </div>
+      <div class="new_app_TableCell">
+        <div class="mobile_table_head desktop-none">
+          <h4>Actions</h4>
+        </div>
+        <div class="mobile_content">
+          <% if policy(Brand).update? %>
+            <%= link_to edit_brand_path(brand),
+                        class: "btn btn-secondary btn-sm" do %>
+              <%= icon("pencil") %>
+              Edit
             <% end %>
-            <% if policy(Brand).destroy? %>
-              <%= link_to brand,
-                          method: :delete,
-                          data: { confirm: 'Are you sure?' },
-                          class: "btn btn-danger btn-sm" do %>
-                <%= icon("trash") %>
-                Delete
-              <% end %>
+          <% end %>
+          <% if policy(Brand).destroy? %>
+            <%= link_to brand,
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' },
+                        class: "btn btn-danger btn-sm" do %>
+              <%= icon("trash") %>
+              Delete
             <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
+  </div>
   <%= paginate @brands %>
 
 </dir>
