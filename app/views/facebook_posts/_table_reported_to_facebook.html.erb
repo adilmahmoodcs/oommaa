@@ -12,7 +12,6 @@
         <th><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></th>
         <th><%= sort_link(@q, :facebook_page_name, t(:facebook_page_name)) %></th>
         <th><%= sort_link(@q, :reported_to_facebook_at, t(:reported_to_facebook_at)) %></th>
-        <th><%= sort_link(@q, :reported_to_facebook_by, t(:reported_to_facebook_by)) %></th>
         <th><%= sort_link(@q, :shut_down_by_facebook_at, t(:shut_down_by_facebook_at)) %></th>
         <th><%= t(:facebook_report_number) %></th>
         <th><%= t(:link_to_product) %></th>
@@ -52,10 +51,10 @@
             <% end %>
           </td>
           <td>
-            <%= post.brand_names rescue "" %>
+            <%= post.get_brand_names %>
           </td>
           <td>
-            <%= post.licensor_names rescue ""  %>
+            <%= post.licensor_names %>
           </td>
           <td class="col-p-company">
             <%= post.all_domains.join(", ") %>
@@ -65,9 +64,6 @@
           </td>
           <td>
             <%= l(post.reported_to_facebook_at.try(:to_date), format: :compact) if post.reported_to_facebook_at %>
-          </td>
-          <td>
-            <%= post.reported_to_facebook_by %>
           </td>
           <td>
             <% if post.shut_down_by_facebook_at %>
