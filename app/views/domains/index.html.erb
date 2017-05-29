@@ -1,107 +1,71 @@
-<h3>
-  <%= t(@status || :all) %>
-  Domains
-  (<%= @domains.total_count %>)
-</h3>
+<dir class="counterfind_ux_v2">
 
-<div class="card">
-  <div class="card-block">
-    <%= form_for Domain.new, html: { class: "form-inline" } do |f| %>
-      <%= f.hidden_field :status, value: @status if @status %>
-      <%= f.text_field :name,
-                       class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
-                       placeholder: "Name" %>
-      <% if @status == "blacklisted" %>
-        <%= f.email_field :owner_email,
-                         class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
-                         placeholder: "Owner's Email" %>
-      <% end %>
-      <%= f.button class: "btn btn-primary" do %>
-        <%= icon("plus") %>
-        Add New
-      <% end %>
-    <% end %>
+  <div class="inner-header">
+    <div class="holder">
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <div class="domain_hading_holder">
+            <div class="heading-holder">
+              <h3>
+                <%= t(@status || :all) %>
+                Domains
+              </h3>
+            </div>
+            <%= render "new_form" %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
-<br>
+  <div id="div-table" class="mb60">
+    <div class="custom_table">
+      <div class="div_Table m0" id="scroll_table">
+        <div class="div_TableRow mobile-none">
+          <div class="div_TableHead width_33"><%= sort_link(@q, :name_case_insensitive, "Name") %></div>
+          <% if @status == "blacklisted"%>
+            <div class="div_TableHead width_33"><%= sort_link(@q, :owner_email, "Owner's Email") %></div>
+          <% end %>
+          <div class="div_TableHead width_33">Actions</div>
+        </div>
 
-<table class="table table-hover table-bordered domains-table" id="scroll_table">
-  <thead>
-    <tr>
-      <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
-      <% if @status == "blacklisted"%>
-        <th><%= sort_link(@q, :owner_email, "Owner's Email") %></th>
-      <% end %>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody class="scroll_table_body">
-    <% @domains.each do |domain| %>
-      <tr class="scroll_table_data">
-        <td>
-          <%= link_to domain.name, "http://#{domain.name}", target: "_blank"  %>
-        </td>
-        <% if @status == "blacklisted"%>
-          <td class="affiliate_page_name">
-            <span> <%= domain.owner_email %> </span>
-            <% if policy(Domain).update? %>
-              <%= form_for domain, html:{class: "#{!domain.owner_email ? 'show' : 'hide'}"} do |d| %>
-                <div class="row">
-                  <div class="col-sm-8">
-                    <%= d.email_field :owner_email, required: true,
-                             class: "form-control fast-add-form mb-2 mr-sm-2 mb-sm-0",
-                             placeholder: "Owner's Email" %>
+        <div class="div-table-body scroll_table_body">
+          <% @domains.each do |domain| %>
+            <div class="div_TableRow scroll_table_data">
+              <div class="div_TableCell">
+                <div class="mobile_table_head desktop-none">
+                  <h4>Name</h4>
+                </div>
+                <div class="mobile_content">
+                  <%= domain.name %>
+                </div>
+              </div>
+              <% if @status == "blacklisted"%>
+                <div class="div_TableCell">
+                  <div class="mobile_table_head desktop-none">
+                    <h4>Affiliate Name</h4>
                   </div>
-                  <div class="col-sm-4">
-                    <%= d.button class: "btn btn-primary btn-sm pull-right" do %>
-                      <%= icon("plus") %>
-                      Edit
-                    <% end %>
+                  <div class="mobile_content affiliate_page_name">
+                    <span> <%= domain.owner_email %> </span>
+                    <%= render "edit_form", domain: domain %>
                   </div>
                 </div>
               <% end %>
-              <%= button_tag class: "btn btn-primary btn-sm pull-right update_name_btn #{domain.owner_email ? 'show' : 'hide' }" do %>
-                <%= icon("edit") %>
-                Edit
-              <% end %>
-              &nbsp;
-            <% end %>
-          </td>
-        <% end %>
-        <td class="text-right">
-          <% unless domain.whitelisted? %>
-            <%= link_to domain_change_status_path(domain, :whitelisted),
-                        method: :post,
-                        class: "btn btn-success btn-sm" do %>
-              <%= icon("check") %>
-              Move to Whitelist
-            <% end %>
+              <div class="div_TableCell">
+                <div class="mobile_table_head desktop-none">
+                  <h4>Actions</h4>
+                </div>
+                <div class="mobile_content">
+                  <%= render "actions", domain: domain %>
+                </div>
+              </div>
+            </div>
           <% end %>
-
-          <% unless domain.blacklisted? %>
-            <%= link_to domain_change_status_path(domain, :blacklisted),
-                        method: :post,
-                        class: "btn btn-danger btn-sm" do %>
-              <%= icon("ban") %>
-              Move to Blacklist
-            <% end %>
-          <% end %>
-
-          <%= link_to domain,
-                      method: :delete,
-                      data: { confirm: 'Are you sure?' },
-                      class: "btn btn-danger btn-sm" do %>
-            <%= icon("trash") %>
-            Delete
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<div class="hide">
-  <%= paginate @domains %>
-</div>
+        </div>
+      </div>
+    </div>
+  </dir>
+  <div class="hide">
+    <%= paginate @domains %>
+  </div>
+</dir>

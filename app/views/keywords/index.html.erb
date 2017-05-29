@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-12 col-lg-2">
           <div class="heading-holder">
-            <h3>
+            <h3 class="m0">
               Keywords
               <% if term = params.dig(:q, :name_cont).presence %>
                 ('<span class="fillter-value"><%= term %></span>')
@@ -22,85 +22,50 @@
       </div>
     </div>
   </div>
-  <div id="div-table ">
+  <div id="div-table" class="mb60">
     <div class="custom_table">
-      <div class="div_Table" id="scroll_table">
+      <div class="div_Table m0" id="scroll_table">
         <div class="div_TableRow mobile-none">
           <div class="div_TableHead width_50"><%= sort_link(@q, :name_case_insensitive, "Name") %></div>
           <div class="div_TableHead width_50">Actions</div>
         </div>
-        <% @keywords.each do |keyword| %>
-          <div class="div_TableRow">
-            <div class="div_TableCell">
-              <div class="mobile_table_head desktop-none">
-                <h4>Name</h4>
+        <div class="div-table-body scroll_table_body">
+          <% @keywords.each do |keyword| %>
+            <div class="div_TableRow scroll_table_data">
+              <div class="div_TableCell">
+                <div class="mobile_table_head desktop-none">
+                  <h4>Name</h4>
+                </div>
+                <div class="mobile_content">
+                  <%= keyword.name %>
+                </div>
               </div>
-              <div class="mobile_content">
-                <%= keyword.name %>
+              <div class="div_TableCell">
+                <div class="mobile_table_head desktop-none">
+                  <h4>Actions</h4>
+                </div>
+                <div class="mobile_content">
+                  <%= link_to edit_keyword_path(keyword),
+                        class: "btn btn-secondary btn-sm" do %>
+                    <%= icon("pencil") %>
+                    Edit
+                  <% end %>
+                  <%= link_to keyword,
+                              method: :delete,
+                              data: { confirm: 'Are you sure?' },
+                              class: "btn btn-danger btn-sm" do %>
+                    <%= icon("trash") %>
+                    Delete
+                  <% end %>
+                </div>
               </div>
             </div>
-            <div class="div_TableCell">
-              <div class="mobile_table_head desktop-none">
-                <h4>Actions</h4>
-              </div>
-              <div class="mobile_content">
-                <%= link_to edit_keyword_path(keyword),
-                      class: "btn btn-secondary btn-sm" do %>
-                  <%= icon("pencil") %>
-                  Edit
-                <% end %>
-                <%= link_to keyword,
-                            method: :delete,
-                            data: { confirm: 'Are you sure?' },
-                            class: "btn btn-danger btn-sm" do %>
-                  <%= icon("trash") %>
-                  Delete
-                <% end %>
-              </div>
-            </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </dir>
 </dir>
-
-
-
-
-<!-- <table class="table table-hover table-bordered hide", id="scroll_table">
-  <thead>
-    <tr>
-      <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody class="scroll_table_body">
-    <% @keywords.each do |keyword| %>
-      <tr class="scroll_table_data">
-        <td><%= keyword.name %></td>
-        <td class="text-left">
-          <%= link_to edit_keyword_path(keyword),
-                      class: "btn btn-secondary btn-sm" do %>
-            <%= icon("pencil") %>
-            Edit
-          <% end %>
-          <%= link_to keyword,
-                      method: :delete,
-                      data: { confirm: 'Are you sure?' },
-                      class: "btn btn-danger btn-sm" do %>
-            <%= icon("trash") %>
-            Delete
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table> -->
-
-
-
 
 <div class="hide">
   <%= paginate @keywords %>

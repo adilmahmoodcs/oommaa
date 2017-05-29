@@ -152,6 +152,9 @@
     background: #fff;
     font-family: 'Source Sans Pro', sans-serif;
     border-bottom: 1px solid #ddd;
+    .div-table-body{
+      display: table-row-group;
+    }
   .div_TableRow{
     font-family: 'Source Sans Pro', sans-serif;
     &:hover{
@@ -172,7 +175,7 @@
   }
 }
 
-.brand_table{
+#brand_table{
   .div_TableCell{
     &:nth-child(1){
       border-left: 1px solid #ddd;
@@ -187,6 +190,19 @@
  .desktop-none{
     display: none;
   }
+.domain_hading_holder{
+  .heading-holder{
+    h3{
+      margin: 0;
+    }
+  }
+  .form-inline{
+    display: inline-block;
+  }
+}
+.mobile_content.affiliate_page_name{
+  max-height: 34px;
+}
 
 @media only screen and (max-width: 1200px) {
   .inner-header{
@@ -204,11 +220,27 @@
 @media only screen and (max-width: 870px) {
   .inner-header{
     .holder{
+      .heading-holder{
+          margin-bottom: 10px;
+      }
       .search-form-holder{
         margin: 0 auto 15px;
         float: none;
         width: 100%;
         text-align: center;
+        #keyword_search{
+          .input-group{
+            .input-group-addon{
+              min-width: 38px;
+            }
+            .form-control{
+              margin-right: 5px;
+            }
+            .btn.btn-secondary{
+              min-width: 46px;
+            }
+          }
+        }
       }
       .pagination-holder{
         float: none;
@@ -217,6 +249,11 @@
         nav{
           text-align: center;
         }
+      }
+      .new_form_holder{
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
       }
     }
   }
@@ -250,6 +287,21 @@
               border-right: 0;
               min-width: 33px;
               padding: 8px;
+          }
+        }
+        .new_form_holder{
+          .form-inline{
+            vertical-align: middle;
+            .input-group{
+              display: inline-flex;
+              .input-group-addon{
+                min-width: 38px;
+                line-height: 19px;
+              }
+            }
+            .btn.btn-primary{
+              margin-left: 4px;
+            }
           }
         }
       }
@@ -327,9 +379,47 @@
         }
     }
   }
+  .domain_hading_holder{
+   .form-inline {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      .input-group{
+        display:inline-flex;
+        .input-group-addon{
+            min-width: 38px;
+            line-height: 19px;
+          }
+      }
+    }
+  }
 
 }
-
+@media only screen and (max-width: 560px) {
+  .inner-header {
+   .holder{
+      .new_form_holder{
+        #new_keyword{
+          .btn{
+            padding: 6px;
+          }
+        }
+      }
+      #keyword_search{
+        .btn{
+          padding: 6px 10px;
+        }
+      }
+      .domain_hading_holder{
+        .form-inline {
+          .btn{
+            padding: 6px 8px;
+          }
+        }
+      }
+    }
+  }
+}
 
 
 .div_TableRow { display: table-row; }
@@ -350,10 +440,11 @@
 }
 .div_TableCell, .div_TableHead {
     display: table-cell;
-    padding: 3px 10px;
+    padding: 8px 10px;
     border-width: 1px 1px 0 0;
     border-style: solid;
     border-color: #ddd;
+    color: #4a4a4a;
     vertical-align: middle;
 }
 .div_TableHeading {

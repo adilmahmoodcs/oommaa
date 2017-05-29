@@ -8,7 +8,7 @@ var InfiniteScroll = {
     },
     navSelector: "ul.pagination",
     nextSelector: "ul.pagination a[rel=next]",
-    itemSelector: "#scroll_table tr.scroll_table_data"
+    itemSelector: "#scroll_table .scroll_table_data"
     });
   }
 }

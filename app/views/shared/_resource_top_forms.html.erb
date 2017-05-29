@@ -1,9 +1,9 @@
 <div class="new_form_holder pull-left">
   <%= form_for resource, html: { class: "form-inline" } do |f| %>
-    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group">
       <div class="input-group-addon"><%= icon("plus") %></div>
       <%= f.text_field :name,
-                       class: "form-control mb-2 mr-sm-2 mb-sm-0",
+                       class: "form-control",
                        placeholder: "Name" %>
     </div>
     <%= f.button class: "btn btn-primary" do %>
@@ -13,12 +13,12 @@
   <% end %>
 </div>
 
-<div class="search-form-holder pull-right">
+<div class="search-form-holder pull-right ">
   <%= search_form_for @q, class: "form-inline" do |f| %>
-    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group">
       <div class="input-group-addon"><%= icon("search") %></div>
       <%= f.text_field :name_cont,
-                         class: "form-control mb-2 mr-sm-2 mb-sm-0",
+                         class: "form-control",
                          placeholder: "Search term" %>
     </div>
     <%= button_tag class: "btn btn-primary" do %>
