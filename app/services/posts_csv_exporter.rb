@@ -21,7 +21,7 @@ class PostsCSVExporter
           post.ad_screenshots.map { |s| s.image.url }.join(" / "),
           post.message,
           post.permalink,
-          post.get_brand_names,
+          post.brand_names,
           post.licensor_names,
           post.all_domains.join(", "),
           post.facebook_page.name,
