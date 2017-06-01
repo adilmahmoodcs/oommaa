@@ -38,7 +38,7 @@
 //= require tags-input
 //= require slick.min
 //= require header_menu_slider
-//= require mass_slect
+//= require mass_select
 //= require_self
 
 document.addEventListener("turbolinks:load", function() {
