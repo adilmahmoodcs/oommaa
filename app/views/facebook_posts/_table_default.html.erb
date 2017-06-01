@@ -3,7 +3,7 @@
     <div class="div_Table slide_table" id="post_table">
 
       <div class="div_TableRow table_header slick_table">
-        <div class="div_TableHead"><%= check_box_tag("mass_action", 1, class: "asdasdasd")%>Image</div>
+        <div class="div_TableHead"><%= check_box_tag("mass_action", 1, false, class: "select_all_posts")%>Image</div>
         <div class="div_TableHead">Message</div>
         <div class="div_TableHead"><%= sort_link(@q, :facebook_page_brands_name, t(:brand_name)) %></div>
         <div class="div_TableHead"><%= sort_link(@q, :facebook_page_brands_licensor_name, t(:licensor_name)) %></div>
@@ -29,7 +29,7 @@
       <% @posts.to_a.uniq.each do |post| %>
         <div class="div_TableRow table_body slick_table fb-post-table">
           <div class="div_TableCell">
-            <div><%= check_box_tag("mass_action", post.id)%></div>
+            <div><%= check_box_tag("mass_action", post.id, false, class: "select_post", data:{value: post.id} )%></div>
             <div class="col-img" >
               <%= link_to image_tag(post.image_url, width: "150px"),
                           post.permalink,
