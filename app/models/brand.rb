@@ -22,8 +22,6 @@ class Brand < ApplicationRecord
   has_many :logos, class_name: "BrandLogo", dependent: :destroy
   has_many :facebook_page_brands, dependent: :destroy
   has_many :facebook_pages, through: :facebook_page_brands
-  has_many :post_brands, foreign_key: :brand_id
-  has_many :manual_added_posts, through: :post_brands, source: :facebook_post
 
   validates :name, presence: true
   validates :name, uniqueness: true

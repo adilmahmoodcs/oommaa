@@ -45,8 +45,8 @@
           <div class="div_TableHead"><%= t(:link_to_ad_screenshot) %></div>
           <div class="div_TableHead"><%= t(:message) %></div>
           <div class="div_TableHead"><%= t(:link_to_ad_on_facebook) %></div>
-          <div class="div_TableHead"><%= sort_link(@q, :facebook_page_brands_name, t(:brand_name)) %></div>
-          <div class="div_TableHead"><%= sort_link(@q, :facebook_page_brands_licensor_name, t(:licensor_name)) %></div>
+          <div class="div_TableHead"><%= sort_link(@q, :facebook_page_post_brands_facebook_page_brand_brand_name, t(:brand_name)) %></div>
+          <div class="div_TableHead"><%= sort_link(@q, :facebook_page_post_brands_facebook_page_brand_brand_licensor_name, t(:licensor_name)) %></div>
           <div class="div_TableHead"><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></div>
           <div class="div_TableHead"><%= sort_link(@q, :facebook_page_name, t(:facebook_page_name)) %></div>
           <div class="div_TableHead"><%= sort_link(@q, :likes, t(:likes)) %></div>
@@ -83,10 +83,10 @@
               <%= link_to "Link", post.permalink, target: "_blank" %>
             </div>
             <div class="div_TableCell" >
-              <%= post.get_brand_names %>
+              <%= post.brand_names rescue "" %>
             </div>
             <div class="div_TableCell" >
-              <%= post.licensor_names %>
+              <%= post.licensor_names rescue "" %>
             </div>
             <div class="div_TableCell" >
               <%= post.all_domains.join(", ") %>

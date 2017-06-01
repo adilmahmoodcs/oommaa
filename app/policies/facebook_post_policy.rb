@@ -65,22 +65,22 @@ class FacebookPostPolicy < ApplicationPolicy
 
   def change_status_not_suspect?
     user.admin? ||
-    (user.confirmed_client? && user.licensor.in?(record.licensors))
+    (user.confirmed_client? && user.licensor.id.in?(record.licensor_ids))
   end
 
   def change_status_suspect?
     user.admin? ||
-    (user.confirmed_client? && user.licensor.in?(record.licensors))
+    (user.confirmed_client? && user.licensor.id.in?(record.licensor_ids))
   end
 
   def change_status_whitelisted?
     user.admin? ||
-    (user.confirmed_client? && user.licensor.in?(record.licensors))
+    (user.confirmed_client? && user.licensor.id.in?(record.licensor_ids))
   end
 
   def change_status_blacklisted?
     user.admin? ||
-    (user.confirmed_client? && user.licensor.in?(record.licensors))
+    (user.confirmed_client? && user.licensor.id.in?(record.licensor_ids))
   end
 
   def change_status_reported_to_facebook?
@@ -101,7 +101,7 @@ class FacebookPostPolicy < ApplicationPolicy
 
   def change_status_shutdown_queue?
     user.admin? ||
-    (user.confirmed_client? && user.licensor.in?(record.licensors))
+    (user.confirmed_client? && user.licensor.id.in?(record.licensor_ids))
   end
 
   ### mass_change_status

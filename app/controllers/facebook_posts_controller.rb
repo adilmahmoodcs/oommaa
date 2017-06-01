@@ -47,7 +47,7 @@ class FacebookPostsController < ApplicationController
 
   def update
     authorize @facebook_post
-    if @facebook_post.update(facebook_post_params)
+    if update_brands_for_post or (params[:facebook_post] and @facebook_post.update(facebook_post_params))
       @facebook_post.create_activity(:update, owner: current_user, parameters: { name: @facebook_post.permalink })
       flash[:notice] = 'Ad was successfully updated.'
       redirect_back(fallback_location: root_path)
@@ -124,7 +124,7 @@ class FacebookPostsController < ApplicationController
 
   def facebook_post_params
     params.require(:facebook_post).permit(
-      { brand_ids: [] }, :facebook_report_number, :likes
+      :facebook_report_number, :likes
     )
   end
 
@@ -138,11 +138,25 @@ class FacebookPostsController < ApplicationController
       @fb_page = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_id_eq]})
                                     .call('FacebookPage', current_user)[:results] if params[:q][:facebook_page_id_eq].present?
 
-      @brand = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_brands_id_eq]})
-                                  .call('Brand', current_user)[:results] if params[:q][:facebook_page_brands_id_eq].present?
+      @brand = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_post_brands_facebook_page_brand_brand_id_eq]})
+                                  .call('Brand', current_user)[:results] if params[:q][:facebook_page_post_brands_facebook_page_brand_brand_id_eq].present?
 
-      @licensor = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_brands_licensor_id_eq]})
-                                     .call('Licensor', current_user)[:results] if params[:q][:facebook_page_brands_licensor_id_eq].present?
+      @licensor = DefaultSearchFilter.new(term: { id: params[:q][:facebook_page_post_brands_facebook_page_brand_brand_licensor_id_eq]})
+                                     .call('Licensor', current_user)[:results] if params[:q][:facebook_page_post_brands_facebook_page_brand_brand_licensor_id_eq].present?
     end
+  end
+
+  def update_brands_for_post
+    updated = false
+    if params[:brand_ids].present?
+      brands = policy_scope(Brand).find(params[:brand_ids])
+      @facebook_post.facebook_page_post_brands.destroy_all
+      brands.each do |brand|
+        page_brand = @facebook_post.facebook_page.facebook_page_brands.find_or_initialize_by(brand_id: brand.id)
+        page_brand.facebook_page_post_brands.new(facebook_post: @facebook_post)
+        updated = true  if page_brand.save
+      end
+    end
+    return updated
   end
 end

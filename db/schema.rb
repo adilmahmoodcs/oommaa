@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512062726) do
+ActiveRecord::Schema.define(version: 20170519220051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,15 @@ ActiveRecord::Schema.define(version: 20170512062726) do
     t.index ["facebook_page_id"], name: "index_facebook_page_brands_on_facebook_page_id", using: :btree
   end
 
+  create_table "facebook_page_post_brands", force: :cascade do |t|
+    t.integer  "facebook_post_id"
+    t.integer  "facebook_page_brand_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["facebook_page_brand_id"], name: "index_facebook_page_post_brands_on_facebook_page_brand_id", using: :btree
+    t.index ["facebook_post_id"], name: "index_facebook_page_post_brands_on_facebook_post_id", using: :btree
+  end
+
   create_table "facebook_pages", force: :cascade do |t|
     t.string   "name",                                  null: false
     t.string   "url",                                   null: false
@@ -170,15 +179,6 @@ ActiveRecord::Schema.define(version: 20170512062726) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
-  end
-
-  create_table "post_brands", force: :cascade do |t|
-    t.integer  "facebook_post_id"
-    t.integer  "brand_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["brand_id"], name: "index_post_brands_on_brand_id", using: :btree
-    t.index ["facebook_post_id"], name: "index_post_brands_on_facebook_post_id", using: :btree
   end
 
   create_table "screenshots", force: :cascade do |t|

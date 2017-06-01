@@ -5,8 +5,8 @@
       <div class="div_TableRow table_header slick_table">
         <div class="div_TableHead"><%= check_box_tag("mass_action", 1, false, class: "select_all_posts")%>Image</div>
         <div class="div_TableHead">Message</div>
-        <div class="div_TableHead"><%= sort_link(@q, :facebook_page_brands_name, t(:brand_name)) %></div>
-        <div class="div_TableHead"><%= sort_link(@q, :facebook_page_brands_licensor_name, t(:licensor_name)) %></div>
+        <div class="div_TableHead"><%= sort_link(@q, :facebook_page_post_brands_facebook_page_brand_brand_name, t(:brand_name)) %></div>
+        <div class="div_TableHead"><%= sort_link(@q, :facebook_page_post_brands_facebook_page_brand_brand_licensor_name, t(:licensor_name)) %></div>
         <div class="div_TableHead"><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></div>
         <div class="div_TableHead"><%= sort_link(@q, :facebook_page_name, "Page") %></div>
         <div class="div_TableHead"><%= sort_link(@q, :published_at, "Published at") %></div>
@@ -51,10 +51,10 @@
             </div>
           </div>
           <div class="div_TableCell">
-            <%= post.get_brand_names %>
+            <%= post.brand_names rescue "" %>
           </div>
           <div class="div_TableCell">
-            <%= post.licensor_names %>
+            <%= post.licensor_names rescue "" %>
           </div>
           <div class="div_TableCell">
             <%= post.all_domains.join(", ") %>
