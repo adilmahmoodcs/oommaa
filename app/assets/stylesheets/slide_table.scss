@@ -10,7 +10,9 @@
   }
   .div_TableRow{
     .slick-track{
-        background: #f6f8fa;
+      background: #f6f8fa;
+      display: flex;
+      height: 100%;
       .div_TableHead{
         font-size: 14px;
         min-height: 46px;
@@ -60,12 +62,20 @@
     .slick-track{
       .slick-slide {
         width: 143.5px;
+        &.action-col{
+          width:288px;
+          position: relative;
+        }
       }
     }
     &.table_body {
       .slick-track{
         .slick-slide{
           width: 143.5px;
+          &.action-col{
+          width:288px;
+          position: relative;
+          }
         }
       }
     }

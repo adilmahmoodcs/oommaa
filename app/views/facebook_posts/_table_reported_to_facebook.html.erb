@@ -34,7 +34,7 @@
           </div>
           <div class="div_TableCell">
             <div class="col-img">
-              <%= link_to image_tag(post_logo_url(post.image_url), width: "150px"),
+              <%= link_to image_tag(post_logo_url(post.image_url), width: "150px", class: "img-responsive"),
                           post.permalink,
                           target: "_blank" if post.image_url.present? %>
             </div>
@@ -94,7 +94,7 @@
             <%= product_screenshot_links(post) %>
           </div>
 
-          <div class="div_TableCell index-actions p5">
+          <div class="div_TableCell action-col p5">
             <%= render 'actions', post: post %>
           </div>
         </div>

@@ -33,8 +33,8 @@ var SlickTable = {
       arrows: true,
       infinite: false,
       speed: 200,
-      slidesToShow: 10,
-      slidesToScroll: 3,
+      slidesToShow: 8,
+      slidesToScroll: 1,
       variableWidth: true,
       adaptiveHeight: false,
       swipe: false

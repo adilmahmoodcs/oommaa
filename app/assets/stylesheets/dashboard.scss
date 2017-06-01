@@ -23,8 +23,9 @@ a{
     }
   }
   .holder{
-    display: inline;
+    display: block;
     overflow: hidden;
+    margin: 0 -5px;
     .form-group{
       min-width: 130px;
       max-width: 160px;
@@ -59,6 +60,20 @@ a{
         min-height: 38px;
         width: 100%;
       }
+    }
+    .col-md-3.form-group {
+      padding: 0 5px;
+    }
+    .filter-btn{
+      width: 100%;
+      display: block;
+      margin: 10px 0;
+      text-align: left;
+      padding: 0 5px;
+    }
+    .btn-filter-block{
+      vertical-align: bottom !important;
+      margin: 10px 0;
     }
   }
 }
@@ -519,5 +534,23 @@ a{
 }
 .div_TableBody {
     display: table-row-group;
+}
+.action-dropdown{
+  border-radius: 3px;
+  background-color: #ffffff;
+  border: solid 1px #d5e2e8;
+  padding: 5px;
+  line-height: 20px;
+  min-height: 30px;
+  min-width: 130px;
+  position: absolute !important;
+  right: 30px;
+  top: 7px;
+  a{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 15px;
+    text-align: left;
+    color: #4a4a4a !important;
+  }
 }
 

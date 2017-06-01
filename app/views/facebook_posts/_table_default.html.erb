@@ -3,7 +3,7 @@
     <div class="div_Table slide_table" id="post_table">
 
       <div class="div_TableRow table_header slick_table">
-        <div class="div_TableHead"><%= check_box_tag("mass_action", 1, false, class: "select_all_posts")%>Image</div>
+        <div class="div_TableHead"><%= check_box_tag("mass_action", 1, false, class: "select_all_posts mr10")%>Image</div>
         <div class="div_TableHead">Message</div>
         <div class="div_TableHead"><%= sort_link(@q, :facebook_page_post_brands_facebook_page_brand_brand_name, t(:brand_name)) %></div>
         <div class="div_TableHead"><%= sort_link(@q, :facebook_page_post_brands_facebook_page_brand_brand_licensor_name, t(:licensor_name)) %></div>
@@ -23,15 +23,32 @@
           <div class="div_TableHead"><%= t(:link_to_product_screenshot) %></div>
         <% end %>
         <div class="div_TableHead"><%= t(:reference_number) %></div>
-        <div class="div_TableHead">Actions</div>
+        <div class="div_TableHead action-col">
+        Actions
+          <div class="nav-item dropdown action-dropdown">
+            <a class="nav-link dropdown-toggle"
+               data-toggle="dropdown"
+               href="#"
+               role="button"
+               aria-haspopup="true"
+               aria-expanded="false">
+              Mass Actions
+            </a>
+            <div class="dropdown-menu">
+              <div class="dropdown-item"><%= render 'facebook_posts/mass_actions/whitelisted', posts: @posts %></div>
+              <div class="dropdown-item"><%= render 'facebook_posts/mass_actions/blacklisted', posts: @posts %></div>
+              <div class="dropdown-item"><%= render 'facebook_posts/mass_actions/ignored', posts: @posts %></div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <% @posts.to_a.uniq.each do |post| %>
         <div class="div_TableRow table_body slick_table fb-post-table">
           <div class="div_TableCell">
-            <div><%= check_box_tag("mass_action", post.id, false, class: "select_post", data:{value: post.id} )%></div>
+            <div><%= check_box_tag("mass_action", post.id, false, class: "select_post mr10", data:{value: post.id} )%></div>
             <div class="col-img" >
-              <%= link_to image_tag(post.image_url, width: "150px"),
+              <%= link_to image_tag(post_logo_url(post.image_url), width: "150px", class: "img-responsive"),
                           post.permalink,
                           target: "_blank" if post.image_url.present? %>
             </div>
@@ -90,7 +107,7 @@
             </div>
           <% end %>
           <div class="div_TableCell"><%= post.id %></div>
-          <div class="div_TableCell index-actions p5">
+          <div class="div_TableCell action-col p5">
             <%= render 'actions', post: post %>
           </div>
         </div>

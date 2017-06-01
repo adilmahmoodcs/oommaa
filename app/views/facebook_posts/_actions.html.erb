@@ -1,4 +1,4 @@
-<div class="col-sm-3">
+<div class="m0auto">
   <% if policy(post).edit? %>
     <%= link_to edit_facebook_post_path(post),
                 class: "btn btn-secondary btn-sm",
@@ -32,31 +32,31 @@
       <% end %>
     <% end %>
   <% end %>
+  <% if policy(post).public_send("change_status_#{@status}?") %>
+     <% if post.blacklisted? %>
+      <%= link_to post_change_status_path(post, :shutdown_queue),
+                  method: :post,
+                  data:{confirm: "Your report has been added to the queue for shutdown."},
+                  class: "btn btn-info btn-sm" do %>
+        <%= icon("facebook") %>
+        Report to Facebook
+      <% end %>
+    <% end %>
+
+    <% if post.shutdown_queue? %>
+      <%= link_to post_change_status_path(post, :reported_to_facebook),
+                  method: :post,
+                  class: "btn btn-info btn-sm" do %>
+        <%= icon("facebook") %>
+        Reported to Facebook
+      <% end %>
+    <% end %>
+
+    <% if post.blacklisted? || post.reported_to_facebook? %>
+      <%= link_to "#", class: "btn btn-secondary disabled btn-sm" do %>
+        <%= icon("handshake-o") %>
+        Report to Licensor
+      <% end %>
+    <% end %>
+  <% end %>
 </div>
-<% if policy(post).public_send("change_status_#{@status}?") %>
-   <% if post.blacklisted? %>
-    <%= link_to post_change_status_path(post, :shutdown_queue),
-                method: :post,
-                data:{confirm: "Your report has been added to the queue for shutdown."},
-                class: "btn btn-info btn-sm" do %>
-      <%= icon("facebook") %>
-      Report to Facebook
-    <% end %>
-  <% end %>
-
-  <% if post.shutdown_queue? %>
-    <%= link_to post_change_status_path(post, :reported_to_facebook),
-                method: :post,
-                class: "btn btn-info btn-sm" do %>
-      <%= icon("facebook") %>
-      Reported to Facebook
-    <% end %>
-  <% end %>
-
-  <% if post.blacklisted? || post.reported_to_facebook? %>
-    <%= link_to "#", class: "btn btn-secondary disabled btn-sm" do %>
-      <%= icon("handshake-o") %>
-      Report to Licensor
-    <% end %>
-  <% end %>
-<% end %>
