@@ -49,6 +49,8 @@ document.addEventListener("turbolinks:load", function() {
   InfiniteScroll.init()
   OpenPostMsg.init()
   SlickMenu.init()
+  SlickTable.init()
+  SlickTableHeader.init()
   InitSlickOnResize.init()
 
   $(".panel").lobiPanel({

@@ -2,6 +2,66 @@
 .mobile-logout-tab{
   display: none !important;
 }
+a{
+  color: #3daafa;
+}
+.filter_holder{
+  margin: 0 0 15px;
+  form{
+    display: inline-block;
+    width: 100%;
+  }
+  nav{
+    float: right;
+    margin-top: 8px;
+    .pagination {
+      .page-item{
+        .page-link {
+          padding: .4rem .60rem;
+        }
+      }
+    }
+  }
+  .holder{
+    display: inline;
+    overflow: hidden;
+    .form-group{
+      min-width: 130px;
+      max-width: 160px;
+      vertical-align: bottom;
+      margin-bottom: 10px;
+      label{
+        font-weight: normal;
+      }
+      .btn{
+        padding: 8px 12px;
+      }
+      .select2.select2-container{
+        width: 100% !important;
+         .select2-selection--single {
+            border-radius: 3px;
+            background-color: #ffffff;
+            border: solid 1px #d5e2e8;
+            padding: 5px;
+            line-height: 26px;
+            min-height: 38px;
+        }
+         .select2-selection__arrow {
+          top: 6px;
+         }
+      }
+      .form-control{
+        border-radius: 3px;
+        background-color: #ffffff;
+        border: solid 1px #d5e2e8;
+        padding: 5px;
+        line-height: 26px;
+        min-height: 38px;
+        width: 100%;
+      }
+    }
+  }
+}
 .dashboard-card-holder {
   .card {
     border-radius: 0;

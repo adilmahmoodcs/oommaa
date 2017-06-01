@@ -1,30 +1,30 @@
-<div class="row">
-  <div class="col-md-6">
-    <h3>
-      <%= t(@status || :all) %>
-      <%= t(:posts) %>
-      (<%= @posts.distinct.total_count %>)
-    </h3>
-  </div>
-  <% if @status == "reported_to_facebook" %>
-    <div class="col-md-2 text-right">
-      <%= link_to url_for(q: csv_export_params(params[:q]), format: :csv),
-                  class: "btn btn-primary" do %>
-        <%= icon("download") %>
-        <%= t(:download_as_csv) %>
-      <% end %>
+<div class="counterfind_ux_v2">
+  <div class="row">
+    <div class="col-md-8">
+      <h3>
+        <%= t(@status || :all) %>
+        <%= t(:posts) %>
+        (<%= @posts.distinct.total_count %>)
+      </h3>
     </div>
-  <% end %>
-  <div class="col-md-4 pagination_holder">
-    <%= paginate @posts.distinct %>
+    <% if @status == "reported_to_facebook" %>
+      <div class="col-md-2 text-right">
+        <%= link_to url_for(q: csv_export_params(params[:q]), format: :csv),
+                    class: "btn btn-primary" do %>
+          <%= icon("download") %>
+          <%= t(:download_as_csv) %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="col-md-4 pagination_holder">
+      <%= paginate @posts.distinct %>
+    </div>
   </div>
+    <%= render 'search_form' %>
+  <% if policy(FacebookPost).public_send("mass_change_status_#{@status}?") %>
+    <%= render_if_exists "mass_actions_#{@status}", posts: @posts %>
+  <% end %>
+
+  <%= render_if_exists "table_#{@status}", fallback: "table_default" %>
+  <%= paginate @posts.distinct %>
 </div>
-
-<%= render 'search_form' %>
-
-<% if policy(FacebookPost).public_send("mass_change_status_#{@status}?") %>
-  <%= render_if_exists "mass_actions_#{@status}", posts: @posts %>
-<% end %>
-
-<%= render_if_exists "table_#{@status}", fallback: "table_default" %>
-<%= paginate @posts.distinct %>

@@ -1,123 +1,128 @@
-<div class="row">
-  <div class="col-md-8">
-    <h3>
-      Blacklisted ads export
-    </h3>
-  </div>
-  <div class="col-md-4 text-right">
-    <%= link_to url_for(from: params[:from], to: params[:to], q: csv_export_params(params[:q]), format: :csv),
-                class: "btn btn-primary" do %>
-      <%= icon("download") %>
-      <%= t(:download_as_csv) %>
-    <% end %>
-  </div>
-</div>
-
-<strong>
-  <% if params[:from].present? %>
-    From
-    <%= l(Date.parse(params[:from]), format: :compact) %>
-  <% end %>
-  <% if params[:to].present? %>
-    to
-    <%= l(Date.parse(params[:to]), format: :compact) %>
-  <% end %>
-  <% if !params[:from].present? && !params[:to].present? %>
-    All time
-  <% end %>
-  (<%= @posts.distinct.total_count %> posts)
-</strong>
-<hr>
-
-<%= render 'export_filters' %>
-<hr>
-
-<%= paginate @posts.distinct %>
-
-<table class="table table-hover table-bordered">
-  <thead>
-    <tr>
-      <th><%= sort_link(@q, :published_at, t(:published_at)) %></th>
-      <th><%= sort_link(@q, :blacklisted_at, t(:blacklisted_at)) %></th>
-      <th><%= sort_link(@q, :blacklisted_by, t(:blacklisted_by)) %></th>
-      <th><%= t(:link_to_ad_screenshot) %></th>
-      <th><%= t(:message) %></th>
-      <th><%= t(:link_to_ad_on_facebook) %></th>
-      <th><%= sort_link(@q, :facebook_page_brands_name, t(:brand_name)) %></th>
-      <th><%= sort_link(@q, :facebook_page_brands_licensor_name, t(:licensor_name)) %></th>
-      <th><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></th>
-      <th><%= sort_link(@q, :facebook_page_name, t(:facebook_page_name)) %></th>
-      <th><%= sort_link(@q, :likes, t(:likes)) %></th>
-      <th><%= sort_link(@q, :reported_to_facebook_at, t(:reported_to_facebook_at)) %></th>
-      <th><%= sort_link(@q, :reported_to_facebook_by, t(:reported_to_facebook_by)) %></th>
-      <th><%= sort_link(@q, :shut_down_by_facebook_at, t(:shut_down_by_facebook_at)) %></th>
-      <th><%= t(:facebook_report_number) %></th>
-      <th><%= t(:link_to_product) %></th>
-      <th><%= t(:link_to_product_screenshot) %></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.to_a.uniq.each do |post| %>
-      <tr>
-        <td>
-          <%= l(post.published_at, format: :compact) %>
-        </td>
-        <td>
-          <%= l(post.blacklisted_at, format: :compact) if post.blacklisted_at %>
-        </td>
-        <td>
-          <%= post.blacklisted_by %>
-        </td>
-        <td>
-          <%= ad_screenshot_links(post) %>
-        </td>
-        <td>
-          <%= truncate(post.message, length: 40) %>
-        </td>
-        <td>
-          <%= link_to "Link", post.permalink, target: "_blank" %>
-        </td>
-        <td>
-          <%= post.get_brand_names %>
-        </td>
-        <td>
-          <%= post.licensor_names %>
-        </td>
-        <td>
-          <%= post.all_domains.join(", ") %>
-        </td>
-        <td>
-          <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
-        </td>
-        <td>
-          <%= post.likes %>
-        </td>
-        <td>
-          <%= l(post.reported_to_facebook_at, format: :compact) if post.reported_to_facebook_at %>
-        </td>
-        <td>
-          <%= post.reported_to_facebook_by %>
-        </td>
-        <td>
-          <% if post.shut_down_by_facebook_at %>
-            <%= l(post.shut_down_by_facebook_at, format: :compact)  %>
-          <% else %>
-            Pending
+<div class="counterfind_ux_v2">
+  <div class="inner-header">
+    <div class="holder">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="heading-holder">
+            <h3 class="m0">
+              Blacklisted ads export
+            </h3>
+            <strong>
+              <% if params[:from].present? %>
+                From
+                <%= l(Date.parse(params[:from]), format: :compact) %>
+              <% end %>
+              <% if params[:to].present? %>
+                to
+                <%= l(Date.parse(params[:to]), format: :compact) %>
+              <% end %>
+              <% if !params[:from].present? && !params[:to].present? %>
+                All time
+              <% end %>
+              (<%= @posts.distinct.total_count %> posts)
+            </strong>
+          </div>
+        </div>
+        <div class="col-md-4 text-right">
+          <%= link_to url_for(from: params[:from], to: params[:to], q: csv_export_params(params[:q]), format: :csv),
+                      class: "btn btn-primary" do %>
+            <%= icon("download") %>
+            <%= t(:download_as_csv) %>
           <% end %>
-        </td>
-        <td>
-          <%= post.facebook_report_number %>
-        </td>
-        <td>
-          <%= link_to "Link", post.all_links.last, target: "_blank" %>
-        </td>
-        <td>
-          <%= product_screenshot_links(post) %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render 'export_filters' %>
+  <div id="div-table">
+    <div class="custom_table">
+      <div class="div_Table slide_table" id="export_table">
 
+        <div class="div_TableRow table_header slick_table">
+          <div class="div_TableHead"><%= sort_link(@q, :published_at, t(:published_at)) %></div>
+          <div class="div_TableHead"><%= sort_link(@q, :blacklisted_at, t(:blacklisted_at)) %></div>
+          <div class="div_TableHead"><%= sort_link(@q, :blacklisted_by, t(:blacklisted_by)) %></div>
+          <div class="div_TableHead"><%= t(:link_to_ad_screenshot) %></div>
+          <div class="div_TableHead"><%= t(:message) %></div>
+          <div class="div_TableHead"><%= t(:link_to_ad_on_facebook) %></div>
+          <div class="div_TableHead"><%= sort_link(@q, :facebook_page_brands_name, t(:brand_name)) %></div>
+          <div class="div_TableHead"><%= sort_link(@q, :facebook_page_brands_licensor_name, t(:licensor_name)) %></div>
+          <div class="div_TableHead"><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></div>
+          <div class="div_TableHead"><%= sort_link(@q, :facebook_page_name, t(:facebook_page_name)) %></div>
+          <div class="div_TableHead"><%= sort_link(@q, :likes, t(:likes)) %></div>
+          <div class="div_TableHead"><%= sort_link(@q, :reported_to_facebook_at, t(:reported_to_facebook_at)) %></div>
+          <div class="div_TableHead"><%= sort_link(@q, :reported_to_facebook_by, t(:reported_to_facebook_by)) %></div>
+          <div class="div_TableHead"><%= sort_link(@q, :shut_down_by_facebook_at, t(:shut_down_by_facebook_at)) %></div>
+          <div class="div_TableHead"><%= t(:facebook_report_number) %></div>
+          <div class="div_TableHead"><%= t(:link_to_product) %></div>
+          <div class="div_TableHead"><%= t(:link_to_product_screenshot) %></div>
+        </div>
+
+        <% @posts.to_a.uniq.each do |post| %>
+          <div class="div_TableRow table_body slick_table fb-post-table">
+            <div class="div_TableCell">
+              <%= l(post.published_at, format: :compact) %>
+            </div>
+            <div class="div_TableCell" >
+              <%= l(post.blacklisted_at, format: :compact) if post.blacklisted_at %>
+            </div>
+            <div class="div_TableCell" >
+              <%= post.blacklisted_by %>
+            </div>
+            <div class="div_TableCell" >
+              <%= ad_screenshot_links(post) %>
+            </div>
+            <div class="div_TableCell" >
+              <div class="col-msg">
+                <p class="msg-txt-close">
+                  <%= auto_link(post.message) %>
+                </p>
+              </div>
+            </div>
+            <div class="div_TableCell" >
+              <%= link_to "Link", post.permalink, target: "_blank" %>
+            </div>
+            <div class="div_TableCell" >
+              <%= post.get_brand_names %>
+            </div>
+            <div class="div_TableCell" >
+              <%= post.licensor_names %>
+            </div>
+            <div class="div_TableCell" >
+              <%= post.all_domains.join(", ") %>
+            </div>
+            <div class="div_TableCell" >
+              <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
+            </div>
+            <div class="div_TableCell" >
+              <%= post.likes %>
+            </div>
+            <div class="div_TableCell" >
+              <%= l(post.reported_to_facebook_at, format: :compact) if post.reported_to_facebook_at %>
+            </div>
+            <div class="div_TableCell" >
+              <%= post.reported_to_facebook_by %>
+            </div>
+            <div class="div_TableCell" >
+              <% if post.shut_down_by_facebook_at %>
+                <%= l(post.shut_down_by_facebook_at, format: :compact)  %>
+              <% else %>
+                Pending
+              <% end %>
+            </div>
+            <div class="div_TableCell" >
+              <%= post.facebook_report_number %>
+            </div>
+            <div class="div_TableCell" >
+              <%= link_to "Link", post.all_links.last, target: "_blank" %>
+            </div>
+            <div class="div_TableCell" >
+              <%= product_screenshot_links(post) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</dir>
 <%= paginate @posts.distinct %>

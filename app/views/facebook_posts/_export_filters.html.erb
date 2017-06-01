@@ -1,66 +1,68 @@
-<div class="card search-filters">
-  <div class="card-block">
-    <h4 class="card-title">Filters</h4>
+<div class="filter_holder">
+  <div class="form-inline">
     <%= search_form_for @q, url: export_facebook_posts_path, html:{method: :get, id: "facebook_post_search"} do |f| %>
-
-      <div class="row">
-        <div class="col-md-3 form-group">
-          <%= f.label :with_any_brand, t(:brand_name) %>
-          <%= f.select :facebook_page_brands_id_eq,
-                        filter_results(@brand),
-                        { include_blank: true },
-                        class: "form-control remote-select2",
-                        "data-source": search_brands_path(format: :js)  %>
-        </div>
-
-        <% if policy(Licensor).search?%>
-          <div class="col-md-3 form-group">
-            <%= f.label :with_licensor_name, "Licensor" %>
-            <%= f.select :facebook_page_brands_licensor_id_eq,
-                         filter_results(@licensor),
-                         { include_blank: true },
-                         class: "form-control remote-select2",
-                         "data-source": search_licensors_path(format: :js)  %>
+      <div class="holder">
+        <div class="col-sm-12 col-md-9 col-lg-10 p0">
+          <div class="form-group">
+            <%= f.label :with_any_brand, t(:brand_name) %>
+            <%= f.select :facebook_page_brands_id_eq,
+                          filter_results(@brand),
+                          { include_blank: true },
+                          class: "form-control remote-select2",
+                          "data-source": search_brands_path(format: :js)  %>
           </div>
-        <% end %>
 
-        <div class="col-md-3 form-group">
-          <%= f.label :facebook_page_name_eq, "Page" %>
-          <%= f.select :facebook_page_id_eq,
-                       filter_results(@fb_page),
-                       {include_blank: true},
-                       class: "form-control remote-select2",
-                       "data-source": search_facebook_pages_path(format: :js)  %>
-        </div>
-
-        <div class="col-md-3 form-group">
-          <%= f.label :blacklisted_by_eq, "#{t(:blacklisted_by)}" %>
-          <%= f.select :blacklisted_by_eq,
-                       User.all.collect {|user| [ user.display_name, user.email ]},
-                       { include_blank: true },
-                       class: "form-control select2" %>
-        </div>
-
-        <div class="col-sm-3 form-group">
-          <%= label_tag :from, "From date:", class: "col-form-label" %>
-          <%= date_field_tag :from, params[:from], class: "form-control" %>
-        </div>
-        <div class="col-sm-3 form-group">
-          <%= label_tag :from , "To date:", class: "col-form-label " %>
-          <%= date_field_tag :to, params[:to], class: "form-control" %>
-        </div>
-
-        <div class=" col-sm-12">
-          <%= button_tag class: "btn btn-primary" do %>
-            <%= icon("filter") %>
-            Filter
+          <% if policy(Licensor).search?%>
+            <div class="form-group">
+              <%= f.label :with_licensor_name, "Licensor" %>
+              <%= f.select :facebook_page_brands_licensor_id_eq,
+                           filter_results(@licensor),
+                           { include_blank: true },
+                           class: "form-control remote-select2",
+                           "data-source": search_licensors_path(format: :js)  %>
+            </div>
           <% end %>
-          &nbsp;
-          <%= link_to url_for(q: []),
-                      class: "btn btn-secondary" do %>
-            <%= icon("eraser") %>
-            Clear filters
-          <% end %>
+
+          <div class="form-group">
+            <%= f.label :facebook_page_name_eq, "Page" %>
+            <%= f.select :facebook_page_id_eq,
+                         filter_results(@fb_page),
+                         {include_blank: true},
+                         class: "form-control remote-select2",
+                         "data-source": search_facebook_pages_path(format: :js)  %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :blacklisted_by_eq, "#{t(:blacklisted_by)}" %>
+            <%= f.select :blacklisted_by_eq,
+                         User.all.collect {|user| [ user.display_name, user.email ]},
+                         { include_blank: true },
+                         class: "form-control select2" %>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag :from, "From date:", class: "col-form-label" %>
+            <%= date_field_tag :from, params[:from], class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= label_tag :from , "To date:", class: "col-form-label " %>
+            <%= date_field_tag :to, params[:to], class: "form-control" %>
+          </div>
+
+          <div class=" form-group">
+            <%= button_tag class: "btn btn-primary" do %>
+              <%= icon("filter") %>
+              Filter
+            <% end %>
+            &nbsp;
+            <%= link_to url_for(q: []),
+                        class: "btn btn-secondary" do %>
+              <%= icon("eraser") %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-2 p0">
+            <%= paginate @posts.distinct %>
         </div>
       </div>
     <% end %>

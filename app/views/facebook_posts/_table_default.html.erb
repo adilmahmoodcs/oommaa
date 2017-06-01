@@ -1,98 +1,100 @@
-<table class="table table-hover table-bordered fb-post-table", id="fixed_head">
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Message</th>
-      <th><%= sort_link(@q, :facebook_page_brands_name, t(:brand_name)) %></th>
-      <th><%= sort_link(@q, :facebook_page_brands_licensor_name, t(:licensor_name)) %></th>
-      <th><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></th>
-      <th><%= sort_link(@q, :facebook_page_name, "Page") %></th>
-      <th><%= sort_link(@q, :published_at, "Published at") %></th>
-      <% if @status == "blacklisted" %>
-        <th><%= sort_link(@q, :likes, t(:likes)) %></th>
-        <th><%= sort_link(@q, :blacklisted_at, t(:blacklisted_at)) %></th>
-        <th><%= sort_link(@q, :blacklisted_by, t(:blacklisted_by)) %></th>
-      <% elsif @status == "whitelisted" %>
-        <th><%= sort_link(@q, :whitelisted_at, t(:whitelisted_at)) %></th>
-        <th><%= sort_link(@q, :whitelisted_by, t(:whitelisted_by)) %></th>
-      <% end %>
-      <% if @status == "blacklisted" %>
-        <th><%= t(:link_to_ad_screenshot) %></th>
-        <th><%= t(:link_to_product_screenshot) %></th>
-      <% end %>
-      <% if @status.in? ["suspect", "blacklisted", "whitelisted"] %>
-        <th><%= t(:reference_number) %></th>
-      <% end %>
-      <th>Actions</th>
-    </tr>
-  </thead>
+<div id="div-table">
+  <div class="custom_table">
+    <div class="div_Table slide_table" id="post_table">
 
-  <tbody>
-    <% @posts.to_a.uniq.each do |post| %>
-      <tr>
-        <td class="col-img">
-          <%= link_to image_tag(post.image_url, width: "150px"),
-                      post.permalink,
-                      target: "_blank" if post.image_url.present? %>
-        </td>
-        <td class="col-msg">
-          <p class="msg-txt-close">
-            <%= auto_link(post.message) %>
-          </p>
-          <br>
-          <%= link_to post.permalink,
-                      target: "_blank",
-                      class: "btn btn-sm btn-secondary go-to-post" do %>
-            <%= icon("external-link") %>
-            &nbsp;Go to ad
+      <div class="div_TableRow table_header slick_table">
+        <div class="div_TableHead"><%= check_box_tag("mass_action", 1, class: "asdasdasd")%>Image</div>
+        <div class="div_TableHead">Message</div>
+        <div class="div_TableHead"><%= sort_link(@q, :facebook_page_brands_name, t(:brand_name)) %></div>
+        <div class="div_TableHead"><%= sort_link(@q, :facebook_page_brands_licensor_name, t(:licensor_name)) %></div>
+        <div class="div_TableHead"><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></div>
+        <div class="div_TableHead"><%= sort_link(@q, :facebook_page_name, "Page") %></div>
+        <div class="div_TableHead"><%= sort_link(@q, :published_at, "Published at") %></div>
+        <% if @status == "blacklisted" %>
+          <div class="div_TableHead"><%= sort_link(@q, :likes, t(:likes)) %></div>
+          <div class="div_TableHead"><%= sort_link(@q, :blacklisted_at, t(:blacklisted_at)) %></div>
+          <div class="div_TableHead"><%= sort_link(@q, :blacklisted_by, t(:blacklisted_by)) %></div>
+        <% elsif @status == "whitelisted" %>
+          <div class="div_TableHead"><%= sort_link(@q, :whitelisted_at, t(:whitelisted_at)) %></div>
+          <div class="div_TableHead"><%= sort_link(@q, :whitelisted_by, t(:whitelisted_by)) %></div>
+        <% end %>
+        <% if @status == "blacklisted" %>
+          <div class="div_TableHead"><%= t(:link_to_ad_screenshot) %></div>
+          <div class="div_TableHead"><%= t(:link_to_product_screenshot) %></div>
+        <% end %>
+        <div class="div_TableHead"><%= t(:reference_number) %></div>
+        <div class="div_TableHead">Actions</div>
+      </div>
+
+      <% @posts.to_a.uniq.each do |post| %>
+        <div class="div_TableRow table_body slick_table fb-post-table">
+          <div class="div_TableCell">
+            <div><%= check_box_tag("mass_action", post.id)%></div>
+            <div class="col-img" >
+              <%= link_to image_tag(post.image_url, width: "150px"),
+                          post.permalink,
+                          target: "_blank" if post.image_url.present? %>
+            </div>
+          </div>
+          <div class="div_TableCell">
+            <div class="col-msg">
+              <p class="msg-txt-close">
+                <%= auto_link(post.message) %>
+              </p>
+              <br>
+              <%= link_to post.permalink,
+                          target: "_blank",
+                          class: "btn btn-sm btn-secondary go-to-post" do %>
+                <%= icon("external-link") %>
+                &nbsp;Go to ad
+              <% end %>
+            </div>
+          </div>
+          <div class="div_TableCell">
+            <%= post.get_brand_names %>
+          </div>
+          <div class="div_TableCell">
+            <%= post.licensor_names %>
+          </div>
+          <div class="div_TableCell">
+            <%= post.all_domains.join(", ") %>
+          </div>
+          <div class="div_TableCell">
+            <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
+          </div>
+          <div class="div_TableCell">
+            <%= l(post.published_at.to_date, format: :compact) %>
+          </div>
+          <% if @status == "blacklisted" %>
+            <div class="div_TableCell">
+              <%= form_for post do |f| %>
+                <%= f.text_field :likes, class: "form-control form-control-sm quick-form" %>
+                <%= f.button t(:update), class: "btn btn-primary-outline btn-sm" %>
+              <% end %>
+            </div>
           <% end %>
-        </td>
-        <td>
-          <%= post.get_brand_names %>
-        </td>
-        <td>
-          <%= post.licensor_names %>
-        </td>
-        <td class="col-p-company">
-          <%= post.all_domains.join(", ") %>
-        </td>
-        <td>
-          <%= link_to post.facebook_page.name, post.facebook_page.url, target: "_blank" %>
-        </td>
-        <td class="col-date">
-          <%= l(post.published_at.to_date, format: :compact) %>
-        </td>
-        <% if @status == "blacklisted" %>
-          <td class="col-like">
-            <%= form_for post do |f| %>
-              <%= f.text_field :likes, class: "form-control form-control-sm quick-form" %>
-              <%= f.button t(:update), class: "btn btn-primary-outline btn-sm" %>
-            <% end %>
-          </td>
-        <% end %>
-        <% if @status.in? ["blacklisted", "whitelisted"] %>
-          <td class="col-date">
-            <%= l(post.status_changed_at.to_date, format: :compact) if post.status_changed_at %>
-          </td>
-          <td>
-            <%= post.status_changed_by if post.status_changed_by %>
-          </td>
-        <% end %>
-        <% if @status == "blacklisted" %>
-          <td>
-            <%= ad_screenshot_links(post) %>
-          </td>
-          <td>
-            <%= product_screenshot_links(post) %>
-          </td>
-        <% end %>
-        <% if @status.in? ["suspect", "blacklisted", "whitelisted"] %>
-          <td><%= post.id %></td>
-        <% end %>
-        <td class="index-actions text-right">
-          <%= render 'actions', post: post %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <% if @status.in? ["blacklisted", "whitelisted"] %>
+            <div class="div_TableCell">
+              <%= l(post.status_changed_at.to_date, format: :compact) if post.status_changed_at %>
+            </div>
+            <div class="div_TableCell">
+              <%= post.status_changed_by if post.status_changed_by %>
+            </div>
+          <% end %>
+          <% if @status == "blacklisted" %>
+            <div class="div_TableCell">
+              <%= ad_screenshot_links(post) %>
+            </div>
+            <div class="div_TableCell">
+              <%= product_screenshot_links(post) %>
+            </div>
+          <% end %>
+          <div class="div_TableCell"><%= post.id %></div>
+          <div class="div_TableCell index-actions p5">
+            <%= render 'actions', post: post %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

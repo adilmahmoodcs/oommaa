@@ -26,3 +26,29 @@ var InitSlickOnResize = {
     });
   }
 }
+
+var SlickTable = {
+  init: function() {
+    $('.slick_table').slick({
+      arrows: true,
+      infinite: false,
+      speed: 200,
+      slidesToShow: 10,
+      slidesToScroll: 3,
+      variableWidth: true,
+      adaptiveHeight: false,
+      swipe: false
+    });
+  }
+}
+var SlickTableHeader = {
+  init: function() {
+    $('.table_header').on('click', '.slick-next', function() {
+      $(".table_body .slick-next").trigger('click');
+    });
+
+    $('.table_header').on('click', '.slick-prev', function() {
+      $(".table_body .slick-prev").trigger('click');
+    });
+  }
+}

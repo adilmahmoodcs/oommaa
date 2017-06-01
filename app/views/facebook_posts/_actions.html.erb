@@ -1,36 +1,39 @@
-<% if policy(post).edit? %>
-  <%= link_to edit_facebook_post_path(post),
-              class: "btn btn-secondary btn-sm" do %>
-    <%= icon("pencil") %>
-    Edit
+<div class="col-sm-3">
+  <% if policy(post).edit? %>
+    <%= link_to edit_facebook_post_path(post),
+                class: "btn btn-secondary btn-sm",
+                title: "Edit" do %>
+      <%= icon("pencil") %>
+    <% end %>
   <% end %>
-<% end %>
 
-<% if policy(post).public_send("change_status_#{@status}?") %>
-  <% if !post.whitelisted? and
-        !post.reported_to_facebook? and
-        !post.affiliate_greylisted? and
-        !post.shutdown_queue? %>
-    <%= link_to post_change_status_path(post, :whitelisted),
+  <% if policy(post).public_send("change_status_#{@status}?") %>
+    <% if !post.whitelisted? and
+          !post.reported_to_facebook? and
+          !post.affiliate_greylisted? and
+          !post.shutdown_queue? %>
+      <%= link_to post_change_status_path(post, :whitelisted),
+                  method: :post,
+                  class: "btn btn-success btn-sm",
+                  title: "Approve" do %>
+        <%= icon("check") %>
+      <% end %>
+    <% end %>
+
+    <% if !post.blacklisted? and
+          !post.reported_to_facebook? and
+          !post.affiliate_greylisted? and
+          !post.shutdown_queue? %>
+      <%= link_to post_change_status_path(post, :blacklisted),
                 method: :post,
-                class: "btn btn-success btn-sm" do %>
-      <%= icon("check") %>
-      Approve
+                class: "btn btn-danger btn-sm",
+                title: "Counterfeit" do %>
+        <%= icon("ban") %>
+      <% end %>
     <% end %>
   <% end %>
-
-  <% if !post.blacklisted? and
-        !post.reported_to_facebook? and
-        !post.affiliate_greylisted? and
-        !post.shutdown_queue? %>
-    <%= link_to post_change_status_path(post, :blacklisted),
-              method: :post,
-              class: "btn btn-danger btn-sm" do %>
-      <%= icon("ban") %>
-      Counterfeit
-    <% end %>
-  <% end %>
-
+</div>
+<% if policy(post).public_send("change_status_#{@status}?") %>
    <% if post.blacklisted? %>
     <%= link_to post_change_status_path(post, :shutdown_queue),
                 method: :post,

@@ -114,19 +114,25 @@
         <div class="dropdown-menu">
           <%= link_to domains_path(status: :whitelisted),
                       class: "dropdown-item #{'active' if current_page?(domains_path) && @status == 'whitelisted'}" do %>
-            <%= icon("check", class: "fa-fw") %>
+              <div class="icon-holder">
+                <%= image_tag("counter_find_UX_v2/whitelisted_icon.png")%>
+              </div>
             <%= "#{t(:whitelisted)} (#{policy_scope(Domain).public_send("whitelisted").count})" %>
           <% end %>
 
           <%= link_to domains_path(status: :blacklisted),
                       class: "dropdown-item #{'active' if current_page?(domains_path) && @status == 'blacklisted'}" do %>
-            <%= icon("ban", class: "fa-fw") %>
+              <div class="icon-holder">
+                <%= image_tag("counter_find_UX_v2/blacklisted_icon.png")%>
+              </div>
             <%= "#{t(:blacklisted)} (#{policy_scope(Domain).public_send("blacklisted").count})" %>
           <% end %>
 
           <%= link_to domains_path(status: :greylisted),
                       class: "dropdown-item #{'active' if current_page?(domains_path) && @status == 'greylisted'}" do %>
-            <%= icon("binoculars", class: "fa-fw") %>
+              <div class="icon-holder">
+                <%= image_tag("counter_find_UX_v2/greylisted_icon.png")%>
+              </div>
             <%= "#{t(:greylisted)} (#{policy_scope(Domain).public_send("greylisted").count})" %>
           <% end %>
         </div>
@@ -150,7 +156,9 @@
           <% if policy(:import).url? %>
             <%= link_to url_imports_path,
                         class: "dropdown-item #{'active' if current_page?(url_imports_path)}" do %>
-              <%= icon("plus", class: "fa-fw") %>
+              <div class="icon-holder">
+                <%= image_tag("counter_find_UX_v2/add_new_icon.png")%>
+              </div>
               Add new
             <% end %>
 
@@ -160,7 +168,9 @@
           <% if policy(FacebookPost).index_suspect? %>
             <%= link_to facebook_posts_path(q: { status_eq: :suspect }),
                         class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'suspect'}" do %>
-              <%= icon("question", class: "fa-fw") %>
+              <div class="icon-holder">
+                <%= image_tag("counter_find_UX_v2/review_icon.png")%>
+              </div>
               <%= "#{t(:suspect)} (#{policy_scope(FacebookPost).suspect.size})" %>
             <% end %>
           <% end %>
@@ -168,7 +178,9 @@
           <% if policy(FacebookPost).index_whitelisted? %>
             <%= link_to facebook_posts_path(q: { status_eq: :whitelisted }),
                         class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'whitelisted'}" do %>
-              <%= icon("check", class: "fa-fw") %>
+              <div class="icon-holder">
+                <%= image_tag("counter_find_UX_v2/whitelisted_icon.png")%>
+              </div>
               <%= "#{t(:whitelisted)} (#{policy_scope(FacebookPost).whitelisted.size})" %>
             <% end %>
           <% end %>
@@ -176,7 +188,9 @@
           <% if policy(FacebookPost).index_blacklisted? %>
             <%= link_to facebook_posts_path(q: { status_eq: :blacklisted }),
                         class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'blacklisted'}" do %>
-              <%= icon("ban", class: "fa-fw") %>
+              <div class="icon-holder">
+                <%= image_tag("counter_find_UX_v2/blacklisted_icon.png")%>
+              </div>
               <%= "#{t(:blacklisted)} (#{policy_scope(FacebookPost).blacklisted.size})" %>
             <% end %>
           <% end %>
@@ -184,7 +198,9 @@
           <% if policy(FacebookPost).index_blacklisted? %>
             <%= link_to facebook_posts_path(q: { status_eq: :greylisted }),
                         class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'greylisted'}" do %>
-              <%= icon("binoculars", class: "fa-fw") %>
+              <div class="icon-holder">
+                <%= image_tag("counter_find_UX_v2/greylisted_icon.png")%>
+              </div>
               <%= "#{t(:greylisted)} (#{policy_scope(FacebookPost).greylisted.size})" %>
             <% end %>
           <% end %>
@@ -192,7 +208,9 @@
           <% if policy(FacebookPost).index_shutdown_queue? %>
             <%= link_to facebook_posts_path(q: { status_eq: :shutdown_queue }),
                         class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'shutdown_queue'}" do %>
-              <%= icon("power-off", class: "fa-fw") %>
+              <div class="icon-holder">
+                <%= image_tag("counter_find_UX_v2/shutdown_icon.png")%>
+              </div>
               <%= "#{t(:shutdown_queue)} (#{policy_scope(FacebookPost).shutdown_queue.size})" %>
             <% end %>
           <% end %>
@@ -201,7 +219,9 @@
           <% if policy(FacebookPost).index_reported_to_facebook? %>
             <%= link_to facebook_posts_path(q: { status_eq: :reported_to_facebook }),
                         class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'reported_to_facebook'}" do %>
-              <%= icon("facebook", class: "fa-fw") %>
+              <div class="icon-holder">
+                <%= image_tag("counter_find_UX_v2/reported_icon.png")%>
+              </div>
               <%= "#{t(:reported_to_facebook)} (#{policy_scope(FacebookPost).reported_to_facebook.size})" %>
             <% end %>
           <% end %>
@@ -209,7 +229,9 @@
           <% if policy(FacebookPost).index_affiliate_greylisted? %>
             <%= link_to facebook_posts_path(q: { status_eq: :affiliate_greylisted }),
                         class: "dropdown-item #{'active' if current_page?(facebook_posts_path) && @status == 'affiliate_greylisted'}" do %>
-              <%= icon("user-plus", class: "fa-fw") %>
+              <div class="icon-holder">
+                <%= image_tag("counter_find_UX_v2/affiliate_icon.png")%>
+              </div>
               <%= "#{t(:affiliate_greylisted)} (#{policy_scope(FacebookPost).affiliate_greylisted.size})" %>
             <% end %>
           <% end %>
@@ -283,7 +305,9 @@
           <% if policy(PublicActivity::Activity).index? %>
             <%= link_to activities_path,
                         class: "dropdown-item #{'active' if current_page?(activities_path)}" do %>
-              <%= icon("list-ul", class: "fa-fw") %>
+              <div class="icon-holder">
+                <%= image_tag("counter_find_UX_v2/user_activity_icon.png")%>
+              </div>
               <%= t(:user_activities) %>
             <% end %>
           <% end %>
@@ -291,7 +315,9 @@
           <% if policy(:report).team_production? %>
             <%= link_to team_production_reports_path,
                         class: "dropdown-item #{'active' if current_page?(team_production_reports_path)}" do %>
-              <%= icon("users", class: "fa-fw") %>
+              <div class="icon-holder">
+                <%= image_tag("counter_find_UX_v2/team_icon.png")%>
+              </div>
               <%= t(:team_production) %>
             <% end %>
           <% end %>
