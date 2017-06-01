@@ -1,9 +1,10 @@
-<div class="m0auto">
+<div class="m0auto center">
   <% if policy(post).edit? %>
     <%= link_to edit_facebook_post_path(post),
-                class: "btn btn-secondary btn-sm",
+                class: "btn btn-secondary btn-sm mb5 action-btn",
                 title: "Edit" do %>
       <%= icon("pencil") %>
+      Edit
     <% end %>
   <% end %>
 
@@ -14,9 +15,10 @@
           !post.shutdown_queue? %>
       <%= link_to post_change_status_path(post, :whitelisted),
                   method: :post,
-                  class: "btn btn-success btn-sm",
+                  class: "btn btn-success btn-sm mb5 action-btn",
                   title: "Approve" do %>
         <%= icon("check") %>
+        Approve
       <% end %>
     <% end %>
 
@@ -26,9 +28,10 @@
           !post.shutdown_queue? %>
       <%= link_to post_change_status_path(post, :blacklisted),
                 method: :post,
-                class: "btn btn-danger btn-sm",
+                class: "btn btn-danger btn-sm mb5 report-btn",
                 title: "Counterfeit" do %>
         <%= icon("ban") %>
+        Counterfeit
       <% end %>
     <% end %>
   <% end %>
@@ -37,7 +40,7 @@
       <%= link_to post_change_status_path(post, :shutdown_queue),
                   method: :post,
                   data:{confirm: "Your report has been added to the queue for shutdown."},
-                  class: "btn btn-info btn-sm" do %>
+                  class: "btn btn-info btn-sm mb5 report-btn" do %>
         <%= icon("facebook") %>
         Report to Facebook
       <% end %>
@@ -46,14 +49,14 @@
     <% if post.shutdown_queue? %>
       <%= link_to post_change_status_path(post, :reported_to_facebook),
                   method: :post,
-                  class: "btn btn-info btn-sm" do %>
+                  class: "btn btn-info btn-sm mb5 report-btn" do %>
         <%= icon("facebook") %>
         Reported to Facebook
       <% end %>
     <% end %>
 
     <% if post.blacklisted? || post.reported_to_facebook? %>
-      <%= link_to "#", class: "btn btn-secondary disabled btn-sm" do %>
+      <%= link_to "#", class: "btn btn-secondary disabled btn-sm mb5 report-btn" do %>
         <%= icon("handshake-o") %>
         Report to Licensor
       <% end %>

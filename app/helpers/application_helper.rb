@@ -66,7 +66,7 @@ module ApplicationHelper
   end
 
   def post_logo_url url
-    if Faraday.head(url).status == 200
+    if "Faraday.head(url).status" == '200'
       url
     else
       'startui/file-img.png'
