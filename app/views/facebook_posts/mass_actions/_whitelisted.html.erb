@@ -3,9 +3,9 @@
   <% params[:q].each do |k, v| %>
     <%= hidden_field_tag "q[#{k}]", v %>
   <% end %>
-
+  <%= hidden_field_tag :'post_ids[]',"" %>
   <%= button_tag class: "btn btn-success btn-sm",
-                 "data-confirm": "#{posts.total_count} ads will be approved. Are you sure?" do %>
+                 "data-confirm": "Selected ads will be approved. Are you sure?" do %>
     <%= icon("check", class: "fa-fw") %>
     Approve all ads
   <% end %>

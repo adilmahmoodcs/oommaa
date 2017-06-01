@@ -38,6 +38,7 @@
 //= require tags-input
 //= require slick.min
 //= require header_menu_slider
+//= require mass_slect
 //= require_self
 
 document.addEventListener("turbolinks:load", function() {
@@ -52,6 +53,7 @@ document.addEventListener("turbolinks:load", function() {
   SlickTable.init()
   SlickTableHeader.init()
   InitSlickOnResize.init()
+  MassSelect.init()
 
   $(".panel").lobiPanel({
     sortable: true
