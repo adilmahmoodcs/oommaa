@@ -1,5 +1,5 @@
-<div id="div-table">
-  <div class="custom_table">
+<div id="div-table" class="m-30">
+  <div class="custom_table holder-full">
     <div class="div_Table slide_table" id="post_table">
 
       <div class="div_TableRow table_header slick_table">
@@ -18,7 +18,7 @@
         <div class="div_TableHead"><%= t(:link_to_product) %></div>
         <div class="div_TableHead"><%= t(:link_to_ad_screenshot) %></div>
         <div class="div_TableHead"><%= t(:link_to_product_screenshot) %></div>
-        <div class="div_TableHead">Actions</div>
+        <div class="div_TableHead action-col p5">Actions</div>
       </div>
 
       <% @posts.to_a.uniq.each do |post| %>

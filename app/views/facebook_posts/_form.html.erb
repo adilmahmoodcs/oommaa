@@ -41,6 +41,16 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :purchase_page %>
+    <%= select_tag 'facebook_post[all_domains][]',
+                     options_from_collection_for_select(policy_scope(Domain).all.order("LOWER(name)"), :name, :name, f.object.all_domains),
+                     include_blank: true,
+                     multiple: true,
+                     required: true,
+                     class: "form-control select2 " %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :message %>
     <%= f.text_area :message, class: "form-control", rows: 4, disabled: true %>
   </div>

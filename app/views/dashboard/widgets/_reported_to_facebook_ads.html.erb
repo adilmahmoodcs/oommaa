@@ -8,7 +8,7 @@
         <%= image_tag("counter_find_UX_v2/widget_icon_reported_to_fb.png")%>
       </div>
       <h2>
-        <%= number_with_delimiter(policy_scope(FacebookPost).reported_to_facebook.size, :delimiter => ',') %>
+        <%= number_with_delimiter(policy_scope(FacebookPost).reported_to_facebook.distinct.size, :delimiter => ',') %>
       </h2>
     </div>
   </section>

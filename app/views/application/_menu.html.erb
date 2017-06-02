@@ -171,7 +171,7 @@
               <div class="icon-holder">
                 <%= image_tag("counter_find_UX_v2/review_icon.png")%>
               </div>
-              <%= "#{t(:suspect)} (#{policy_scope(FacebookPost).suspect.size})" %>
+              <%= "#{t(:suspect)} (#{policy_scope(FacebookPost).suspect.distinct.size})" %>
             <% end %>
           <% end %>
 
@@ -181,7 +181,7 @@
               <div class="icon-holder">
                 <%= image_tag("counter_find_UX_v2/whitelisted_icon.png")%>
               </div>
-              <%= "#{t(:whitelisted)} (#{policy_scope(FacebookPost).whitelisted.size})" %>
+              <%= "#{t(:whitelisted)} (#{policy_scope(FacebookPost).whitelisted.distinct.size})" %>
             <% end %>
           <% end %>
 
@@ -191,7 +191,7 @@
               <div class="icon-holder">
                 <%= image_tag("counter_find_UX_v2/blacklisted_icon.png")%>
               </div>
-              <%= "#{t(:blacklisted)} (#{policy_scope(FacebookPost).blacklisted.size})" %>
+              <%= "#{t(:blacklisted)} (#{policy_scope(FacebookPost).blacklisted.distinct.size})" %>
             <% end %>
           <% end %>
 
@@ -201,7 +201,7 @@
               <div class="icon-holder">
                 <%= image_tag("counter_find_UX_v2/greylisted_icon.png")%>
               </div>
-              <%= "#{t(:greylisted)} (#{policy_scope(FacebookPost).greylisted.size})" %>
+              <%= "#{t(:greylisted)} (#{policy_scope(FacebookPost).greylisted.distinct.size})" %>
             <% end %>
           <% end %>
 
@@ -211,7 +211,7 @@
               <div class="icon-holder">
                 <%= image_tag("counter_find_UX_v2/shutdown_icon.png")%>
               </div>
-              <%= "#{t(:shutdown_queue)} (#{policy_scope(FacebookPost).shutdown_queue.size})" %>
+              <%= "#{t(:shutdown_queue)} (#{policy_scope(FacebookPost).shutdown_queue.distinct.size})" %>
             <% end %>
           <% end %>
 
@@ -222,7 +222,7 @@
               <div class="icon-holder">
                 <%= image_tag("counter_find_UX_v2/reported_icon.png")%>
               </div>
-              <%= "#{t(:reported_to_facebook)} (#{policy_scope(FacebookPost).reported_to_facebook.size})" %>
+              <%= "#{t(:reported_to_facebook)} (#{policy_scope(FacebookPost).reported_to_facebook.distinct.size})" %>
             <% end %>
           <% end %>
 
@@ -232,7 +232,7 @@
               <div class="icon-holder">
                 <%= image_tag("counter_find_UX_v2/affiliate_icon.png")%>
               </div>
-              <%= "#{t(:affiliate_greylisted)} (#{policy_scope(FacebookPost).affiliate_greylisted.size})" %>
+              <%= "#{t(:affiliate_greylisted)} (#{policy_scope(FacebookPost).affiliate_greylisted.distinct.size})" %>
             <% end %>
           <% end %>
         </div>

@@ -1,12 +1,12 @@
-<%= form_tag mass_change_status_facebook_posts_path do %>
+<%= form_tag mass_change_status_facebook_posts_path, class: "ignore_mass_action_form" do %>
   <%= hidden_field_tag :new_status, :ignored %>
   <% params[:q].each do |k, v| %>
     <%= hidden_field_tag "q[#{k}]", v %>
   <% end %>
-  <%= hidden_field_tag :'post_ids[]',"" %>
-  <%= button_tag class: "btn btn-secondary btn-sm",
+  <%= hidden_field_tag 'post_ids[]',"", class: "mass_action_ids" %>
+  <%= button_tag class: "btn btn-secondary btn-sm report-btn mass_action_btn",
                  "data-confirm": "Selected ads will be ignored. Are you sure?" do %>
     <%= icon("trash", class: "fa-fw") %>
-    Ignore all ads
+    Ignore all
   <% end %>
 <% end %>

@@ -47,7 +47,7 @@ class FacebookPostsController < ApplicationController
 
   def update
     authorize @facebook_post
-    if update_brands_for_post or (params[:facebook_post] and @facebook_post.update(facebook_post_params))
+    if update_brands_for_post and (params[:facebook_post] and @facebook_post.update(facebook_post_params))
       @facebook_post.create_activity(:update, owner: current_user, parameters: { name: @facebook_post.permalink })
       flash[:notice] = 'Ad was successfully updated.'
       redirect_back(fallback_location: root_path)
@@ -101,15 +101,17 @@ class FacebookPostsController < ApplicationController
     if params[:new_status] && params[:new_status].in?(FacebookPost.statuses.keys)
       authorize FacebookPost, "mass_change_status_#{params[:new_status]}?"
 
-      posts = policy_scope(FacebookPost).ransack(params[:q]).result
-      ignore_status_arr = FacebookPost::IGNORE_POST_FOR
-      posts = posts.where(added_by: nil).
-                    where(blacklisted_by: ignore_status_arr).
-                    where(whitelisted_by: ignore_status_arr).
-                    where(greylisted_by: ignore_status_arr).
-                    where(reported_to_facebook_by: ignore_status_arr) if params[:new_status] == 'ignored'
-      posts.update_all(mass_job_status: "to_be_#{params[:new_status]}")
-      MassChangeStatusForPostsJob.perform_async(params[:new_status], current_user.id)
+      # posts = policy_scope(FacebookPost).ransack(params[:q][:status_eq]).result.where("id IN (?)", params[:post_ids])
+
+      puts posts.ids
+      # ignore_status_arr = FacebookPost::IGNORE_POST_FOR
+      # posts = posts.where(added_by: nil).
+      #               where(blacklisted_by: ignore_status_arr).
+      #               where(whitelisted_by: ignore_status_arr).
+      #               where(greylisted_by: ignore_status_arr).
+      #               where(reported_to_facebook_by: ignore_status_arr) if params[:new_status] == 'ignored'
+      # posts.update_all(mass_job_status: "to_be_#{params[:new_status]}")
+      # MassChangeStatusForPostsJob.perform_async(params[:new_status], current_user.id)
       flash[:notice] = 'Job is enqueued to update the Status, changed will be reflected soon.'
     end
 
@@ -124,7 +126,7 @@ class FacebookPostsController < ApplicationController
 
   def facebook_post_params
     params.require(:facebook_post).permit(
-      :facebook_report_number, :likes
+      :facebook_report_number, :likes, all_domains: []
     )
   end
 
@@ -146,8 +148,7 @@ class FacebookPostsController < ApplicationController
     end
   end
 
-  def update_brands_for_post
-    updated = false
+  def update_brands_for_post updated = false
     if params[:brand_ids].present?
       brands = policy_scope(Brand).find(params[:brand_ids])
       @facebook_post.facebook_page_post_brands.destroy_all

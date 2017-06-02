@@ -71,7 +71,7 @@ class FacebookPost < ApplicationRecord
     where(status: [statuses[:blacklisted], statuses[:reported_to_facebook]])
   }
   scope :of_licensor, -> (licensor, user) {
-    ransack(facebook_page_brands_licensor_id_eq: licensor.id).result.
+    ransack(facebook_page_post_brands_facebook_page_brand_brand_licensor_id_eq: licensor.id).result.
     where('ARRAY[?]::varchar[] @> facebook_posts.all_domains', user.domains.pluck(:name))
   }
   scope :shut_down, -> { where.not(shut_down_by_facebook_at: nil) }

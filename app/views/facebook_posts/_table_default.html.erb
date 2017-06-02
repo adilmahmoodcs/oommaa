@@ -1,5 +1,5 @@
-<div id="div-table">
-  <div class="custom_table">
+<div id="div-table" class="m-30">
+  <div class="custom_table holder-full">
     <div class="div_Table slide_table" id="post_table">
 
       <div class="div_TableRow table_header slick_table">
@@ -34,11 +34,6 @@
                aria-expanded="false">
               Mass Actions
             </a>
-            <div class="dropdown-menu">
-              <div class="dropdown-item"><%= render 'facebook_posts/mass_actions/whitelisted', posts: @posts %></div>
-              <div class="dropdown-item"><%= render 'facebook_posts/mass_actions/blacklisted', posts: @posts %></div>
-              <div class="dropdown-item"><%= render 'facebook_posts/mass_actions/ignored', posts: @posts %></div>
-            </div>
           </div>
         </div>
       </div>
@@ -112,6 +107,11 @@
           </div>
         </div>
       <% end %>
+    </div>
+    <div class="custom_dropdown">
+      <div class="dropdown-item"><%= render 'facebook_posts/mass_actions/whitelisted', posts: @posts if @status == "blacklisted" %></div>
+      <div class="dropdown-item"><%= render 'facebook_posts/mass_actions/blacklisted', posts: @posts if @status == "whitelisted" %></div>
+      <div class="dropdown-item"><%= render 'facebook_posts/mass_actions/ignored', posts: @posts %></div>
     </div>
   </div>
 </div>

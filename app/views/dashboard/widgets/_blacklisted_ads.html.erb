@@ -8,7 +8,7 @@
         <%= image_tag("counter_find_UX_v2/widget_icon_blacklisted.png")%>
       </div>
       <h2>
-        <%= number_with_delimiter(policy_scope(FacebookPost).blacklisted.size, :delimiter => ',') %>
+        <%= number_with_delimiter(policy_scope(FacebookPost).blacklisted.distinct.size, :delimiter => ',') %>
       </h2>
     </div>
   </section>

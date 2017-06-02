@@ -1,11 +1,11 @@
-<div class="filter_holder">
+<div class="filter_holder filters_<%= @status %>">
   <div class="form-inline">
     <%= search_form_for @q do |f| %>
       <%= f.hidden_field :status_eq, value: params[:q][:status_eq] %>
 
       <div class="holder">
         <% unless @status == 'affiliate_greylisted' %>
-          <div class="col-xs-12 col-sm-4 col-md-3 form-group mt22">
+          <div class="col-xs-12 col-sm-4 col-md-3 form-group">
             <%= f.label :with_any_domain, t(:platform_or_company) %>
             <%= f.select :with_any_domain,
                          policy_scope(Domain).sort.pluck(:name, :name),
@@ -13,7 +13,7 @@
                          class: "form-control select2" %>
           </div>
 
-          <div class="col-xs-12 col-sm-4 col-md-3 form-group mt22">
+          <div class="col-xs-12 col-sm-4 col-md-3 form-group">
             <%= f.label :with_any_brand, t(:brand_name) %>
             <%= f.select :facebook_page_post_brands_facebook_page_brand_brand_id_eq,
                           filter_results(@brand),
@@ -22,7 +22,7 @@
                           "data-source": search_brands_path(format: :js)  %>
           </div>
         <% end %>
-        <div class="col-xs-12 col-sm-4 col-md-3 form-group mt22">
+        <div class="col-xs-12 col-sm-4 col-md-3 form-group">
           <%= f.label :facebook_page_name_eq, "Page" %>
           <%= f.select :facebook_page_id_eq,
                        filter_results(@fb_page),
@@ -32,7 +32,7 @@
         </div>
 
         <% if policy(Licensor).search? && @status != "affiliate_greylisted"%>
-          <div class="col-xs-12 col-sm-4 col-md-3 form-group mt22">
+          <div class="col-xs-12 col-sm-4 col-md-3 form-group">
             <%= f.label :with_licensor_name, "Licensor" %>
             <%= f.select :facebook_page_post_brands_facebook_page_brand_brand_licensor_id_eq,
                          filter_results(@licensor),
@@ -42,7 +42,7 @@
           </div>
         <% end %>
 
-        <div class="col-xs-12 col-sm-4 col-md-3 form-group mt22">
+        <div class="col-xs-12 col-sm-4 col-md-3 form-group">
           <%= f.label :published_at_gteq, "Published at date" %>
           <%= f.select :published_at_gteq,
                        date_filter_options_for(:published_at_gteq),
@@ -51,7 +51,7 @@
         </div>
 
         <% if @status == "whitelisted" %>
-          <div class="col-xs-12 col-sm-4 col-md-3 form-group mt22">
+          <div class="col-xs-12 col-sm-4 col-md-3 form-group">
             <%= f.label :whitelisted_at_gteq, "Approved at date" %>
             <%= f.select :whitelisted_at_gteq,
                          date_filter_options_for(:whitelisted_at_gteq),
@@ -61,7 +61,7 @@
         <% end %>
 
         <% if @status == "blacklisted" %>
-          <div class="col-xs-12 col-sm-4 col-md-3 form-group mt22">
+          <div class="col-xs-12 col-sm-4 col-md-3 form-group">
             <%= f.label :blacklisted_at_gteq, "#{t(:blacklisted_at)} date" %>
             <%= f.select :blacklisted_at_gteq,
                          date_filter_options_for(:blacklisted_at_gteq),
@@ -69,7 +69,7 @@
                          class: "form-control select2" %>
           </div>
 
-          <div class="col-xs-12 col-sm-4 col-md-3 form-group mt22">
+          <div class="col-xs-12 col-sm-4 col-md-3 form-group">
             <%= f.label :blacklisted_by_eq, "#{t(:blacklisted_by)}" %>
             <%= f.select :blacklisted_by_eq,
                          User.all.collect {|user| [ user.display_name, user.email ]},
@@ -80,7 +80,7 @@
 
         <% if @status == "reported_to_facebook" %>
           <div class="col-xs-12 col-sm-4 col-md-3 form-group">
-            <%= f.label :reported_to_facebook_at_gteq, "Reported to Facebook at date" %>
+            <%= f.label :reported_to_facebook_at_gteq, "Reported to Facebook at" %>
             <%= f.select :reported_to_facebook_at_gteq,
                          date_filter_options_for(:reported_to_facebook_at_gteq),
                          { include_blank: true },
@@ -88,7 +88,7 @@
           </div>
 
           <div class="col-xs-12 col-sm-4 col-md-3 form-group">
-            <%= f.label :shut_down_by_facebook_at_gteq, "Shut down by Facebook at date" %>
+            <%= f.label :shut_down_by_facebook_at_gteq, "Shutdown by Facebook at" %>
             <%= f.select :shut_down_by_facebook_at_gteq,
                          date_filter_options_for(:shut_down_by_facebook_at_gteq),
                          { include_blank: true },
@@ -96,18 +96,18 @@
           </div>
         <% end %>
 
-        <div class="col-xs-12 col-sm-4 col-md-3 form-group mt22">
+        <div class="col-xs-12 col-sm-4 col-md-3 form-group">
           <%= f.label :id_eq, t(:reference_number) %>
           <%= f.text_field :id_eq, class: "form-control" %>
         </div>
 
         <% if @status == "reported_to_facebook" %>
-          <div class="col-xs-12 col-sm-4 col-md-3 form-group mt10">
+          <div class="col-xs-12 col-sm-4 col-md-3 form-group">
             <%= f.label :blacklisted_at_gteq, t(:blacklisted_at) + ", from date:" %>
             <%= f.date_field :blacklisted_at_gteq, class: "form-control" %>
           </div>
 
-          <div class="col-xs-12 col-sm-4 col-md-3 form-group mt10">
+          <div class="col-xs-12 col-sm-4 col-md-3 form-group">
             <%= f.label :blacklisted_at_lteq, t(:blacklisted_at) + ", to date:" %>
             <%= f.date_field :blacklisted_at_lteq, class: "form-control" %>
           </div>

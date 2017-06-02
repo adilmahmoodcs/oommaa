@@ -34,6 +34,16 @@
         Counterfeit
       <% end %>
     <% end %>
+
+    <% if post.shutdown_queue? %>
+      <%= link_to post_change_status_path(post, :blacklisted),
+                method: :post,
+                class: "btn btn-danger btn-sm mb5 report-btn",
+                title: "Move to Blacklisted" do %>
+        <%= icon("ban") %>
+        Move to Blacklisted
+      <% end %>
+    <% end %>
   <% end %>
   <% if policy(post).public_send("change_status_#{@status}?") %>
      <% if post.blacklisted? %>

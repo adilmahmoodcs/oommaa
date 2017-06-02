@@ -16,9 +16,6 @@
         <% end %>
       </div>
     <% end %>
-    <div class="col-md-4 pagination_holder">
-      <%= paginate @posts.distinct %>
-    </div>
   </div>
     <%= render 'search_form' %>
   <!-- To Remove this -->
@@ -26,6 +23,10 @@
     <% render_if_exists "mass_actions_#{@status}", posts: @posts %>
   <% end %>
 
+  <div class="col-md-4 pagination_holder pull-right">
+    <%= paginate @posts.distinct %>
+  </div>
+  <div class="clearfix"></div>
   <%= render_if_exists "table_#{@status}", fallback: "table_default" %>
   <%= paginate @posts.distinct %>
 </div>
