@@ -13,6 +13,9 @@
         <div class="div_TableHead"><%= sort_link(@q, :all_domains, t(:platform_or_company)) %></div>
         <div class="div_TableHead"><%= sort_link(@q, :facebook_page_name, t(:facebook_page_name)) %></div>
         <div class="div_TableHead"><%= sort_link(@q, :reported_to_facebook_at, t(:reported_to_facebook_at)) %></div>
+        <% if current_user.admin? %>
+          <div class="div_TableHead"><%= sort_link(@q, :reported_to_facebook_by, t(:reported_to_facebook_by)) %></div>
+        <% end %>
         <div class="div_TableHead"><%= sort_link(@q, :shut_down_by_facebook_at, t(:shut_down_by_facebook_at)) %></div>
         <div class="div_TableHead"><%= t(:facebook_report_number) %></div>
         <div class="div_TableHead"><%= t(:link_to_product) %></div>
@@ -69,6 +72,11 @@
           <div class="div_TableCell">
             <%= l(post.reported_to_facebook_at.try(:to_date), format: :compact) if post.reported_to_facebook_at %>
           </div>
+          <% if current_user.admin? %>
+            <div class="div_TableCell">
+              <%= post.reported_to_facebook_by %>
+            </div>
+          <% end %>
           <div class="div_TableCell">
             <% if post.shut_down_by_facebook_at %>
               <%= l(post.shut_down_by_facebook_at.try(:to_date), format: :compact)  %>

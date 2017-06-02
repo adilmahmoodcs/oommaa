@@ -10,7 +10,7 @@ class ShutDownCheckerJob
     if result
       unless post.shut_down_by_facebook_at
         post.update_attributes!(shut_down_by_facebook_at: Time.now)
-        post.change_status_to!('reported_to_facebook', 'ShutDownCheckerJob') if post.blacklisted?
+        post.change_status_to!('reported_to_facebook', 'ShutDownCheckerJob') if post.blacklisted? or post.shutdown_queue?
 
         logger.info "ShutDownCheckerJob: marked FacebookPost #{post_id} as shut down"
       end
