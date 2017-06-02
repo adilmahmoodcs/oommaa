@@ -101,18 +101,19 @@ class FacebookPostsController < ApplicationController
     if params[:new_status] && params[:new_status].in?(FacebookPost.statuses.keys)
       authorize FacebookPost, "mass_change_status_#{params[:new_status]}?"
 
-      # posts = policy_scope(FacebookPost).ransack(params[:q][:status_eq]).result.where("id IN (?)", params[:post_ids])
-
-      puts posts.ids
-      # ignore_status_arr = FacebookPost::IGNORE_POST_FOR
-      # posts = posts.where(added_by: nil).
-      #               where(blacklisted_by: ignore_status_arr).
-      #               where(whitelisted_by: ignore_status_arr).
-      #               where(greylisted_by: ignore_status_arr).
-      #               where(reported_to_facebook_by: ignore_status_arr) if params[:new_status] == 'ignored'
-      # posts.update_all(mass_job_status: "to_be_#{params[:new_status]}")
-      # MassChangeStatusForPostsJob.perform_async(params[:new_status], current_user.id)
-      flash[:notice] = 'Job is enqueued to update the Status, changed will be reflected soon.'
+      posts = policy_scope(FacebookPost).ransack(params[:q][:status_eq]).result.where("id IN (?)", params[:post_ids][0].split(","))
+      success = false
+      posts.each do |post|
+        success = true if post.change_status_to!(params[:new_status], current_user)
+      end
+      # MassChangeStatusForPostsJob.perform_async(params[:new_status], current_user.id) TO-DO Remove this
+      if success == true
+        flash[:notice] = "#{posts.count} posts have successfully updated to #{params[:new_status]}."
+      elsif !posts.present?
+        flash[:alert] = "Please select posts before updating status."
+      else
+        flash[:alert] = "Error occurred during saving."
+      end
     end
 
     redirect_back(fallback_location: root_path)
