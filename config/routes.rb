@@ -38,6 +38,9 @@ Rails.application.routes.draw do
       get :export
       post :mass_change_status
     end
+    member do
+      post :send_email_to_licensor
+    end
   end
   post "/facebook_ads/:post_id/change_status/:status" => "facebook_posts#change_status",
         as: :post_change_status

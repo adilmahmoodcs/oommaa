@@ -66,9 +66,16 @@
     <% end %>
 
     <% if post.blacklisted? || post.reported_to_facebook? %>
-      <%= link_to "#", class: "btn btn-secondary disabled btn-sm mb5 report-btn" do %>
+      <%= form_for post, url: send_email_to_licensor_facebook_post_path(post), method: :post  do |f| %>
+        <%= button_tag class: "btn btn-secondary btn-sm report-btn ",
+                       "data-confirm": "Are you sure to send email to Licensor?" do %>
+          <%= icon("handshake-o") %>
+          Report to Licensor
+        <% end %>
+      <% end %>
+      <% link_to "#", class: "btn btn-secondary disabled btn-sm mb5 report-btn" do %>
         <%= icon("handshake-o") %>
-        Report to Licensor
+
       <% end %>
     <% end %>
   <% end %>

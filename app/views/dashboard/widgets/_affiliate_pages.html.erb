@@ -8,7 +8,7 @@
         <%= image_tag("counter_find_UX_v2/widget_icon_affiliate_pages.png")%>
       </div>
       <h2>
-        <%= FacebookPage.affiliate_page.count %>
+        <%= policy_scope(FacebookPage).affiliate_page.count %>
       </h2>
     </div>
   </section>

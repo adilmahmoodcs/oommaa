@@ -179,9 +179,9 @@ document.addEventListener("turbolinks:load", function() {
     Dashboard
     ========================================================================== */
 
-	$(window).resize(function(){
-		$('body').click('click');
-	});
+	// $(window).resize(function(){
+	// 	$('body').click('click');
+	// });
 
 	// Collapse box
 	$('.box-typical-dashboard').each(function(){

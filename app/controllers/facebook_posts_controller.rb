@@ -1,5 +1,5 @@
 class FacebookPostsController < ApplicationController
-  before_action :set_facebook_post, only: [:edit, :update]
+  before_action :set_facebook_post, only: [:edit, :update, :send_email_to_licensor]
   after_action :verify_policy_scoped, only: [:index, :export, :mass_change_status]
   before_action :set_filter_data, only: [:index, :export]
 
@@ -114,6 +114,20 @@ class FacebookPostsController < ApplicationController
       else
         flash[:alert] = "Error occurred during saving."
       end
+    end
+
+    redirect_back(fallback_location: root_path)
+  end
+
+  def send_email_to_licensor
+    licensors = policy_scope(Licensor).where(id: @facebook_post.licensor_ids)
+    if licensors.pluck(:main_contact).any?
+      licensors.each do |licensor|
+        LicensorMailer.notify_reported_post(licensor, @facebook_post).deliver_later
+      end
+      flash[:notice] = "Email will be sent shortly to licensor."
+    else
+      flash[:alert] = "Please add email to licensor first."
     end
 
     redirect_back(fallback_location: root_path)
