@@ -34,11 +34,7 @@ module ApplicationHelper
   end
 
   def logo_path
-    if licensor = current_user&.licensor
-      licensor.logo.url(:thumb)
-    else
-      "counterfind-logo.png"
-    end
+    "oommaa-logo.png"
   end
 
   def csv_export_params(params)

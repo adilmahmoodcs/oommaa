@@ -19,11 +19,6 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  role                   :integer          default("0"), not null
-#  licensor_id            :integer
-#  name                   :string
-#  widgets                :string           default("{}"), is an Array
-#  primary_color          :string
-#  secondary_color        :string
 #
 # Indexes
 #
@@ -37,28 +32,32 @@
 class User < ApplicationRecord
   include PublicActivity::Common
 
-  enum role: [:unconfirmed_client, :confirmed_client, :admin]
-
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable
 
-  has_many :assigned_domains
-  has_many :sent_emails
+  after_initialize :set_default_role, :if => :new_record?
 
-  has_many :domains, through: :assigned_domains
-  belongs_to :licensor, optional: true
+  def set_default_role
+    self.roles << Role.employee
+  end
+
+  Role::DEFAULT_ROLE_NAMES.each do |role_name|
+    define_method("#{role_name}?") do
+      self.roles.send(role_name).present?
+    end
+  end
+
+  has_many :user_roles, dependent: :destroy
+  has_many :roles, through: :user_roles
+  
+  has_one :employee, dependent: :nullify
+
 
   validates :name, presence: true
 
-  before_save :remove_licensor_for_admins
 
   def display_name
     self.name || self.email.split('@').try(:first)
   end
 
-  private
-
-  def remove_licensor_for_admins
-    self.licensor = nil if admin?
-  end
 end

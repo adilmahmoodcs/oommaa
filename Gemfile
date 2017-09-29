@@ -45,6 +45,7 @@ gem "switch_user"
 gem "nested_form"
 gem 'ckeditor'
 gem 'bootstrap-tagsinput-rails'
+gem 'bootstrap-generators', git: 'git://github.com/decioferreira/bootstrap-generators.git'
 
 group :development, :test do
   gem "byebug", platform: :mri
@@ -76,4 +77,7 @@ group :development do
   gem "capistrano-sidekiq", github: "seuros/capistrano-sidekiq"
   gem "letter_opener"
   gem "better_errors"
+  gem "binding_of_caller"
+  gem "bullet"
+  gem 'bootscaf'
 end

@@ -11,8 +11,6 @@
 #  updated_at               :datetime         not null
 #  old_brand_ids            :integer          default("{}"), is an Array
 #  shut_down_by_facebook_at :datetime
-#  cached_licensor_ids      :integer          default("{}"), is an Array
-#  status                   :integer          default("0")
 #
 # Indexes
 #

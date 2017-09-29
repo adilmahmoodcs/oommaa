@@ -4,12 +4,6 @@
       <%= link_to image_tag(logo_path, height: "40px", class: "d-inline-block"),
                   root_path,
                   class: "site-logo" %>
-      <% if current_user.present? and current_user.confirmed_client?%>
-        <div class="sub-logo">
-          <span>Powered By </span>
-          <%= image_tag("counterfind-logo.png") %>
-        </div>
-      <% end %>
     </div>
     <button class="hamburger hamburger--htla">
       <span>toggle menu</span>

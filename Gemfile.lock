@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/decioferreira/bootstrap-generators.git
+  revision: d6ce36fd8a9ae4d083b85bd1e08368c4b52e3bac
+  specs:
+    bootstrap-generators (3.3.4)
+      railties (>= 3.1.0)
+
+GIT
   remote: https://github.com/activerecord-hackery/ransack.git
   revision: 8ca8c95c6543c5da9b98a4e2747a0a4023d60bfc
   specs:
@@ -86,9 +93,16 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
+    bootscaf (0.1.26)
+      thor
     bootstrap-tagsinput-rails (0.4.2.1)
       railties (>= 3.1)
     builder (3.2.3)
+    bullet (5.6.1)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.10.0)
     byebug (9.0.6)
     capistrano (3.7.2)
       airbrussh (>= 1.0.0)
@@ -389,6 +403,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
+    uniform_notifier (1.10.0)
     vcr (3.0.3)
     warden (1.2.7)
       rack (>= 1.0)
@@ -414,7 +429,11 @@ DEPENDENCIES
   annotate
   aws-sdk (~> 2.7)
   better_errors
+  binding_of_caller
+  bootscaf
+  bootstrap-generators!
   bootstrap-tagsinput-rails
+  bullet
   byebug
   capistrano (~> 3.7)
   capistrano-rails (~> 1.2)
@@ -477,4 +496,4 @@ RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.13.6
+   1.15.4

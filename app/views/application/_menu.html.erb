@@ -17,37 +17,6 @@
           <% end %>
         <% end %>
       </li>
-      <% if switch_user_select %>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle"
-               data-toggle="dropdown"
-               href="#"
-               role="button"
-               aria-haspopup="true"
-               aria-expanded="false">
-              <div class="icon-holder">
-                <%= image_tag("counter_find_UX_v2/switch_dashboard_icon.png")%>
-              </div>
-              Switch Dashboards
-            </a>
-            <div class="dropdown-menu">
-              <div class="dropdown-item">
-                <%= switch_user_select style: "display: none"%>
-                <span>Remember me</span>
-              </div>
-              <% User.confirmed_client.each do |user| %>
-                <div class=" dropdown-item">
-                  <%= link_to user.display_name, "/switch_user?scope_identifier=user_#{user.id}" %>
-                </div>
-              <% end %>
-              <% if session[:orignal_user_id].present? and current_user.confirmed_client? %>
-                <div class=" dropdown-item">
-                  <%= link_to "Switch To Original User", "/switch_user?scope_identifier=user_#{session[:orignal_user_id]}" %>
-                </div>
-              <% end %>
-            </div>
-        </li>
-      <% end %>
     </div>
 
     <% if policy(:dashboard).index? %>

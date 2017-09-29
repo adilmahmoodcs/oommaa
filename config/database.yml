@@ -6,22 +6,8 @@ default: &default
 
 development:
   <<: *default
-  database: counterfind_development
+  database: counterfind_oommaa_development
 
 test:
   <<: *default
-  database: counterfind_test
-
-production:
-  <<: *default
-  database: counterfind_production
-  username: counterfind
-  password: rAIkCKD2dMatvz3SGiM
-  pool: 15
-
-staging:
-  <<: *default
-  database: counterfind_demo
-  username: counterfind
-  password: s897JHgJg87y6rtHFG
-  pool: 15
+  database: counterfind_oommaa_test

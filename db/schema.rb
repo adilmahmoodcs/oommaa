@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170519220051) do
+ActiveRecord::Schema.define(version: 20170929025704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20170519220051) do
     t.datetime "shut_down_by_facebook_at"
     t.integer  "cached_licensor_ids",      default: [],              array: true
     t.integer  "status",                   default: 0
+    t.string   "affiliate_name"
     t.index ["cached_licensor_ids"], name: "index_facebook_pages_on_cached_licensor_ids", using: :gin
     t.index ["old_brand_ids"], name: "index_facebook_pages_on_old_brand_ids", using: :gin
   end
@@ -181,6 +182,21 @@ ActiveRecord::Schema.define(version: 20170519220051) do
     t.datetime "logo_updated_at"
   end
 
+  create_table "post_brands", force: :cascade do |t|
+    t.integer  "facebook_post_id"
+    t.integer  "brand_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["brand_id"], name: "index_post_brands_on_brand_id", using: :btree
+    t.index ["facebook_post_id"], name: "index_post_brands_on_facebook_post_id", using: :btree
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "screenshots", force: :cascade do |t|
     t.integer  "facebook_post_id"
     t.datetime "created_at",         null: false
@@ -207,6 +223,15 @@ ActiveRecord::Schema.define(version: 20170519220051) do
     t.datetime "updated_at",                     null: false
     t.index ["email_template_id"], name: "index_sent_emails_on_email_template_id", using: :btree
     t.index ["user_id"], name: "index_sent_emails_on_user_id", using: :btree
+  end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_user_roles_on_role_id", using: :btree
+    t.index ["user_id"], name: "index_user_roles_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -246,5 +271,7 @@ ActiveRecord::Schema.define(version: 20170519220051) do
   add_foreign_key "screenshots", "facebook_posts"
   add_foreign_key "sent_emails", "email_templates"
   add_foreign_key "sent_emails", "users"
+  add_foreign_key "user_roles", "roles"
+  add_foreign_key "user_roles", "users"
   add_foreign_key "users", "licensors"
 end

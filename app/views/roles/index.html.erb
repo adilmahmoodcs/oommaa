@@ -1,0 +1,35 @@
+
+
+<h1>Roles</h1>
+
+<table class="table">
+  <thead>
+<tr>
+    
+      <th><span>Name</span></th>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% unless @roles.any? %>
+<tr id="empty-table">
+<td class="bg-warning" colspan="2">No roles created yet.</td>
+</tr>
+<% end %>
+<% @roles.each do |role| %>
+<tr class="linked-row" data-href="<%= role_path(role) %>">
+      
+        <td><%= link_to role.name, role %></td>
+        
+        
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+
+
+

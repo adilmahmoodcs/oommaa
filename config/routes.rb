@@ -1,6 +1,7 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  resources :roles
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
   resources :dashboard, only: :index
