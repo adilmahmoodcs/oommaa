@@ -1,0 +1,76 @@
+oommaa_users:
+  rights:
+    roles:
+      view_roles:
+        controller: 'roles'
+        name: 'View roles'
+        actions: 'index show'
+      edit_roles:
+        controller: 'roles'
+        name: 'Edit existing roles'
+        actions: 'index show update edit'
+      create_role:
+        controller: 'roles'
+        name: 'Create new roles or clone existing roles'
+        actions: 'new create clone index show'
+      delete_roles:
+        controller: 'roles'
+        name: '<b style="color:red;">Delete existing roles</b><br>'
+        actions: 'destroy'
+    users:
+      view_users:
+        controller: 'users'
+        name: 'View users'
+        actions: 'index show'
+      edit_users:
+        controller: 'users'
+        name: 'Edit existing users'
+        actions: 'index show update edit'
+      create_user:
+        controller: 'users'
+        name: 'Create new users'
+        actions: 'new create index show'
+      delete_users:
+        controller: 'users'
+        name: '<b style="color:red;">Delete existing users</b><br>'
+        actions: 'destroy'
+    all_employees:
+      view_all_employees:
+        controller: 'employees'
+        name: 'View all employees'
+        actions: 'index show'
+      edit_all_employees:
+        controller: 'employees'
+        name: 'Edit existing employees'
+        actions: 'index show update edit'
+      create_employee:
+        controller: 'employees'
+        name: 'Create new employees'
+        actions: 'new create'
+      delete_all_employees:
+        controller: 'employees'
+        name: '<b style="color:red;">Delete any existing employee</b><br>'
+        actions: 'destroy'
+    managed_employees:
+      view_managed_employees:
+        controller: 'employees'
+        name: 'View managed employees'
+        actions: 'index show'
+      edit_managed_employees:
+        controller: 'employees'
+        name: 'Edit managed existing employees'
+        actions: 'index show update edit'
+      delete_managed_employees:
+        controller: 'employees'
+        name: '<b style="color:red;">Delete managed existing employees</b><br>'
+        actions: 'destroy'
+    own_employee_record:
+      view_own_record:
+        controller: 'employees'
+        name: 'View own record'
+        actions: 'show'
+      edit_own_record:
+        controller: 'employees'
+        name: 'Edit own employee record'
+        actions: 'update edit'
+

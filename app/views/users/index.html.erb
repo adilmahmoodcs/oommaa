@@ -6,6 +6,10 @@
     (all)
   <% end %>
   (<%= @users.total_count %>)
+  <%= link_to new_user_path, class: "btn btn-primary" do %>
+    <%= icon("plus") %>
+    Add New
+  <% end %>
 </h3>
 
 <div class="card">
@@ -42,8 +46,8 @@
     <tr>
       <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
       <th><%= sort_link(@q, :email, "Email") %></th>
-      <th><%= sort_link(@q, :licensor_id, "Licensor") %></th>
-      <th><%= sort_link(@q, :role, "Role") %></th>
+      <th>Employee</th>
+      <th>Roles</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -58,12 +62,10 @@
           <%= user.email %>
         </td>
         <td>
-          <%= user.licensor&.name %>
+          <%#= user.employee&.name %>
         </td>
         <td>
-          <span class="label label_<%= user.role %>">
-            <%= t("user_roles.#{user.role}") %>
-          </span>
+            <%= user.roles.pluck(:name).join(', ') %>
         </td>
         <td class="text-right">
           <%= link_to edit_user_path(user),

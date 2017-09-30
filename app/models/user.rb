@@ -37,6 +37,16 @@ class User < ApplicationRecord
 
   after_initialize :set_default_role, :if => :new_record?
 
+
+  has_many :user_roles, dependent: :destroy
+  has_many :roles, through: :user_roles
+
+  has_one :employee, dependent: :nullify
+  has_many :subordinates, class_name: "Employee",
+                          foreign_key: "manager_id", dependent: :nullify
+
+  validates :name, presence: true
+
   def set_default_role
     self.roles << Role.employee
   end
@@ -47,17 +57,24 @@ class User < ApplicationRecord
     end
   end
 
-  has_many :user_roles, dependent: :destroy
-  has_many :roles, through: :user_roles
-  
-  has_one :employee, dependent: :nullify
+  def rights
+    Right.joins(:role_rights).where('role_rights.role_id IN (?)', self.role_ids).distinct
+  end
 
+  def rights_keys
+    rights.pluck(:key)
+  end
 
-  validates :name, presence: true
-
+  def has_right? right_key
+    rights_keys.include? right_key.to_s
+  end
 
   def display_name
     self.name || self.email.split('@').try(:first)
+  end
+
+  def employee_id
+    self.employee&.id
   end
 
 end

@@ -59,12 +59,14 @@ Rails.application.routes.draw do
   resources :assigned_domains, only: [:create, :destroy]
 
   scope :admin do
-    resources :users, only: [:index, :edit, :update, :destroy] do
+    resources :users, only: [:index, :edit, :update, :new, :create, :destroy] do
       member do
         get :client_domain_request
       end
     end
   end
+
+  resources :employees
 
   resources :email_templates, only: [:create, :update] do
     resources :sent_emails, shallow: true do

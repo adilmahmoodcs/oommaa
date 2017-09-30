@@ -31,38 +31,38 @@
       </li>
     <% end %>
 
-    <% if policy(Licensor).index? %>
+    <% if policy(Role).index? %>
       <li class="nav-item">
-        <%= link_to licensors_path,
-                    class: "nav-link #{'active' if current_page?(licensors_path)}" do %>
+        <%= link_to roles_path,
+                    class: "nav-link #{'active' if current_page?(roles_path)}" do %>
           <div class="icon-holder">
             <%= image_tag("counter_find_UX_v2/licensors_icon.png")%>
           </div>
-          <%= "#{t(:licensors)} (#{policy_scope(Licensor).count})" %>
+          <%= "#{t(:roles)} (#{policy_scope(Role).count})" %>
         <% end %>
       </li>
     <% end %>
 
-    <% if policy(Brand).index? %>
+    <% if policy(User).index? %>
       <li class="nav-item">
-        <%= link_to brands_path,
-                    class: "nav-link #{'active' if current_page?(brands_path)}" do %>
+        <%= link_to users_path,
+                    class: "nav-link #{'active' if current_page?(users_path)}" do %>
+          <div class="icon-holder">
+            <%= image_tag("counter_find_UX_v2/users_icon.png")%>
+          </div>
+          <%= "#{t(:users)} (#{policy_scope(User).count})" %>
+        <% end %>
+      </li>
+    <% end %>
+
+    <% if policy(Employee).index? %>
+      <li class="nav-item">
+        <%= link_to employees_path,
+                    class: "nav-link #{'active' if current_page?(employees_path)}" do %>
           <div class="icon-holder">
             <%= image_tag("counter_find_UX_v2/brands_icon.png")%>
           </div>
-          <%= "#{t(:brands)} (#{policy_scope(Brand).count})" %>
-        <% end %>
-      </li>
-    <% end %>
-
-    <% if policy(Keyword).index? %>
-      <li class="nav-item">
-        <%= link_to keywords_path,
-                    class: "nav-link #{'active' if current_page?(keywords_path)}" do %>
-          <div class="icon-holder">
-            <%= image_tag("counter_find_UX_v2/keywords_icon.png")%>
-          </div>
-          <%= "#{t(:keywords)} (#{policy_scope(Keyword).count})" %>
+          <%= "#{t(:employees)} (#{policy_scope(Employee).count})" %>
         <% end %>
       </li>
     <% end %>

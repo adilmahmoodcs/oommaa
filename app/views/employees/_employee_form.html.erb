@@ -4,18 +4,18 @@
 </div>
 
 <div class="form-group">
-  <%= f.label :email %>
-  <%= f.email_field :email, class: 'form-control', required: true %>
+  <%= f.label :phone %>
+  <%= f.text_field :phone, class: 'form-control' %>
 </div>
 
 <div class="form-group">
-  <%= f.label :password %>
-  <%= f.text_field :password, class: 'form-control', required: !f.object.persisted? %>
+  <%= f.label :dob, "Date of Birth" %>
+  <%= f.date_field :dob, class: 'form-control' %>
 </div>
 
 <div class="form-group">
-    <%= f.label :employee_id %><br>
-    <%= f.collection_select :employee_id, Employee.order(:name),
+    <%= f.label :manager_id %><br>
+    <%= f.collection_select :manager_id, User.joins(:roles).where(name: 'manager').order(:name),
                             :id, :name,
                             { include_blank: true },
                             class: "form-control select2",

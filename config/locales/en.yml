@@ -1,9 +1,10 @@
 en:
-  keywords: Keywords
   brands: Brands
   posts: Ads
   domains: Domains
-  licensors: Licensors
+  roles: Roles
+  users: Users
+  employees: Employees
   all: All
   suspect: Needs Review
   not_suspect: Irrelevant Results

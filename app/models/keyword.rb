@@ -12,7 +12,8 @@ class Keyword < ApplicationRecord
   include PublicActivity::Common
 
   validates :name, presence: true
-  validates :name, uniqueness: true
+  validates :name, :uniqueness => {:case_sensitive => false}
+
 
   ransacker :name_case_insensitive, type: :string do
     arel_table[:name].lower

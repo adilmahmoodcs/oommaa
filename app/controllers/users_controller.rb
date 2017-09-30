@@ -6,8 +6,24 @@ class UsersController < ApplicationController
     @q = policy_scope(User).ransack(params[:q])
     @q.sorts = "id DESC" if @q.sorts.empty?
     @users = @q.result.
-                includes(:licensor).
                 page(params[:page])
+  end
+
+  def new
+    authorize User
+    @user = User.new
+  end
+
+  def create
+    authorize User
+    @user = User.new(user_params)
+    params[:user][:confirmed_at] = Time.current
+
+    if @user.save(user_params)
+      redirect_to users_path, notice: 'User was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   def edit
@@ -16,7 +32,25 @@ class UsersController < ApplicationController
 
   def update
     authorize @user
-    if @user.update(user_params)
+    is_valid = false
+    change_password = true
+    user_update_params = nil
+
+    if params[:user][:password].blank?
+      params[:user].delete("password")
+      change_password = false
+      user_update_params = params.require(:user).permit(:name, :email, role_ids: [])
+    else
+      params[:user][:confirmed_at] = Time.current
+      user_update_params = params.require(:user).permit(:name, :email, :password, :confirmed_at, role_ids: [])
+    end
+    if change_password.present?
+      is_valid = @user.update(user_update_params)
+    else
+      is_valid = @user.update_without_password(user_update_params)
+    end
+
+    if is_valid
       redirect_to users_path, notice: 'User was successfully updated.'
     else
       render :edit
@@ -29,12 +63,6 @@ class UsersController < ApplicationController
     redirect_to users_path, notice: 'User was successfully destroyed.'
   end
 
-  def client_domain_request
-    domain = Domain.find params[:domain_id]
-    UserMailer.user_domain_request(user: current_user, domain: domain).deliver_later
-    redirect_back(fallback_location: domains_path, notice: "Request was successfully sent to all admins.")
-  end
-
   private
 
   def set_user
@@ -42,6 +70,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :licensor_id, :role, :primary_color, :secondary_color, { widgets: [] })
+    params.require(:user).permit(:name, :email, :password, :confirmed_at, role_ids: [])
   end
+
 end

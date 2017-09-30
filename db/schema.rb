@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170929025704) do
+ActiveRecord::Schema.define(version: 20170930224514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,18 @@ ActiveRecord::Schema.define(version: 20170929025704) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["parent_type", "parent_id"], name: "index_email_templates_on_parent_type_and_parent_id", using: :btree
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string   "name"
+    t.string   "surname"
+    t.string   "phone"
+    t.datetime "dob"
+    t.integer  "user_id"
+    t.integer  "manager_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_employees_on_user_id", using: :btree
   end
 
   create_table "facebook_page_brands", force: :cascade do |t|
@@ -191,6 +203,25 @@ ActiveRecord::Schema.define(version: 20170929025704) do
     t.index ["facebook_post_id"], name: "index_post_brands_on_facebook_post_id", using: :btree
   end
 
+  create_table "rights", force: :cascade do |t|
+    t.string   "key"
+    t.string   "name"
+    t.string   "category"
+    t.string   "controller"
+    t.string   "actions"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "role_rights", force: :cascade do |t|
+    t.integer  "role_id"
+    t.integer  "right_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["right_id"], name: "index_role_rights_on_right_id", using: :btree
+    t.index ["role_id"], name: "index_role_rights_on_role_id", using: :btree
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -265,9 +296,12 @@ ActiveRecord::Schema.define(version: 20170929025704) do
 
   add_foreign_key "brand_logos", "brands"
   add_foreign_key "brands", "licensors"
+  add_foreign_key "employees", "users"
   add_foreign_key "facebook_page_brands", "brands"
   add_foreign_key "facebook_page_brands", "facebook_pages"
   add_foreign_key "facebook_posts", "facebook_pages"
+  add_foreign_key "role_rights", "rights"
+  add_foreign_key "role_rights", "roles"
   add_foreign_key "screenshots", "facebook_posts"
   add_foreign_key "sent_emails", "email_templates"
   add_foreign_key "sent_emails", "users"

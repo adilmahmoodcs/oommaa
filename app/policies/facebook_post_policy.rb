@@ -1,18 +1,12 @@
 class FacebookPostPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.admin?
         scope.all
-      elsif user.confirmed_client?
-        scope.of_licensor(user.licensor, user)
-      else
-        scope.none
-      end
     end
   end
 
   def export?
-    user.admin? || user.confirmed_client?
+    user.admin?
   end
 
   ### index
@@ -30,27 +24,27 @@ class FacebookPostPolicy < ApplicationPolicy
   end
 
   def index_suspect?
-    user.admin? || user.confirmed_client?
+    user.admin?
   end
 
   def index_whitelisted?
-    user.admin? || user.confirmed_client?
+    user.admin?
   end
 
   def index_blacklisted?
-    user.admin? || user.confirmed_client?
+    user.admin?
   end
 
   def index_reported_to_facebook?
-    user.admin? || user.confirmed_client?
+    user.admin?
   end
 
   def index_ignored?
-    user.admin? || user.confirmed_client?
+    user.admin?
   end
 
   def index_greylisted?
-    user.admin? || user.confirmed_client?
+    user.admin?
   end
 
   def index_affiliate_greylisted?
@@ -64,23 +58,21 @@ class FacebookPostPolicy < ApplicationPolicy
   ### change_status
 
   def change_status_not_suspect?
-    user.admin? ||
-    (user.confirmed_client? && user.licensor.id.in?(record.licensor_ids))
+    user.admin?
+     # ||
+    # (user.confirmed_client? && user.licensor.id.in?(record.licensor_ids))
   end
 
   def change_status_suspect?
-    user.admin? ||
-    (user.confirmed_client? && user.licensor.id.in?(record.licensor_ids))
+    user.admin?
   end
 
   def change_status_whitelisted?
-    user.admin? ||
-    (user.confirmed_client? && user.licensor.id.in?(record.licensor_ids))
+    user.admin?
   end
 
   def change_status_blacklisted?
-    user.admin? ||
-    (user.confirmed_client? && user.licensor.id.in?(record.licensor_ids))
+    user.admin?
   end
 
   def change_status_reported_to_facebook?
@@ -100,22 +92,21 @@ class FacebookPostPolicy < ApplicationPolicy
   end
 
   def change_status_shutdown_queue?
-    user.admin? ||
-    (user.confirmed_client? && user.licensor.id.in?(record.licensor_ids))
+    user.admin?
   end
 
   ### mass_change_status
 
   def mass_change_status_not_suspect?
-    user.admin? || user.confirmed_client?
+    user.admin?
   end
 
   def mass_change_status_suspect?
-    user.admin? || user.confirmed_client?
+    user.admin?
   end
 
   def mass_change_status_whitelisted?
-    user.admin? || user.confirmed_client?
+    user.admin?
   end
 
   def mass_change_status_blacklisted?

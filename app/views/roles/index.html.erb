@@ -1,35 +1,77 @@
+<dir class="counterfind_ux_v2">
 
+  <div class="inner-header">
+    <div class="holder">
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <div class="heading-holder">
+            <h3 class="m0">
+              Roles
+              <% if term = params.dig(:q, :name_cont).presence %>
+                ('<span class="fillter-value"><%= term %></span>')
+              <% else %>
+                (all)
+              <% end %>
+              (<%= @roles.total_count %>)
+              <%= link_to new_role_path, class: "btn btn-primary" do %>
+                <%= icon("plus") %>
+                Add New
+              <% end %>
+            </h3>
+          </div>
+        </div>
 
-<h1>Roles</h1>
+      </div>
+    </div>
+  </div>
+  <%= render "shared/resource_top_search" %>
+  <%= paginate @roles %>
 
-<table class="table">
-  <thead>
-<tr>
-    
-      <th><span>Name</span></th>
-      
-    </tr>
-  </thead>
+  <div id="div-table" class="mb60">
+    <div class="custom_table">
+      <div class="div_Table m0" id="scroll_table">
+        <div class="div_TableRow mobile-none">
+          <div class="div_TableHead width_50"><%= sort_link(@q, :name_case_insensitive, "Name") %></div>
+          <div class="div_TableHead width_50">Actions</div>
+        </div>
+        <div class="div-table-body scroll_table_body">
+          <% @roles.each do |role| %>
+            <div class="div_TableRow scroll_table_data">
+              <div class="div_TableCell">
+                <div class="mobile_table_head desktop-none">
+                  <h4>Name</h4>
+                </div>
+                <div class="mobile_content">
+                  <%= role.name %>
+                </div>
+              </div>
+              <div class="div_TableCell">
+                <div class="mobile_table_head desktop-none">
+                  <h4>Actions</h4>
+                </div>
+                <div class="mobile_content">
+                  <%= link_to edit_role_path(role),
+                        class: "btn btn-secondary btn-sm" do %>
+                    <%= icon("pencil") %>
+                    Edit
+                  <% end %>
+                  <%= link_to role,
+                              method: :delete,
+                              data: { confirm: 'Are you sure?' },
+                              class: "btn btn-danger btn-sm" do %>
+                    <%= icon("trash") %>
+                    Delete
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </dir>
+</dir>
 
-  <tbody>
-    <% unless @roles.any? %>
-<tr id="empty-table">
-<td class="bg-warning" colspan="2">No roles created yet.</td>
-</tr>
-<% end %>
-<% @roles.each do |role| %>
-<tr class="linked-row" data-href="<%= role_path(role) %>">
-      
-        <td><%= link_to role.name, role %></td>
-        
-        
-        
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="hide">
+  <%= paginate @roles %>
 </div>
-
-
-
-

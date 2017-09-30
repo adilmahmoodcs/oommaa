@@ -1,9 +1,9 @@
 class ImportPolicy < Struct.new(:user, :import)
   def url?
-    user.admin? || user.confirmed_client?
+    user.admin?
   end
 
   def create_from_url?
-    user.admin? || user.confirmed_client?
+    user.admin?
   end
 end

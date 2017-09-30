@@ -1,15 +1,18 @@
-<% content_for :page_title do %>
-Create Role - 
-<% end %>
-<div class="container">
-<div class="page-header">
-<h1>
-New Role
-</h1>
-</div>
+<section class="box-typical box-panel">
+  <header class="box-typical-header">
+    <div class="tbl-row">
+      <div class="tbl-cell tbl-cell-title">
+        <h3>Create Role</h3>
+      </div>
+    </div>
+  </header>
+  <div class="box-typical-body">
+    <%= render 'form', role: @role %>
+  </div>
+</section>
 
-<%= render 'form', role: @role %>
 
 <div class="clearfix"></div>
+<div class="pull-left">
 <%= link_to "<span class=\"glyphicon glyphicon-ban-circle\" aria-hidden=\"true\"></span> Cancel".html_safe, roles_path, class: "btn btn-default" %>
 </div>

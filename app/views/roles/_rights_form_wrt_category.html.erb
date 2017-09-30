@@ -1,0 +1,21 @@
+<div class="ibox-title">
+    <h6><%= category.titleize %></h6>
+</div>
+<div class="ibox-content">
+<% Right.where(category: category).each do |right| %>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div class="checkbox i-checks">
+                    <label class="">
+                        <%= hidden_field_tag "right_ids[#{right.id}]", false %>
+                        <%= check_box_tag "right_ids[#{right.id}]", true, @role.has_right?(right), style: 'visibility: visible;' %>
+                        <%= right.name.html_safe %>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+<%end%>
+</div>
+<br>
