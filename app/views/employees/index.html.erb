@@ -54,7 +54,7 @@
             <%= employee.phone %>
           </td>
           <td>
-            <%= employee.dob.strftime('%b %d, %Y') %>
+            <%= employee.dob.try(:strftime, '%b %d, %Y') %>
           </td>
           <td>
               <%= employee.manager&.display_name %>

@@ -19,6 +19,11 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  role                   :integer          default("0"), not null
+#  licensor_id            :integer
+#  name                   :string
+#  widgets                :string           default("{}"), is an Array
+#  primary_color          :string
+#  secondary_color        :string
 #
 # Indexes
 #
@@ -46,6 +51,8 @@ class User < ApplicationRecord
                           foreign_key: "manager_id", dependent: :nullify
 
   validates :name, presence: true
+
+  scope :with_manager_rights, -> () { joins(:roles).where(roles: {name: 'manager'}).order(:name) }
 
   def set_default_role
     self.roles << Role.employee

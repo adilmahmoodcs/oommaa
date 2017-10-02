@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930224514) do
+ActiveRecord::Schema.define(version: 20171002042150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 20170930224514) do
     t.index ["user_id"], name: "index_assigned_domains_on_user_id", using: :btree
   end
 
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.string   "file"
+    t.string   "notes"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["employee_id"], name: "index_attachments_on_employee_id", using: :btree
+  end
+
   create_table "brand_logos", force: :cascade do |t|
     t.integer  "brand_id"
     t.datetime "created_at",                      null: false
@@ -65,6 +74,18 @@ ActiveRecord::Schema.define(version: 20170930224514) do
     t.index ["nicknames"], name: "index_brands_on_nicknames", using: :gin
   end
 
+  create_table "certificates", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.string   "name"
+    t.string   "provider"
+    t.boolean  "confirmation"
+    t.datetime "completion_date"
+    t.text     "notes"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["employee_id"], name: "index_certificates_on_employee_id", using: :btree
+  end
+
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
     t.string   "data_content_type"
@@ -86,6 +107,21 @@ ActiveRecord::Schema.define(version: 20170930224514) do
     t.string   "owner_email"
   end
 
+  create_table "educations", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.string   "department"
+    t.string   "degree"
+    t.string   "institution"
+    t.string   "thesis"
+    t.text     "notes"
+    t.string   "still_studying"
+    t.datetime "entrance_date"
+    t.string   "graduation"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["employee_id"], name: "index_educations_on_employee_id", using: :btree
+  end
+
   create_table "email_templates", force: :cascade do |t|
     t.string   "text"
     t.string   "default_subject"
@@ -95,6 +131,54 @@ ActiveRecord::Schema.define(version: 20170930224514) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["parent_type", "parent_id"], name: "index_email_templates_on_parent_type_and_parent_id", using: :btree
+  end
+
+  create_table "emergency_calls", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.string   "surname"
+    t.string   "name"
+    t.string   "relationship"
+    t.boolean  "phone_no"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["employee_id"], name: "index_emergency_calls_on_employee_id", using: :btree
+  end
+
+  create_table "employee_projects", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.integer  "project_id"
+    t.string   "name"
+    t.datetime "issue"
+    t.datetime "finish"
+    t.datetime "completed"
+    t.text     "notes"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["employee_id"], name: "index_employee_projects_on_employee_id", using: :btree
+  end
+
+  create_table "employee_quits", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string   "pc"
+    t.string   "phone_no"
+    t.integer  "training_cancel"
+    t.string   "health_insurance"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["employee_id"], name: "index_employee_quits_on_employee_id", using: :btree
+  end
+
+  create_table "employee_visa_details", force: :cascade do |t|
+    t.string   "visa_id"
+    t.string   "unique_id"
+    t.datetime "issue_date"
+    t.datetime "expiry_date"
+    t.integer  "employee_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["employee_id"], name: "index_employee_visa_details_on_employee_id", using: :btree
   end
 
   create_table "employees", force: :cascade do |t|
@@ -183,6 +267,32 @@ ActiveRecord::Schema.define(version: 20170930224514) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "labour_card_details", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.string   "labour_card_id"
+    t.string   "name"
+    t.datetime "issue"
+    t.datetime "finish"
+    t.datetime "completed"
+    t.text     "notes"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["employee_id"], name: "index_labour_card_details_on_employee_id", using: :btree
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.string   "name"
+    t.string   "written_level"
+    t.string   "speaking_level"
+    t.boolean  "native_language"
+    t.text     "notes"
+    t.boolean  "confirmation"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["employee_id"], name: "index_languages_on_employee_id", using: :btree
+  end
+
   create_table "licensors", force: :cascade do |t|
     t.string   "name",              null: false
     t.datetime "created_at",        null: false
@@ -192,6 +302,19 @@ ActiveRecord::Schema.define(version: 20170930224514) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+  end
+
+  create_table "passport_details", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.string   "passport_no"
+    t.string   "name"
+    t.datetime "issue"
+    t.datetime "finish"
+    t.datetime "completed"
+    t.text     "notes"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["employee_id"], name: "index_passport_details_on_employee_id", using: :btree
   end
 
   create_table "post_brands", force: :cascade do |t|
@@ -256,6 +379,33 @@ ActiveRecord::Schema.define(version: 20170930224514) do
     t.index ["user_id"], name: "index_sent_emails_on_user_id", using: :btree
   end
 
+  create_table "technical_skills", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.string   "level"
+    t.integer  "level_id"
+    t.boolean  "confirmation"
+    t.string   "name"
+    t.text     "notes"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["employee_id"], name: "index_technical_skills_on_employee_id", using: :btree
+  end
+
+  create_table "trainings", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.string   "name"
+    t.text     "location"
+    t.string   "duration"
+    t.string   "provider"
+    t.boolean  "confirmation"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.text     "notes"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["employee_id"], name: "index_trainings_on_employee_id", using: :btree
+  end
+
   create_table "user_roles", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "role_id"
@@ -294,18 +444,44 @@ ActiveRecord::Schema.define(version: 20170930224514) do
     t.index ["widgets"], name: "index_users_on_widgets", using: :gin
   end
 
+  create_table "visa_details", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.string   "visa_id"
+    t.string   "name"
+    t.datetime "issue"
+    t.datetime "finish"
+    t.datetime "completed"
+    t.text     "notes"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["employee_id"], name: "index_visa_details_on_employee_id", using: :btree
+  end
+
+  add_foreign_key "attachments", "employees"
   add_foreign_key "brand_logos", "brands"
   add_foreign_key "brands", "licensors"
+  add_foreign_key "certificates", "employees"
+  add_foreign_key "educations", "employees"
+  add_foreign_key "emergency_calls", "employees"
+  add_foreign_key "employee_projects", "employees"
+  add_foreign_key "employee_quits", "employees"
+  add_foreign_key "employee_visa_details", "employees"
   add_foreign_key "employees", "users"
   add_foreign_key "facebook_page_brands", "brands"
   add_foreign_key "facebook_page_brands", "facebook_pages"
   add_foreign_key "facebook_posts", "facebook_pages"
+  add_foreign_key "labour_card_details", "employees"
+  add_foreign_key "languages", "employees"
+  add_foreign_key "passport_details", "employees"
   add_foreign_key "role_rights", "rights"
   add_foreign_key "role_rights", "roles"
   add_foreign_key "screenshots", "facebook_posts"
   add_foreign_key "sent_emails", "email_templates"
   add_foreign_key "sent_emails", "users"
+  add_foreign_key "technical_skills", "employees"
+  add_foreign_key "trainings", "employees"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
   add_foreign_key "users", "licensors"
+  add_foreign_key "visa_details", "employees"
 end

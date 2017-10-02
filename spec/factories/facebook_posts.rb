@@ -28,6 +28,8 @@
 #  mass_job_status          :integer          default("0")
 #  greylisted_at            :datetime
 #  greylisted_by            :string
+#  shutdown_queue_at        :datetime
+#  shutdown_queue_by        :string
 #
 # Indexes
 #

@@ -28,7 +28,6 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
 
     if @employee.save
-      set_rights
       @employee.create_activity(:create, owner: current_user, parameters: { name: @employee.name })
       redirect_to employees_path, notice: 'Employee was successfully created.'
     else
@@ -39,7 +38,6 @@ class EmployeesController < ApplicationController
   def update
     authorize @employee
     if @employee.update(employee_params)
-      set_rights
       @employee.create_activity(:update, owner: current_user, parameters: { name: @employee.name })
       redirect_to employees_path, notice: 'Employee was successfully updated.'
     else
@@ -61,17 +59,7 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params
-    params.require(:employee).permit(:name, :right_ids)
+    params.require(:employee).permit(:name, :phone, :dob, :manager_id)
   end
-
-  # def set_rights
-  #   params[:right_ids].each do |right_id, result|
-  #     if result.to_s=='true'
-  #       EmployeeRight.find_or_create_by(right_id: right_id, employee_id: params[:id])
-  #     else
-  #       EmployeeRight.where(right_id: right_id, employee_id: params[:id]).delete_all
-  #     end
-  #   end
-  # end
 
 end

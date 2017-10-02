@@ -30,3 +30,10 @@ u = User.create! email: "manager@oommaa.com",
              confirmed_at: Time.now
 
 u.roles << Role.manager
+
+u = User.create! email: "employee@oommaa.com",
+             password: "employee@123",
+             name: "Employee User",
+             confirmed_at: Time.now
+
+# u.roles << Role.employee

@@ -15,7 +15,7 @@
 
 <div class="form-group">
     <%= f.label :manager_id %><br>
-    <%= f.collection_select :manager_id, User.joins(:roles).where(name: 'manager').order(:name),
+    <%= f.collection_select :manager_id, User.with_manager_rights,
                             :id, :name,
                             { include_blank: true },
                             class: "form-control select2",

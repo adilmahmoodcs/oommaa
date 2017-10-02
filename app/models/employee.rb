@@ -18,8 +18,22 @@
 #
 
 class Employee < ApplicationRecord
+  include PublicActivity::Common
+
   belongs_to :user, required: false
-  belongs_to :manager, class_name: "User"
+  belongs_to :manager, class_name: "User", required: false
+
+  has_one :visa_detail
+  has_one :labor_card_detail
+  has_one :passport_detail
+  has_one :employee_quit
+
+  has_many :trainings
+  has_many :certificates
+  has_many :employee_projects
+  has_many :technical_skills
+  has_many :educations
+  has_many :languages
 
   scope :of_manager, -> (manager) { where(manager_id: manager.id) }
 
