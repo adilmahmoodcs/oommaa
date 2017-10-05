@@ -11,7 +11,7 @@
 class Role < ApplicationRecord
   include PublicActivity::Common
 
-  DEFAULT_ROLE_NAMES = ['admin', 'manager', 'hr', 'employee']
+  DEFAULT_ROLE_NAMES = ['admin', 'hr', 'manager', 'employee']
 
 	has_many :user_roles, dependent: :destroy
   has_many :users, through: :user_roles
@@ -77,7 +77,9 @@ class Role < ApplicationRecord
           assign_rights_of_category(role, 'all_employees')
           assign_rights_of_category(role, 'own_employee_record')
         when 'manager'
-          assign_rights_of_category(role, 'managed_employees')
+          RoleRight.create!(role_id: role.id, right_id: Right.find_by(key: 'view_all_employees').id)
+          RoleRight.create!(role_id: role.id, right_id: Right.find_by(key: 'edit_managed_employees').id)
+          RoleRight.create!(role_id: role.id, right_id: Right.find_by(key: 'get_report_all_employees').id)
           assign_rights_of_category(role, 'own_employee_record')
         when 'employee'
           assign_rights_of_category(role, 'own_employee_record')

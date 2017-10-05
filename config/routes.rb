@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   resources :reports, only: [] do
     collection do
       get :team_production
+      get :employees_data
     end
   end
 

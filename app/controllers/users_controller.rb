@@ -16,11 +16,13 @@ class UsersController < ApplicationController
 
   def create
     authorize User
-    @user = User.new(user_params)
     params[:user][:confirmed_at] = Time.current
+    @user = User.new(user_params)
 
     if @user.save(user_params)
-      redirect_to users_path, notice: 'User was successfully updated.'
+      assign_user_to_employee
+      flash[:notice] = 'Successfully Saved.'
+      redirect_back(fallback_location: users_path)
     else
       render :edit
     end
@@ -64,6 +66,14 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def assign_user_to_employee
+    @employee = Employee.find(params[:user][:employee_id])
+    if @employee.present?
+      @employee.user_id = @user.id
+      @employee.save
+    end
+  end
 
   def set_user
     @user = User.find(params[:id])

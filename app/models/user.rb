@@ -19,11 +19,6 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  role                   :integer          default("0"), not null
-#  licensor_id            :integer
-#  name                   :string
-#  widgets                :string           default("{}"), is an Array
-#  primary_color          :string
-#  secondary_color        :string
 #
 # Indexes
 #
@@ -40,7 +35,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable
 
-  after_initialize :set_default_role, :if => :new_record?
+  attr_accessor :employee_id
+
+  # after_initialize :set_default_role, :if => :new_record?
+
+  validates :email, presence: true
+  validates :email, :uniqueness => {:case_sensitive => false}
 
 
   has_many :user_roles, dependent: :destroy

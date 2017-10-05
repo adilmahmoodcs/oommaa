@@ -21,3 +21,15 @@
                             class: "form-control select2",
                             required: false %>
 </div>
+
+
+<h3>Visa Details</h3>
+<%= f.fields_for :visa_detail do |builder| %>
+  <%= render "visa_detail_fields", :f => builder %>
+<% end %>
+
+<h3>Trainings</h3>
+<%= f.fields_for :trainings do |builder| %>
+  <%= render "training_fields", :f => builder %>
+<% end %>
+<%= link_to_add_fields "Add more Trainings", f, :trainings %>

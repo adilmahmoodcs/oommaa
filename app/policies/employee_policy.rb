@@ -28,9 +28,7 @@ class EmployeePolicy < ApplicationPolicy
   end
 
   def update?
-    user.has_right?(:edit_all_employees) ||
-    (user.has_right?(:edit_managed_employees) && record.manager_id == user.id) ||
-    (user.has_right?(:edit_own_record) && record.user_id == user.id)
+    edit?
   end
 
   def new?
@@ -38,7 +36,7 @@ class EmployeePolicy < ApplicationPolicy
   end
 
   def create?
-    user.has_right?(:create_employee)
+    new?
   end
 
   def destroy?

@@ -20,4 +20,6 @@
 
 class VisaDetail < ApplicationRecord
   belongs_to :employee
+
+  validates :name, presence: true
 end

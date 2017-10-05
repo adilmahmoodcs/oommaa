@@ -14,7 +14,7 @@ u = User.create! email: "admin@oommaa.com",
              confirmed_at: Time.now
 
 u.roles << Role.admin
-
+u.create_employee!(name: 'Admin')
 
 # u.build_employee
 u = User.create! email: "hr@oommaa.com",
@@ -23,17 +23,19 @@ u = User.create! email: "hr@oommaa.com",
              confirmed_at: Time.now
 
 u.roles << Role.hr
-
-u = User.create! email: "manager@oommaa.com",
+u.create_employee!(name: 'HR')
+um = User.create! email: "manager@oommaa.com",
              password: "manager@123",
              name: "Manager User",
              confirmed_at: Time.now
 
-u.roles << Role.manager
+um.roles << Role.manager
+um.create_employee!(name: 'Manager')
 
 u = User.create! email: "employee@oommaa.com",
              password: "employee@123",
              name: "Employee User",
              confirmed_at: Time.now
 
-# u.roles << Role.employee
+u.roles << Role.employee
+u.create_employee!(name: 'Employee 1', manager_id: um.id)

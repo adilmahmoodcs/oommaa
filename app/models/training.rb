@@ -22,4 +22,7 @@
 
 class Training < ApplicationRecord
   belongs_to :employee
+
+  validates :name, presence: true
+
 end

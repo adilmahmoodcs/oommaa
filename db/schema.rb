@@ -170,17 +170,6 @@ ActiveRecord::Schema.define(version: 20171002042150) do
     t.index ["employee_id"], name: "index_employee_quits_on_employee_id", using: :btree
   end
 
-  create_table "employee_visa_details", force: :cascade do |t|
-    t.string   "visa_id"
-    t.string   "unique_id"
-    t.datetime "issue_date"
-    t.datetime "expiry_date"
-    t.integer  "employee_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["employee_id"], name: "index_employee_visa_details_on_employee_id", using: :btree
-  end
-
   create_table "employees", force: :cascade do |t|
     t.string   "name"
     t.string   "surname"
@@ -465,7 +454,6 @@ ActiveRecord::Schema.define(version: 20171002042150) do
   add_foreign_key "emergency_calls", "employees"
   add_foreign_key "employee_projects", "employees"
   add_foreign_key "employee_quits", "employees"
-  add_foreign_key "employee_visa_details", "employees"
   add_foreign_key "employees", "users"
   add_foreign_key "facebook_page_brands", "brands"
   add_foreign_key "facebook_page_brands", "facebook_pages"

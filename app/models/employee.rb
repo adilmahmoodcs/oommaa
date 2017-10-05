@@ -23,17 +23,24 @@ class Employee < ApplicationRecord
   belongs_to :user, required: false
   belongs_to :manager, class_name: "User", required: false
 
-  has_one :visa_detail
-  has_one :labor_card_detail
-  has_one :passport_detail
+  has_one :visa_detail, dependent: :destroy
+  has_one :labor_card_detail, dependent: :destroy
+  has_one :passport_detail, dependent: :destroy
   has_one :employee_quit
 
-  has_many :trainings
-  has_many :certificates
-  has_many :employee_projects
-  has_many :technical_skills
-  has_many :educations
-  has_many :languages
+  has_many :trainings, dependent: :destroy
+  has_many :certificates, dependent: :destroy
+  has_many :employee_projects, dependent: :destroy
+  has_many :technical_skills, dependent: :destroy
+  has_many :educations, dependent: :destroy
+  has_many :languages, dependent: :destroy
+
+  accepts_nested_attributes_for :visa_detail, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :trainings, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
+
+  validates :name, presence: true
+  validates :name, :uniqueness => {:case_sensitive => false}
+
 
   scope :of_manager, -> (manager) { where(manager_id: manager.id) }
 

@@ -39,6 +39,10 @@ oommaa_users:
         controller: 'employees'
         name: 'View all employees'
         actions: 'index show'
+      get_report_all_employees:
+        controller: 'employees'
+        name: 'Eligible for get the all employees data report'
+        actions: 'index show edit'
       edit_all_employees:
         controller: 'employees'
         name: 'Edit existing employees'
@@ -56,6 +60,10 @@ oommaa_users:
         controller: 'employees'
         name: 'View managed employees'
         actions: 'index show'
+      get_report_managed_employees:
+        controller: 'employees'
+        name: 'Eligible for get the managed employees data report'
+        actions: 'index show edit'
       edit_managed_employees:
         controller: 'employees'
         name: 'Edit managed existing employees'
@@ -64,13 +72,13 @@ oommaa_users:
         controller: 'employees'
         name: '<b style="color:red;">Delete managed existing employees</b><br>'
         actions: 'destroy'
-    own_employee_record:
+    own_record:
       view_own_record:
         controller: 'employees'
         name: 'View own record'
         actions: 'show'
       edit_own_record:
         controller: 'employees'
-        name: 'Edit own employee record'
+        name: 'Edit own record'
         actions: 'update edit'
 

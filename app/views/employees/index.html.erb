@@ -24,7 +24,7 @@
       </div>
     </div>
   </div>
-  <%= render "shared/resource_top_search" %>
+  <%= render 'search_form' %>
 
   <%= paginate @employees %>
 
@@ -36,7 +36,8 @@
         <th><%= sort_link(@q, :phone, "Phone") %></th>
         <th><%= sort_link(@q, :dob, "Date of Birth") %></th>
         <th>Manager</th>
-        <th>User</th>
+        <th>Visa ID</th>
+        <th>Trainings</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -60,21 +61,54 @@
               <%= employee.manager&.display_name %>
           </td>
           <td>
-              <%= employee.user&.display_name %>
+              <%= employee.visa_detail&.visa_id %>
+          </td>
+          <td>
+              <%= employee.trainings.pluck(:name).join(', ') %>
           </td>
           <td class="text-right">
-            <%= link_to edit_employee_path(employee),
-                        class: "btn btn-secondary btn-sm" do %>
-              <%= icon("pencil") %>
-              Edit
+            <% if policy(employee).edit? %>
+              <%= link_to edit_employee_path(employee),
+                          class: "btn btn-secondary btn-sm" do %>
+                <%= icon("pencil") %>
+                Edit
+              <% end %>
             <% end %>
-            <%= link_to employee,
-                        method: :delete,
-                        data: { confirm: 'Are you sure?' },
-                        class: "btn btn-danger btn-sm" do %>
-              <%= icon("trash") %>
-              Delete
+
+            <% if policy(:report).employees_data? %>
+              <%= link_to employees_data_reports_path,
+                          class: "btn btn-secondary btn-sm" do %>
+                <%= icon("export") %>
+                Report
+              <% end %>
             <% end %>
+
+            <% if policy(User).edit? %>
+              <% if employee.user_id.present? %>
+                <%= link_to edit_user_path(employee.user_id),
+                            class: "btn btn-success btn-sm" do %>
+                  <%= icon("user") %>
+                  update Account
+                <% end %>
+              <% else %>
+                <%= link_to new_user_path({employee_id: employee.id}),
+                            class: "btn btn-success btn-sm" do %>
+                  <%= icon("user") %>
+                   validate Account
+                <% end %>
+              <% end %>
+            <% end %>
+
+            <% if policy(employee).destroy? %>
+              <%= link_to employee,
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' },
+                          class: "btn btn-danger btn-sm" do %>
+                <%= icon("trash") %>
+                Delete
+              <% end %>
+            <% end %>
+
           </td>
         </tr>
       <% end %>

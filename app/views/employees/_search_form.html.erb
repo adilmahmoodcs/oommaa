@@ -1,0 +1,36 @@
+<div class="filter_holder">
+  <div class="form-inline">
+    <%= search_form_for @q do |f| %>
+      <div class="holder">
+        <div class="col-xs-12 col-sm-4 col-md-3 form-group">
+          <%= f.label :name_cont, "Name" %>
+          <%= f.text_field :name_cont, class: "form-control" %>
+        </div>
+
+        <div class="col-xs-12 col-sm-4 col-md-3 form-group">
+          <%= f.label :visa_detail_visa_id_cont, "Visa ID" %>
+          <%= f.text_field :visa_detail_visa_id_cont, class: "form-control" %>
+        </div>
+
+        <div class="col-xs-12 col-sm-4 col-md-3 form-group">
+          <%= f.label :trainings_name_cont, "Training Name" %>
+          <%= f.text_field :trainings_name_cont, class: "form-control" %>
+        </div>
+
+        <div class="col-md-12 filter-btn">
+          <div class="form-group">
+            <%= button_tag class: "btn btn-primary btn-sm" do %>
+              <%= icon("search") %>
+              Filter
+            <% end %>
+            &nbsp;
+            <%= link_to url_for(),
+                        class: "btn btn-secondary btn-sm" do %>
+              <%= icon("eraser") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
