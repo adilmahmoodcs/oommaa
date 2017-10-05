@@ -13,9 +13,18 @@
                 (all)
               <% end %>
               (<%= @employees.total_count %>)
-              <%= link_to new_employee_path, class: "btn btn-primary" do %>
-                <%= icon("plus") %>
-                Add New
+              <% if policy(current_user.employee).new? %>
+                <%= link_to new_employee_path, class: "btn btn-primary" do %>
+                  <%= icon("plus") %>
+                  Add New
+                <% end %>
+              <% end %>
+              <% if policy(:report).employees_data? %>
+                <%= link_to employees_data_reports_path,
+                            class: "btn btn-secondary" do %>
+                  <%= icon("export") %>
+                  Get Report
+                <% end %>
               <% end %>
             </h3>
           </div>
@@ -24,6 +33,7 @@
       </div>
     </div>
   </div>
+
   <%= render 'search_form' %>
 
   <%= paginate @employees %>
@@ -49,7 +59,7 @@
             <%= employee.surname %>
           </td>
           <td>
-            <%= employee.name %>
+            <%= employee.full_name %>
           </td>
           <td>
             <%= employee.phone %>
@@ -75,11 +85,11 @@
               <% end %>
             <% end %>
 
-            <% if policy(:report).employees_data? %>
-              <%= link_to employees_data_reports_path,
-                          class: "btn btn-secondary btn-sm" do %>
-                <%= icon("export") %>
-                Report
+            <% if policy(current_user.employee).show? %>
+              <%= link_to employee_path(employee),
+                          class: "btn btn-primary btn-sm" do %>
+                <%= icon("user") %>
+                View
               <% end %>
             <% end %>
 

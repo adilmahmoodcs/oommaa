@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     if @user.save(user_params)
       assign_user_to_employee
       flash[:notice] = 'Successfully Saved.'
-      redirect_back(fallback_location: users_path)
+      redirect_to employees_path
     else
       render :edit
     end

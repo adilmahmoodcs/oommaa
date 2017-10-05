@@ -1,0 +1,103 @@
+<div class="card">
+  <div class="card-block">
+    <h3>
+      <%= @employee.full_name %>
+    </h3>
+    <% if @employee.dob.present? %>
+      <p>
+        <strong>Date of Birth:</strong>
+        <%= @employee.dob.try(:strftime, '%b %d, %Y') %>
+      </p>
+    <% end %>
+    <% if @employee.phone.present? %>
+      <p>
+        <strong>Phone:</strong>
+        <%= @employee.phone %>
+      </p>
+    <% end %>
+  </div>
+</div>
+
+<% @visa_detail = @employee.visa_detail %>
+<% if @visa_detail.present? %>
+  <div class="card">
+    <div class="card-block">
+      <h3>
+        Visa Detail
+      </h3>
+      <p>
+        <strong>Name:</strong>
+        <%= @visa_detail.name %>
+      </p>
+      <p>
+        <strong>Issue Date:</strong>
+        <%= @visa_detail.issue.try(:strftime, '%b %d, %Y') %>
+      </p>
+      <p>
+        <strong>Finish Date:</strong>
+        <%= @visa_detail.finish.try(:strftime, '%b %d, %Y') %>
+      </p>
+      <p>
+        <strong>Completed Date:</strong>
+        <%= @visa_detail.completed.try(:strftime, '%b %d, %Y') %>
+      </p>
+      <p>
+        <strong>Notes:</strong>
+        <%= @visa_detail.notes %>
+      </p>
+    </div>
+  </div>
+<% end %>
+
+<% @trainings = @employee.trainings %>
+<% if @trainings.present? %>
+  <div class="card">
+    <div class="card-block">
+      <h3>
+        Trainings
+      </h3>
+      <% @trainings.each do |t| %>
+        <p>
+          <strong>Name:</strong>
+          <%= t.name %>
+        </p>
+        <p>
+          <strong>Location:</strong>
+          <%= t.location %>
+        </p>
+        <p>
+          <strong>Duration:</strong>
+          <%= t.duration %>
+        </p>
+        <p>
+          <strong>Duration:</strong>
+          <%= t.duration %>
+        </p>
+
+        <p>
+          <strong>Provider:</strong>
+          <%= t.provider %>
+        </p
+
+        <p>
+          <strong>Start Date:</strong>
+          <%= t.start_date.try(:strftime, '%b %d, %Y') %>
+        </p>
+        <p>
+          <strong>End Date:</strong>
+          <%= t.end_date.try(:strftime, '%b %d, %Y') %>
+        </p>
+        <p>
+          <strong>Notes:</strong>
+          <%= t.notes %>
+        </p>
+        <hr>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_employee_path(@employee) %>
+<% if policy(@employee).index? %>
+ | <%= link_to 'Back', employees_path %>
+<% end %>

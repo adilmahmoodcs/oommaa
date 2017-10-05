@@ -17,6 +17,15 @@
           <% end %>
         <% end %>
       </li>
+      <li class="nav-item mobile-logout-tab ">
+        <% if user_signed_in? %>
+          <%= link_to employee_path(current_user.employee.id),
+                      class: "nav-link user-action" do %>
+            <span class="font-icon glyphicon glyphicon-user"></span>
+            Profile
+          <% end %>
+        <% end %>
+      </li>
     </div>
 
     <% if policy(:dashboard).index? %>

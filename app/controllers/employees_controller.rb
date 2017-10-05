@@ -41,7 +41,12 @@ class EmployeesController < ApplicationController
     authorize @employee
     if @employee.update(employee_params)
       @employee.create_activity(:update, owner: current_user, parameters: { name: @employee.name })
-      redirect_to employees_path, notice: 'Employee was successfully updated.'
+      if policy(@employee).index?
+        redirect_to employees_path, notice: 'Employee was successfully updated.'
+      else
+        redirect_to employee_path(@employee), notice: 'Employee was successfully updated.'
+
+      end
     else
       set_child_objects
       render :edit

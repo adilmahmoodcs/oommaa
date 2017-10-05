@@ -28,10 +28,10 @@
       }
     </style>
   </head>
-  
+
   <body class="horizontal-navigation">
     <%= render "header" %>
-    <%= render "menu" if current_user %>
+    <%= render "menu" if current_user.has_right?(:view_all_employees) %>
     <div class="page-content">
       <div class="container-fluid">
         <div class="row">

@@ -22,6 +22,8 @@ class Role < ApplicationRecord
   validates :name, presence: true
   validates :name, :uniqueness => {:case_sensitive => false}
 
+  after_create :assign_basic_rights_to_default_roles
+
   ransacker :name_case_insensitive, type: :string do
     arel_table[:name].lower
   end
@@ -57,40 +59,37 @@ class Role < ApplicationRecord
 
 
 
+  def assign_basic_rights_to_default_roles
+    case self.name
+    when 'admin'
+      assign_rights_of_category('roles')
+      assign_rights_of_category('users')
+      assign_rights_of_category('all_employees')
+      assign_rights_of_category('own_record')
+    when 'hr'
+      assign_rights_of_category('all_employees')
+      assign_rights_of_category('own_record')
+    when 'manager'
+      RoleRight.create!(role_id: self.id, right_id: Right.find_by(key: 'view_all_employees').id)
+      RoleRight.create!(role_id: self.id, right_id: Right.find_by(key: 'edit_managed_employees').id)
+      RoleRight.create!(role_id: self.id, right_id: Right.find_by(key: 'get_report_all_employees').id)
+      assign_rights_of_category('own_record')
+    when 'employee'
+      assign_rights_of_category('own_record')
+    end
+  end
+
+  def assign_rights_of_category category
+    Right.where(category: category).each do |right|
+      RoleRight.create!(role_id: self.id, right_id: right.id)
+    end
+  end
+
+
   class << self
 	  def seed
       DEFAULT_ROLE_NAMES.each do |role_name|
         Role.create(name: role_name)
-      end
-      assign_basic_rights_to_default_roles
-    end
-
-    def assign_basic_rights_to_default_roles
-      find_each do |role|
-        case role.name
-        when 'admin'
-          assign_rights_of_category(role, 'roles')
-          assign_rights_of_category(role, 'users')
-          assign_rights_of_category(role, 'all_employees')
-          assign_rights_of_category(role, 'own_employee_record')
-        when 'hr'
-          assign_rights_of_category(role, 'all_employees')
-          assign_rights_of_category(role, 'own_employee_record')
-        when 'manager'
-          RoleRight.create!(role_id: role.id, right_id: Right.find_by(key: 'view_all_employees').id)
-          RoleRight.create!(role_id: role.id, right_id: Right.find_by(key: 'edit_managed_employees').id)
-          RoleRight.create!(role_id: role.id, right_id: Right.find_by(key: 'get_report_all_employees').id)
-          assign_rights_of_category(role, 'own_employee_record')
-        when 'employee'
-          assign_rights_of_category(role, 'own_employee_record')
-        end
-
-      end
-    end
-
-    def assign_rights_of_category role, category
-      Right.where(category: category).each do |right|
-        RoleRight.create!(role_id: role.id, right_id: right.id)
       end
     end
 

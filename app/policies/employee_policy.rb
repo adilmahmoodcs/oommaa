@@ -16,19 +16,23 @@ class EmployeePolicy < ApplicationPolicy
   end
 
   def show?
+    # true
     user.has_right?(:view_all_employees) ||
     (user.has_right?(:view_managed_employees) && record.manager_id == user.id) ||
     (user.has_right?(:view_own_record) && record.user_id == user.id)
   end
 
   def edit?
+    # sdsa
     user.has_right?(:edit_all_employees) ||
     (user.has_right?(:edit_managed_employees) && record.manager_id == user.id) ||
     (user.has_right?(:edit_own_record) && record.user_id == user.id)
   end
 
   def update?
-    edit?
+    user.has_right?(:edit_all_employees) ||
+    (user.has_right?(:edit_managed_employees) && record.manager_id == user.id) ||
+    (user.has_right?(:edit_own_record) && record.user_id == user.id)
   end
 
   def new?

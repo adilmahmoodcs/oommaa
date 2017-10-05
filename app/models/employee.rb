@@ -24,16 +24,16 @@ class Employee < ApplicationRecord
   belongs_to :manager, class_name: "User", required: false
 
   has_one :visa_detail, dependent: :destroy
-  has_one :labor_card_detail, dependent: :destroy
-  has_one :passport_detail, dependent: :destroy
-  has_one :employee_quit
+  # has_one :labor_card_detail, dependent: :destroy
+  # has_one :passport_detail, dependent: :destroy
+  # has_one :employee_quit
 
   has_many :trainings, dependent: :destroy
-  has_many :certificates, dependent: :destroy
-  has_many :employee_projects, dependent: :destroy
-  has_many :technical_skills, dependent: :destroy
-  has_many :educations, dependent: :destroy
-  has_many :languages, dependent: :destroy
+  # has_many :certificates, dependent: :destroy
+  # has_many :employee_projects, dependent: :destroy
+  # has_many :technical_skills, dependent: :destroy
+  # has_many :educations, dependent: :destroy
+  # has_many :languages, dependent: :destroy
 
   accepts_nested_attributes_for :visa_detail, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :trainings, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
@@ -50,5 +50,9 @@ class Employee < ApplicationRecord
 
   ransacker :surname_case_insensitive, type: :string do
     arel_table[:surname].lower
+  end
+
+  def full_name
+    [self.name, self.surname].join(' ')
   end
 end
