@@ -20,11 +20,14 @@
                 <% end %>
               <% end %>
               <% if policy(:report).employees_data? %>
-                <%= link_to employees_data_reports_path,
-                            class: "btn btn-secondary" do %>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
                   <%= icon("export") %>
-                  Get Report
-                <% end %>
+                    Get Report
+                </button>
+                <%#= link_to employees_data_reports_path,
+                            class: "btn btn-secondary" do %>
+
+                <%# end %>
               <% end %>
             </h3>
           </div>
@@ -127,3 +130,4 @@
 
   <%= paginate @employees %>
 </div>
+<%= render 'report_options_modal' %>
