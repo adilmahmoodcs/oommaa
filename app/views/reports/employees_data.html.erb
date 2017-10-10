@@ -1,0 +1,22 @@
+<% @employees.each_with_index do |employee, index| %>
+  <h3>Employee <%= index + 1 %></h3>
+
+  <% params[:employee].to_a.each do |pe| %>
+      <% associations = Employee.reflect_on_all_associations(:has_many) %>
+      <% association_name = pe[0].to_sym %>
+      <% if associations.any? { |a| a.name == association_name } %>
+        <% association_record_fields = pe[1].to_a %>
+
+        <% employee.send(association_name).each do |record| %>
+          <% association_record_fields.each do |arf| %>
+            <%= "#{arf[0]} = " %>
+            <%= record.send(arf[0]) %>
+            <br/>
+          <% end %>
+          <br/>
+        <% end %>
+      <% end %>
+
+  <% end %>
+<% end %>
+

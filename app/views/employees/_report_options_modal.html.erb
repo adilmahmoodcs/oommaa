@@ -1,19 +1,123 @@
 <!-- Modal -->
+<%# s %>
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+      <%= form_tag employees_data_reports_path, method: :get do %>
+      <form>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Select fields for report</h4>
+        </div>
+        <div class="modal-body">
+          <%= hidden_field_tag :q, params[:q] %>
+          <div class="form-group">
+            <label for="email"><strong>Employee:</strong></label>
+            <div class="row">
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][name" ><span class="ml5 mr15">Name</span>
+              </div>
+
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][phone" ><span class="ml5 mr15">Phone</span>
+              </div>
+
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][user][email" ><span class="ml5 mr15">Email</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][dob" ><span class="ml5 mr15">Date of birth</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <label for="email"><strong>Visa Detail:</strong></label>
+            <div class="row">
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][visa_detail][name]" ><span class="ml5 mr15">Name</span>
+              </div>
+
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][visa_detail][visa_id]" ><span class="ml5 mr15">Visa ID</span>
+              </div>
+
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][visa_detail][issue]" ><span class="ml5 mr15">Issue Date</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][visa_detail][finish]" ><span class="ml5 mr15">Finish Date</span>
+              </div>
+
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][visa_detail][completed]" ><span class="ml5 mr15">Completed Date</span>
+              </div>
+
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][visa_detail][notes]" ><span class="ml5 mr15">Notes</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <label for="email"><strong>Trainings:</strong></label>
+
+            <div class="row">
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][trainings][name]" ><span class="ml5 mr15">Name</span>
+              </div>
+
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][trainings][location]" ><span class="ml5 mr15">Location</span>
+              </div>
+
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][trainings][duration]" ><span class="ml5 mr15">Duration</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][trainings][provider]" ><span class="ml5 mr15"> Provider </span>
+              </div>
+
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][trainings][confirmation]" ><span class="ml5 mr15">Confirmation</span>
+              </div>
+
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][trainings][start_date]" ><span class="ml5 mr15">Start Date</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][trainings][end_date]" ><span class="ml5 mr15">End Date</span>
+              </div>
+
+              <div class="col-md-4">
+                <input type="checkbox" name="[employee][trainings][notes]" ><span class="ml5 mr15">Notes</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Generate Report</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      <% end %>
     </div>
 
   </div>
