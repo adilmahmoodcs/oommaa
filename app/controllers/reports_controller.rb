@@ -11,6 +11,8 @@ class ReportsController < ApplicationController
     authorize :report, :team_production?
 
     @q = policy_scope(Employee).ransack(params[:q])
+    puts "@q\n"*8
+    puts @q
     @q.sorts = "name_case_insensitive asc" if @q.sorts.empty?
     @employees = @q.result
 

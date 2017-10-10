@@ -1,0 +1,9 @@
+<% record = presenter.associate_data %>
+<% if record.present? %>
+  <% presenter.associate_fields.each do |field| %>
+    <%= "#{presenter.associate_field_key(field)} = " %>
+    <%= presenter.associate_field_value(record, field) %>
+    <br/>
+  <% end %>
+  <br/>
+<% end %>
