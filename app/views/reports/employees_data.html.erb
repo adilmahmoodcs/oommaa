@@ -16,15 +16,13 @@
 
 
 
+<% report_presenter = EmployeesReportPresenter.new(self, params[:employee], @employees) %>
  <table class="table table-hover table-bordered">
     <thead>
-      <% params[:employee].each do |key, value| %>
       <tr>
-        <th><%= "Employee #{key}" %></th>
-
+        <%= report_presenter.emp_report_theads %>
         <th>Actions</th>
       </tr>
-      <% end %>
     </thead>
 
     <tbody>

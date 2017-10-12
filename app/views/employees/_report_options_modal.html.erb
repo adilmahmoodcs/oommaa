@@ -12,7 +12,7 @@
           <h4 class="modal-title">Select fields for report</h4>
         </div>
         <div class="modal-body">
-          <% params[:q].each do |key, value| %>
+          <% params[:q].try(:each) do |key, value| %>
             <%= hidden_field_tag "q[#{key}]", value %>
           <% end %>
           <div class="form-group">
