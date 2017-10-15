@@ -20,7 +20,7 @@ class ReportsController < ApplicationController
       end
 
       format.csv do
-        send_data EmployeesReportCSVExporter.new(@employees, params[:employees]).call,
+        send_data EmployeesReportCSVExporter.new(@employees, params[:employee]).call,
                   filename: "employees_report_export_#{Time.now.to_i}.csv"
       end
     end

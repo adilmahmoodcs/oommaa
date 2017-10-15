@@ -1,18 +1,7 @@
-class EmployeeReportPresenter
-  # attr_reader :employee, :link, :dropdown, :summary, :view_context
-  attr_reader :employee, :emp_param, :output_format, :view_context
+class EmployeeDataReport
+  attr_reader :employee, :output_format
 
-  # delegate :design, :marketer_account, to: :campaign
-  # delegate :content_tag, :format_date_with_relative, :format_relative_time,
-  #   :content_tag, :tooltip_help, :unknown_fulfillment_date, :pluralize,
-  #   to: :view_context
-
-  delegate :content_tag,
-    to: :view_context
-
-
-  def initialize(view_context, employee, output_format=:html)
-    @view_context = view_context
+  def initialize(employee, output_format=:html)
     @employee = employee
     @output_format = output_format
   end
@@ -23,14 +12,6 @@ class EmployeeReportPresenter
 
   def associate_data(attr)
     employee.send(association_name(attr))
-  end
-
-  def associate_field_key(field)
-    field[0]
-  end
-
-  def associate_field_value(record, field)
-    record.send(associate_field_key(field))
   end
 
   def get_has_many_record(attr, attr_param)
@@ -68,11 +49,7 @@ class EmployeeReportPresenter
   end
 
   def wrap_td(attr_val)
-    # "<td>#{attr_val}</td>"
-    content_tag(
-      :td,
-      attr_val
-    )
+    "<td>#{attr_val}</td>"
   end
 
   def formating_attr_val(attr_val)

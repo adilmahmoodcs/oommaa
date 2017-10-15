@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="col-md-4 text-right pl5 pr5">
-          <%= link_to url_for(q: csv_export_params(params[:q]), format: :csv),
+          <%= link_to url_for(q: csv_export_params(params[:q]), employee: csv_export_params(params[:employee]), format: :csv),
                       class: "btn btn-primary" do %>
             <%= icon("download") %>
             <%= t(:download_as_csv) %>
