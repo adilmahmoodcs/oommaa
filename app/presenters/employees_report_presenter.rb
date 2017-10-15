@@ -1,16 +1,21 @@
 class EmployeesReportPresenter
   # attr_reader :employee, :link, :dropdown, :summary, :view_context
-  attr_reader :employees, :emp_params, :has_many_associations, :has_one_associations, :belongs_to_associations, :view_context
+  attr_reader :employees, :emp_params, :output_format, :has_many_associations, :has_one_associations, :belongs_to_associations, :view_context
 
   # delegate :design, :marketer_account, to: :campaign
   # delegate :format_date, :format_date_with_relative, :format_relative_time,
   #   :content_tag, :tooltip_help, :unknown_fulfillment_date, :pluralize,
   #   to: :view_context
 
-  def initialize(view_context, emp_params, employees)
+  delegate :content_tag,
+    to: :view_context
+
+
+  def initialize(view_context, emp_params, employees, output_format)
     @view_context = view_context
     @employees = employees
     @emp_params = emp_params
+    @output_format = output_format
     @has_many_associations = Employee.reflect_on_all_associations(:has_many)
     @has_one_associations = Employee.reflect_on_all_associations(:has_one)
     @belongs_to_associations = Employee.reflect_on_all_associations(:belongs_to)
@@ -45,16 +50,53 @@ class EmployeesReportPresenter
   end
 
   def attribute_columns_name(key, value)
-    # if key == "trainings"
-    #     ssss
-    # end
     if any_association?(key)
       value.map do |k, v|
-        "#{key} #{k}"
+        beautify_name("#{key} #{k}")
       end
     else
-      "#{key}"
+      beautify_name(key)
     end
+  end
+
+  def beautify_name(name)
+    name.gsub('_', ' ').titleize
+  end
+
+  def relation_type(name)
+    if many_association?(name)
+      "has_many"
+    elsif single_association?(name)
+      "has_one"
+    else
+      "self attribute"
+    end
+  end
+
+  def emp_report_data_as_html
+    emp_report_data.join('').html_safe
+  end
+
+  def emp_report_data
+    employees.map do |emp|
+      presenter = EmployeeReportPresenter.new(
+          view_context,
+          emp,
+          output_format
+        )
+      emp_attr_data  = emp_params.map do |key, value|
+        presenter.emp_attr_record(relation_type(key), key, value)
+      end
+      emp_attr_data.flatten!
+      output_format == :html ? emp_attr_tr(emp_attr_data) : emp_attr_data
+    end
+  end
+
+  def emp_attr_tr(emp_attr_data)
+    html = "<tr>"
+    html += emp_attr_data.join('')
+    html += "</tr>"
+    html
   end
 
 end

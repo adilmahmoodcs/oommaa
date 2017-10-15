@@ -1,99 +1,35 @@
-<% @employees.each_with_index do |employee, index| %>
-  <h3>Employee <%= index + 1 %></h3>
-
-  <% params[:employee].to_a.each do |emp_param| %>
-      <% presenter = EmployeeReportPresenter.new(self, employee, emp_param) %>
-      <% if presenter.has_many_association? %>
-        <%= render 'has_many_associate_record', presenter: presenter %>
-      <% elsif presenter.has_one_association? %>
-        <%= render 'has_one_associate_record', presenter: presenter %>
-      <% elsif presenter.own_field? %>
-        <%= render 'own_field', presenter: presenter %>
-      <% end %>
-
-  <% end %>
-<% end %>
-
-
-
-<% report_presenter = EmployeesReportPresenter.new(self, params[:employee], @employees) %>
- <table class="table table-hover table-bordered">
+<div class="counterfind_ux_v2">
+  <div class="inner-header">
+    <div class="holder">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="heading-holder">
+            <h3 class="m0">
+              Employees Report export
+            </h3>
+          </div>
+        </div>
+        <div class="col-md-4 text-right pl5 pr5">
+          <%= link_to url_for(q: csv_export_params(params[:q]), format: :csv),
+                      class: "btn btn-primary" do %>
+            <%= icon("download") %>
+            <%= t(:download_as_csv) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% report_presenter = EmployeesReportPresenter.new(self, params[:employee], @employees, :html) %>
+  <table class="table table-hover table-bordered">
     <thead>
       <tr>
         <%= report_presenter.emp_report_theads %>
-        <th>Actions</th>
+        <!-- <th>Actions</th> -->
       </tr>
     </thead>
 
     <tbody>
-      <% @employees.each do |employee| %>
-        <tr>
-          <td>
-            <%= employee.surname %>
-          </td>
-          <td>
-            <%= employee.full_name %>
-          </td>
-          <td>
-            <%= employee.phone %>
-          </td>
-          <td>
-            <%= employee.dob.try(:strftime, '%b %d, %Y') %>
-          </td>
-          <td>
-              <%= employee.manager&.display_name %>
-          </td>
-          <td>
-              <%= employee.visa_detail&.visa_id %>
-          </td>
-          <td>
-              <%= employee.trainings.pluck(:name).join(', ') %>
-          </td>
-          <td class="text-right">
-            <% if policy(employee).edit? %>
-              <%= link_to edit_employee_path(employee),
-                          class: "btn btn-secondary btn-sm" do %>
-                <%= icon("pencil") %>
-                Edit
-              <% end %>
-            <% end %>
-
-            <% if policy(current_user.employee).show? %>
-              <%= link_to employee_path(employee),
-                          class: "btn btn-primary btn-sm" do %>
-                <%= icon("user") %>
-                View
-              <% end %>
-            <% end %>
-
-            <% if policy(User).edit? %>
-              <% if employee.user_id.present? %>
-                <%= link_to edit_user_path(employee.user_id),
-                            class: "btn btn-success btn-sm" do %>
-                  <%= icon("user") %>
-                  update Account
-                <% end %>
-              <% else %>
-                <%= link_to new_user_path({employee_id: employee.id}),
-                            class: "btn btn-success btn-sm" do %>
-                  <%= icon("user") %>
-                   validate Account
-                <% end %>
-              <% end %>
-            <% end %>
-
-            <% if policy(employee).destroy? %>
-              <%= link_to employee,
-                          method: :delete,
-                          data: { confirm: 'Are you sure?' },
-                          class: "btn btn-danger btn-sm" do %>
-                <%= icon("trash") %>
-                Delete
-              <% end %>
-            <% end %>
-
-          </td>
-        </tr>
-      <% end %>
+      <%= report_presenter.emp_report_data_as_html %>
     </tbody>
   </table>
+</div>

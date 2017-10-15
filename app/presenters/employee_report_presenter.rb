@@ -1,54 +1,28 @@
 class EmployeeReportPresenter
   # attr_reader :employee, :link, :dropdown, :summary, :view_context
-  attr_reader :employee, :emp_param, :view_context
+  attr_reader :employee, :emp_param, :output_format, :view_context
 
   # delegate :design, :marketer_account, to: :campaign
-  # delegate :format_date, :format_date_with_relative, :format_relative_time,
+  # delegate :content_tag, :format_date_with_relative, :format_relative_time,
   #   :content_tag, :tooltip_help, :unknown_fulfillment_date, :pluralize,
   #   to: :view_context
 
-  def initialize(view_context, employee, emp_param)
+  delegate :content_tag,
+    to: :view_context
+
+
+  def initialize(view_context, employee, output_format=:html)
     @view_context = view_context
     @employee = employee
-    @emp_param = emp_param
+    @output_format = output_format
   end
 
-  def has_many_association?
-    associations = Employee.reflect_on_all_associations(:has_many)
-    associations.any? { |a| a.name == association_name }
+  def association_name(attr)
+    attr.to_sym
   end
 
-  def has_one_association?
-    flag = false
-    associations = Employee.reflect_on_all_associations(:belongs_to)
-    flag = associations.any? { |a| a.name == association_name }
-    return flag if flag.present?
-    associations = Employee.reflect_on_all_associations(:has_one)
-    associations.any? { |a| a.name == association_name }
-  end
-
-  def own_field?
-    employee.send(emp_param[0]).present?
-  end
-
-  def own_field_value
-    employee.send(emp_param[0])
-  end
-
-  def own_field_key
-    emp_param[0]
-  end
-
-  def associate_fields
-    emp_param[1].to_a
-  end
-
-  def association_name
-    emp_param[0].to_sym
-  end
-
-  def associate_data
-    employee.send(association_name)
+  def associate_data(attr)
+    employee.send(association_name(attr))
   end
 
   def associate_field_key(field)
@@ -59,54 +33,68 @@ class EmployeeReportPresenter
     record.send(associate_field_key(field))
   end
 
-  # def link
-  #   @campaign_link_presenter ||= CampaignLinkPresenter.new(
-  #     view_context,
-  #     campaign
-  #   )
-  # end
+  def get_has_many_record(attr, attr_param)
+    as_records = associate_data(attr)
+    attr_param.map do |k, v|
+      attr_val = as_records.try(:map) do |as_record|
+        as_record_val = as_record.send(k)
+        as_record_val = formating_attr_val(as_record_val)
+      end.join(', ')
+      attr_val_output_format(attr_val)
+    end
+  end
 
-  # def dropdown
-  #   @campaign_dropdown_presenter ||= CampaignDropdownPresenter.new(
-  #     view_context,
-  #     campaign
-  #   )
-  # end
+  def get_has_one_record(attr, attr_param)
+    as_record = associate_data(attr)
+    attr_param.map do |k, v|
+      attr_val = as_record.present? ? as_record.send(k) : "N/A"
+      attr_val = formating_attr_val(attr_val)
+      attr_val_output_format(attr_val)
+    end
+  end
 
-  # def formatted_started_at
-  #   format_date(campaign.started_at)
-  # end
+  def get_self_attr_record(attr, attr_param)
+    attr_val = employee.send(attr).present? ? employee.send(attr) : "N/A"
+    attr_val = formating_attr_val(attr_val)
+    attr_val_output_format(attr_val)
+  end
 
-  # def fulfillment_date_info
-  #   if campaign.creates_order_batch_on.present?
-  #     content_tag(
-  #       :span,
-  #       format_date_with_relative(campaign.creates_order_batch_at, format: :short_with_day),
-  #       class: "nowrap",
-  #       title: campaign.creates_order_batch_at
-  #     )
-  #   else
-  #     unknown_fulfillment_date(campaign)
-  #   end
-  # end
+  def attr_val_output_format(attr_val)
+    if output_format == :html
+      wrap_td(attr_val)
+    else
+      attr_val
+    end
+  end
 
-  # def fulfillment_frequency
-  #   if Campaign::BATCH_DURATION_IN_HOURS.key?(campaign.batch_duration_in_hours)
-  #     value = Campaign::BATCH_DURATION_IN_HOURS[campaign.batch_duration_in_hours]
-  #     return value if value.present?
+  def wrap_td(attr_val)
+    # "<td>#{attr_val}</td>"
+    content_tag(
+      :td,
+      attr_val
+    )
+  end
 
-  #     # Empty when draft value hasn't been changed (8760)
-  #     "Unknown&nbsp;".html_safe + tooltip_help("Fulfilment frequency set yet") # rubocop:disable Rails/OutputSafety
-  #   else
-  #     "Every #{pluralize(campaign.batch_duration_in_hours, 'hour')}"
-  #   end
-  # end
+  def formating_attr_val(attr_val)
+    if attr_val.class == ActiveSupport::TimeWithZone
+      attr_val.strftime('%b %d, %Y')
+    elsif attr_val.class == TrueClass
+      attr_val.present? ? attr_val : false
+    elsif attr_val.blank?
+      "N/A"
+    else
+      attr_val
+    end
 
-  # def first_order_info
-  #   return "" unless campaign.current_order_batch.present?
-  #   formatted_date = I18n.localize(campaign.current_order_batch.started_on, format: :short)
-  #   tooltip_help(
-  #     "First order placed #{formatted_date} (#{format_relative_time(campaign.current_order_batch.started_at)})"
-  #   )
-  # end
+  end
+
+  def emp_attr_record(relation_type, attr, attr_param)
+    if relation_type == "has_many"
+      get_has_many_record(attr, attr_param)
+    elsif relation_type == "has_one"
+      get_has_one_record(attr, attr_param)
+    else
+      get_self_attr_record(attr, attr_param)
+    end
+  end
 end
