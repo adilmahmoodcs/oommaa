@@ -1,5 +1,6 @@
 /*= require_self */
 /*= require bootstrap-tagsinput */
+@import 'bootstrap-sprockets';
 @import "startui/vendor/lobipanel";
 @import "jquery-ui";
 @import "dashboard";
@@ -23,3 +24,4 @@
 @import "bootstarp-new";
 @import "slide_table";
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700');
+@import 'bootstrap-datetimepicker';

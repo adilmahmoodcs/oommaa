@@ -1,3 +1,4 @@
+<%= query_review_output %>
 <dir class="counterfind_ux_v2">
   <div class="inner-header">
     <div class="holder">
@@ -41,8 +42,8 @@
       <tr>
         <th><%= sort_link(@q, :surname_case_insensitive, "Surname") %></th>
         <th><%= sort_link(@q, :name_case_insensitive, "Name") %></th>
-        <th><%= sort_link(@q, :phone, "Phone") %></th>
-        <th><%= sort_link(@q, :dob, "Date of Birth") %></th>
+        <th><%= sort_link(@q, :phone) %></th>
+        <th><%= sort_link(@q, :dob) %></th>
         <th>Manager</th>
         <th>Visa ID</th>
         <th>Trainings</th>

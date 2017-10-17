@@ -52,15 +52,29 @@ en:
   affiliates_greylisted_ads: Affiliates Greylisted Ads
   activerecord:
     attributes:
-      facebook_post:
-        permalink: Facebook URL
-        facebook_id: Facebook ID
-        facebook_page: Facebook page
-        message: Message
-        all_links: Links
-        brand_ids: Facebook page brands
-      licensor:
-        main_contact: Main Point of Contact
+      user:
+        email: Email
+      employee:
+        name: Name
+        phone: Phone#
+        dob: Date of Birth
+        surname: Sur Name
+      visa_detail:
+        visa_id: Visa ID
+        name: Name
+        issue: Issue Date
+        finish: Finish Date
+        completed: Completed Date
+        notes: Notes
+      training:
+        name: Name
+        location: Location
+        duration: Duration
+        provider: Provider
+        confirmation: Confirmation
+        start_date: Start Date
+        end_date: End Date
+        notes: Notes
   time:
     formats:
       compact: "%m-%d-%Y %H:%M"

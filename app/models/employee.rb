@@ -35,6 +35,12 @@ class Employee < ApplicationRecord
   # has_many :educations, dependent: :destroy
   # has_many :languages, dependent: :destroy
 
+  REPORT_FIELDS = {
+    name: "Name",
+    phone: "Phone#",
+    dob: "Date of Birth"
+  }
+
   accepts_nested_attributes_for :visa_detail, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :trainings, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 

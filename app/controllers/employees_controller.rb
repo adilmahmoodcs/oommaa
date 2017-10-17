@@ -6,6 +6,7 @@ class EmployeesController < ApplicationController
     @q = policy_scope(Employee).ransack(params[:q])
     @q.sorts = "name_case_insensitive asc" if @q.sorts.empty?
     @employees = @q.result.
+                 includes(:manager, :visa_detail, :trainings).
                  page(params[:page])
   end
 

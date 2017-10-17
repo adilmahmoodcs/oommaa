@@ -15,6 +15,8 @@
 //= require tether
 //= require startui/lib/bootstrap/bootstrap
 //= require startui/plugins
+//= require moment
+//= require bootstrap-datetimepicker
 //= require jquery-ui
 //= require startui/lib/lobipanel/lobipanel
 //= require startui/lib/match-height/jquery.matchHeight
@@ -39,6 +41,7 @@
 //= require slick.min
 //= require header_menu_slider
 //= require mass_select
+//= require date_time_picker
 //= require_self
 
 document.addEventListener("turbolinks:load", function() {
@@ -54,6 +57,7 @@ document.addEventListener("turbolinks:load", function() {
   SlickTableHeader.init()
   InitSlickOnResize.init()
   MassSelect.init()
+  DateTimePicker.init()
 
   $(".panel").lobiPanel({
     sortable: true
@@ -79,6 +83,7 @@ document.addEventListener("turbolinks:load", function() {
     time = new Date().getTime();
     regexp = new RegExp($(this).data('id'), 'g');
     $(this).before($(this).data('fields').replace(regexp, time));
+    DateTimePicker.init();
     return event.preventDefault();
   });
 

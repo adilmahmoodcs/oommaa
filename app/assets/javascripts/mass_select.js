@@ -1,5 +1,9 @@
 var MassSelect = {
   init: function() {
+    $('.select_all').click(function() {
+      $("input[type=checkbox]").prop("checked", $(this).prop("checked"));
+    });
+
     $('.select_all_posts').click(function() {
       $(".select_post").prop("checked", $(this).prop("checked"));
     });

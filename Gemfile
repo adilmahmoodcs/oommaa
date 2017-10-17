@@ -46,6 +46,8 @@ gem "nested_form"
 gem 'ckeditor'
 gem 'bootstrap-tagsinput-rails'
 gem 'bootstrap-generators', git: 'git://github.com/decioferreira/bootstrap-generators.git'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 
 group :development, :test do
   gem "byebug", platform: :mri
@@ -79,5 +81,5 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem "bullet"
-  gem 'bootscaf'
+  gem "query_reviewer"
 end

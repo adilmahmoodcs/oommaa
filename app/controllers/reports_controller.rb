@@ -8,15 +8,15 @@ class ReportsController < ApplicationController
   end
 
   def employees_data
-    authorize :report, :team_production?
+    authorize :report, :employees_data?
 
     @q = policy_scope(Employee).ransack(params[:q])
     @q.sorts = "name_case_insensitive asc" if @q.sorts.empty?
-    @employees = @q.result
+    @employees = @q.result.
+                 includes(:user, :visa_detail, :trainings)
 
     respond_to do |format|
       format.html do
-        # @posts = @posts.page(params[:page])
       end
 
       format.csv do
