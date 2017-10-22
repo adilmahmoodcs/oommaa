@@ -25,4 +25,17 @@ class Training < ApplicationRecord
 
   validates :name, presence: true
 
+  REPORT_FIELDS = {
+    name: "Name",
+    location: "Location",
+    location: "Location",
+    duration: "Duration",
+    provider: "Provider",
+    start_date: "Start Date",
+    end_date: "End Date",
+    notes: "Notes",
+    confirmation: "confirmation"
+  }
+
+
 end

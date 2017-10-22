@@ -24,101 +24,22 @@
 
             <label for="email"><strong>Employee:</strong></label>
             <div class="row">
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][name" ><span class="ml5 mr15">Name</span>
-              </div>
+              <% Employee::REPORT_FIELDS.each do |rf_key, rf_val| %>
+                <div class="col-md-4">
+                  <%= check_box_tag "employee[#{rf_key}]" %>
+                  <span class="ml5 mr15"><%= rf_val %></span>
+                </div>
+              <% end %>
 
               <div class="col-md-4">
-                <input type="checkbox" name="[employee][phone" ><span class="ml5 mr15">Phone</span>
-              </div>
-
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][user][email" ><span class="ml5 mr15">Email</span>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][dob" ><span class="ml5 mr15">Date of birth</span>
+                <input type="checkbox" name="employee[user][email]" ><span class="ml5 mr15">Email</span>
               </div>
             </div>
 
           </div>
 
-          <div class="form-group">
-            <label for="email"><strong>Visa Detail:</strong></label>
-            <div class="row">
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][visa_detail][name]" ><span class="ml5 mr15">Name</span>
-              </div>
-
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][visa_detail][visa_id]" ><span class="ml5 mr15">Visa ID</span>
-              </div>
-
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][visa_detail][issue]" ><span class="ml5 mr15">Issue Date</span>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][visa_detail][finish]" ><span class="ml5 mr15">Finish Date</span>
-              </div>
-
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][visa_detail][completed]" ><span class="ml5 mr15">Completed Date</span>
-              </div>
-
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][visa_detail][notes]" ><span class="ml5 mr15">Notes</span>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="form-group">
-            <label for="email"><strong>Trainings:</strong></label>
-
-            <div class="row">
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][trainings][name]" ><span class="ml5 mr15">Name</span>
-              </div>
-
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][trainings][location]" ><span class="ml5 mr15">Location</span>
-              </div>
-
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][trainings][duration]" ><span class="ml5 mr15">Duration</span>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][trainings][provider]" ><span class="ml5 mr15"> Provider </span>
-              </div>
-
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][trainings][confirmation]" ><span class="ml5 mr15">Confirmation</span>
-              </div>
-
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][trainings][start_date]" ><span class="ml5 mr15">Start Date</span>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][trainings][end_date]" ><span class="ml5 mr15">End Date</span>
-              </div>
-
-              <div class="col-md-4">
-                <input type="checkbox" name="[employee][trainings][notes]" ><span class="ml5 mr15">Notes</span>
-              </div>
-            </div>
-
-          </div>
+          <%= render "select_report_columns_of_model", model: "visa_detail" %>
+          <%= render "select_report_columns_of_model", model: "trainings" %>
         </div>
 
         <div class="modal-footer">

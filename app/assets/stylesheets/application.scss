@@ -1,11 +1,11 @@
 /*= require_self */
 /*= require bootstrap-tagsinput */
-@import 'bootstrap-sprockets';
+@import "bootstrap-sprockets";
+@import "bootstrap";
 @import "startui/vendor/lobipanel";
 @import "jquery-ui";
 @import "dashboard";
 @import "startui/pages/widgets";
-@import "startui/vendor/bootstrap";
 @import "select2-bootstrap";
 @import "startui/main";
 @import "font-awesome-sprockets";
@@ -21,7 +21,10 @@
 @import "facebook_posts_table";
 @import "slick";
 @import "slick-theme";
-@import "bootstarp-new";
 @import "slide_table";
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700');
 @import 'bootstrap-datetimepicker';
+
+.top-0-hr {
+  margin-top: 0px;
+}

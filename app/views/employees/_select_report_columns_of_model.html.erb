@@ -1,0 +1,11 @@
+<div class="form-group">
+  <label for="email"><strong><%= model.gsub("_", ' ').titleize %>:</strong></label>
+  <div class="row">
+    <% model.classify.constantize::REPORT_FIELDS.each do |rf_key, rf_val| %>
+      <div class="col-md-4">
+        <%= check_box_tag "employee[#{model}][#{rf_key}]" %>
+        <span class="ml5 mr15"><%= rf_val %></span>
+      </div>
+    <% end %>
+  </div>
+</div>

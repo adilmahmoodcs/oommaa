@@ -24,6 +24,7 @@ source "https://rails-assets.org" do
 end
 
 gem "devise", "~> 4.2.0"
+gem 'bootstrap-sass', '~> 3.3.6'
 gem "devise-bootstrap-views", github: "hisea/devise-bootstrap-views", branch: "bootstrap4"
 gem "koala", "~> 2.4.0"
 gem "sidekiq", "~> 4.2.9"
@@ -42,6 +43,7 @@ gem "pundit", "~> 1.1.0"
 gem "newrelic_rpm"
 gem "typhoeus", "~> 1.1.2"
 gem "switch_user"
+gem "simple_form"
 gem "nested_form"
 gem 'ckeditor'
 gem 'bootstrap-tagsinput-rails'

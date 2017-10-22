@@ -82,7 +82,7 @@ document.addEventListener("turbolinks:load", function() {
     var regexp, time;
     time = new Date().getTime();
     regexp = new RegExp($(this).data('id'), 'g');
-    $(this).before($(this).data('fields').replace(regexp, time));
+    $(this).parent().parent('.row').before($(this).data('fields').replace(regexp, time));
     DateTimePicker.init();
     return event.preventDefault();
   });
