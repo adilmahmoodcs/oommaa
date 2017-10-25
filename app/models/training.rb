@@ -24,10 +24,9 @@ class Training < ApplicationRecord
   belongs_to :employee, optional: :true
 
   validates :name, presence: true
-
+  REPORT_MODEL_NAME = "Trainings"
   REPORT_FIELDS = {
     name: "Name",
-    location: "Location",
     location: "Location",
     duration: "Duration",
     provider: "Provider",

@@ -17,9 +17,11 @@
 //= require startui/plugins
 //= require moment
 //= require bootstrap-datetimepicker
+// require bootstrap-confirmation.js
 //= require jquery-ui
 //= require startui/lib/lobipanel/lobipanel
 //= require startui/lib/match-height/jquery.matchHeight
+//= require startui/lib/bootstrap-sweetalert/sweetalert
 //= require startui/lib/loader
 //= require startui/app
 //= require turbolinks
@@ -29,6 +31,7 @@
 //= require jquery.infinitescroll
 //= require fixed_table_header
 //= require infinite_scroll
+//= require date_time_picker
 //= require facebook_report
 //= require search_form
 //= require selects
@@ -41,7 +44,6 @@
 //= require slick.min
 //= require header_menu_slider
 //= require mass_select
-//= require date_time_picker
 //= require_self
 
 document.addEventListener("turbolinks:load", function() {
@@ -83,7 +85,7 @@ document.addEventListener("turbolinks:load", function() {
     time = new Date().getTime();
     regexp = new RegExp($(this).data('id'), 'g');
     $(this).parent().parent('.row').before($(this).data('fields').replace(regexp, time));
-    DateTimePicker.init();
+    DateTimePicker.apply();
     return event.preventDefault();
   });
 

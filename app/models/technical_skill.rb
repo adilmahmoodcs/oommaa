@@ -18,5 +18,15 @@
 #
 
 class TechnicalSkill < ApplicationRecord
-  belongs_to :employee
+  belongs_to :employee, optional: :true
+
+  validates :name, presence: true
+  REPORT_MODEL_NAME = "Technical Skills"
+  REPORT_FIELDS = {
+    name: "Name",
+    level: "Level",
+    level_id: "Level ID",
+    notes: "Notes",
+    confirmation: "confirmation"
+  }
 end

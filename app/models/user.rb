@@ -57,6 +57,12 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+  REPORT_MODEL_NAME = ""
+  REPORT_FIELDS = {
+    email: "Email"
+  }
+
+
   scope :with_manager_rights, -> () { joins(:roles).where(roles: {name: 'manager'}).order(:name) }
 
   def set_default_role

@@ -22,10 +22,12 @@ class VisaDetail < ApplicationRecord
   belongs_to :employee, optional: :true
 
   validates :name, presence: true
+  validates :visa_id, presence: true
 
+  REPORT_MODEL_NAME = "Visa"
   REPORT_FIELDS = {
+    visa_id: "ID",
     name: "Name",
-    visa_id: "Visa ID",
     issue: "Issue Date",
     finish: "Finish Date",
     completed: "Completed Date",

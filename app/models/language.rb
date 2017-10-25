@@ -19,5 +19,16 @@
 #
 
 class Language < ApplicationRecord
-  belongs_to :employee
+  belongs_to :employee, optional: :true
+
+  validates :name, presence: true
+  REPORT_MODEL_NAME = "Languages"
+  REPORT_FIELDS = {
+    name: "Name",
+    written_level: "Written Level",
+    speaking_level: "Speaking Level",
+    native_language: "Native",
+    notes: "Notes",
+    confirmation: "Confirmation"
+  }
 end

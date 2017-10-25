@@ -30,11 +30,14 @@ class EmployeesDataReport
 
   def attribute_columns_name(key, value)
     if any_association?(key)
+      klass = key.classify.constantize
+      model_name = klass::REPORT_MODEL_NAME
+      fields_name_hash = klass::REPORT_FIELDS
       value.map do |k, v|
-        beautify_name("#{key} #{k}")
+        "#{beautify_name(model_name)} #{fields_name_hash[k.to_sym]}"
       end
     else
-      beautify_name(key)
+      Employee::REPORT_FIELDS[key.to_sym]
     end
   end
 

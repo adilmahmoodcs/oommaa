@@ -1,5 +1,5 @@
 <div class="form-group">
-  <label for="email"><strong><%= model.gsub("_", ' ').titleize %>:</strong></label>
+  <label for="email"><strong><%= model.classify.constantize::REPORT_MODEL_NAME %>:</strong></label>
   <div class="row">
     <% model.classify.constantize::REPORT_FIELDS.each do |rf_key, rf_val| %>
       <div class="col-md-4">

@@ -21,5 +21,18 @@
 #
 
 class Education < ApplicationRecord
-  belongs_to :employee
+  belongs_to :employee, optional: :true
+
+  validates :degree, presence: true
+  REPORT_MODEL_NAME = "Educations"
+  REPORT_FIELDS = {
+    degree: "Degree",
+    department: "Department",
+    institution: "Institute",
+    thesis: "Thesis",
+    still_studying: "Still Studying",
+    entrance_date: "Entrance Date",
+    graduation: "Graduation",
+    notes: "Notes"
+  }
 end

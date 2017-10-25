@@ -10,7 +10,7 @@ class ReportsController < ApplicationController
   def employees_data
     authorize :report, :employees_data?
 
-    @q = policy_scope(Employee).ransack(params[:q])
+    @q = policy_scope(Employee).active.ransack(params[:q])
     @q.sorts = "name_case_insensitive asc" if @q.sorts.empty?
     @employees = @q.result.
                  includes(:user, :visa_detail, :trainings)

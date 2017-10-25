@@ -1,5 +1,7 @@
 class EmployeesController < ApplicationController
+  include EmployeesHelper
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
+  before_action :set_current_page_var, only: [:new, :create, :edit, :update]
   # GET /employees
   def index
     authorize Employee
@@ -31,7 +33,7 @@ class EmployeesController < ApplicationController
 
     if @employee.save
       @employee.create_activity(:create, owner: current_user, parameters: { name: @employee.name })
-      redirect_to employees_path, notice: 'Employee was successfully created.'
+      redirect_to_desire_page
     else
       set_child_objects
       render :new
@@ -42,12 +44,7 @@ class EmployeesController < ApplicationController
     authorize @employee
     if @employee.update(employee_params)
       @employee.create_activity(:update, owner: current_user, parameters: { name: @employee.name })
-      if policy(@employee).index?
-        redirect_to employees_path, notice: 'Employee was successfully updated.'
-      else
-        redirect_to employee_path(@employee), notice: 'Employee was successfully updated.'
-
-      end
+      redirect_to_desire_page
     else
       set_child_objects
       render :edit
@@ -67,9 +64,43 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
   end
 
+  def set_current_page_var
+    @current_page = params[:current_page].present? ? params[:current_page] : "basic_info"
+  end
+
+  def redirect_to_desire_page
+    if params[:commit] == 'Save and Next'
+      redirect_to edit_employee_path(@employee, {current_page: next_page}), notice: 'Saved successfully.'
+    elsif params[:commit] == 'Save'
+      redirect_to employee_redirect_url_on_edit(@employee), notice: 'Saved successfully.'
+    end
+  end
+
+  def next_page
+    case @current_page
+    when 'basic_info'
+      'educations'
+    when 'educations'
+      'certificates'
+    when 'certificates'
+      'trainings'
+    when 'trainings'
+      'technical_skills'
+    when 'technical_skills'
+      'languages'
+    end
+  end
+
   def set_child_objects
     @visa_detail = @employee.visa_detail || @employee.build_visa_detail
+    @passport_detail = @employee.passport_detail || @employee.build_passport_detail
+    @labor_card_detail = @employee.labor_card_detail || @employee.build_labor_card_detail
     @trainings = @employee.trainings.present? ? @employee.trainings :  @employee.trainings.new
+    @certificates = @employee.certificates.present? ? @employee.certificates :  @employee.certificates.new
+    @employee_projects = @employee.employee_projects.present? ? @employee.employee_projects :  @employee.employee_projects.new
+    @technical_skills = @employee.technical_skills.present? ? @employee.technical_skills :  @employee.technical_skills.new
+    @educations = @employee.educations.present? ? @employee.educations :  @employee.educations.new
+    @languages = @employee.languages.present? ? @employee.languages :  @employee.languages.new
   end
 
   def employee_params
@@ -84,6 +115,45 @@ class EmployeesController < ApplicationController
         :completed,
         :notes
       ],
+      passport_detail_attributes: [
+        :id,
+        :passport_no,
+        :name,
+        :issue,
+        :finish,
+        :completed,
+        :notes
+      ],
+      labor_card_detail_attributes: [
+        :id,
+        :labor_card_id,
+        :name,
+        :issue,
+        :finish,
+        :completed,
+        :notes
+      ],
+      educations_attributes: [
+        :id,
+        :degree,
+        :department,
+        :institution,
+        :thesis,
+        :still_studying,
+        :entrance_date,
+        :graduation,
+        :notes,
+        :_destroy
+      ],
+      certificates_attributes: [
+        :id,
+        :name,
+        :provider,
+        :confirmation,
+        :completion_date,
+        :notes,
+        :_destroy
+      ],
       trainings_attributes: [
         :id,
         :name,
@@ -95,8 +165,27 @@ class EmployeesController < ApplicationController
         :end_date,
         :notes,
         :_destroy
+      ],
+      technical_skills_attributes: [
+        :id,
+        :name,
+        :level,
+        :level_id,
+        :provider,
+        :confirmation,
+        :notes,
+        :_destroy
+      ],
+      languages_attributes: [
+        :id,
+        :name,
+        :written_level,
+        :speaking_level,
+        :native_language,
+        :confirmation,
+        :notes,
+        :_destroy
       ]
-
     )
   end
 

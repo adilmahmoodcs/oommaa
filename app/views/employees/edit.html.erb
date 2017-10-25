@@ -3,6 +3,28 @@
     <div class="tbl-row">
       <div class="tbl-cell tbl-cell-title">
         <h3>Editing Employee</h3>
+        <% if @employee.persisted? %>
+          <ul class="nav nav-pills">
+            <li class="<%= set_active_class(@current_page, 'basic_info') %>">
+              <%= link_to 'Basic Info', edit_employee_path(@employee, {current_page: 'basic_info'}), class: 'change-edit-employee-current-page' %>
+            </li>
+            <li class="<%= set_active_class(@current_page, 'educations') %>">
+              <%= link_to 'Educations', edit_employee_path(@employee, {current_page: 'educations'}), class: 'change-edit-employee-current-page' %>
+            </li>
+            <li class="<%= set_active_class(@current_page, 'certificates') %>">
+              <%= link_to 'Certificates', edit_employee_path(@employee, {current_page: 'certificates'}), class: 'change-edit-employee-current-page' %>
+            </li>
+            <li class="<%= set_active_class(@current_page, 'trainings') %>">
+              <%= link_to 'Trainings', edit_employee_path(@employee, {current_page: 'trainings'}), class: 'change-edit-employee-current-page' %>
+            </li>
+            <li class="<%= set_active_class(@current_page, 'technical_skills') %>">
+              <%= link_to 'Technical Skills', edit_employee_path(@employee, {current_page: 'technical_skills'}), class: 'change-edit-employee-current-page' %>
+            </li>
+            <li class="<%= set_active_class(@current_page, 'languages') %>">
+              <%= link_to 'Languages', edit_employee_path(@employee, {current_page: 'languages'}), class: 'change-edit-employee-current-page' %>
+            </li>
+          </ul>
+        <% end %>
       </div>
     </div>
   </header>
@@ -10,3 +32,4 @@
     <%= render 'form', employee: @employee %>
   </div>
 </section>
+

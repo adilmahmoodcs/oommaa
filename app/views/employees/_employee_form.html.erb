@@ -1,73 +1,82 @@
-<div class="row">
-  <div class="col-md-4">
-    <h4>Employee Information</h4>
-  </div>
-  <div class="col-md-8">
-    <h6>
-      (All fields marked with * are mandatory)
-    </h6>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-offset-2 col-md-10">
-    <div class="form-group">
-      <%= f.label :name, class: "col-sm-2 control-label" %>
-      <div class="col-sm-6">
-        <%= f.text_field :name, autofocus: true, class: 'form-control col-md-6', required: true %>
-      </div>
+<% if @current_page == 'basic_info' %>
+  <%= hidden_field_tag :current_page, 'basic_info' %>
+  <div class="row">
+    <div class="col-md-4">
+      <h4>Employee Information</h4>
     </div>
-
-    <div class="form-group">
-      <%= f.label :phone, class: "col-sm-2 control-label" %>
-      <div class="col-sm-6">
-        <%= f.text_field :phone, class: 'form-control col-md-6' %>
-      </div>
+    <div class="col-md-8">
+      <h6>
+        (All fields marked with * are mandatory)
+      </h6>
     </div>
-
-    <div class="form-group">
-      <%= f.label :dob, class: "col-sm-2 control-label" %>
-      <div class="col-sm-6">
-        <%= f.text_field :dob, class: 'form-control col-md-6 datetimepickerYearsMode' %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :manager_id, class: "col-sm-2 control-label" %>
-      <div class="col-sm-6">
-        <%= f.collection_select :manager_id, User.with_manager_rights,
-                                :id, :name,
-                                { include_blank: true },
-                                class: "form-control select2 col-md-6",
-                                required: false %>
-      </div>
-    </div>
-
   </div>
-</div>
+  <div class="row">
+    <div class="col-md-offset-2 col-md-10">
+      <div class="form-group">
+        <%= f.label :name, class: "col-sm-2 control-label" %>
+        <div class="col-sm-6">
+          <%= f.text_field :name, autofocus: true, class: 'form-control col-md-6', required: true %>
+        </div>
+      </div>
 
-<div class="row">
-  <div class="col-md-12">
-    <h4>Visa Information</h4>
+      <div class="form-group">
+        <%= f.label :phone, class: "col-sm-2 control-label" %>
+        <div class="col-sm-6">
+          <%= f.text_field :phone, class: 'form-control col-md-6' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :dob, class: "col-sm-2 control-label" %>
+        <div class="col-sm-6">
+          <%= f.text_field :dob, class: 'form-control col-md-6 datetimepickerYearsMode' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :manager_id, class: "col-sm-2 control-label" %>
+        <div class="col-sm-6">
+          <%= f.collection_select :manager_id, User.with_manager_rights,
+                                  :id, :name,
+                                  { include_blank: true },
+                                  class: "form-control select2 col-md-6",
+                                  required: false %>
+        </div>
+      </div>
+
+    </div>
   </div>
-</div>
-<hr class="top-0-hr" />
-<%= f.fields_for :visa_detail do |builder| %>
-  <%= render "visa_detail_fields", :f => builder %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Visa Information</h4>
+    </div>
+  </div>
+  <hr class="top-0-hr" />
+  <%= f.fields_for :visa_detail do |builder| %>
+    <%= render "/employees/associate_fields/visa_detail_fields", :f => builder %>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Passport Information</h4>
+    </div>
+  </div>
+  <hr class="top-0-hr" />
+  <%= f.fields_for :passport_detail do |builder| %>
+    <%= render "/employees/associate_fields/passport_detail_fields", :f => builder %>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Labor Card Information</h4>
+    </div>
+  </div>
+  <hr />
+  <%= f.fields_for :labor_card_detail do |builder| %>
+    <%= render "/employees/associate_fields/labor_card_detail_fields", :f => builder %>
+  <% end %>
+  <hr/>
+<% else %>
+  <%= render 'many_associated_edit_page', associate_model: @current_page, f: f %>
 <% end %>
-
-<div class="row">
-  <div class="col-md-12">
-    <h4>Trainings</h4>
-  </div>
-</div>
-<hr class="top-0-hr" />
-<%= f.fields_for :trainings do |builder| %>
-  <%= render "training_fields", :f => builder %>
-<% end %>
-
-<div class="row">
-  <div class="col-md-4">
-    <%= link_to_add_fields "Add new Training", f, :trainings, "btn btn-primary pull-right" %>
-  </div>
-</div>
-<hr/>

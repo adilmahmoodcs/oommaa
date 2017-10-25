@@ -18,5 +18,16 @@
 #
 
 class Certificate < ApplicationRecord
-  belongs_to :employee
+  belongs_to :employee, optional: :true
+
+  validates :name, presence: true
+  REPORT_MODEL_NAME = "Certificates"
+  REPORT_FIELDS = {
+    name: "Name",
+    provider: "Provider",
+    completion_date: "Completion Date",
+    notes: "Notes",
+    confirmation: "confirmation"
+  }
+
 end

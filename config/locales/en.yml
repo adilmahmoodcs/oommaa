@@ -59,6 +59,20 @@ en:
         phone: Phone#
         dob: Date of Birth
         surname: Sur Name
+      passport_detail:
+        passport_no: Passport No
+        name: Name
+        issue: Issue Date
+        finish: Finish Date
+        completed: Completed Date
+        notes: Notes
+      labor_card_detail:
+        labor_card_id: Labor card ID
+        name: Name
+        issue: Issue Date
+        finish: Finish Date
+        completed: Completed Date
+        notes: Notes
       visa_detail:
         visa_id: Visa ID
         name: Name
@@ -75,6 +89,42 @@ en:
         start_date: Start Date
         end_date: End Date
         notes: Notes
+      certificate:
+        name: "Name"
+        provider: "Provider"
+        completion_date: "Completion Date"
+        notes: "Notes"
+        confirmation: "confirmation"
+      employee_project:
+        project_id: "Project ID"
+        name: "Name"
+        issue: "Issue Date"
+        finish: "Finish Date"
+        provider: "Provider"
+        completed: "Completed Date"
+        notes: "Notes"
+      technical_skill:
+        name: "Name"
+        level: "Level"
+        level_id: "Level ID"
+        notes: "Notes"
+        confirmation: "confirmation"
+      education:
+        degree: "Degree"
+        department: "Department"
+        institution: "Institute"
+        thesis: "Thesis"
+        still_studying: "Still Studying"
+        entrance_date: "Entrance Date"
+        graduation: "Graduation"
+        notes: "Notes"
+      language:
+        name: "Name"
+        written_level: "Written Level"
+        speaking_level: "Speaking Level"
+        native_language: "Native"
+        notes: "Notes"
+        confirmation: "Confirmation"
   time:
     formats:
       compact: "%m-%d-%Y %H:%M"

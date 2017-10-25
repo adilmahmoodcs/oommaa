@@ -19,5 +19,19 @@
 #
 
 class EmployeeProject < ApplicationRecord
-  belongs_to :employee
+    belongs_to :employee, optional: :true
+
+  validates :name, presence: true
+  validates :project_id, presence: true
+  REPORT_MODEL_NAME = "Projects"
+  REPORT_FIELDS = {
+    project_id: "ID",
+    name: "Name",
+    issue: "Issue Date",
+    finish: "Finish Date",
+    provider: "Provider",
+    completed: "Completed Date",
+    notes: "Notes"
+  }
+
 end

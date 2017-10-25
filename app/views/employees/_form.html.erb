@@ -1,4 +1,4 @@
-<%= simple_form_for(employee, html: { class: 'form-horizontal', novalidate: false }) do |f| %>
+<%= simple_form_for(employee, html: { class: 'form-horizontal', id: 'employee-form', novalidate: false }) do |f| %>
   <% if employee.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
@@ -15,7 +15,15 @@
 
   <div class="actions row well-sm">
     <div class="col-md-offset-4 col-md-4">
-      <%= f.submit class: "btn btn-primary btn-lg btn-block" %>
+      <%= link_to "Cancel", employee_redirect_url_on_edit(@employee), class: "btn btn-default btn-lg" %>
+    </div>
+    <div class="col-md-4">
+      <% if @employee.persisted? %>
+        <%= f.submit "Save", class: "btn btn-secondary btn-lg" %>
+      <% end %>
+      <% unless @current_page == 'languages' %>
+        <%= f.submit "Save and Next",  class: "btn btn-primary btn-lg" %>
+      <% end %>
     </div>
   </div>
 <% end %>

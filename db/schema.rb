@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171002042150) do
+ActiveRecord::Schema.define(version: 20171024200007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -256,6 +256,19 @@ ActiveRecord::Schema.define(version: 20171002042150) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "labor_card_details", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.string   "labor_card_id"
+    t.string   "name"
+    t.datetime "issue"
+    t.datetime "finish"
+    t.datetime "completed"
+    t.text     "notes"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["employee_id"], name: "index_labor_card_details_on_employee_id", using: :btree
+  end
+
   create_table "labour_card_details", force: :cascade do |t|
     t.integer  "employee_id"
     t.string   "labour_card_id"
@@ -458,6 +471,7 @@ ActiveRecord::Schema.define(version: 20171002042150) do
   add_foreign_key "facebook_page_brands", "brands"
   add_foreign_key "facebook_page_brands", "facebook_pages"
   add_foreign_key "facebook_posts", "facebook_pages"
+  add_foreign_key "labor_card_details", "employees"
   add_foreign_key "labour_card_details", "employees"
   add_foreign_key "languages", "employees"
   add_foreign_key "passport_details", "employees"

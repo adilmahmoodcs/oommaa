@@ -19,5 +19,18 @@
 #
 
 class PassportDetail < ApplicationRecord
-  belongs_to :employee
+  belongs_to :employee, optional: :true
+
+  validates :name, presence: true
+  validates :passport_no, presence: true
+
+  REPORT_MODEL_NAME = "Passport"
+  REPORT_FIELDS = {
+    passport_no: "Number",
+    name: "Name",
+    issue: "Issue Date",
+    finish: "Finish Date",
+    completed: "Completed Date",
+    notes: "Notes"
+  }
 end

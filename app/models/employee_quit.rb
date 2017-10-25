@@ -20,4 +20,6 @@
 
 class EmployeeQuit < ApplicationRecord
   belongs_to :employee
+
+  REPORT_MODEL_NAME = "Quit"
 end
