@@ -17,7 +17,7 @@
 //= require startui/plugins
 //= require moment
 //= require bootstrap-datetimepicker
-// require bootstrap-confirmation.js
+//= require bootbox_min
 //= require jquery-ui
 //= require startui/lib/lobipanel/lobipanel
 //= require startui/lib/match-height/jquery.matchHeight
@@ -73,10 +73,23 @@ document.addEventListener("turbolinks:load", function() {
   })
 
   $("table.client-sortable").tablesorter();
-
   $('form').on('click', '.remove_fields', function(event) {
     $(this).prev('input[type=hidden]').val('1');
-    $(this).closest('fieldset').hide();
+    fieldSet = $(this).closest('fieldset')
+
+    fieldSet.find('.delete-highlighted-area').addClass('ready_for_delete');
+    fieldSet.find('.show-on-delete').removeClass('hidden');
+    fieldSet.find('.hide-on-delete').addClass('hidden');
+    return event.preventDefault();
+  });
+
+    $('form').on('click', '.undo_remove_fields', function(event) {
+    fieldSet = $(this).closest('fieldset')
+    $(this).next('input[type=hidden]').val('0');
+
+    fieldSet.find('.delete-highlighted-area').removeClass('ready_for_delete');
+    fieldSet.find('.show-on-delete').addClass('hidden');
+    fieldSet.find('.hide-on-delete').removeClass('hidden');
     return event.preventDefault();
   });
 

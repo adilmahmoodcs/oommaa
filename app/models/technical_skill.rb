@@ -29,4 +29,7 @@ class TechnicalSkill < ApplicationRecord
     notes: "Notes",
     confirmation: "confirmation"
   }
+
+  default_scope { order('id ASC') }
+
 end

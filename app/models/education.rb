@@ -35,4 +35,7 @@ class Education < ApplicationRecord
     graduation: "Graduation",
     notes: "Notes"
   }
+
+  default_scope { order('id ASC') }
+
 end

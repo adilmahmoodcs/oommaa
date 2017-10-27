@@ -36,5 +36,6 @@ class Training < ApplicationRecord
     confirmation: "confirmation"
   }
 
+  default_scope { order('id ASC') }
 
 end

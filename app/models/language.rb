@@ -31,4 +31,7 @@ class Language < ApplicationRecord
     notes: "Notes",
     confirmation: "Confirmation"
   }
+
+  default_scope { order('id ASC') }
+
 end

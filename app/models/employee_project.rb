@@ -34,4 +34,7 @@ class EmployeeProject < ApplicationRecord
     notes: "Notes"
   }
 
+  default_scope { order('id ASC') }
+
+
 end

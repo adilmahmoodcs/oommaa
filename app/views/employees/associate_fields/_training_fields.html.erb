@@ -1,10 +1,12 @@
 <fieldset>
   <div class="row">
-    <div class="col-md-offset-2 col-md-10">
+    <div class="col-md-offset-2 col-md-8 delete-highlighted-area">
       <div class="form-group">
         <div class="col-md-offset-2 col-md-6">
+          <span class="text-danger show-on-delete hidden">* Highlighted record will be permanently deleted after save</span>
+          <%= link_to "Undo Revoke", 'javascript:void(0);', class: "undo_remove_fields btn btn-success btn-sm pull-right show-on-delete hidden" %>
           <%= f.hidden_field :_destroy %>
-          <%= link_to "Revoke", 'javascript:void(0);', class: "remove_fields btn btn-danger btn-sm pull-right" %>
+          <%= link_to "Revoke", 'javascript:void(0);', class: "remove_fields btn btn-danger btn-sm pull-right hide-on-delete" %>
         </div>
       </div>
 
@@ -66,12 +68,11 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-sm-10">
-          <hr/>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-2 col-sm-8">
+        <hr/>
       </div>
-
     </div>
   </div>
 </fieldset>

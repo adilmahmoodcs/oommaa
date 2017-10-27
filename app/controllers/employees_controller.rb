@@ -71,8 +71,12 @@ class EmployeesController < ApplicationController
   def redirect_to_desire_page
     if params[:commit] == 'Save and Next'
       redirect_to edit_employee_path(@employee, {current_page: next_page}), notice: 'Saved successfully.'
-    elsif params[:commit] == 'Save'
+    elsif params[:commit] == 'Save and Close'
       redirect_to employee_redirect_url_on_edit(@employee), notice: 'Saved successfully.'
+    elsif params[:commit] == 'Save'
+      redirect_to edit_employee_path(@employee, {current_page: @current_page}), notice: 'Saved successfully.'
+    else
+      redirect_to edit_employee_path(@employee, {current_page: @current_page}), notice: 'Saved successfully.'
     end
   end
 

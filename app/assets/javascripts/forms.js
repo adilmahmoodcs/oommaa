@@ -13,44 +13,52 @@ var Forms = {
       changedForm = true;
     })
 
+    function showPageChangeConfirmation(this$){
+      var dialog = bootbox.dialog({
+        title: 'Some changes are un-saved',
+        message: "<p>Kindly save or discard changed before switch the page or stay on this page.</p>",
+        buttons: {
+          cancel: {
+              label: "Stay me on this page",
+              className: 'btn-default',
+              callback: function(){
+              }
+          },
+          discard: {
+              label: "Discard changes before move!",
+              className: 'btn-danger',
+              callback: function(){
+                window.location.href = this$.attr('href');
+              }
+          },
+          save: {
+              label: "Save changes before move!",
+              className: 'btn-primary',
+              callback: function(){
+                params = this$.attr('href').split('?')[1].split('&');
+                cv_val = ''
+                $.each(params, function(i, v){
 
-  // var currency = '';
-  // $('.change-edit-employee-current-page').confirmation({
-  //   rootSelector: '.change-edit-employee-current-page',
-  //   container: 'body',
-  //   title: 'Some changes are un-saved',
-  //   onConfirm: function(currency) {
-  //     alert('You choosed ' + currency);
-  //   },
-  //   buttons: [
-  //     {
-  //       class: 'btn btn-danger',
-  //       icon: 'glyphicon glyphicon-usd',
-  //       value: 'US Dollar'
-  //     },
-  //     {
-  //       class: 'btn btn-primary',
-  //       icon: 'glyphicon glyphicon-euro',
-  //       value: 'Euro'
-  //     },
-  //     {
-  //       class: 'btn btn-warning',
-  //       icon: 'glyphicon glyphicon-bitcoin',
-  //       value: 'Bitcoin'
-  //     },
-  //     {
-  //       class: 'btn btn-default',
-  //       icon: 'glyphicon glyphicon-remove',
-  //       cancel: true
-  //     }
-  //   ]
-  // });
+                  if (v.split('=')[0] == 'current_page'){
+                    cv_val = v.split('=')[1];
+                  }
+                });
+                $('#current_page').val(cv_val);
+                $form.find('#save_form').click();
+              }
+          }
+        }
+        });
+
+    }
+
 
 
     $('.change-edit-employee-current-page').click(function(e){
       if ($form.serialize() !== origForm && changedForm == true){
-        alert("Kindly save the form changes first!!!");
+        var this$ = $(this);
         e.preventDefault();
+        showPageChangeConfirmation(this$);
       }
     });
   },
